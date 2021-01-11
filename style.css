@@ -39,9 +39,14 @@ table {
     text-align: center;
 }
 
-.right {
+.bold-right {
     text-align: right;
     padding-right: 1em;
+    font-weight: bold;
+}
+
+.colspan4 {
+    padding-left: 30em;
 }
 
 .highlight-blue {
@@ -82,4 +87,9 @@ table {
     padding: 0.1em;
     border-radius: 0.4em;
     border: 0.1em solid #000000;
+}
+
+.w70 {
+    width: 70%;
+    padding-right: 5em;
 }

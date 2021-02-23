@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Map</title>
+    <script src="../libs/leaflet.js"></script>
+    <script src="../data/cities.js"></script>
+    <style>
+        .leaflet-overlay-pane svg {
+            z-index: 99;
+        }
+        
+        #map {
+            height: 700px;
+            /* 100vh; */
+        }
+    </style>
+    <link rel="stylesheet" href="../style/leaflet.css">
+    <link rel="apple-touch-icon" sizes="152x152" href="../style/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../style/favicon.ico">
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="logs"></div>
+    <script src="../assets/mapHandler.js"></script>
+</body>
+
+</html>

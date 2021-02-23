@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <style>
+        img {
+            max-width: 4000px;
+            height: auto;
+        }
+    </style>
+    <script>
+        function loadMap() {
+            const selected_map = document.getElementById("selected_map").value;
+            const map = document.getElementById("map");
+            map.src = "./" + selected_map;
+        }
+    </script>
+</head>
+
+<body>
+    <label for="selected_map">Elije un mapa:</label>
+    <select name="selected_map" id="selected_map">
+        <option value="frankfurt.jpg">Frankfurt</option>
+        <option value="ouarzazateOasisRuins.png">Ouarzazate oasis ruins</option>
+        <option value="taintsvilleMap.jpg">Taintsville map</option>
+        <option value="theThreeSeas.jpg">The three seas</option>
+        <option value="guildsTownMrValorMap.jpg">Guilds town mr valor map</option>
+        <option value="pirateMap.jpg">Pirate map</option>
+        <option value="theDeadstoneCleft.jpg">The deadstone cleft</option>
+        <option value="theWardensChambersPathOfExile.jpg">The wardens chambers path of exile</option>
+        <option value="prisonOfHopelessness.jpg">Prison of hopelessness</option>
+        <option value="theHobgoblinsKingHideout.png">The hobgoblins king hideout</option>
+        <option value="wardhstett.jpg">Wardhstett</option>
+    </select>
+    <button onclick="loadMap()">Cargar mapa (como imagen)</button>
+    <img id="map" />
+</body>
+
+</html>

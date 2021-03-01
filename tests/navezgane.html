@@ -26,6 +26,9 @@
     <div id="map"></div>
     <div id="logs"></div>
     <script>
+        const lat = 170;
+        const long = 1170;
+
         function createImgMap(img, bounds) {
             map = L.map(
                 'map', {
@@ -35,22 +38,65 @@
                     tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
                     wheelPxPerZoomLevel: 50,
                     scrollWheelZoom: true,
-                    minZoom: 4,
-                    maxZoom: 7
+                    minZoom: -3, //4
+                    maxZoom: 1 //7
                 }
             );
             map.zoomControl.setPosition("bottomright");
-            const lat = 20;
-            const long = 20;
-            const zoom = 4;
+            const zoom = 2;
             const _bounds = (bounds || [
-                [0, 0],
-                [43, 42]
+                [-2096, -2168],
+                [2096, 2168]
             ]);
-            map.setView([lat, long], zoom).setMaxBounds(_bounds);
+            map.setView([long, lat], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, _bounds).addTo(map);
         }
         createImgMap("../style/maps/navezgane.jpg");
+
+        function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
+            size = rel_size * 16;
+            let _className;
+            if (filter) {
+                _className = "leaflet-marker-icon-" + filter
+            } else {
+                _className = "leaflet-marker-icon";
+            }
+            return {
+                iconUrl: path,
+                iconSize: [size, size * stretch_height],
+                iconAnchor: [Math.floor(size / 2), size],
+                popupAnchor: [10, -35],
+                className: _className
+            };
+        }
+
+        /**
+         * @param {string} name 
+         * @param {L.icon} _icon 
+         */
+        function spawnMarker(name, _icon, _lat, _long) {
+            return L.marker(
+                [_lat, _long], {
+                    title: name,
+                    icon: _icon
+                }
+            ).addTo(map);
+        }
+        const greenIcon = L.icon(createIcon("../style/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
+        const orangeIcon = L.icon(createIcon("../style/world_map_markers/orange_circle.png", "Town", rel_size = 1));
+        const redIcon = L.icon(createIcon("../style/world_map_markers/red_circle.png", "City", rel_size = 1.2));
+
+        spawnMarker("Spawn", greenIcon, long, lat);
+
+        let coordsArr = [];
+
+        function onMapClick(e) {
+            clickedCoords = [Math.round(e.latlng.lat * 100) / 100, Math.round(e.latlng.lng * 100) / 100];
+            coordsArr.push("[" + clickedCoords + "]");
+            console.log("Pushed your map click at " + clickedCoords); // trace
+            document.getElementById("logs").innerText = clickedCoords
+        }
+        map.on('click', onMapClick);
     </script>
 </body>
 

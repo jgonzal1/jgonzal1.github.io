@@ -18,8 +18,8 @@
         }
     </style>
     <link rel="stylesheet" href="leaflet.css">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicon.ico">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="152x152" href="../style/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../style/favicon.ico">
 
 </head>
 
@@ -52,7 +52,7 @@
             map.setView([lat, long], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, bounds).addTo(map);
         }
-        createImgMap("maps/navezgane.jpg", bounds = [
+        createImgMap("../style/maps/navezgane.jpg", bounds = [
             [0, 0],
             [height, width]
         ]); // cabe en 660 490 con zoom 3x

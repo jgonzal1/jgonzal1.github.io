@@ -37,7 +37,7 @@ let clickedCoords;
 function onMapClick(e) {
     clickedCoords = [Math.round(e.latlng.lat * 100) / 100, Math.round(e.latlng.lng * 100) / 100];
     coordsArr.push("[" + clickedCoords + "]");
-    console.log("Pushed your map click at " + clickedCoords); // trace
+    console.trace("Pushed your map click at " + clickedCoords); // trace
     document.getElementById("logs").innerText = clickedCoords
 }
 map.on('click', onMapClick);
@@ -116,7 +116,7 @@ function setSlots(n_slots) {
         xCoord = 5 * (slotToUse % 20) + 5;
         yCoord = 100 - 5 * (Math.floor(slotToUse / 20));
 
-        // console.log(`${spawnSlots[chosenSlot]} : ${moveInSlots[chosenSlot]}, x = ${xCoord}`);
+        // console.trace(`${spawnSlots[chosenSlot]} : ${moveInSlots[chosenSlot]}, x = ${xCoord}`);
 
         slots.push([
             '',
@@ -310,6 +310,6 @@ function createGrid(dimension) {
 }
 /* createGrid(160);
 map.addEventListener('mousemove', function(ev) {
-    console.log(`lat = ${ev.latlng.lat}; lng = ${ev.latlng.lng};`);
+    console.trace(`lat = ${ev.latlng.lat}; lng = ${ev.latlng.lng};`);
 });
 */

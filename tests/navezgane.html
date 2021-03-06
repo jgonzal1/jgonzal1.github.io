@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Map</title>
     <script src="../libs/leaflet.js"></script>
+    <script src="../data/7d2d_coords.js"></script>
     <style>
         .leaflet-overlay-pane svg {
             z-index: 99;
@@ -86,6 +87,11 @@
         const orangeIcon = L.icon(createIcon("../style/world_map_markers/orange_circle.png", "Town", rel_size = 1));
         const redIcon = L.icon(createIcon("../style/world_map_markers/red_circle.png", "City", rel_size = 1.2));
 
+        cities.map(function(city) {
+            spawnMarker(
+                city["ct"], orangeIcon, city["coords"][0], city["coords"][1]
+            );
+        });
         spawnMarker("Spawn", greenIcon, long, lat);
 
         let coordsArr = [];
@@ -93,7 +99,7 @@
         function onMapClick(e) {
             clickedCoords = [Math.round(e.latlng.lat * 100) / 100, Math.round(e.latlng.lng * 100) / 100];
             coordsArr.push("[" + clickedCoords + "]");
-            console.log("Pushed your map click at " + clickedCoords); // trace
+            console.trace("Pushed your map click at " + clickedCoords); // trace
             document.getElementById("logs").innerText = clickedCoords
         }
         map.on('click', onMapClick);

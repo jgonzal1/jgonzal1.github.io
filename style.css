@@ -94,3 +94,26 @@ table {
     width: 70%;
     padding-right: 5em;
 }
+
+.ch12 tr td:nth-child(1) {
+    text-align: right;
+    font-weight: bold;
+}
+.webdev_c{
+    background-color: #B5BD68;
+}
+.bigdataeng_c{
+    background-color: #A54242;
+}
+.softwaredev_c{
+    background-color: #CC6666;
+}
+.dataanalistpbi_c{
+    background-color: #F0C674;
+}
+.aidatasci_c{
+    background-color: #DE935F;
+}
+.techcons_c{
+    background-color: #81A2BE;
+}

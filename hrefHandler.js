@@ -1,17 +1,15 @@
 const url = window.location.href;
 const href = url.substring(url.indexOf("#") + 1);
 
+let cvHeader, cvBody, legend;
 if(href === 'ES') {
-    const [cvHeader,cvBody,legend] = getSpanishContents();
-    document.getElementById("cvHeader").innerHTML = cvHeader;
-    document.getElementById("cvBody").innerHTML = cvBody;
-    document.getElementById("legend").innerHTML = legend;
+    [cvHeader, cvBody, legend] = getSpanishContents();
 } else {
-    const [cvHeader,cvBody,legend] = getEnglishContents();
-    document.getElementById("cvHeader").innerHTML = cvHeader;
-    document.getElementById("cvBody").innerHTML = cvBody;
-    document.getElementById("legend").innerHTML = legend;
+    [cvHeader, cvBody, legend] = getEnglishContents();
 }
+document.getElementById("cvHeader").innerHTML = cvHeader;
+document.getElementById("cvBody").innerHTML = cvBody;
+document.getElementById("legend").innerHTML = legend;
 
 if (href.length > 1) {
     const style = document.createElement("style");

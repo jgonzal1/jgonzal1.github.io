@@ -1,7 +1,9 @@
 body {
+    /**/
     background-color: #000000;
     opacity: 0.8;
     color: #FFFFFE;
+    /**/
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -47,7 +49,7 @@ table {
 }
 
 .colspan4 {
-    padding-left: 30em;
+    padding-left: 10em;
 }
 
 .highlight-blue {

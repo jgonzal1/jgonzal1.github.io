@@ -56,7 +56,7 @@ function getSpanishContents() {
     </td>
     <td colspan="2">
       <p>
-        <b>Consultor técnico senior</b> de <b>tecnologías en la nube</b> y <b>desarrollo de <i>software</i></b> en procesos <b><i>ETLs</i></b>, <span class="highlight-yellow"><b>inteligencia de negocio</b></span>, <span class="webdev highlight-red"><b>desarrollo web</b></span> y procesamiento del lenguaje natural (NLP).
+        <b>Consultor técnico senior</b> de <b>tecnologías en la nube</b> y <b>desarrollo de <i>software</i></b> en procesos <b><i>ETLs</i></b>, <span class="bi highlight-yellow"><b>inteligencia de negocio</b></span>, <span class="webdev highlight-red"><b>desarrollo web</b></span> y procesamiento del lenguaje natural (NLP).
       </p>
       <p>
         Experiencia destacada en estas tecnologías en la nube: <span class="highlight-orange"><b>Amazon Web Services</b></span> (3+ años de experiencia),
@@ -77,11 +77,11 @@ function getSpanishContents() {
     </td>
     <td colspan="2">
       <p>
-        <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red">Python</span> (boto3, pyspark, numpy,</p>
+        <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red">Python</span> (boto3, <span class="bi">pyspark</span>, numpy,</p>
       <p>
-        pandas, scikit-learn...), <span class="highlight-orange">Amazon Redshift</span> (SQL), <span class="highlight-orange">AWS Glue</span> (pyspark),</p>
+        pandas, scikit-learn...), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark),</p>
       <p>
-        <span class="webdev highlight-red">Expresiones regulares</span> (avanzado), <span class="highlight-blue">Excel</span> (avanzado), <span class="highlight-yellow">Power BI</span> (funciones</p>
+        <span class="webdev highlight-red">Expresiones regulares</span> (avanzado), <span class="highlight-blue">Excel</span> (avanzado), <span class="bi highlight-yellow">Power BI</span> (funciones</p>
       <p>
         DAX, R), <span class="webdev highlight-red">JavaScript</span> (experiencia en desarrollo <i>full stack</i> con React, Angular, jQuery, Leaflet,</p>
       <p>
@@ -89,7 +89,7 @@ function getSpanishContents() {
       <p>
         (BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (estructuras complejas y manejadores</p>
       <p>
-        DOM), <span class="highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="highlight-blue">Azure Data Factory</span></p>
+        DOM), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (<span class="bi">U-SQL</span>, C#), <span class="bi highlight-blue">Azure Data Factory</span></p>
       <p>
         (ETLs), <span class="highlight-gray">IBM Watson</span> (soluciones de IA), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.</p>
     </td>
@@ -104,8 +104,8 @@ function getSpanishContents() {
   <tr>
     <td class="bold-right">T-Systems Iberia<br>(Noviembre de 19 – Presente)</td>
     <td colspan="2" class="w70">Diciembre de 2020 – Presente<br>
-    Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
-    Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre Pentaho CDE, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en PostgreSQL, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.
+    Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='bi webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
+    Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre <span class="bi">Pentaho CDE</span>, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en <span class="bi">postgresql</span>, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.
     </td>
   </tr>
   <tr>
@@ -113,7 +113,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Octubre 2020 - Diciembre 2020<br>Consultor técnico de Power BI<br>
+    <td colspan="2" class="w70">Octubre 2020 - Diciembre 2020<br><span class="bi">Consultor técnico de Power BI</span><br>
     <span class='webdev'>Implementación de cuadros de mando corporativos</span> para T-Systems, para el seguimiento de las dedicaciones e imputaciones de los empleados, su planificación, etc.
     </td>
   </tr>
@@ -131,7 +131,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Junio 2020 - Septiembre 2020<br>Consultor y técnico de Power BI<br>
+    <td colspan="2" class="w70">Junio 2020 - Septiembre 2020<br><span class="bi">Consultor y técnico de Power BI</span><br>
     <span class='webdev'>Implementación de cuadros de mando para la monitorización de serrvicios a clientes</span> para T-Systems sobre exportaciones de Azure Log Analytics.
     </td>
   </tr>
@@ -149,7 +149,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Marzo 2020 – Abril 2020<br>Técnico de <i>Big Data</i><br>Técnico de Big Data en la implementación de un entorno de científicos de datos para la mayor empresa aseguradora de España, mediante el uso de tecnologías <i>cloud</i> con Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena y AWS IAM.
+    <td colspan="2" class="w70">Marzo 2020 – Abril 2020<br><span class="bi">Técnico de <i>Big Data</i></span><br>Técnico de Big Data en la implementación de un entorno de científicos de datos para la mayor empresa aseguradora de España, mediante el uso de tecnologías <i>cloud</i> con <span class="bi">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span> y AWS IAM.
     </td>
   </tr>
   <tr>
@@ -157,7 +157,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Diciembre 2019 – Febrero 2020<br>Consultor técnico de arquitecturas <i>cloud</i> y <i>big data</i> para una <i>Smart City</i><br>Consultor técnico para la implementación de pruebas de concepto de <span class='webdev'>desarrollos front-end</span>, conectores python, manejo de <span class='webdev'>APIs</span> de terceros, soluciones <i>big data</i> (<span class='webdev'>Elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), funciones Lambda de AWS, interconectividad y <i>dockerización</i> de componentes para una solución de <i>Smart City</i>.
+    <td colspan="2" class="w70">Diciembre 2019 – Febrero 2020<br>Consultor técnico de arquitecturas <i>cloud</i> y <i>big data</i> para una <i>Smart City</i><br>Consultor técnico para la implementación de pruebas de concepto de <span class='webdev'>desarrollos front-end</span>, conectores python, manejo de <span class='webdev'>APIs</span> de terceros, soluciones <i>big data</i> (<span class='webdev'>Elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">funciones Lambda</span> de AWS, interconectividad y <i>dockerización</i> de componentes para una solución de <i>Smart City</i>.
     </td>
   </tr>
   <tr>
@@ -174,7 +174,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Noviembre 2019 - Diciembre 2019<br>Consultor técnico de Azure y Power BI<br>Desarrollador de <span class='webdev'>cuadros de mando</span> en Power BI y sus ETLs para un entorno de monitorización de Azure Log Analytics para una gran empresa inmobiliaria.
+    <td colspan="2" class="w70">Noviembre 2019 - Diciembre 2019<br>Consultor técnico de Azure y Power BI<br>Desarrollador de <span class="bi"><span class='webdev'>cuadros de mando</span> en Power BI y sus ETLs</span> para un entorno de monitorización de Azure Log Analytics para una gran empresa inmobiliaria.
     </td>
   </tr>
   <tr>
@@ -182,7 +182,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Informática El Corte Inglés</td>
-    <td colspan="2" class="w70">(Junio 2018 – Octubre 2019)<br>Desarrollo, arquitectura y habilitación técnica de un  proyecto de ETLs y BI que extrae datos de ficheros desde  diferentes orígenes (SAP, Salesforce, Excels) a ​buckets de Amazon S3, los procesa con ​Amazon Glue, y los vuelca en     tablas de ​Amazon Redshift que son presentados mediante Power BI.
+    <td colspan="2" class="w70">(Junio 2018 – Octubre 2019)<br>Desarrollo, arquitectura y habilitación técnica de un <span class="bi">proyecto de ETLs y BI que extrae datos de ficheros desde diferentes orígenes (SAP, Salesforce, Excels) a ​buckets de Amazon S3, los procesa con ​Amazon Glue, y los vuelca en tablas de ​Amazon Redshift que son presentados mediante Power BI</span>.
     </td>
   </tr>
   <tr>
@@ -190,8 +190,8 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 18 – Feb 19<br>Desarrollo y arquitectura de un ​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
-    ,y los vuelca en archivos en Data Lake Storage que son presentados mediante ​Power BI.
+    <td colspan="2" class="w70">Noviembre 18 – Febrero 19<br>Desarrollo y arquitectura de un <span class="bi">​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
+    ,y los vuelca en archivos en Data Lake Storage que son presentados mediante ​Power BI</span>.
     </td>
   </tr>
   <tr>
@@ -208,7 +208,7 @@ function getSpanishContents() {
   <tr>
     <td class="bold-right"> </td>
     <td colspan="2" class="w70">Ago 17 – Nov 17<br>
-    Técnico en minería de datos y entrenamiento de  inteligencia artificial​. Desarrollo de una  inteligencia artificial de visión artificial para diferenciar diferentes tipos de vehículos.
+    <span class="bi">Técnico en minería de datos</span> y entrenamiento de inteligencia artificial​. Desarrollo de una inteligencia artificial de visión artificial para diferenciar diferentes tipos de vehículos en <span class="bi">Python</span>.
     </td>
   </tr>
   <tr>
@@ -218,7 +218,7 @@ function getSpanishContents() {
     <td class="bold-right">PrimeX Artificial Intelligence</td>
     <td colspan="2" class="w70">Sep 16 – Sep 18<br>
     Desarrollador de Inteligencia Artificial en un chatbot​.
-    Programación en Java, minería de datos, entrenamiento  de Inteligencia Artificial con diferentes APIs de IBM Watson Cloud y Amazon Lex.
+    Programación en Java, <span class="bi">minería de datos</span>, entrenamiento  de Inteligencia Artificial con diferentes APIs de IBM Watson Cloud y Amazon Lex.
     </td>
   </tr>
   <tr>
@@ -236,7 +236,7 @@ function getSpanishContents() {
   <tr>
     <td class="bold-right">IBM</td>
     <td colspan="2" class="w70">May 16 – May 17<br>
-    El ​consultor y técnico de preventa de IBM Watson for Drug Discovery ​para cuatro países (España, Portugal, Grecia e Israel). Desarrollo de casos de uso, minería de datos, analítica de negocio, gestión de campaña de comunicación de Watson Health.</span>.
+    El ​consultor y técnico de preventa de IBM Watson for Drug Discovery ​para cuatro países (España, Portugal, Grecia e Israel). Desarrollo de casos de uso, <span class="bi">minería de datos</span>, analítica de negocio, gestión de campaña de comunicación de Watson Health.</span>.
     </td>
   </tr>
   <tr>

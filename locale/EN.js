@@ -56,7 +56,7 @@ function getEnglishContents() {
     </td>
     <td colspan="2">
       <p>
-        <b>Technical</b> and <b>cloud consultant expert</b> in <b>ETLs</b>, <span class="highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
+        <b>Technical</b> and <b>cloud consultant expert</b> in <b>ETLs</b>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
       </p>
       <p>
         Greatest experience in these clouds: <span class="highlight-orange"><b>Amazon Web Services</b></span> (3+ years of experience),
@@ -77,11 +77,11 @@ function getEnglishContents() {
     </td>
     <td colspan="2">
       <p>
-        <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red">Python</span> (boto3, pyspark, numpy,</p>
+        <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red">Python</span> (boto3, <span class="bi">pyspark</span>, numpy,</p>
       <p>
-        pandas, scikit-learn...), <span class="highlight-orange">Amazon Redshift</span> (SQL), <span class="highlight-orange">AWS Glue</span> (pyspark),</p>
+        pandas, scikit-learn...), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark),</p>
       <p>
-        <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="highlight-blue">Excel</span> (advanced), <span class="highlight-yellow">Power BI</span> (DAX</p>
+        <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX</p>
       <p>
         functions, R), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet,</p>
       <p>
@@ -89,7 +89,7 @@ function getEnglishContents() {
       <p>
         (BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM</p>
       <p>
-        handlers), <span class="highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="highlight-blue">Azure Data Factory</span></p>
+        handlers), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="bi highlight-blue">Azure Data Factory</span></p>
       <p>
         (ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.</p>
     </td>
@@ -103,8 +103,8 @@ function getEnglishContents() {
   const cvBody = `
   <tr>
     <td class="bold-right">T-Systems Iberia<br>(November 19 – Present)</td>
-    <td colspan="2" class="w70">Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='webdev'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
-      development of personalized reports on Pentaho CDE <span class='webdev'>ctools</span> with postgresql data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
+    <td colspan="2" class="w70">Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+      development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.
     </td>
   </tr>
@@ -113,7 +113,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Oct 20 - Dec 20<br>Power BI consultant and technician<br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc.
+    <td colspan="2" class="w70">Oct 20 - Dec 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc.
     </td>
   </tr>
   <tr>
@@ -129,7 +129,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Jun 20 - Sep 20<br>Power BI consultant and technician<br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on Azure Log Analytics Exports.
+    <td colspan="2" class="w70">Jun 20 - Sep 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on Azure Log Analytics Exports.
     </td>
   </tr>
   <tr>
@@ -145,7 +145,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mar 20 – Apr 20<br>Big Data technician<br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena, AWS IAM and remote connections.
+    <td colspan="2" class="w70">Mar 20 – Apr 20<br><span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="bi">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.
     </td>
   </tr>
   <tr>
@@ -154,7 +154,7 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right"> </td>
     <td colspan="2" class="w70">Dec 19 – Feb 20<br>Technical consultant of cloud architecture, software and big data for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, python backend
-      connectors, third party's <span class='webdev'>API managements</span>, big data solutions (<span class='webdev'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), AWS Lambda functions, connections and dockerization of all
+      connectors, third party's <span class='webdev'>API managements</span>, big data solutions (<span class='webdev'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and dockerization of all
       the components in Docker containers for a big Smart City project.
     </td>
   </tr>
@@ -172,7 +172,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 19 - Dec 19<br>Azure and Power BI technical consultant<br>Power BI, ETL and <span class='webdev'>report designer</span> for an Azure Log Analytics tracking environment in real-state.
+    <td colspan="2" class="w70">Nov 19 - Dec 19<br>Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='webdev'>report designer</span></span> for an Azure Log Analytics tracking environment in real-state.
     </td>
   </tr>
   <tr>
@@ -180,9 +180,9 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Informática El Corte Inglés</td>
-    <td colspan="2" class="w70">(Jul 17 – Oct 19)<br>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chatbots</span> and ETLs, using Amazon Web Services technologies (AWS EC2, Amazon CodeCommit,
-      Amazon Redshift, Amazon Glue and Amazon S3 among others), Microsoft Azure (L.U.I.S., QnA, <span class='webdev'>App Service</span>, Data Lake Storage, Azure Data Factory, Data Lake Analytics), IBM Watson, <span class='webdev'>Oracle Intelligent Bots</span>,
-      Google Cloud and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, Python, U-SQL and R.
+    <td colspan="2" class="w70">(Jul 17 – Oct 19)<br>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chatbots</span> and <span class="bi">ETLs</span>, using Amazon Web Services technologies (AWS EC2, Amazon CodeCommit,
+      <span class="bi">Amazon Redshift, Amazon Glue and Amazon S3</span> among others), Microsoft Azure (L.U.I.S., QnA, <span class='webdev'>App Service</span>, <span class="bi">Data Lake Storage, Azure Data Factory, Data Lake Analytics</span>), IBM Watson, <span class='webdev'>Oracle Intelligent Bots</span>,
+      Google Cloud and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi">Python, U-SQL</span> and R.
     </td>
   </tr>
   <tr>
@@ -190,8 +190,8 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Jun 19 – Oct 19<br>Development and architecture for an ETL and BI project<br>Involving extraction of data files from different sources (SAP, Salesforce, Excel documents) to Amazon S3 buckets, transfomation of data with Amazon Glue (boto3 and
-      pyspark libraries), and load in Amazon Redshift tables which are taken by <span class='webdev'>Power BI for its data representation</span>.
+    <td colspan="2" class="w70">Jun 19 – Oct 19<br>Development and architecture for an ETL and BI project<br>Involving <span class="bi">extraction of data files from different sources (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transfomation of data with <span class="bi">Amazon Glue (boto3 and
+      pyspark libraries)</span>, and load in <span class="bi">Amazon Redshift tables which are taken by <span class='webdev'>Power BI for its data representation</span></span>.
     </td>
   </tr>
   <tr>
@@ -199,8 +199,8 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 18 – Feb 19<br>Development and architecture in an ETL project<br>Involving data extraction from both an Oracle database and Google Sheets spreadsheets, transformation of data with Data Lake Analytics and Azure App Service within Azure
-      Data Factory, and load of data in Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span>.
+    <td colspan="2" class="w70">Nov 18 – Feb 19<br>Development and architecture in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
+      Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.
     </td>
   </tr>
   <tr>
@@ -216,7 +216,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Aug 17 – Nov 17<br>Data mining technician and artificial intelligence training.<br>Development of an artificial vision software in Python to classify vehicles.
+    <td colspan="2" class="w70">Aug 17 – Nov 17<br><span class="bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="bi">Python</span> to classify vehicles.
     </td>
   </tr>
   <tr>
@@ -224,7 +224,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">PrimeX Artificial Intelligence</td>
-    <td colspan="2" class="w70">Sep 16 – Sep 18<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, data mining, and AI training using different APIs from IBM Watson Cloud, Amazon Lex, and Instagram, among others.
+    <td colspan="2" class="w70">Sep 16 – Sep 18<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using different APIs from IBM Watson Cloud, Amazon Lex, and Instagram, among others.
     </td>
   </tr>
   <tr>
@@ -240,7 +240,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td colspan="2" class="w70">May 16 – May 17<br>Pre sales and technical consultant of IBM Watson for Drug Discovery for Spain, Portugal, Greece and Israel.<br>Use cases leveraging, data mining, <span class='webdev'>business analyst, and social media manager for the marketing campaign</span>.
+    <td colspan="2" class="w70">May 16 – May 17<br>Pre sales and technical consultant of IBM Watson for Drug Discovery for Spain, Portugal, Greece and Israel.<br>Use cases leveraging, <span class="bi">data mining</span>, <span class='webdev'>business analyst, and social media manager for the marketing campaign</span>.
     </td>
   </tr>
   <tr>

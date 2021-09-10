@@ -113,6 +113,15 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
+    <td colspan="2" class="w70">Mayo del 19 – Septiembre del 19<br>
+    Desarrollador full-stack de la aplicación de Ferrovial para la gestión automatizada de proyectos, alertas de tráfico en tiempo real (visualización, agregación a base de datos, filtrado y envío de alertas), y permisos de usuarios, y su visualización en su página web. Especialista en Docker, Python, JavaScript, SQL, APIs REST, Django, React y UX.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
     <td colspan="2" class="w70">Octubre 2020 - Diciembre 2020<br><span class="bi">Consultor técnico de Power BI</span><br>
     <span class='webdev'>Implementación de cuadros de mando corporativos</span> para T-Systems, para el seguimiento de las dedicaciones e imputaciones de los empleados, su planificación, etc.
     </td>

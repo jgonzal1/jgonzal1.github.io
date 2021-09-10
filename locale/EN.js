@@ -12,12 +12,14 @@ function getEnglishContents() {
         Javier González Berenguel
       </fieldset>
       <fieldset style="display:none;">
-        <legend>📲</legend>
-        <span style="-webkit-text-security: disc;">(+34) 664383902</span>
+        <legend>📲 (please inform before calling)</legend>
+        <span>(+34) 664383902</span>
       </fieldset>
       <fieldset>
-        <legend>🚩</legend>
+        <legend>🗣</legend>
+        English
         Spanish
+        More TBD
       </fieldset>
     </td>
     <td>
@@ -29,13 +31,11 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        <a href="https://earth.google.com/web/@40.49444407,-3.71094332,690.23662493a,128.75462389d,35y,156.09990579h,74.89180972t,0r" target="_blank">
-          la Masó street, 14, ground floor
-        </a>
+        Copenhague, Denmark
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
-        28034, Madrid (Madrid), Spain
+        Availability for international projects
       </fieldset>
     </td>
     <td class="centered">
@@ -56,7 +56,7 @@ function getEnglishContents() {
     </td>
     <td colspan="2">
       <p>
-        <b>Technical</b> and <b>cloud consultant expert</b> in <b>ETLs</b>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
+        <b>Technical</b> and <b>cloud consultant expert</b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
       </p>
       <p>
         Greatest experience in these clouds: <span class="highlight-orange"><b>Amazon Web Services</b></span> (3+ years of experience),
@@ -83,15 +83,19 @@ function getEnglishContents() {
       <p>
         <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX</p>
       <p>
-        functions, R), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet,</p>
+        functions, R), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React,</p>
       <p>
-        BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and TypeScript), <span class="webdev highlight-red">CSS</span></p>
+        Angular, jQuery, Leaflet,BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint</p>
       <p>
-        (BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM</p>
+        and TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span></p>
       <p>
-        handlers), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="bi highlight-blue">Azure Data Factory</span></p>
+        (complex structures and DOM handlers), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#),</p>
       <p>
-        (ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.</p>
+        <span class="bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>,
+      </p>
+      <p>
+        <span class="highlight-blue">Microsoft LUIS</span>.
+      </p>
     </td>
   </tr>
   <tr>
@@ -106,6 +110,15 @@ function getEnglishContents() {
     <td colspan="2" class="w70">Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
+    <td colspan="2" class="w70">May 21 – Sep 21<br>
+    Full-stack developer for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. Docker, Python, JavaScript, SQL, APIs REST, Django, React and UX specialist.
     </td>
   </tr>
   <tr>

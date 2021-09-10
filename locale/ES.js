@@ -56,7 +56,10 @@ function getSpanishContents() {
     </td>
     <td colspan="2">
       <p>
-        <b>Consultor técnico senior</b> de <b>tecnologías en la nube</b> y <b>desarrollo de <i>software</i></b> en procesos <b><i>ETLs</i></b>, <span class="bi highlight-yellow"><b>inteligencia de negocio</b></span>, <span class="webdev highlight-red"><b>desarrollo web</b></span> y procesamiento del lenguaje natural (NLP).
+        <b>Consultor técnico senior</b> de <b>tecnologías en la nube</b> y <b>desarrollo de <i>software</i></b> en procesos <span class="bi highlight-yellow"><b><i>ETLs</i></b></span>,
+      </p>
+      <p>
+        <span class="bi highlight-yellow"><b>inteligencia de negocio</b></span>, <span class="webdev highlight-red"><b>desarrollo web</b></span> y procesamiento del lenguaje natural (NLP).
       </p>
       <p>
         Experiencia destacada en estas tecnologías en la nube: <span class="highlight-orange"><b>Amazon Web Services</b></span> (3+ años de experiencia),
@@ -113,7 +116,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mayo del 19 – Septiembre del 19<br>
+    <td colspan="2" class="w70">Mayo del 21 – Septiembre del 21<br>
     Desarrollador full-stack de la aplicación de Ferrovial para la gestión automatizada de proyectos, alertas de tráfico en tiempo real (visualización, agregación a base de datos, filtrado y envío de alertas), y permisos de usuarios, y su visualización en su página web. Especialista en Docker, Python, JavaScript, SQL, APIs REST, Django, React y UX.
     </td>
   </tr>

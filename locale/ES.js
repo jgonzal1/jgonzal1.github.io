@@ -41,7 +41,7 @@ function getSpanishContents() {
     <td class="centered">
       <fieldset>
         <legend>📸</legend>
-        <img src="200522_me.jpg" alt="Javier González">
+        <img src="javier.jpg" alt="Javier González">
       </fieldset>
     </td>
   </tr>

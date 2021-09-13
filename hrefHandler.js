@@ -1,8 +1,12 @@
 const url = window.location.href;
 const href = url.substring(url.indexOf("#") + 1);
+const lTmp = href.substring(href.search("lang=")===-1?0:href.search("lang=")+5);
+const lang = lTmp===href?href:lTmp.substring(0,2);
+const rTmp = href.substring(href.search("role=")===-1?0:href.search("role=")+5);
+const role = rTmp===href?href:rTmp.substring(0,rTmp.search("&")===-1?rTmp.length:rTmp.search("&"));
 
 let cvHeader, cvBody, legend;
-if(href === 'ES') {
+if(lang === 'ES') {
     [cvHeader, cvBody, legend] = getSpanishContents();
 } else {
     [cvHeader, cvBody, legend] = getEnglishContents();
@@ -11,13 +15,11 @@ document.getElementById("cvHeader").innerHTML = cvHeader;
 document.getElementById("cvBody").innerHTML = cvBody;
 document.getElementById("legend").innerHTML = legend;
 
-if (href.length > 1) {
-    const style = document.createElement("style");
-    style.innerHTML = `
-    .${href} {\n\
-        opacity: 1;\n\
-        font-weight:bolder;\n\
-        font-size: 1.5em;\n\
-    }`;
-    document.head.appendChild(style);
-}
+const style = document.createElement("style");
+style.innerHTML = `
+.${role} {\n\
+    opacity: 1;\n\
+    font-weight:bolder;\n\
+    font-size: 1.5em;\n\
+}`;
+document.head.appendChild(style);

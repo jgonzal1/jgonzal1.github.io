@@ -9,6 +9,7 @@ let cvHeader, cvBody, legend;
 if(lang === 'ES') {
     [cvHeader, cvBody, legend] = getSpanishContents();
 } else {
+    // @ts-ignore
     [cvHeader, cvBody, legend] = getEnglishContents();
 }
 document.getElementById("cvHeader").innerHTML = cvHeader;

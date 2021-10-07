@@ -116,8 +116,17 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mayo del 21 – Septiembre del 21<br>
+    <td colspan="2" class="w70">Mayo del 21 – Octubre del 21<br>
     Desarrollador full-stack de la aplicación de Ferrovial para la gestión automatizada de proyectos, alertas de tráfico en tiempo real (visualización, agregación a base de datos, filtrado y envío de alertas), y permisos de usuarios, y su visualización en su página web. Especialista en Docker, Python, JavaScript, SQL, APIs REST, Django, React y UX.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
+    <td colspan="2" class="w70">Diciembre 2020 - Mayo 2021<br><span class="bi">Consultor técnico de Power BI</span><br>
+    <span class='bi'>Profesor de Power BI</span> para T-Systems, y todas las empresas de la Deutsche Telekom.
     </td>
   </tr>
   <tr>
@@ -192,6 +201,17 @@ function getSpanishContents() {
   <tr>
     <td colspan="3"><br></td>
   </tr>
+
+  <tr>
+    <td class="bold-right">OpenWebinars</td>
+    <td colspan="2" class="w70">(Colaboración, Octubre del 21)<br>
+    Profesor de los cursos "Introducción a patrones de diseño en <span class="webdev">JavaScript</span>", "Patrones de diseño en <span class="webdev">JavaScript y asincronía</span>", y "Desarrolla una <span class="webdev">aplicación en JavaScript</span> utilizando patrones de diseño" para OpenWebinars.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+
   <tr>
     <td class="bold-right">Informática El Corte Inglés</td>
     <td colspan="2" class="w70">(Junio 2018 – Octubre 2019)<br>Desarrollo, arquitectura y habilitación técnica de un <span class="bi">proyecto de ETLs y BI que extrae datos de ficheros desde diferentes orígenes (SAP, Salesforce, Excels) a ​buckets de Amazon S3, los procesa con ​Amazon Glue, y los vuelca en tablas de ​Amazon Redshift que son presentados mediante Power BI</span>.
@@ -249,6 +269,14 @@ function getSpanishContents() {
     <td class="bold-right">IBM</td>
     <td colspan="2" class="w70">May 16 – May 17<br>
     El ​consultor y técnico de preventa de IBM Watson for Drug Discovery ​para cuatro países (España, Portugal, Grecia e Israel). Desarrollo de casos de uso, <span class="bi">minería de datos</span>, analítica de negocio, gestión de campaña de comunicación de Watson Health.</span>.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+    <td class="bold-right">Microsoft</td>
+    <td colspan="2">Feb 21<br><span class='cloid'>Microsoft AI-100</span>.
+      Expedido por Pearson VUE, ID 990098386.
     </td>
   </tr>
   <tr>

@@ -117,7 +117,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">May 21 – Sep 21<br>
+    <td colspan="2" class="w70">May 21 – Oct 21<br>
     Full-stack developer for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="cloud">APIs REST</span>, <span class="cloud">GCP's Directions</span> API, Django, React and UX specialist.
     </td>
   </tr>
@@ -126,7 +126,16 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Oct 20 - Dec 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc.
+    <td colspan="2" class="w70">Dec 20 - May 21<br><span class="bi">Power BI technical consultant</span><br>
+    <span class='bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
+    <td colspan="2" class="w70">Oct 20 - Dec 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.
     </td>
   </tr>
   <tr>
@@ -142,7 +151,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Jun 20 - Sep 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports.
+    <td colspan="2" class="w70">Jun 20 - Sep 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.
     </td>
   </tr>
   <tr>
@@ -188,6 +197,17 @@ function getEnglishContents() {
     <td colspan="2" class="w70">Nov 19 - Dec 19<br>Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
     </td>
   </tr>
+
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right">OpenWebinars</td>
+    <td colspan="2" class="w70">(Collaboration, Oct 21)<br>
+     Teacher for the OpenWebinars courses and workshop for <span class="webdev">JavaScript design patters</span>.
+    </td>
+  </tr>
+
   <tr>
     <td colspan="3"><br></td>
   </tr>
@@ -300,6 +320,15 @@ function getEnglishContents() {
     <td colspan="3" class="colspan4">
       <h2>Courses, certifications and events</h2>
     </td>
+  </tr>
+  <tr>
+    <td class="bold-right">Microsoft</td>
+    <td clospan="2">Feb 21<br><span class='cloid'>Microsoft AI-100</span>.
+      Issued by Pearson VUE, Credential ID 990098386.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Red.ES</td>

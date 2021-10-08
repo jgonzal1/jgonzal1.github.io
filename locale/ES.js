@@ -54,7 +54,7 @@ function getSpanishContents() {
     <td class="bold-right">
       <h3>Sobre mí</h3>
     </td>
-    <td colspan="2">
+    <td colspan="2" class="w70">
       <p>
         <b>Consultor técnico senior</b> de <b>tecnologías en la nube</b> y <b>desarrollo de <i>software</i></b> en procesos <span class="bi highlight-yellow"><b><i>ETLs</i></b></span>,
       </p>
@@ -78,7 +78,7 @@ function getSpanishContents() {
         Tecnologías
       </h3>
     </td>
-    <td colspan="2">
+    <td colspan="2" class="w70">
       <p>
         <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red">Python</span> (boto3, <span class="bi">pyspark</span>, numpy,</p>
       <p>

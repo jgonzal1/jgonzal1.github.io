@@ -54,7 +54,7 @@ function getEnglishContents() {
     <td class="bold-right">
       <h3>About me</h3>
     </td>
-    <td colspan="2">
+    <td colspan="2" class="w70" style="font-size: 1.3em;">
       <p>
         <b>Technical</b> and <b><span class="cloud">cloud consultant expert</span></b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
       </p>
@@ -75,7 +75,7 @@ function getEnglishContents() {
         Technologies
       </h3>
     </td>
-    <td colspan="2">
+    <td colspan="2" class="w70" style="font-size: 1.3em;">
       <p>
         <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy,</p>
       <p>
@@ -298,19 +298,13 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
     <td class="bold-right">MSc @ Universidad de Granada</td>
     <td colspan="2">14 – 15<br>Master of Science in Foodstuffs quality and technology.
     </td>
   </tr>
   <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
     <td class="bold-right">MD @ Universidad de Alcalá</td>
-    <td colspan="2">16 – 17<br>>Master in Professional Development 4.0
+    <td colspan="2">16 – 17<br>Master in Professional Development 4.0
     </td>
   </tr>
   <tr>

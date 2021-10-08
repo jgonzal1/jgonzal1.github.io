@@ -21,6 +21,6 @@ style.innerHTML = `
 .${role} {\n\
     opacity: 1;\n\
     font-weight:bolder;\n\
-    font-size: 1.5em;\n\
+    font-size: 1.2em;\n\
 }`;
 document.head.appendChild(style);

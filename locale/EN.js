@@ -76,26 +76,7 @@ function getEnglishContents() {
       </h3>
     </td>
     <td colspan="2" class="w70" style="font-size: 1.3em;">
-      <p>
-        <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy,</p>
-      <p>
-        pandas, scikit-learn...), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark),</p>
-      <p>
-        <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX</p>
-      <p>
-        functions, R), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React,</p>
-      <p>
-        Angular, jQuery, Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint</p>
-      <p>
-        and TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span></p>
-      <p>
-        (complex structures and DOM handlers), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#),</p>
-      <p>
-        <span class="bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>,
-      </p>
-      <p>
-        <span class="highlight-blue">Microsoft LUIS</span>.
-      </p>
+      <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX functions, R), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy, pandas, scikit-learn...), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM handlers), <span class="highlight-red">Docker</span>, <span class="highlight-red">Terraform</span>, <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.
     </td>
   </tr>
   <tr>
@@ -115,8 +96,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">T-Systems Iberia</td>
-    <td colspan="2" class="w70"><br>(Nov 19 – Nov 21)<br>Software developer and consultant, and Power BI technician
-    </td>
+    <td colspan="2" class="w70"><br>(Nov 19 – Nov 21)<br>Software developer and consultant, and Power BI technician</td>
   </tr>
   <tr>
     <td colspan="3"><br></td>

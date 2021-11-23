@@ -106,8 +106,32 @@ function getEnglishContents() {
   `;
   const cvBody = `
   <tr>
-    <td class="bold-right">T-Systems Iberia<br>(November 19 – Present)</td>
-    <td colspan="2" class="w70">Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+    <td class="bold-right">AETY</td>
+    <td colspan="2" class="w70"><br>(Nov 21 – Nowadays)<br>Software developer
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right">T-Systems Iberia</td>
+    <td colspan="2" class="w70"><br>(Nov 19 – Nov 21)<br>Software developer and consultant, and Power BI technician
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right">T-Systems Iberia</td>
+    <td colspan="2" class="w70"><br>Dec 20 – Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+      development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
+      and environment test cases.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+      Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.
     </td>

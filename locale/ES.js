@@ -105,10 +105,25 @@ function getSpanishContents() {
   `;
   const cvBody = `
   <tr>
-    <td class="bold-right">T-Systems Iberia<br>(Noviembre de 19 – Presente)</td>
-    <td colspan="2" class="w70">Diciembre de 2020 – Presente<br>
-    Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='bi webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
-    Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre <span class="bi">Pentaho CDE</span>, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en <span class="bi">postgresql</span>, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.
+    <td class="bold-right">AETY</td>
+    <td colspan="2" class="w70"><br>(Noviembre 2021 – Actualidad)<br>Desarrollador de Software
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right">T-Systems Iberia</td>
+    <td colspan="2" class="w70"><br>(Noviembre 2019 – Noviembre 2021)<br>Desarrollador y consultor de software, técnico en Power BI
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right">T-Systems Iberia</td>
+    <td colspan="2" class="w70"><br>Diciembre 20 – Noviembre 21<br>Consultor técnico de <span class='webdev'>desarrollo full-stack</span> de informes en <span class='bi webdev cloud'>Pentaho CDE</span> para una Smart City<br>
+      Consultor técnico para implementar pruebas de concepto de cuadros de mando personalizados en <span class="bi">Pentaho CDE</span> y <span class='webdev'>ctools</span> con orígenes de datos en <span class="bi">postgresql</span>. Uso de gráficos personalizados con librerías como <span class='webdev'>Leaflet.JS, Sankey</span>, etc.
     </td>
   </tr>
   <tr>
@@ -116,7 +131,17 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mayo del 21 – Octubre del 21<br>
+      Diciembre 2020 – Noviembre 2021<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+      Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='bi webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
+      Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre <span class="bi">Pentaho CDE</span>, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en <span class="bi">postgresql</span>, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
+    <td colspan="2" class="w70">Mayo 2021 – Octubre 2021<br>
     Desarrollador full-stack de la aplicación de Ferrovial para la gestión automatizada de proyectos, alertas de tráfico en tiempo real (visualización, agregación a base de datos, filtrado y envío de alertas), y permisos de usuarios, y su visualización en su página web. Especialista en Docker, Python, JavaScript, SQL, APIs REST, Django, React y UX.
     </td>
   </tr>

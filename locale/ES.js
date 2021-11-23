@@ -131,6 +131,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
+    <td colspan="2" class="w70">
       Diciembre 2020 – Noviembre 2021<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='bi webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
       Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre <span class="bi">Pentaho CDE</span>, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en <span class="bi">postgresql</span>, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.

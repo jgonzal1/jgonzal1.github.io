@@ -121,7 +121,7 @@ function getSpanishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right">T-Systems Iberia</td>
+    <td class="bold-right"> </td>
     <td colspan="2" class="w70"><br>Diciembre 20 – Noviembre 21<br>Consultor técnico de <span class='webdev'>desarrollo full-stack</span> de informes en <span class='bi webdev cloud'>Pentaho CDE</span> para una Smart City<br>
       Consultor técnico para implementar pruebas de concepto de cuadros de mando personalizados en <span class="bi">Pentaho CDE</span> y <span class='webdev'>ctools</span> con orígenes de datos en <span class="bi">postgresql</span>. Uso de gráficos personalizados con librerías como <span class='webdev'>Leaflet.JS, Sankey</span>, etc.
     </td>

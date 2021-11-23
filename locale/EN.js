@@ -122,7 +122,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right">T-Systems Iberia</td>
+    <td class="bold-right"> </td>
     <td colspan="2" class="w70"><br>Dec 20 – Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.

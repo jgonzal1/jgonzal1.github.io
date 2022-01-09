@@ -1,3 +1,4 @@
+/**/ a { color: #BBBBFF; } /**/
 body {
     /**/
     background-color: #000000;
@@ -6,40 +7,20 @@ body {
     /**/
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
-a {
-    color: #BBBBFF
-}
-
-fieldset {
-    border-radius: 0.4em;
-}
-
-h2 {
-    margin-top: 0.6em;
-}
-
+fieldset { border-radius: 0.4em; }
+h2 { margin-top: 0.6em; }
 img {
     max-width: 10.8em;
     border-radius: 0.4em;
 }
-
-legend {
-    font-size: 2em;
-}
-
+legend { font-size: 2em; }
 p {
     margin-top: 0em;
     margin-bottom: 0.1em;
 }
-
 table {
     margin-left: auto;
     margin-right: auto;
-}
-
-.centered {
-    text-align: center;
 }
 
 .bold-right {
@@ -47,11 +28,18 @@ table {
     padding-right: 1em;
     font-weight: bold;
 }
-
-.colspan4 {
-    padding-left: 10em;
+.ch12 tr td:nth-child(1) {
+    text-align: right;
+    font-weight: bold;
 }
-
+.centered { text-align: center; }
+.colspan4 { padding-left: 10em; }
+.highlight {
+    color: #000000;
+    padding: 0.1em;
+    border-radius: 0.4em;
+    border: 0.1em solid #000000;
+}
 .highlight-blue {
     background-color: #81A2BE;
     color: #000000;
@@ -59,7 +47,6 @@ table {
     border-radius: 0.4em;
     border: 0.1em solid #000000;
 }
-
 .highlight-yellow {
     background-color: #F0C674;
     color: #000000;
@@ -67,7 +54,6 @@ table {
     border-radius: 0.4em;
     border: 0.1em solid #000000;
 }
-
 .highlight-orange {
     background-color: #DE935F;
     color: #000000;
@@ -75,7 +61,6 @@ table {
     border-radius: 0.4em;
     border: 0.1em solid #000000;
 }
-
 .highlight-red {
     background-color: #CC6666;
     color: #000000;
@@ -83,7 +68,6 @@ table {
     border-radius: 0.4em;
     border: 0.1em solid #000000;
 }
-
 .highlight-gray {
     background-color: #C5C8C6;
     color: #000000;
@@ -91,31 +75,17 @@ table {
     border-radius: 0.4em;
     border: 0.1em solid #000000;
 }
-
+.w25 {
+    width: 25vw;
+}
 .w70 {
-    width: 70%;
-    padding-right: 5em;
+    width: 80%;
+    padding-right: 2em;
 }
 
-.ch12 tr td:nth-child(1) {
-    text-align: right;
-    font-weight: bold;
-}
-.webdev_c{
-    background-color: #B5BD68;
-}
-.bigdataeng_c{
-    background-color: #A54242;
-}
-.softwaredev_c{
-    background-color: #CC6666;
-}
-.dataanalistpbi_c{
-    background-color: #F0C674;
-}
-.aidatasci_c{
-    background-color: #DE935F;
-}
-.techcons_c{
-    background-color: #81A2BE;
-}
+.webdev_c {         background-color: #B5BD68; }
+.bigdataeng_c {     background-color: #A54242; }
+.softwaredev_c {    background-color: #CC6666; }
+.dataanalistpbi_c { background-color: #F0C674; }
+.aidatasci_c {      background-color: #DE935F; }
+.techcons_c {       background-color: #81A2BE; }

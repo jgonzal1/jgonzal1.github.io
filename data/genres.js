@@ -4,14 +4,14 @@ const buildingPoints = [
   ,{"crds": [ 270, 605], "text": "Latin"}
   ,{"crds": [ 270, 590], "text": "Nordic"}
   ,{"crds": [ 560, 630], "text": "Traditional gospel"}
-  ,{"crds": [ 730, 620], "text": "Medieval"}
-  ,{"crds": [ 730, 612], "text": "Renaissance"}
-  ,{"crds": [ 730, 604], "text": "Baroque"}
-  ,{"crds": [ 730, 596], "text": "Symphony"}
-  ,{"crds": [ 730, 588], "text": "Opera"}
-  ,{"crds": [ 800, 620], "text": "Classical romantic"}
-  ,{"crds": [ 800, 612], "text": "Modern classical music"}
-  ,{"crds": [ 800, 604], "text": "Contemporary classical music"}
+  ,{"crds": [ 720, 580], "text": "Renaissance"}
+  ,{"crds": [ 720, 590], "text": "Symphony"}
+  ,{"crds": [ 720, 600], "text": "Medieval"}
+  ,{"crds": [ 720, 610], "text": "Baroque"}  
+  ,{"crds": [ 720, 620], "text": "Opera"}
+  ,{"crds": [ 810, 620], "text": "Contemp. class. m."}
+  ,{"crds": [ 810, 610], "text": "Modern class. m."}
+  ,{"crds": [ 810, 600], "text": "Class. romantic"}
   ,{"crds": [ 940, 550], "text": "Merengue"}
   ,{"crds": [ 940, 530], "text": "Salsa"}
   ,{"crds": [1000, 570], "text": "Bossa nova"}
@@ -20,8 +20,8 @@ const buildingPoints = [
   ,{"crds": [1000, 510], "text": "Tango"}
   ,{"crds": [1000, 490], "text": "Tropicalia"}
   ,{"crds": [1060, 540], "text": "Afrobeat"}
-  ,{"crds": [  70, 235], "text": "Avant-garde industrial"}
-  ,{"crds": [  95, 255], "text": "Gothic rock"}
+  ,{"crds": [ 100, 270], "text": "Avant-garde industrial"}
+  ,{"crds": [  95, 245], "text": "Gothic rock"}
   ,{"crds": [  75, 230], "text": "EBM"}
   ,{"crds": [  75, 210], "text": "Dark ambient"}
   ,{"crds": [  95, 195], "text": "Darkwave"}
@@ -31,7 +31,7 @@ const buildingPoints = [
   ,{"crds": [  75, 100], "text": "Futurepop"}
   ,{"crds": [  75,  60], "text": "Min wave synth & ind"}
   ,{"crds": [ 175, 315], "text": "Classic metal"}
-  ,{"crds": [ 190, 275], "text": "Progressive metal"}
+  ,{"crds": [ 190, 280], "text": "Progressive metal"}
   ,{"crds": [ 145, 255], "text": "Power metal"}
   ,{"crds": [ 190, 255], "text": "Glam metal"}
   ,{"crds": [ 180, 220], "text": "Thrash metal"}
@@ -62,7 +62,7 @@ const buildingPoints = [
   ,{"crds": [ 420, 320], "text": "Country pop rock"}
   ,{"crds": [ 370, 285], "text": "Singer-songwriter"}
   ,{"crds": [ 395, 260], "text": "Soft rock"}
-  ,{"crds": [ 410, 225], "text": "Eurodisco"}
+  ,{"crds": [ 410, 230], "text": "Eurodisco"}
   ,{"crds": [ 390, 210], "text": "Disco pop"}
   ,{"crds": [ 410, 195], "text": "Indie pop"}
   ,{"crds": [ 400, 125], "text": "Dance pop"}
@@ -71,11 +71,11 @@ const buildingPoints = [
   ,{"crds": [ 450, 420], "text": "Bluegrass"}
   ,{"crds": [ 485, 450], "text": "RnB"}
   ,{"crds": [ 485, 280], "text": "Disco"}
-  ,{"crds": [ 485, 190], "text": "Boogie electrofunk"}
+  ,{"crds": [ 485, 200], "text": "Boogie electrofunk"}
   ,{"crds": [ 485,  70], "text": "Funktronica"}
   ,{"crds": [ 535, 575], "text": "Contry folk blues"}
   ,{"crds": [ 535, 165], "text": "Hill country trance blues"}
-  ,{"crds": [ 570, 440], "text": "Modern gospel"}
+  ,{"crds": [ 570, 430], "text": "Modern gospel"}
   ,{"crds": [ 570, 310], "text": "Relipop"}
   ,{"crds": [ 600, 520], "text": "Swing / big band"}
   ,{"crds": [ 600, 440], "text": "Bebop"}
@@ -84,7 +84,7 @@ const buildingPoints = [
   ,{"crds": [ 580, 265], "text": "Smooth jazz"}
   ,{"crds": [ 590, 190], "text": "Acid jazz / jazzdance"}
   ,{"crds": [ 590, 140], "text": "Nu jazz / electro jazz"}
-  ,{"crds": [ 590,  70], "text": "Electro-swing"}
+  ,{"crds": [ 590,  65], "text": "Electro-swing"}
   ,{"crds": [ 640, 380], "text": "Ska"}
   ,{"crds": [ 625, 320], "text": "Reggae"}
   ,{"crds": [ 650, 290], "text": "Dub"}
@@ -92,19 +92,19 @@ const buildingPoints = [
   ,{"crds": [ 690, 130], "text": "East coast gangsta rap"}
   ,{"crds": [ 760, 170], "text": "Trip-hop"}
   ,{"crds": [ 780,  35], "text": "EDM Trap"}
-  ,{"crds": [ 850, 175], "text": "Old skool jungle dnb"}
+  ,{"crds": [ 850, 180], "text": "Old skool jungle dnb"}
   ,{"crds": [ 860, 135], "text": "Intelligent & jazzstep"}
   ,{"crds": [ 850, 105], "text": "Liquid funk"}
   ,{"crds": [ 870,  85], "text": "Dubstep"}
   ,{"crds": [ 870,  65], "text": "Post-dubstep"}
   ,{"crds": [ 960, 170], "text": "Hardcore techno / rave"}
-  ,{"crds": [ 920, 160], "text": "Breakbeat hardcore"}
-  ,{"crds": [ 920, 110], "text": "Trancecore acidcore"}
+  ,{"crds": [ 900, 160], "text": "Breakbeat hardcore"}
+  ,{"crds": [ 920, 110], "text": "Trance & acid core"}
   ,{"crds": [ 950,  95], "text": "Hardstyle"}
-  ,{"crds": [1010, 160], "text": "Ambient techno / idm"}
-  ,{"crds": [1000, 110], "text": "Tech trance"}
-  ,{"crds": [1060, 150], "text": "Progressive house"}
-  ,{"crds": [1060, 150], "text": "Moombahton"}
+  ,{"crds": [1020, 160], "text": "Amb. techno / idm"}
+  ,{"crds": [1000, 120], "text": "Tech trance"}
+  ,{"crds": [1045, 150], "text": "Progressive house"}
+  ,{"crds": [1060,  55], "text": "Moombahton"}
   ,{"crds": [1140, 185], "text": "Classic & acid trance"}
   ,{"crds": [1140, 165], "text": "Goa trance & psytrance"}
   ,{"crds": [1160, 145], "text": "Progressive trance"}
@@ -115,7 +115,7 @@ const buildingPoints = [
   ,{"crds": [1190, 285], "text": "Synth / electronica"}
   ,{"crds": [1200, 275], "text": "Ambient"}
   ,{"crds": [1190, 230], "text": "Chiptune"}
-  ,{"crds": [1200, 275], "text": "New age"}
+  ,{"crds": [1200, 220], "text": "New age"}
   ,{"crds": [1200, 100], "text": "Digital minimalism / lowercase"}
   ,{"crds": [1200,  55], "text": "Synthwave / vaporwave"}
 ].map(

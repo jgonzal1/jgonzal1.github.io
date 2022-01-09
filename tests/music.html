@@ -10,30 +10,24 @@
   <script src="../data/genres.js"></script>
   <link rel="stylesheet" href="../style/leaflet.css">
   <style>
-    .leaflet-container {
-      background: #000;
-    }
-    .leaflet-overlay-pane svg {
-      z-index: 99;
-    }
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: #FFFFFF00;
-      box-shadow: none;
-      font-weight: bolder;
-      text-align: center;
-    }
-    .leaflet-popup-content {
-      margin: 0;
-    }
+    a.link { color: #006 !important; }
+    .leaflet-container { background: #000; }
     .leaflet-container a.leaflet-popup-close-button {
       color: #900;
       font-size: smaller;
       top: -0.5em;
       right: -2em;
     }
-    #map {
-      height: 95vh;
+    .leaflet-overlay-pane svg { z-index: 99; }
+    .leaflet-popup-content { margin: 0; }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: #FFFFFF00;
+      box-shadow: none;
+      font-weight: bolder;
+      text-align: center;
+      text-shadow: 0 0 3px #FFF, 0 0 5px #FFFFFF66;
     }
+    #map { height: 95vh; }
   </style>
   <link rel="apple-touch-icon"
     sizes="152x152" href="../style/favicon.ico"
@@ -60,8 +54,8 @@
           giroscope(deviceOrientation) */
           wheelPxPerZoomLevel: 50,
           scrollWheelZoom: true,
-          minZoom: 0, //4
-          maxZoom: 2, //7
+          minZoom: 0,
+          maxZoom: 2,
           zIndex: -1
         }
       );
@@ -90,7 +84,7 @@
         L.popup(
           { height: "5em" }
         ).setContent(
-          feature.properties.text
+          "<a class='link' href='about:blank' target='_blank'>"+feature.properties.text+"</a>"
         ).openPopup().setLatLng(
           layer.getLatLng()
         ).addTo(map);

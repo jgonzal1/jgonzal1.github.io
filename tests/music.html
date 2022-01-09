@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Map</title>
+  <script src="../libs/leaflet.js"></script>
+  <script src="../data/genres.js"></script>
+  <link rel="stylesheet" href="../style/leaflet.css">
+  <style>
+    .leaflet-container {
+      background: #000;
+    }
+    .leaflet-overlay-pane svg {
+      z-index: 99;
+    }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: #FFFFFF00;
+      box-shadow: none;
+      font-weight: bolder;
+      text-align: center;
+    }
+    .leaflet-popup-content {
+      margin: 0;
+    }
+    .leaflet-container a.leaflet-popup-close-button {
+      color: #900;
+      font-size: smaller;
+      top: -0.5em;
+      right: -2em;
+    }
+    #map {
+      height: 95vh;
+    }
+  </style>
+  <link rel="apple-touch-icon"
+    sizes="152x152" href="../style/favicon.ico"
+  >
+  <link rel="icon"
+    type="image/x-icon" href="../style/favicon.ico"
+  >
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="logs"></div>
+  <script>
+    const lat = 170;
+    const long = 1170;
+
+    function createImgMap(img, bounds) {
+      map = L.map(
+        'map', {
+          crs: L.CRS.Simple,
+          inertia: true,
+          inertiaMaxSpeed: 1000,
+          tilt: true, /* moves w/ mobiles
+          giroscope(deviceOrientation) */
+          wheelPxPerZoomLevel: 50,
+          scrollWheelZoom: true,
+          minZoom: 0, //4
+          maxZoom: 2, //7
+          zIndex: -1
+        }
+      );
+      map.zoomControl.setPosition("bottomright");
+      const zoom = 2;
+      const _bounds = (bounds || [
+        [0,  0],
+        [798,1300]
+      ]);
+      map.setView([long, lat], zoom).setMaxBounds(_bounds);
+      L.imageOverlay(img, _bounds).addTo(map);
+    }
+    createImgMap("../style/maps/music_genres.png");
+
+    const coordsGeoJson = new L.geoJson(buildingPoints, {
+      pointToLayer: function(feature, latlng) {
+        return new L.CircleMarker(
+          [latlng.lat, latlng.lng],
+          {
+            radius: feature.properties.radius,
+            color: "#00000000"
+          }
+        );
+      },
+      onEachFeature: function(feature, layer) {
+        L.popup(
+          { height: "5em" }
+        ).setContent(
+          feature.properties.text
+        ).openPopup().setLatLng(
+          layer.getLatLng()
+        ).addTo(map);
+      }
+    }).addTo(map);
+    map.fitBounds(
+      coordsGeoJson.getBounds()
+    )
+
+    const coordsArr = [];
+    function onMapClick(e) {
+      clickedCoords = [
+        (Math.round(e.latlng.lng * 100) / 100).toFixed(2),
+        (Math.round(e.latlng.lat * 100) / 100).toFixed(2)
+      ];
+      coordsArr.push(clickedCoords);
+      console.trace("Pushed your map click at " + clickedCoords); // trace
+      document.getElementById("logs").innerText = "[" + clickedCoords[0] + ", " + clickedCoords[1] + "]"
+    }
+    map.on('click', onMapClick);
+  </script>
+</body>
+
+</html>

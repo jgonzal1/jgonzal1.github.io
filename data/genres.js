@@ -21,7 +21,7 @@ const buildingPoints = [
   ,{"crds": [1000, 490], "text": "Tropicalia"}
   ,{"crds": [1060, 540], "text": "Afrobeat"}
   ,{"crds": [ 100, 270], "text": "Avant-garde industrial"}
-  ,{"crds": [  95, 245], "text": "Gothic rock"}
+  ,{"crds": [  95, 240], "text": "Gothic rock"}
   ,{"crds": [  75, 230], "text": "EBM"}
   ,{"crds": [  75, 210], "text": "Dark ambient"}
   ,{"crds": [  95, 195], "text": "Darkwave"}

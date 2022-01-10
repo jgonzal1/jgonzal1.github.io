@@ -7,7 +7,7 @@ const buildingPoints = [
   ,{"crds": [ 720, 580], "text": "Renaissance"}
   ,{"crds": [ 720, 590], "text": "Symphony"}
   ,{"crds": [ 720, 600], "text": "Medieval"}
-  ,{"crds": [ 720, 610], "text": "Baroque"}  
+  ,{"crds": [ 720, 610], "text": "Baroque"}
   ,{"crds": [ 720, 620], "text": "Opera"}
   ,{"crds": [ 810, 620], "text": "Contemp. class. m."}
   ,{"crds": [ 810, 610], "text": "Modern class. m."}
@@ -32,8 +32,8 @@ const buildingPoints = [
   ,{"crds": [  75,  60], "text": "Min wave synth & ind"}
   ,{"crds": [ 175, 315], "text": "Classic metal"}
   ,{"crds": [ 190, 280], "text": "Progressive metal"}
-  ,{"crds": [ 145, 255], "text": "Power metal"}
-  ,{"crds": [ 190, 255], "text": "Glam metal"}
+  ,{"crds": [ 145, 250], "text": "Power metal"}
+  ,{"crds": [ 190, 260], "text": "Glam metal"}
   ,{"crds": [ 180, 220], "text": "Thrash metal"}
   ,{"crds": [ 160, 205], "text": "Doom metal"}
   ,{"crds": [ 190, 195], "text": "Death metal"}

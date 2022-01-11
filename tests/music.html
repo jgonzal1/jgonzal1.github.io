@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="../style/leaflet.css">
   <style>
     a.link { color: #006 !important; }
+    a.other_link { color: #600060CC !important; text-shadow: 0 0 3px #DFFFDF99, 0 0 5px #9FFF9F99;}
+    a.def_link { color: #000 !important; text-shadow: 0 0 2px #FFF, 0 0 4px #FFFFFF00; cursor: default; pointer-events: none;}
     .leaflet-container { background: #000; }
     .leaflet-container a.leaflet-popup-close-button {
       color: #900;
@@ -25,7 +27,7 @@
       box-shadow: none;
       font-weight: bolder;
       text-align: center;
-      text-shadow: 0 0 3px #FFF, 0 0 5px #FFFFFF66;
+      text-shadow: 0 0 3px #FFFFDF, 0 0 5px #FFFF9FAA;
     }
     #map { height: 95vh; }
   </style>
@@ -84,7 +86,11 @@
         L.popup(
           { height: "5em" }
         ).setContent(
-          "<a class='link' href='"+feature.properties.url+"' target='_blank'>"+feature.properties.text+"</a>"
+          "<a class='"+(feature.properties.url==="#"?"def_":(feature.properties.self?"":"other_"))+
+            "link' href='"+(feature.properties.url==="#"?"":"https://open.spotify.com/playlist/")+
+            feature.properties.url+"' target='_blank'"+(feature.properties.url==="#"?" disabled":"")+">"+
+            feature.properties.text+
+          "</a>"
         ).openPopup().setLatLng(
           layer.getLatLng()
         ).addTo(map);

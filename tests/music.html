@@ -84,7 +84,7 @@
         L.popup(
           { height: "5em" }
         ).setContent(
-          "<a class='link' href='about:blank' target='_blank'>"+feature.properties.text+"</a>"
+          "<a class='link' href='"+feature.properties.url+"' target='_blank'>"+feature.properties.text+"</a>"
         ).openPopup().setLatLng(
           layer.getLatLng()
         ).addTo(map);

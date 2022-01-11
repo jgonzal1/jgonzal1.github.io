@@ -7,7 +7,7 @@ const buildingPoints = [
   ,{"crds": [ 720, 580], "url":"about:blank", "text": "Renaissance"}
   ,{"crds": [ 720, 590], "url":"about:blank", "text": "Symphony"}
   ,{"crds": [ 720, 600], "url":"about:blank", "text": "Medieval"}
-  ,{"crds": [ 720, 610], "url":"about:blank", "text": "Baroque"}  
+  ,{"crds": [ 720, 610], "url":"about:blank", "text": "Baroque"}
   ,{"crds": [ 720, 620], "url":"about:blank", "text": "Opera"}
   ,{"crds": [ 810, 620], "url":"about:blank", "text": "Contemp. class. m."}
   ,{"crds": [ 810, 610], "url":"about:blank", "text": "Modern class. m."}
@@ -21,7 +21,7 @@ const buildingPoints = [
   ,{"crds": [1000, 490], "url":"about:blank", "text": "Tropicalia"}
   ,{"crds": [1060, 540], "url":"about:blank", "text": "Afrobeat"}
   ,{"crds": [ 100, 270], "url":"about:blank", "text": "Avant-garde industrial"}
-  ,{"crds": [  95, 245], "url":"about:blank", "text": "Gothic rock"}
+  ,{"crds": [  95, 240], "url":"about:blank", "text": "Gothic rock"}
   ,{"crds": [  75, 230], "url":"about:blank", "text": "EBM"}
   ,{"crds": [  75, 210], "url":"about:blank", "text": "Dark ambient"}
   ,{"crds": [  95, 195], "url":"about:blank", "text": "Darkwave"}
@@ -32,8 +32,8 @@ const buildingPoints = [
   ,{"crds": [  75,  60], "url":"about:blank", "text": "Min wave synth & ind"}
   ,{"crds": [ 175, 315], "url":"about:blank", "text": "Classic metal"}
   ,{"crds": [ 190, 280], "url":"about:blank", "text": "Progressive metal"}
-  ,{"crds": [ 145, 255], "url":"about:blank", "text": "Power metal"}
-  ,{"crds": [ 190, 255], "url":"about:blank", "text": "Glam metal"}
+  ,{"crds": [ 145, 250], "url":"about:blank", "text": "Power metal"}
+  ,{"crds": [ 190, 260], "url":"about:blank", "text": "Glam metal"}
   ,{"crds": [ 180, 220], "url":"about:blank", "text": "Thrash metal"}
   ,{"crds": [ 160, 205], "url":"about:blank", "text": "Doom metal"}
   ,{"crds": [ 190, 195], "url":"about:blank", "text": "Death metal"}

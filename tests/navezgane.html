@@ -8,6 +8,7 @@
     <title>Navezgane</title>
     <script src="../libs/leaflet.js"></script>
     <script src="../data/7d2d_coords.js"></script>
+    <link rel="stylesheet" href="../style.css">
     <style>
         .leaflet-overlay-pane svg {
             z-index: 99;
@@ -25,6 +26,12 @@
 <body>
     <div id="map"></div>
     <div id="logs"></div>
+    <div class="navbar">
+        <a class="w20vw" href="#">My CV</a>
+        <a class="w20vw" href="./tests/music.html">Music map</a>
+        <a class="w20vw active" href="./tests/navezgane.html">7D2D bookmarks map sample</a>
+        <a class="w20vw" href="./tests/world_map.html">Fantasy game map sample</a>
+    </div>
     <script>
         const lat = 170;
         const long = 1170;

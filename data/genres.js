@@ -60,7 +60,7 @@ const buildingPoints = [
   ,{"text":"Indie pop"                     ,"self":1,"url":"2gX78AZu9KQ9w59YEziRJP","crds":[ 410,195],"index": 66}
   ,{"text":"Indietronica"                  ,"self":0,"url":"#","crds":[ 370, 65],"index": 57}
   ,{"text":"Industrial metal"              ,"self":1,"url":"0sLzhB45BUsKtMY1GFLp99","crds":[ 130,160],"index": 28}
-  ,{"text":"Industrial rock"               ,"self":0,"url":"#","crds":[ 115,170],"index": 27}
+  ,{"text":"Industrial rock"               ,"self":1,"url":"5NWBIHZ8SUvAMR3b9glaH2","crds":[ 115,170],"index": 27}
   ,{"text":"Intelligent & jazzstep"        ,"self":0,"url":"#","crds":[ 860,135],"index": 95}
   ,{"text":"Kizomba"                       ,"self":1,"url":"7EWSrxZKDblyqJNsGPdcE2","crds":[1060,520],"index": 21}
   ,{"text":"Latin"                         ,"self":0,"url":"5Mo0ErzMKoU4hkypC1s8eN","crds":[ 270,605],"index":  3}

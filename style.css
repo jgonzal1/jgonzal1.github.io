@@ -129,3 +129,13 @@ table {
 .w25vw {
   width: 22%;
 }
+
+.oob { /*orange outset border*/
+  border: 2px solid #864;
+  border-style: outset;
+}
+
+.bob { /*blue outset border*/
+  border: 2px solid #668;
+  border-style: outset;
+}

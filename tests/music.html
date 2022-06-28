@@ -77,7 +77,7 @@
       map.setView([long, lat], zoom).setMaxBounds(_bounds);
       L.imageOverlay(img, _bounds).addTo(map);
     }
-    createImgMap("../style/maps/music_genres.png");
+    createImgMap("../style/maps/music_genres.svg"); // png
 
     const coordsGeoJson = new L.geoJson(buildingPoints, {
       pointToLayer: function(feature, latlng) {

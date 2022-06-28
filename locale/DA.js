@@ -1,4 +1,4 @@
-function getEnglishContents() {
+function getDanishContents() {
   const cvHeader = `
   <tr>
     <td colspan="3">

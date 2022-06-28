@@ -9,6 +9,9 @@ let cvHeader, cvBody, legend;
 if (lang === 'ES') {
     // @ts-ignore
     [cvHeader, cvBody, legend] = getSpanishContents();
+} else if (lang === 'DA') {
+    // @ts-ignore
+    [cvHeader, cvBody, legend] = getDanishContents();
 } else {
     // @ts-ignore
     [cvHeader, cvBody, legend] = getEnglishContents();

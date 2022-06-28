@@ -449,8 +449,8 @@ function getSpanishContents() {
   </tr>
   `;
   const legend = `
-  <tr><td rowspan="6">Leyenda</td><td></td>
-  <td colspan="7" style="background-color:#B5BD68">Desarrollador web</td></tr>
+  <tr><td rowspan="6">Leyenda</td>
+      <td></td><td colspan="7" style="background-color:#B5BD68">Desarrollador web</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#A54242">Ingeniero Big Data</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#CC6666">Desarrollador de Software</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#F0C674">Analista de datos / cuadros de mando Power BI</td></tr>

@@ -2,7 +2,7 @@ function getEnglishContents() {
   const cvHeader = `
   <tr>
     <td colspan="3">
-      <h2>Personal Information</h2>
+      <h2>Grundlæggende oplysninger</h2>
     </td>
   </tr>
   <tr>
@@ -12,14 +12,14 @@ function getEnglishContents() {
         Javier González Berenguel
       </fieldset>
       <fieldset style="display:none;">
-        <legend>📲 (please inform before calling)</legend>
+        <legend>📲 (skriv før du ringer til tak)</legend>
         <span>(+34) 664383902</span>
       </fieldset>
       <fieldset>
         <legend>🗣</legend>
-        English<br>
-        Spanish (nationality)<br>
-        More TBD
+        Engelsk (Dygtig)<br>
+        Spank (Modersmål)<br>
+        Dansk (Nybegynder / grundlæggende)
       </fieldset>
     </td>
     <td>
@@ -31,7 +31,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Copenhague, Denmark
+        København, Danmark
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
@@ -47,22 +47,32 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td colspan="3">
-      <h2>CV summary</h2>
+      <h2>Personligt resumé</h2>
     </td>
   </tr>
   <tr>
     <td class="bold-right">
-      <h3>About me</h3>
+      <h3>Om mig</h3>
     </td>
     <td colspan="2" class="w70" style="font-size: 1.3em;">
       <p>
-        <b>Technical</b> and <b><span class="cloud">cloud consultant expert</span></b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
+        Javier er <span class="cloud"><b>Cloud Konsulent</b></span> og <b>teknisk</b> ekspert i <span class="bi highlight-yellow"><b>datateknik</b>, <b>ETL</b>'er</span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>webudvikling</b></span> og NLP.
       </p>
+
       <p>
-        Greatest experience in these clouds: <span class="highlight-orange cloud"><b>Amazon Web Services</b></span> (3+ years of experience),
+        Han motiveres af at forbedre og bruge sine kompetencer inden for udvikling og datateknik, både professionelt og privat. Javier finder drivkraft i projekter med positiv påvirkning på fremtidens bæredygtighed.
       </p>
+
       <p>
-        <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span> (1 year of experience within the company).
+        Javier har erfaring inden for udvikling af komplekse full-stack applikationer centreret omkring <span class="bi highlight-yellow"><b>data engineering</b></span>, <span class="webdev highlight-red"><b>javascript</b></span>, <span class="highlight-red"><b>python</b></span> og cloud-tjenester.
+      </p>
+
+      <p>
+        Han går op i kvalitet med øje for slutbrugerens behov, både i form af ønsket funktionalitet og de vigtige detaljer i <span class="webdev"><b>GUI</b></span>, som skal gøre den nem at navigere og anvende.
+      </p>
+
+      <p>
+        Javier kan fungere som både teknisk konsulent/arkitekt og som udvikler der implementerer cloud-løsninger med <span class="highlight-orange cloud"><b>AWS</b></span>, <span class="highlight-blue cloud"><b>Azure</b></span> og <span class="highlight-gray cloud"><b>monday.com</b></span>. Han har tidligere erfaring med udvikling, rådgivning med <span class="highlight-gray cloud"><b>Google Cloud Platform</b></span>-tjenester og <span class="highlight-gray cloud"><b>IBM</b></span>.
       </p>
     </td>
   </tr>
@@ -72,7 +82,7 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right">
       <h3>
-        Technologies
+        Kompetencer
       </h3>
     </td>
     <td colspan="2" class="w70" style="font-size: 1.3em;">
@@ -81,14 +91,14 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td colspan="3">
-      <h2>Proffesional experience</h2>
+      <h2>Projekt- og erhvervserfaring</h2>
     </td>
   </tr>
   `;
   const cvBody = `
   <tr>
     <td class="bold-right">AETY</td>
-    <td colspan="2" class="w70"><br>(Nov 21 – Nowadays)<br>Software developer
+    <td colspan="2" class="w70"><br>(Nov 21 – Now)<br>Softwareudvikler, dataingeniør og monday, AWS og Power BI technical konsulent
     </td>
   </tr>
   <tr>
@@ -103,14 +113,30 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70"><br>Dec 20 – Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
-      development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
-      and environment test cases.
+    <td colspan="2" class="w70"><br>Maj 21 – Okt 21<br><span class='webdev'>Full stack udvikler</span> og softwarearkitekt.<br>
+    Ansvarlig for design, arkitektur og udvikling af et microservices docker-miljø til en trafikovervågningsløsning.<br>
+    Kunden er den største vejinfrastrukturvirksomhed i Spanien.<br>
+    Opgaven var at overvåge trafik i realtid på specifikke vejstrækninger for at forudsige visse handlinger.<br>
+    Løsningen blev et brugerbaseret miljø, hvor nye sporingssektioner med indstillingstilpasning til visning i realtid, dataeksport og administration ad e-mails med billeder af befærdede veje blev uploadede.<br>
+    Automatiseret oprettelse af nye sporinger af veje og brugerstyring.<br>
+    Implementer en Python-backend, der er ansvarlig for at forespørge om realtidstrafikken og kommunikationen med databaserne.<br>
+    Opret, optimer og organiser de containeriserede applikationer.<br>
+    Tilpas React.JS-websiden, som er vært for webtjenesten, der er ansvarlig for følgende:<br>
+    Aktiver visning af trafik i realtid på udvalgte sektioner.<br>
+    Aktiver upload af nye sektioner.<br>
+    Aktiver skift mellem forskellige projekter.<br>
+    Aktiver tilpasning og download af datadumps til realtidstrafikken.<br>
+    Aktiver opsætning, ændring eller sletning af konfigurationen med hensyn til, hvor ofte vi tjekker trafik i realtid.<br>
+    hvis vi skal gøre det i en specifik tidsplan, hvem der skal advares via e-mail, og<br>
+    nogle tærskler for at farvelægge, hvor travlt er hver vejstrækning.<br>
+    Aktiver indstilling, ændring eller sletning af brugere for systemet (og begræns deres omfang, hvis det er nødvendigt).<br>
+    Anvendte teknologier:<br>
+    Docker, Python, JavaScript, React.JS, SQL, APIs REST, GCP's Directions API, Django (python library).
     </td>
   </tr>
   <tr>
-    <td colspan="3"><br></td>
   </tr>
+  <td colspan="3">↓↓↓↓↓ UNDER BEHANDLING ↓↓↓↓↓<br></td>
   <tr>
     <td class="bold-right"> </td>
     <td colspan="2" class="w70">

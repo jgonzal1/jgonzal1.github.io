@@ -442,7 +442,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Basic Level</td>
-    <td colspan="2">German</td>
+    <td colspan="2">Danish</td>
   </tr>
   `;
   const legend = `

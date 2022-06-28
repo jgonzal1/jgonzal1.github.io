@@ -445,7 +445,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Nivel básico</td>
-    <td colspan="2">Alemán</td>
+    <td colspan="2">Danés</td>
   </tr>
   `;
   const legend = `

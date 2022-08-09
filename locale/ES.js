@@ -91,7 +91,7 @@ function getSpanishContents() {
   const cvBody = `
   <tr>
     <td class="bold-right">AETY</td>
-    <td colspan="2" class="w70"><br>(Nov 21 – Actualidad)<br>Desarrollador de Software
+    <td colspan="2" class="w70"><br>(Nov 21 - Actualidad)<br>Desarrollador de Software
     </td>
   </tr>
   <tr>
@@ -99,14 +99,14 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">T-Systems Iberia</td>
-    <td colspan="2" class="w70"><br>(Nov 19 – Nov 21)<br>Desarrollador y consultor de software, técnico en Power BI</td>
+    <td colspan="2" class="w70"><br>(Nov 19 - Nov 21)<br>Desarrollador y consultor de software, técnico en Power BI</td>
   </tr>
   <tr>
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70"><br>Diciembre 20 – Noviembre 21<br>Consultor técnico de <span class='webdev'>desarrollo full-stack</span> de informes en <span class='bi webdev cloud'>Pentaho CDE</span> para una Smart City<br>
+    <td colspan="2" class="w70"><br>Diciembre 20 - Noviembre 21<br>Consultor técnico de <span class='webdev'>desarrollo full-stack</span> de informes en <span class='bi webdev cloud'>Pentaho CDE</span> para una Smart City<br>
       Consultor técnico para implementar pruebas de concepto de cuadros de mando personalizados en <span class="bi">Pentaho CDE</span> y <span class='webdev'>ctools</span> con orígenes de datos en <span class="bi">postgresql</span>. Uso de gráficos personalizados con librerías como <span class='webdev'>Leaflet.JS, Sankey</span>, etc.
     </td>
   </tr>
@@ -116,7 +116,7 @@ function getSpanishContents() {
   <tr>
     <td class="bold-right"> </td>
     <td colspan="2" class="w70">
-      Dic 20 – Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+      Dic 20 - Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       Consultor técnico de <span class='webdev'>desarrollo full-stack</span> en informes sobre <span class='bi webdev'>Pentaho CDE</span> para un proyecto de <i>Smart Cities</i><br>
       Consultor técnico con un rol orientado a la implementación de pruebas de concepto de desarrollo full-stack de informes personalizados sobre <span class="bi">Pentaho CDE</span>, con <span class='webdev'><i>ctools</i></span>, orígenes de datos en <span class="bi">postgresql</span>, <span class='webdev'>Raphaël.JS</span>, D3.JS, diagramas Sankey, diagramas de red, nubes de puntos, mapas geográficos con Leaflet y desarrollo de planes de pruebas para diferentes entornos productivos.
     </td>
@@ -126,7 +126,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">May 21 – Oct 21<br>
+    <td colspan="2" class="w70">May 21 - Oct 21<br>
     Desarrollador full-stack de la aplicación de Ferrovial para la gestión automatizada de proyectos, alertas de tráfico en tiempo real (visualización, agregación a base de datos, filtrado y envío de alertas), y permisos de usuarios, y su visualización en su página web. Especialista en Docker, Python, JavaScript, SQL, APIs REST, Django, React y UX.
     </td>
   </tr>
@@ -153,7 +153,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Sep 20 – Oct 20<br>Desarrollador y consultor de <i>software</i><br>
+    <td colspan="2" class="w70">Sep 20 - Oct 20<br>Desarrollador y consultor de <i>software</i><br>
     Desarrollador y consultor de <i>software</i> para implementar un traductor automático multi-idioma para una administración pública autonómica
     </td>
   </tr>
@@ -180,7 +180,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mar 20 – Abr 20<br><span class="bi">Técnico de <i>Big Data</i></span><br>Técnico de Big Data en la implementación de un entorno de científicos de datos para la mayor empresa aseguradora de España, mediante el uso de tecnologías <i>cloud</i> con <span class="bi">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span> y AWS IAM.
+    <td colspan="2" class="w70">Mar 20 - Abr 20<br><span class="bi">Técnico de <i>Big Data</i></span><br>Técnico de Big Data en la implementación de un entorno de científicos de datos para la mayor empresa aseguradora de España, mediante el uso de tecnologías <i>cloud</i> con <span class="bi">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span> y AWS IAM.
     </td>
   </tr>
   <tr>
@@ -188,7 +188,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dic 19 – Feb 20<br>Consultor técnico de arquitecturas <i>cloud</i> y <i>big data</i> para una <i>Smart City</i><br>Consultor técnico para la implementación de pruebas de concepto de <span class='webdev'>desarrollos front-end</span>, conectores python, manejo de <span class='webdev'>APIs</span> de terceros, soluciones <i>big data</i> (<span class='webdev'>Elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">funciones Lambda</span> de AWS, interconectividad y <i>dockerización</i> de componentes para una solución de <i>Smart City</i>.
+    <td colspan="2" class="w70">Dic 19 - Feb 20<br>Consultor técnico de arquitecturas <i>cloud</i> y <i>big data</i> para una <i>Smart City</i><br>Consultor técnico para la implementación de pruebas de concepto de <span class='webdev'>desarrollos front-end</span>, conectores python, manejo de <span class='webdev'>APIs</span> de terceros, soluciones <i>big data</i> (<span class='webdev'>Elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">funciones Lambda</span> de AWS, interconectividad y <i>dockerización</i> de componentes para una solución de <i>Smart City</i>.
     </td>
   </tr>
   <tr>
@@ -196,7 +196,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dic 19 – Ene 20<br><span class='webdev'>Desarrollador full-stack de un chatbot</span><br>Desarrollo full-stack de un chatbot desde cero para un <span class='webdev'><i>front-end</i> web sin servidor</span> usando llamadas <span class='webdev'>AJAX</span> a Microsoft L.U.I.S.,
+    <td colspan="2" class="w70">Dic 19 - Ene 20<br><span class='webdev'>Desarrollador full-stack de un chatbot</span><br>Desarrollo full-stack de un chatbot desde cero para un <span class='webdev'><i>front-end</i> web sin servidor</span> usando llamadas <span class='webdev'>AJAX</span> a Microsoft L.U.I.S.,
       <span class='webdev'> CSS3, HTML5 y desarrollo nativo de JavaScript</span>.
     </td>
   </tr>
@@ -224,7 +224,7 @@ function getSpanishContents() {
 
   <tr>
     <td class="bold-right">Informática El Corte Inglés</td>
-    <td colspan="2" class="w70">(Jun 18 – Oct 19)<br>Desarrollo, arquitectura y habilitación técnica de un <span class="bi">proyecto de ETLs y BI que extrae datos de ficheros desde diferentes orígenes (SAP, Salesforce, Excels) a ​buckets de Amazon S3, los procesa con ​Amazon Glue, y los vuelca en tablas de ​Amazon Redshift que son presentados mediante Power BI</span>.
+    <td colspan="2" class="w70">(Jun 18 - Oct 19)<br>Desarrollo, arquitectura y habilitación técnica de un <span class="bi">proyecto de ETLs y BI que extrae datos de ficheros desde diferentes orígenes (SAP, Salesforce, Excels) a ​buckets de Amazon S3, los procesa con ​Amazon Glue, y los vuelca en tablas de ​Amazon Redshift que son presentados mediante Power BI</span>.
     </td>
   </tr>
   <tr>
@@ -232,7 +232,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 18 – Feb 19<br>Desarrollo y arquitectura de un <span class="bi">​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
+    <td colspan="2" class="w70">Nov 18 - Feb 19<br>Desarrollo y arquitectura de un <span class="bi">​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
     ,y los vuelca en archivos en Data Lake Storage que son presentados mediante ​Power BI</span>.
     </td>
   </tr>
@@ -241,7 +241,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dic 17 – Oct 18<br>Desarrollador de software​. Desarrollo de una solución geoanalítica de BI en un servicio web con R y desarrollo de ​chatbots, en especial un chatbot en Node.JS en el contexto de una aseguradora médica.
+    <td colspan="2" class="w70">Dic 17 - Oct 18<br>Desarrollador de software​. Desarrollo de una solución geoanalítica de BI en un servicio web con R y desarrollo de ​chatbots, en especial un chatbot en Node.JS en el contexto de una aseguradora médica.
     </td>
   </tr>
   <tr>
@@ -249,7 +249,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Ago 17 – Nov 17<br>
+    <td colspan="2" class="w70">Ago 17 - Nov 17<br>
     <span class="bi">Técnico en minería de datos</span> y entrenamiento de inteligencia artificial​. Desarrollo de una inteligencia artificial de visión artificial para diferenciar diferentes tipos de vehículos en <span class="bi">Python</span>.
     </td>
   </tr>
@@ -258,7 +258,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">PrimeX Artificial Intelligence</td>
-    <td colspan="2" class="w70">Sep 16 – Sep 18<br>
+    <td colspan="2" class="w70">Sep 16 - Sep 18<br>
     Desarrollador de Inteligencia Artificial en un chatbot​.
     Programación en Java, <span class="bi">minería de datos</span>, entrenamiento  de Inteligencia Artificial con diferentes APIs de IBM Watson Cloud y Amazon Lex.
     </td>
@@ -268,7 +268,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">BABEL Sistemas de Información</td>
-    <td colspan="2" class="w70">Jun 17 – Jul 17<br>Programación en C# para implementar chatbots​.
+    <td colspan="2" class="w70">Jun 17 - Jul 17<br>Programación en C# para implementar chatbots​.
     Conexión de los mismos con tecnologías de IBM Watson y Microsoft Luis.
     </td>
   </tr>
@@ -277,7 +277,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td colspan="2" class="w70">May 16 – May 17<br>
+    <td colspan="2" class="w70">May 16 - May 17<br>
     El ​consultor y técnico de preventa de IBM Watson for Drug Discovery ​para cuatro países (España, Portugal, Grecia e Israel). Desarrollo de casos de uso, <span class="bi">minería de datos</span>, analítica de negocio, gestión de campaña de comunicación de Watson Health.</span>.
     </td>
   </tr>
@@ -294,7 +294,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Unica Group S.C.A.</td>
-    <td colspan="2" class="w70">Abr 15 – May 15<br>Control de calidad​ de productos en Cohorsan S.C.A
+    <td colspan="2" class="w70">Abr 15 - May 15<br>Control de calidad​ de productos en Cohorsan S.C.A
     </td>
   </tr>
   <tr>
@@ -307,7 +307,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Universidad de Granada</td>
-    <td colspan="2">10 – 14<br>Graduado en Bioquímica y Biología Molecular. Especialización en ​Biotecnología​.
+    <td colspan="2">10 - 14<br>Graduado en Bioquímica y Biología Molecular. Especialización en ​Biotecnología​.
     </td>
   </tr>
   <tr>
@@ -315,7 +315,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Máster, Universidad de Granada</td>
-    <td colspan="2">14 – 15<br>Máster en Calidad y ​Tecnología Alimentaria
+    <td colspan="2">14 - 15<br>Máster en Calidad y ​Tecnología Alimentaria
     </td>
   </tr>
   <tr>
@@ -323,7 +323,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right">Máster. Universidad de Alcalá</td>
-    <td colspan="2">16 – 17<br>Master in Professional Development 4.0
+    <td colspan="2">16 - 17<br>Master in Professional Development 4.0
     </td>
   </tr>
   <tr>

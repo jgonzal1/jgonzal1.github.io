@@ -107,7 +107,7 @@
           { height: "5em" }
         ).setContent(
           "<a class='"+(feature.properties.url==="#"?"def_":(feature.properties.self?(feature.properties.self===2?"mix_":"self_"):"other_"))+
-            "link' href='"+(feature.properties.url==="#"?"":"https://open.spotify.com/playlist/")+
+            "link' href='"+(/\w{22}/.test(feature.properties.url)?"https://open.spotify.com/playlist/":"")+
             feature.properties.url+"' target='_blank'"+(feature.properties.url==="#"?" disabled":"")+">"+
             feature.properties.text+
           "</a>"

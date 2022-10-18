@@ -1,5 +1,6 @@
 const buildingPoints = [
-  { "text":"Acid jazz / jazzdance"         ,"self":0,"url":"#","crds":[ 590,190],"index": 84}
+  {"text":"Webpage based on musicmap.info!","self":2,"url":"https://musicmap.info", "crds":[ 100,700],"index":136}
+  ,{"text":"Acid jazz / jazzdance"         ,"self":0,"url":"#","crds":[ 590,190],"index": 84}
   ,{"text":"Afrobeat"                      ,"self":0,"url":"#","crds":[1060,540],"index": 21}
   ,{"text":"Aggrotech"                     ,"self":1,"url":"7EmeLvO69511qZYR9rbK3m","crds":[  75,140],"index": 29}
   ,{"text":"Alt rock & indie"              ,"self":1,"url":"2gX78AZu9KQ9w59YEziRJP","crds":[ 345,140],"index": 55}

@@ -15,11 +15,13 @@ const buildingPoints = [
   ,{"text":"Bossa nova"                    ,"self":1,"url":"6fuXYNqgIyeVyOlykCobA9","crds":[1000,570],"index": 16}
   ,{"text":"Breakbeat hardcore"            ,"self":0,"url":"#","crds":[ 900,160],"index":100}
   ,{"text":"Celtic"                        ,"self":1,"url":"14wTJv3u383K0fDr0TK6qs","crds":[ 270,620],"index":  2}
+  ,{"text":"Chill Mix"                     ,"self":2,"url":"37i9dQZF1EVHGWrwldPRtj","crds":[1200,330],"index":127}
   ,{"text":"Chiptune"                      ,"self":0,"url":"1SQBCNypeE7acQxPjsROhl","crds":[1190,230],"index":116}
-  ,{"text":"Class. romantic"               ,"self":1,"url":"11sIaL1E2OmGhrXW4abKME","crds":[ 810,600],"index": 13}
+  ,{"text":"Class. romantic"               ,"self":1,"url":"11sIaL1E2OmGhrXW4abKME","crds":[ 810,580],"index": 13}
   ,{"text":"Classic & acid trance"         ,"self":0,"url":"#","crds":[1140,185],"index":107}
   ,{"text":"Classic country"               ,"self":1,"url":"3BGJOT0AYU2EenKL2Qzsyz","crds":[ 445,530],"index": 68}
   ,{"text":"Classic metal"                 ,"self":1,"url":"0wigyGCyr0pajRhFAfG66t","crds":[ 175,315],"index": 32}
+  ,{"text":"Classical mix"                 ,"self":2,"url":"37i9dQZF1EQn1VBR3CMMWb","crds":[ 810,560],"index":128}
   ,{"text":"Contemp. class. m."            ,"self":0,"url":"#","crds":[ 810,620],"index": 11}
   ,{"text":"Country folk blues"            ,"self":0,"url":"#","crds":[ 535,575],"index": 75}
   ,{"text":"Country pop rock"              ,"self":0,"url":"#","crds":[ 420,320],"index": 61}
@@ -40,9 +42,10 @@ const buildingPoints = [
   ,{"text":"EDM Trap"                      ,"self":0,"url":"#","crds":[ 780, 35],"index": 93}
   ,{"text":"Electro-swing"                 ,"self":1,"url":"7gK6OgvfAShw2zpbq20uob","crds":[ 590, 65],"index": 86}
   ,{"text":"Eurodisco"                     ,"self":0,"url":"#","crds":[ 410,230],"index": 64}
-  ,{"text":"Experimental"                  ,"self":1,"url":"6pV8WR1UUTR0kyF5BgAvn9","crds":[ 115,480],"index":120}
+  ,{"text":"Experimental"                  ,"self":1,"url":"6pV8WR1UUTR0kyF5BgAvn9","crds":[ 115,470],"index":120}
+  ,{"text":"Folk & Acoustic Mix"           ,"self":2,"url":"37i9dQZF1EQp62d3Dl7ECY","crds":[ 270,570],"index":135}
   ,{"text":"Folk rock"                     ,"self":1,"url":"0jR8JGnUiOseB2Sb2ajpxj","crds":[ 250,340],"index": 45}
-  ,{"text":"Foltronica "                   ,"self":1,"url":"6tvgvZAOM6aXLyMJZOaFzw","crds":[1000, 85],"index":104}
+  ,{"text":"Foltronica"                    ,"self":1,"url":"6tvgvZAOM6aXLyMJZOaFzw","crds":[1000, 85],"index":104}
   ,{"text":"Free jazz avant-garde"         ,"self":1,"url":"4PCTXMZ22Iup2ztEQO6YRX","crds":[ 600,370],"index": 81}
   ,{"text":"Funk"                          ,"self":1,"url":"3rwcuTwNyzGSEm9JgVykXM","crds":[ 600,390],"index": 81}
   ,{"text":"Funktronica"                   ,"self":0,"url":"#","crds":[ 485, 70],"index": 74}
@@ -56,12 +59,14 @@ const buildingPoints = [
   ,{"text":"Hardcore techno / rave"        ,"self":0,"url":"#","crds":[ 960,170],"index": 99}
   ,{"text":"Hardstyle"                     ,"self":0,"url":"#","crds":[ 950, 95],"index":102}
   ,{"text":"Hill country trance blues"     ,"self":0,"url":"#","crds":[ 535,165],"index": 76}
+  ,{"text":"House Mix"                     ,"self":2,"url":"37i9dQZF1EQpoj8u9Hn81e","crds":[1070,120],"index":130}
   ,{"text":"Indie folk / freak folk"       ,"self":0,"url":"#","crds":[ 370, 45],"index": 59}
   ,{"text":"Indie pop"                     ,"self":1,"url":"2gX78AZu9KQ9w59YEziRJP","crds":[ 410,195],"index": 66}
   ,{"text":"Indietronica"                  ,"self":0,"url":"#","crds":[ 370, 65],"index": 57}
   ,{"text":"Industrial metal"              ,"self":1,"url":"0sLzhB45BUsKtMY1GFLp99","crds":[ 130,160],"index": 28}
   ,{"text":"Industrial rock"               ,"self":1,"url":"5NWBIHZ8SUvAMR3b9glaH2","crds":[ 115,170],"index": 27}
   ,{"text":"Intelligent & jazzstep"        ,"self":0,"url":"#","crds":[ 860,135],"index": 95}
+  ,{"text":"Jazz Mix"                      ,"self":2,"url":"37i9dQZF1EQqA6klNdJvwx","crds":[ 590,230],"index":131}
   ,{"text":"Kizomba"                       ,"self":1,"url":"7EWSrxZKDblyqJNsGPdcE2","crds":[1060,520],"index": 21}
   ,{"text":"Latin"                         ,"self":0,"url":"5Mo0ErzMKoU4hkypC1s8eN","crds":[ 270,605],"index":  3}
   ,{"text":"Liquid funk"                   ,"self":1,"url":"2nf10oPPudKAFgWE0oESkD","crds":[ 850,105],"index": 96}
@@ -72,7 +77,7 @@ const buildingPoints = [
   ,{"text":"Merengue"                      ,"self":0,"url":"#","crds":[ 940,550],"index": 14}
   ,{"text":"Min wave synth & ind"          ,"self":0,"url":"#","crds":[  75, 60],"index": 31}
   ,{"text":"Minimalism"                    ,"self":0,"url":"#","crds":[1190,380],"index":112}
-  ,{"text":"Modern class. m."              ,"self":0,"url":"#","crds":[ 810,610],"index": 12}
+  ,{"text":"Modern class. m."              ,"self":0,"url":"#","crds":[ 810,600],"index": 12}
   ,{"text":"Modern gospel"                 ,"self":0,"url":"#","crds":[ 570,430],"index": 77}
   ,{"text":"Moombahton"                    ,"self":0,"url":"#","crds":[1060, 55],"index":106}
   ,{"text":"Muzak / elevator music"        ,"self":0,"url":"#","crds":[1200,360],"index":113}
@@ -97,10 +102,12 @@ const buildingPoints = [
   ,{"text":"Psy rock"                      ,"self":0,"url":"#","crds":[ 350,340],"index": 46}
   ,{"text":"Punk rock"                     ,"self":0,"url":"#","crds":[ 275,265],"index": 49}
   ,{"text":"Reggae"                        ,"self":1,"url":"06mtEUIM4CpBqF4oElDJpW","crds":[ 625,320],"index": 88}
+  ,{"text":"Reggae Mix"                    ,"self":2,"url":"37i9dQZF1EQpjs4F0vUZ1x","crds":[ 640,250],"index":129}
   ,{"text":"Relipop"                       ,"self":0,"url":"#","crds":[ 570,310],"index": 78}
   ,{"text":"Renaissance"                   ,"self":0,"url":"#","crds":[ 720,580],"index":  6}
   ,{"text":"RnB"                           ,"self":1,"url":"707OZVnjub2qm46XuHYU4G","crds":[ 485,450],"index": 71}
   ,{"text":"Rock & Roll"                   ,"self":0,"url":"#","crds":[ 290,400],"index": 44}
+  ,{"text":"Rock Mix"                      ,"self":2,"url":"37i9dQZF1EQpj7X7UK8OOF","crds":[ 300,380],"index":134}
   ,{"text":"Rockabilly"                    ,"self":0,"url":"#","crds":[ 290,410],"index": 43}
   ,{"text":"Salsa"                         ,"self":1,"url":"3CiPI46QLPVSRfm5UieqHR","crds":[ 940,530],"index": 15}
   ,{"text":"Samba"                         ,"self":1,"url":"4xRylvSqmE2GIzKCPpUINR","crds":[1015,535],"index": 18}
@@ -110,8 +117,10 @@ const buildingPoints = [
   ,{"text":"Ska"                           ,"self":0,"url":"#","crds":[ 640,380],"index": 87}
   ,{"text":"Smooth jazz"                   ,"self":1,"url":"1N7PVlMupNg0z36K8oMzEh","crds":[ 580,265],"index": 83}
   ,{"text":"Soft rock"                     ,"self":1,"url":"607ys9TpDSMlsx5U7NcbdP","crds":[ 395,260],"index": 63}
+  ,{"text":"Soul Mix"                      ,"self":2,"url":"37i9dQZF1EQntZpEGgfBif","crds":[ 490,395],"index":133}
   ,{"text":"Soundtrack"                    ,"self":1,"url":"64kGNTzaPcy6LcPpq4yGOi","crds":[ 115,500],"index":  1}
   ,{"text":"Swing / big band"              ,"self":1,"url":"3EMjGn7GdAzNoKwMEIj8PG","crds":[ 600,520],"index": 79}
+  ,{"text":"Swing Mix"                     ,"self":2,"url":"37i9dQZF1EIezSgnavWYjm","crds":[ 600,500],"index":132}
   ,{"text":"Symphonic metal"               ,"self":1,"url":"0ITx338BH3GM8VGYXPxyy2","crds":[ 165,135],"index": 40}
   ,{"text":"Symphony"                      ,"self":0,"url":"#","crds":[ 720,590],"index":  7}
   ,{"text":"Synth / electronica"           ,"self":1,"url":"3KGfSFPFDkUc440NkmJx7b","crds":[1190,285],"index":114}

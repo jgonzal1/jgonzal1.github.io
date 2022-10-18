@@ -11,16 +11,22 @@
   <link rel="stylesheet" href="../style/leaflet.css">
   <link rel="stylesheet" href="../style.css">
   <style>
-    a.link { color: #006 !important; }
-    a.other_link {
-      color: #600060CC !important;
-      text-shadow: 0 0 2px #DFFFDF, 0 0 3px #9FFF9F99;
-    }
     a.def_link {
-      color: #000 !important;
+      color: #000000 !important;
       text-shadow: 0 0 1px #FFF, 0 0 3px #FFFFFF00;
       cursor: default;
       pointer-events: none;
+    }
+    a.mix_link {
+      color: #60CC60 !important;
+    }
+    a.self_link {
+      color: #0060CCAA !important;
+      /*text-shadow: 0 0 3px #FFFFDF, 0 0 5px #FFFF9FAA;*/
+    }
+    a.other_link {
+      color: #600060 !important;
+      text-shadow: 0 0 2px #DFFFDF, 0 0 3px #9FFF9F99;
     }
     .leaflet-container { background: #000; }
     .leaflet-container a.leaflet-popup-close-button {
@@ -36,7 +42,6 @@
       box-shadow: none;
       font-weight: bolder;
       text-align: center;
-      text-shadow: 0 0 3px #FFFFDF, 0 0 5px #FFFF9FAA;
     }
     #map { height: 95vh; }
   </style>
@@ -101,7 +106,7 @@
         L.popup(
           { height: "5em" }
         ).setContent(
-          "<a class='"+(feature.properties.url==="#"?"def_":(feature.properties.self?"":"other_"))+
+          "<a class='"+(feature.properties.url==="#"?"def_":(feature.properties.self?(feature.properties.self===2?"mix_":"self_"):"other_"))+
             "link' href='"+(feature.properties.url==="#"?"":"https://open.spotify.com/playlist/")+
             feature.properties.url+"' target='_blank'"+(feature.properties.url==="#"?" disabled":"")+">"+
             feature.properties.text+

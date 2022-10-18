@@ -31,7 +31,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Copenhague, Denmark
+        Copenhagen, Denmark
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
@@ -81,14 +81,48 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td colspan="3">
-      <h2>Proffesional experience</h2>
+      <h2>Professional experience</h2>
     </td>
   </tr>
   `;
   const cvBody = `
   <tr>
     <td class="bold-right">AETY</td>
-    <td colspan="2" class="w70"><br>(Nov 21 - Nowadays)<br>Software developer
+    <td colspan="2" class="w70">
+      (Nov 21 – Nowadays)<br>Software developer/data engineer and monday.com, AWS and Power BI technical consultant<br><br>
+  </tr>
+  <tr>
+    <td class="bold-right"> </td>
+    <td colspan="2" class="w70">
+      2022-03 - 2022-08<br>
+      Project:  Jira Ultimate Customizer, Role: Software Developer<br>
+      Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0.<br><br>
+
+      2022-01 - 2022-03<br>
+      Project: Integration between monday.com and Kortinfo, Role: Software Developer<br>
+      Responsible for developing an automatic real time synchronization solution for a client from monday.com to KortInfo (web map - GIS - provider)<br>
+      Project description:<br>
+      The client used two systems holding the same information for different purposes (see projects on the map and manage these projects on a project management tool). They lacked an automatic way to send new projects and updates to the web map environment. The goal of the project was to implement a solution in a "serverless" environment that listens to some critical changes in monday.com.<br>
+      Tasks: <br>
+      Solution design and requirement elucidation with the client and third-party developer<br>
+      Making a javascript interface for transforming some REST/GraphQL API data to the necessary web map GIS provider API real-timePOST requests.<br>
+      Monitoring these changes through some RSS connected to a business intelligence report to check if there could be potential issues after going live.<br>
+      Technologies used:<br>
+      JavaScript, REST, GraphQL, Zapier.<br><br>
+
+      2021-12 - 2022-01<br>
+      Project: Business intelligence solution, Role: Software Developer, Data engineer / Consultant<br>
+      Responsible for developing a Business Intelligence solution to provide actionable market intelligence for Atlassian's Marketplace Apps. <br>
+      Project description:<br>
+      There is a regular high interest in automatically gathering all public add-ons information from Atlassian Marketplace API to understand our partnership vendors better. Javier used the programming language Python in a serverless architecture for the ETL and an analytical solution for performing SQL queries over the data to identify potential vendors and add-ons.<br>
+      Tasks:<br>
+      Creation of data model/dimensions for the BI report<br>
+      Extraction of data from REST APIs using AWS Lambda<br>
+      Storage of raw data in S3<br>
+      Integration with, and querying of data via AWS Athena<br>
+      Presentation of data in Power BI<br>
+      Technologies used:<br>
+      AWS Lambda, S3, Athena, Power BI, Python, REST, SQL.
     </td>
   </tr>
   <tr>
@@ -204,7 +238,6 @@ function getEnglishContents() {
     <td colspan="2" class="w70">Nov 19 - Dec 19<br>Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
     </td>
   </tr>
-
   <tr>
     <td colspan="3"><br></td>
   </tr>
@@ -214,7 +247,6 @@ function getEnglishContents() {
      Teacher for the OpenWebinars courses and workshop for <span class="webdev">JavaScript design patters</span>.
     </td>
   </tr>
-
   <tr>
     <td colspan="3"><br></td>
   </tr>
@@ -230,7 +262,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Jun 19 - Oct 19<br>Development and architecture for an ETL and BI project<br>Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span> (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transfomation of data with <span class="bi">Amazon Glue (boto3 and
+    <td colspan="2" class="w70">Jun 19 – Oct 19<br>Development and architecture for an ETL and BI project<br>Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span> (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with <span class="bi">Amazon Glue (boto3 and
       pyspark libraries)</span>, and load in <span class="bi">Amazon Redshift tables which are taken by <span class='webdev'>Power BI for its data representation</span></span>.
     </td>
   </tr>
@@ -248,7 +280,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dec 17 - Oct 18<br>Software developer.<br><span class='webdev'>Development of a geoanalytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).
+    <td colspan="2" class="w70">Dec 17 – Oct 18<br>Software developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).
     </td>
   </tr>
   <tr>
@@ -324,7 +356,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Microsoft</td>
-    <td clospan="2">Feb 21<br><span class='cloid'>Microsoft AI-100</span>.
+    <td colspan="2">Feb 21<br><span class='cloud'>Microsoft AI-100</span>.
       Issued by Pearson VUE, Credential ID 990098386.
     </td>
   </tr>
@@ -438,7 +470,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">High Level</td>
-    <td colspan="2">English (B2 cambridge certificate)</td>
+    <td colspan="2">English (B2 Cambridge certificate)</td>
   </tr>
   <tr>
     <td class="bold-right">Basic Level</td>
@@ -450,7 +482,7 @@ function getEnglishContents() {
       <td></td><td colspan="7" style="background-color:#B5BD68">web_developer</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#A54242">big_data_engineer</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#CC6666">software_developer</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#F0C674">data_analist_power_bi</td></tr>
+  <tr><td></td><td colspan="7" style="background-color:#F0C674">data_analyst_power_bi</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#DE935F">ai_data_scientist</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#81A2BE">technical_consultant</td></tr>
   `;

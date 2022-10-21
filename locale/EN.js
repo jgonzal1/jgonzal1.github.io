@@ -31,7 +31,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Copenhague, Denmark
+        Copenhagen, Denmark
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
@@ -81,7 +81,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td colspan="3">
-      <h2>Proffesional experience</h2>
+      <h2>Professional experience</h2>
     </td>
   </tr>
   `;
@@ -130,14 +130,14 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">T-Systems Iberia</td>
-    <td colspan="2" class="w70"><br>(Nov 19 – Nov 21)<br>Software developer and consultant, and Power BI technician</td>
+    <td colspan="2" class="w70"><br>(Nov 19 - Nov 21)<br>Software developer and consultant, and Power BI technician</td>
   </tr>
   <tr>
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70"><br>Dec 20 – Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+    <td colspan="2" class="w70"><br>Dec 20 - Nov 21<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.
     </td>
@@ -148,7 +148,7 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right"> </td>
     <td colspan="2" class="w70">
-      Dec 20 – Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
+      Dec 20 - Present<br>Technical consultant for <span class='webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to implement proofs of concept for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.
     </td>
@@ -158,8 +158,8 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">May 21 – Oct 21<br>
-    Full-stack developer for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accessible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="cloud">APIs REST</span>, <span class="cloud">GCP's Directions</span> API, Django, React and UX specialist.
+    <td colspan="2" class="w70">May 21 - Oct 21<br>
+    Full-stack developer for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="cloud">APIs REST</span>, <span class="cloud">GCP's Directions</span> API, Django, React and UX specialist.
     </td>
   </tr>
   <tr>
@@ -184,7 +184,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Sep 20 – Oct 20<br>Software developer and consultant<br>Software developer and consultant for a multi-language automatic translator within a public sector autonomy
+    <td colspan="2" class="w70">Sep 20 - Oct 20<br>Software developer and consultant<br>Software developer and consultant for a multi-language automatic translator within a public sector autonomy
     </td>
   </tr>
   <tr>
@@ -208,7 +208,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Mar 20 – Apr 20<br><span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.
+    <td colspan="2" class="w70">Mar 20 - Apr 20<br><span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.
     </td>
   </tr>
   <tr>
@@ -216,7 +216,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dec 19 – Feb 20<br>Technical consultant of <span class="cloud">cloud architecture</span>, software and big data for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
+    <td colspan="2" class="w70">Dec 19 - Feb 20<br>Technical consultant of <span class="cloud">cloud architecture</span>, software and big data for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
       connectors, third party's <span class='webdev cloud'>API managements</span>, big data solutions (<span class='webdev cloud'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and <span class="cloud">dockerization of all
       the components in Docker containers</span> for a big Smart City project.
     </td>
@@ -226,7 +226,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Dec 19 – Jan 20<br><span class='webdev'>Chatbot full-stack developer</span><br>Chatbot development from scratch of a fully <span class='webdev'>serverless web chat</span> using <span class='webdev'>AJAX</span> calls for Microsoft L.U.I.S.,
+    <td colspan="2" class="w70">Dec 19 - Jan 20<br><span class='webdev'>Chatbot full-stack developer</span><br>Chatbot development from scratch of a fully <span class='webdev'>serverless web chat</span> using <span class='webdev'>AJAX</span> calls for Microsoft L.U.I.S.,
       <span class='webdev'> CSS3, HTML5 and JavaScript native development</span>.
     </td>
   </tr>
@@ -252,7 +252,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Informática El Corte Inglés</td>
-    <td colspan="2" class="w70">(Jul 17 – Oct 19)<br>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chatbots</span> and <span class="bi">ETLs</span>, using <span class="cloud">Amazon Web Services</span> technologies (AWS EC2, Amazon CodeCommit,
+    <td colspan="2" class="w70">(Jul 17 - Oct 19)<br>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chatbots</span> and <span class="bi">ETLs</span>, using <span class="cloud">Amazon Web Services</span> technologies (AWS EC2, Amazon CodeCommit,
       <span class="bi">Amazon Redshift, Amazon Glue and Amazon S3</span> among others), Microsoft Azure (L.U.I.S., QnA, <span class='webdev'>App Service</span>, <span class="bi">Data Lake Storage, Azure Data Factory, Data Lake Analytics</span>), IBM Watson, <span class='webdev cloud'>Oracle Intelligent Bots</span>,
       <span class="cloud">Google Cloud</span> and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi"><span class="cloud">Python</span>, U-SQL</span> and R.
     </td>
@@ -271,7 +271,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 18 – Feb 19<br>Development and architecture in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
+    <td colspan="2" class="w70">Nov 18 - Feb 19<br>Development and architecture in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
       Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.
     </td>
   </tr>
@@ -288,7 +288,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Aug 17 – Nov 17<br><span class="bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.
+    <td colspan="2" class="w70">Aug 17 - Nov 17<br><span class="bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.
     </td>
   </tr>
   <tr>
@@ -296,7 +296,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">PrimeX Artificial Intelligence</td>
-    <td colspan="2" class="w70">Sep 16 – Sep 18<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
+    <td colspan="2" class="w70">Sep 16 - Sep 18<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
     </td>
   </tr>
   <tr>
@@ -304,7 +304,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">BABEL Sistemas de Información</td>
-    <td colspan="2" class="w70">Jun 17 – Jul 17<br><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies
+    <td colspan="2" class="w70">Jun 17 - Jul 17<br><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies
     </td>
   </tr>
   <tr>
@@ -312,7 +312,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td colspan="2" class="w70">May 16 – May 17<br>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br>Use cases leveraging, <span class="bi">data mining</span>, <span class='webdev'>business analyst, and social media manager for the marketing campaign</span>.
+    <td colspan="2" class="w70">May 16 - May 17<br>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br>Use cases leveraging, <span class="bi">data mining</span>, <span class='webdev'>business analyst, and social media manager for the marketing campaign</span>.
     </td>
   </tr>
   <tr>
@@ -320,7 +320,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Unica Group S.C.A.</td>
-    <td colspan="2" class="w70">Apr 15 – May 15<br>Quality control professional for foodstuff products in Cohorsan S.C.A
+    <td colspan="2" class="w70">Apr 15 - May 15<br>Quality control professional for foodstuff products in Cohorsan S.C.A
     </td>
   </tr>
   <tr>
@@ -333,17 +333,17 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">BSc @ Universidad de Granada</td>
-    <td colspan="2">10 – 14<br>Biochemistry with Biotechnology specialization bachelor degree.
+    <td colspan="2">10 - 14<br>Biochemistry with Biotechnology specialization bachelor degree.
     </td>
   </tr>
   <tr>
     <td class="bold-right">MSc @ Universidad de Granada</td>
-    <td colspan="2">14 – 15<br>Master of Science in Foodstuffs quality and technology.
+    <td colspan="2">14 - 15<br>Master of Science in Foodstuffs quality and technology.
     </td>
   </tr>
   <tr>
     <td class="bold-right">MD @ Universidad de Alcalá</td>
-    <td colspan="2">16 – 17<br>Master in Professional Development 4.0
+    <td colspan="2">16 - 17<br>Master in Professional Development 4.0
     </td>
   </tr>
   <tr>
@@ -470,7 +470,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">High Level</td>
-    <td colspan="2">English (B2 cambridge certificate)</td>
+    <td colspan="2">English (B2 Cambridge certificate)</td>
   </tr>
   <tr>
     <td class="bold-right">Basic Level</td>

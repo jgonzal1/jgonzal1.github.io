@@ -21,6 +21,7 @@ p {
 table {
     margin-left: auto;
     margin-right: auto;
+    border-spacing: 0px 1px;
 }
 
 .bold-right {
@@ -83,12 +84,24 @@ table {
     padding-right: 2em;
 }
 
-.webdev_c {         background-color: #B5BD68; }
-.bigdataeng_c {     background-color: #A54242; }
-.softwaredev_c {    background-color: #CC6666; }
-.dataanalistpbi_c { background-color: #F0C674; }
-.aidatasci_c {      background-color: #DE935F; }
-.techcons_c {       background-color: #81A2BE; }
+.webdev_c {
+  background-image: repeating-linear-gradient(90deg,  #B5BD68AA, #B5BD68 2px, #B5BD68 calc(100% - 2px), #B5BD68AA);
+}
+.bigdataeng_c {
+  background-image: repeating-linear-gradient(90deg,  #A54242AA, #A54242 2px, #A54242 calc(100% - 2px), #A54242AA);
+}
+.softwaredev_c {
+  background-image: repeating-linear-gradient(90deg,  #CC6666AA, #CC6666 2px, #CC6666 calc(100% - 2px), #CC6666AA);
+}
+.dataanalistpbi_c {
+  background-image: repeating-linear-gradient(90deg,  #F0C674AA, #F0C674 2px, #F0C674 calc(100% - 2px), #F0C674AA);
+}
+.aidatasci_c {
+  background-image: repeating-linear-gradient(90deg,  #DE935FAA, #DE935F 2px, #DE935F calc(100% - 2px), #DE935FAA);
+}
+.techcons_c {
+  background-image: repeating-linear-gradient(90deg,  #81A2BEAA, #81A2BE 2px, #81A2BE calc(100% - 2px), #81A2BEAA);
+}
 
 .navbar {
   overflow: hidden;

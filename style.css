@@ -23,6 +23,9 @@ table {
     margin-right: auto;
     border-spacing: 0px 1px;
 }
+th+th {
+  border-left: 1px dotted #333333;
+}
 
 .bold-right {
     text-align: right;

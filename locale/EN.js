@@ -268,7 +268,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td class="w70">Jun 19 – Oct 19<br>Development, <a href="https://github.com/jgonzal1/d3js-graph-analytic">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project<br>
+    <td class="w70">Jun 19 – Oct 19<br>Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project<br>
     Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
     (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with
     <span class="bi">Amazon Glue (boto3 and pyspark libraries)</span>, and load in

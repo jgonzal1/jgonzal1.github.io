@@ -232,7 +232,7 @@ function getSpanishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td colspan="2" class="w70">Nov 18 - Feb 19<br>Desarrollo y arquitectura de un <span class="bi">​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
+    <td colspan="2" class="w70">Nov 18 - Feb 19<br>Desarrollo, <a href="https://github.com/jgonzal1/d3js-graph-analytics">análisis</a> y arquitectura de un <span class="bi">​proyecto de ETLs que extrae datos de una ​base de datos Oracle y hojas de cálculo de ​Google Sheets​, los procesa con ​Data Lake Analytics y ​Azure Data Factory​
     ,y los vuelca en archivos en Data Lake Storage que son presentados mediante ​Power BI</span>.
     </td>
   </tr>

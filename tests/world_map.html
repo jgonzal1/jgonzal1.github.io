@@ -8,7 +8,15 @@
     <title>World Map</title>
     <script src="../libs/leaflet.js"></script>
     <script src="../data/cities.js"></script>
+    <script src="../assets/leafletLineAnim.js"></script>
     <style>
+        path {
+            stroke: #1D1F21;
+            stroke-dasharray: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 6;
+        }
         .leaflet-overlay-pane svg {
             z-index: 99;
         }
@@ -24,6 +32,9 @@
 </head>
 
 <body>
+    <button onclick='snake()' style="position:absolute;display:inline;z-index:999">
+        Animate suggested route
+    </button>
     <div id="map"></div>
     <div id="logs"></div>
     <div class="navbar">
@@ -33,6 +44,43 @@
         <a class="w20vw bob active" href="./world_map.html">Fantasy game map sample</a>
     </div>
     <script src="../assets/mapHandler.js"></script>
+    <script src="../assets/worldMapRoute.js"></script>
+    <script>
+        let latLongs = []
+        function pushRoute(route) {
+            for (var i = 0, len = route.length; i < len; i++) {
+                latLongs.push(new L.LatLng(route[i][0], route[i][1]));
+            }
+            return latLongs;
+        }
+        const latLongsHelSto = pushRoute(routeHelSto);
+        //const latlngFra = pushRoute(routeFra);
+        //const latlngWarHob = pushRoute(routeWarHob);
+
+        const pathHelSto = L.polyline(latLongsHelSto);
+        //const pathFra = L.polyline(latlngFra);
+        //const pathWarHob = L.polyline(latlngWarHob);
+
+        const path = pathHelSto;
+        path.bindPopup("Suggested route");
+
+        map.fitBounds(L.latLngBounds(latLongs));
+
+        map.addLayer(pathHelSto);
+        // map.addLayer(pathFra);
+        // map.addLayer(pathWarHob);
+
+        map.addLayer(L.marker(latLongs[0]));
+        map.addLayer(L.marker(latLongs[latLongs.length - 1]));
+
+        function snake() {
+            path.snakeIn();
+        }
+
+        path.on('snake_start snake snake_end', function(ev) {
+            // console.log(ev.type);
+        });
+    </script>
 </body>
 
 </html>

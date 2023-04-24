@@ -95,6 +95,13 @@ th+th {
 .techcons_c { background-image: repeating-linear-gradient(90deg,  #81A2BEAA, #81A2BE 2px, #81A2BE calc(100% - 2px), #81A2BEAA); }
 .arch_c { background-image: repeating-linear-gradient(90deg,  #B294BBAA, #B294BB 2px, #B294BB calc(100% - 2px), #B294BBAA); }
 
+.lt {
+  padding: 0 !important;
+  cursor: default;
+  left: 0;
+  top: 0;
+}
+
 .navbar {
   overflow: hidden;
   background-color: #333;

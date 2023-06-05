@@ -156,6 +156,17 @@ th+th {
   display: none;
 }
 
+.a-header {
+  padding: 0 0.1em !important;
+  font-style: italic;
+}
+
+.a-header:hover {
+  background: inherit !important;
+  color: inherit !important;
+}
+
+
 #legend>* {
   text-shadow: 0px 0px 1px #000, 0px 0px 2px #000, 0px 0px 3px #000, 0px 0px 4px #000;
 }

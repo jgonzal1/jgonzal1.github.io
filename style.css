@@ -27,6 +27,23 @@ th+th {
   border-left: 1px dotted #333333;
 }
 
+@media print {
+  * {
+    color: #000;
+  }
+  a {
+    font-style: italic;
+    text-decoration: none;
+    color: #002 !important;
+  }
+  .printable {
+    display: inline !important;
+  }
+  #rolesTimeline, #bottomNavBar {
+    display: none !important;
+  }
+}
+
 .bold-right {
     text-align: right;
     padding-right: 1em;
@@ -38,6 +55,10 @@ th+th {
 }
 .centered { text-align: center; }
 .colspan4 { padding-left: 10em; }
+.grid-container-3 {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
 .highlight {
     color: #000000;
     padding: 0.1em;
@@ -78,6 +99,9 @@ th+th {
     padding: 0.1em;
     border-radius: 0.4em;
     border: 0.1em solid #000000;
+}
+.invisible {
+  visibility: hidden;
 }
 .w25 {
     width: 25vw;
@@ -133,6 +157,10 @@ th+th {
 .main {
   padding: 16px;
   margin-bottom: 30px;
+}
+
+.printable {
+  font-style: italic;
 }
 
 .w20vw {

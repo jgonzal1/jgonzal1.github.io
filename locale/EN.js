@@ -89,12 +89,12 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right">AETY</td>
     <td class="w70">
-      (Nov 21 – Nowadays)<br>Software developer/data engineer and monday.com, AWS and Power BI technical consultant<br><br>
+      (Nov 21 – Nowadays)<br>Software developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
   </tr>
   <tr>
     <td class="bold-right"> </td>
     <td class="w70">
-      2022-09 - Nowadays<br>
+      2023-09 - Nowadays<br>
       Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.
 
       2022-05 - 2022-08<br>

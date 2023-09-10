@@ -95,7 +95,7 @@ function getEnglishContents() {
     <td class="bold-right"> </td>
     <td class="w70">
       2023-09 - Nowadays<br>
-      Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.
+      Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br><br>
 
       2022-05 - 2022-08<br>
       Project:  Jira Ultimate Customizer, Role: Software Developer<br>

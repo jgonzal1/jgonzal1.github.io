@@ -37,8 +37,7 @@ let clickedCoords;
 function onMapClick(e) {
     clickedCoords = [Math.round(e.latlng.lat * 100) / 100, Math.round(e.latlng.lng * 100) / 100];
     coordsArr.push("[" + clickedCoords + "]");
-    console.trace("Pushed your map click at " + clickedCoords); // trace
-    document.getElementById("logs").innerText = clickedCoords
+    document.getElementById("logs").innerText = clickedCoords.toString().replace(",", ", ");
 }
 map.on('click', onMapClick);
 

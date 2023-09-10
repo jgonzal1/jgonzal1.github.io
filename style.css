@@ -202,3 +202,10 @@ th+th {
 #legend td {
   padding: 0.15em;
 }
+
+#logs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}

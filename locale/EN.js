@@ -94,6 +94,13 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right"> </td>
     <td class="w70">
+      2022-09 - Nowadays<br>
+      Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.
+
+      2022-05 - 2022-08<br>
+      Project:  Jira Ultimate Customizer, Role: Software Developer<br>
+      Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br><br>
+
       2022-09 - 2023-04<br>
       Project: Data automation on Dr. Oetker Home, public webpages content creation.<br>
       <span class="arch">Full-stack</span> software developer, data engineer, and AWS technical consultant<br>

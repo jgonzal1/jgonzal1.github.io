@@ -41,7 +41,7 @@ function getDanishContents() {
     <td class="centered">
       <fieldset>
         <legend>📸</legend>
-        <img src="javier.jpg" alt="Javier González">
+        <img src="javier.png" alt="Javier González">
       </fieldset>
     </td>
   </tr>

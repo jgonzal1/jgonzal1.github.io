@@ -89,17 +89,73 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right">AETY</td>
     <td class="w70">
-      (Nov 21 – Nowadays)<br>Software developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
+      (Nov 21 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
   </tr>
   <tr>
     <td class="bold-right"> </td>
     <td class="w70">
-      2023-09 - Nowadays<br>
+      2023-09 - 2023-12<br>
+      Project: TDC´s Smart Build solution, Role: Full-stack developer<br>
       Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br><br>
+      Main tasks:<ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li></ol><br>
 
       2022-05 - 2022-08<br>
-      Project:  Jira Ultimate Customizer, Role: Software Developer<br>
+      Project: Jira Ultimate Customizer, Role: Full-stack Developer<br>
       Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br><br>
+      Main tasks:<ol>
+      <li>Implementation of a feature for customizing different CSS and JS configurations for Ultimate Customizer</li>
+      <li></li>
+      4baf016 # manually upgrading @atlaskit/tabs code internals, ~ linting
+      d4b90d8 @# @atlaskit/tabs update compatibility migration
+      ce109d3 # updated @atlaskit/tabs, @ implementing modularization
+      859753b +@ activity diagram custom JS/CSS, <-> returnTabs
+      80fa696 @ test ContactManager
+      36e3fcf @ deleteTab, modify vs insertTab
+      fe39522 + customTabs on state, in-memory upsert empty tab, typeCode prop, ~ linting
+      bc3df09 + globalJS&Css loggers
+      8355a2c #? ports sync and direct assignment
+      c22f31d # owasp to 7.4.4 and linting
+      ffad784 fix: UR-71-column-contents-sometimes-displace
+      85a5a23 - duplicate properties in pom
+      43af5cc + activity-diagram_requests-page
+      c78e444 # verbose packdev and --activate-profiles centralization
+      94558f7 + back-end running, # fixed issue on index title
+      d166f29 # packdev run fix on documentation
+      98e03d8 + UC titles section normalization
+      605f9f7 @ atlas-run in packdev-docker
+      10cfcbf + packdev-docker in Makefile, maven documentation, preloaded-db and e2e fixes on arch
+      1aecbf9 # Makefile runs, updated arch
+      6ff75be front-end styling matches UR style bg and boxing
+      9703a37 + drilled down cypress sh docs, # volume dynamic mappings
+      7ed8093 + host volumes usage in Makefile
+      01f091e + pre-db suffix on containers, # atlas-mvn clean unification
+      89a0e52 + makefile example and containers image on readme, # JSM def when no micro, allowing setting JHP suffix
+      a84c1bf + examples for makefile with parameters
+      02b955c # JSM tagged also in pre-db, documentation Makefile commands output
+      ef8871d + 4.13, 5.4, # tested with JSM 4.5, 5.8
+      21cd2e3 + JIRA cyclical and supported versions references
+      7aee19f + port on container name
+      90da76c + remaining PHONYs, JAVA_VERSION from Makefile, # CURRENT_TAG always builds, ↔ just-run, builds and runs
+      17f22d5 # docker start for new containers
+      08107de + JAVA_VERSION in Makefile, PORT, <-> JSM sub numbers
+      c798afc + build and run manual examples, # image name has jsm before its version
+      5dc0ba4 # JSM version handled via Makefile, docker image tag also hold JSM version, new container name
+      10bd762 + deployment strategy, # references
+      779f172 # working packdev build log
+      5258859 + example run without hot-reload
+      2717a1f + general architecture, sending JAR_VERSION to Makefile, # more memory allocation
+      9b3f02c # Prerequisites table,
+      daad40e + Technical overview
+      a244fc2 + intro from marketplace, create docker image
+      c028535 + automated usage of nvmrc, ~linting
+      <li></li></ol><br>
 
       2022-09 - 2023-04<br>
       Project: Data automation on Dr. Oetker Home, public webpages content creation.<br>
@@ -116,7 +172,7 @@ function getEnglishContents() {
       <li>Creation of a web-service for Dr. Oetker internal stakeholders for enabling them to modify nginx configuration for different Dr. Oetker websites.</li></ol><br>
 
       2022-03 - 2022-09<br>
-      Project:  Jira Ultimate Customizer, Role: Software Developer<br>
+      Project:  Jira Ultimate Customizer, Role: Full-stack Developer<br>
       Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0 as well as for <span class="arch">resolving and communicating</span> on the resolution for <span class="arch">all the Service Desk incidences</span> for this App<br><br>
 
       2022-01 - 2022-03<br>
@@ -151,7 +207,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">T-Systems Iberia</td>
-    <td class="w70"><br>(Nov 19 - Nov 21)<br>Software developer and consultant, and Power BI technician</td>
+    <td class="w70"><br>(Nov 19 - Nov 21)<br>Full-stack developer, consultant, and Power BI technician</td>
   </tr>
   <tr>
     <td colspan="3"><br></td>
@@ -229,7 +285,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td class="w70">Dec 19 - Feb 20<br>Technical consultant of <span class="arch cloud">cloud architecture</span>, software and big data for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
+    <td class="w70">Dec 19 - Feb 20<br>Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
       connectors, third party's <span class='arch cloud webdev'>API managements</span>, big data solutions (<span class='webdev cloud'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and <span class="cloud">setting up Docker containers for all
       the components in Docker containers</span> for a big Smart City project.
     </td>
@@ -297,7 +353,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right"> </td>
-    <td class="w70">Dec 17 – Oct 18<br>Software developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).
+    <td class="w70">Dec 17 – Oct 18<br>Full-stack developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).
     </td>
   </tr>
   <tr>

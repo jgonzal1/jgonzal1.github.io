@@ -95,67 +95,31 @@ function getEnglishContents() {
     <td class="bold-right"> </td>
     <td class="w70">
       2023-09 - 2023-12<br>
-      Project: TDC´s Smart Build solution, Role: Full-stack developer<br>
+      Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible<br>
       Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br><br>
       Main tasks:<ol>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li></ol><br>
+      <li>E2E representation of TAB geographical data on OpenLayers and Leaflet front-end environments</li>
+      <li>Front-end development of the UI for Smart Build</li>
+      <li>Back-end development of the API for the AI model used to improve towers</li>
+      </ol><br>
+      Technologies:<ol>
+      <li>Python: fastapi, pandas, numpy, polars, requests</li>
+      <li>Javascript/Typescript: React, Chakra, OpenLayers, LeafLet, atomic design</li>
+      <li>Database: SQL queries, Snowflake</li>
+      </ol><br>
 
       2022-05 - 2022-08<br>
       Project: Jira Ultimate Customizer, Role: Full-stack Developer<br>
       Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br><br>
       Main tasks:<ol>
       <li>Implementation of a feature for customizing different CSS and JS configurations for Ultimate Customizer</li>
-      <li></li>
-      4baf016 # manually upgrading @atlaskit/tabs code internals, ~ linting
-      d4b90d8 @# @atlaskit/tabs update compatibility migration
-      ce109d3 # updated @atlaskit/tabs, @ implementing modularization
-      859753b +@ activity diagram custom JS/CSS, <-> returnTabs
-      80fa696 @ test ContactManager
-      36e3fcf @ deleteTab, modify vs insertTab
-      fe39522 + customTabs on state, in-memory upsert empty tab, typeCode prop, ~ linting
-      bc3df09 + globalJS&Css loggers
-      8355a2c #? ports sync and direct assignment
-      c22f31d # owasp to 7.4.4 and linting
-      ffad784 fix: UR-71-column-contents-sometimes-displace
-      85a5a23 - duplicate properties in pom
-      43af5cc + activity-diagram_requests-page
-      c78e444 # verbose packdev and --activate-profiles centralization
-      94558f7 + back-end running, # fixed issue on index title
-      d166f29 # packdev run fix on documentation
-      98e03d8 + UC titles section normalization
-      605f9f7 @ atlas-run in packdev-docker
-      10cfcbf + packdev-docker in Makefile, maven documentation, preloaded-db and e2e fixes on arch
-      1aecbf9 # Makefile runs, updated arch
-      6ff75be front-end styling matches UR style bg and boxing
-      9703a37 + drilled down cypress sh docs, # volume dynamic mappings
-      7ed8093 + host volumes usage in Makefile
-      01f091e + pre-db suffix on containers, # atlas-mvn clean unification
-      89a0e52 + makefile example and containers image on readme, # JSM def when no micro, allowing setting JHP suffix
-      a84c1bf + examples for makefile with parameters
-      02b955c # JSM tagged also in pre-db, documentation Makefile commands output
-      ef8871d + 4.13, 5.4, # tested with JSM 4.5, 5.8
-      21cd2e3 + JIRA cyclical and supported versions references
-      7aee19f + port on container name
-      90da76c + remaining PHONYs, JAVA_VERSION from Makefile, # CURRENT_TAG always builds, ↔ just-run, builds and runs
-      17f22d5 # docker start for new containers
-      08107de + JAVA_VERSION in Makefile, PORT, <-> JSM sub numbers
-      c798afc + build and run manual examples, # image name has jsm before its version
-      5dc0ba4 # JSM version handled via Makefile, docker image tag also hold JSM version, new container name
-      10bd762 + deployment strategy, # references
-      779f172 # working packdev build log
-      5258859 + example run without hot-reload
-      2717a1f + general architecture, sending JAR_VERSION to Makefile, # more memory allocation
-      9b3f02c # Prerequisites table,
-      daad40e + Technical overview
-      a244fc2 + intro from marketplace, create docker image
-      c028535 + automated usage of nvmrc, ~linting
-      <li></li></ol><br>
+      <li>Upgrade of @atlaskit/tabs code internals</li>
+      <li>Update activity diagrams</li>
+      <li>Improved back-end running for Dockerfile's and Makefile</li>
+      <li>UX design improvement</li>
+      <li>Automation of testing in long-term stable JSM versions 4.5, 4.13, 5.4, 5.8</li>
+      <li>automated usage of nvmrc</li>
+      </ol>
 
       2022-09 - 2023-04<br>
       Project: Data automation on Dr. Oetker Home, public webpages content creation.<br>

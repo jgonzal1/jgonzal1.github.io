@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Tasks Manager Dashboard</title>
+    <script crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="../libs/d3.v5.js"></script>
+    <script src="private/credentials.js"></script>
+    <script
+      src="https://cesium.com/downloads/cesiumjs/releases/1.103/Build/Cesium/Cesium.js"
+    ></script>
+    <link href="../style/style.css" rel="stylesheet">
+    <link href="../style/cesium-widgets-1.103.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon"
+      href="../public/real-estate-investing-management.ico"
+    >
+  </head>
+  <body class="flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 1.2em)">
+    <div id="taskManager" style="width:50%; height:calc(100% - 1em); position:relative;"></div>
+    <div id="map" style="width:46%; height:calc(100% - 1em);"></div>
+    <script src="../assets/tasksManager.js"></script>
+    <script src="../assets/cesiumInit.js"></script>
+  </body>
+</html>

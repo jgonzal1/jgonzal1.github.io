@@ -1,6 +1,7 @@
 desktop.ini
 d3.v*.js
-games/*
+games/
 jquery*.js
+private/
 test_*.*
 *.xcf

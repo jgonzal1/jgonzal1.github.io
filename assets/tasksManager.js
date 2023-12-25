@@ -19,6 +19,7 @@ const columnRenames = {
   "text": "comments"
 };
 
+// @ts-ignore
 class tasksManager extends React.Component {
   constructor(props) {
     super(props);
@@ -186,17 +187,17 @@ class tasksManager extends React.Component {
       "#bab0ab", // ➕
       ""
     ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10);
-
-    const root = d3.treemap()
-      .tile(d3.treemapSquarify)
+    // @ts-ignore
+    const root = d3.treemap().tile(d3.treemapSquarify)
       .size([width, height])
       .padding(1)
       .round(true)
+    // @ts-ignore
     (d3.hierarchy(treeMap)
         .sum(d => d.value)
         .sort((a, b) => b.value - a.value));
 
-    // Create the SVG container.
+    // @ts-ignore Create the SVG container.
     const svg = d3.create("svg")
         .attr("viewBox", [0, 0, width, height])
         .attr("width", width)
@@ -209,7 +210,7 @@ class tasksManager extends React.Component {
       .join("g")
         .attr("transform", d => `translate(${d.x0},${d.y0})`);
 
-    // Append a tooltip.
+    // @ts-ignore Append a tooltip.
     const format = d3.format(",d");
     leaf.append("title")
         .text(d => `${d.ancestors().reverse().map(d => d.data.name).join(".")}\n${format(d.value)}`);
@@ -239,7 +240,9 @@ class tasksManager extends React.Component {
       .join("tspan")
         .attr("x", 3)
         // @ts-ignore
+        // @ts-ignore
         .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
+        // @ts-ignore
         .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
         .text(d => d);
     const treeMapSvgObj = Object.assign(svg.node());
@@ -289,7 +292,7 @@ class tasksManager extends React.Component {
     const sortedMondayItemsJson = this.addMondayMeta(mondayTasksCols);
     const mondayTasksByDay = this.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategory(sortedMondayItemsJson);
-    
+    // @ts-ignore
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
@@ -328,6 +331,7 @@ class tasksManager extends React.Component {
     const mondayPutResponse = await mondayPutResponsePremise;
     const lastUpdatedItem = mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? false;
     if(lastUpdatedItem) {
+      // @ts-ignore
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
@@ -343,11 +347,13 @@ class tasksManager extends React.Component {
       treeMapPlaceholder.innerHTML = "";
       treeMapPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
     }
+    // @ts-ignore
     return React.createElement(
       "div", {
         id: "taskManagerWrapper",
         style: { width: "calc(100% - 0.8em)" }
       },
+      // @ts-ignore
       React.createElement(
         "button", {
           id: "refreshTasksButton",
@@ -355,6 +361,7 @@ class tasksManager extends React.Component {
             () => this.setState({ getDatedMondayItemsToJson: true })
         }, "Refresh tasks"
       ),
+      // @ts-ignore
       React.createElement(
         "span",
         {
@@ -363,6 +370,7 @@ class tasksManager extends React.Component {
         },
         `Last refresh datetime: ${this.state.lastRefreshDateTime}`
       ),
+      // @ts-ignore
       React.createElement(
         "span",
         {
@@ -373,6 +381,7 @@ class tasksManager extends React.Component {
           this.state.lastUpdatedItem
         }`
       ),
+      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -385,18 +394,22 @@ class tasksManager extends React.Component {
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson)?
+        // @ts-ignore
         React.createElement(
           "table",
           null,
+          // @ts-ignore
           React.createElement(
             "thead",
             null,
+            // @ts-ignore
             React.createElement(
               "tr",
               null,
               [
                 Object.keys(this.state.mondayTasksCols[0]).pop(),
                 ...Object.keys(this.state.mondayTasksCols[0])
+              // @ts-ignore
               ].map((taskKey,taskKeyIdx)=>React.createElement(
                 "th",
                 { key:`${taskKey}${taskKeyIdx}Header` },
@@ -404,15 +417,18 @@ class tasksManager extends React.Component {
               ))
             )
           ),
+          // @ts-ignore
           React.createElement(
             "tbody",
             null,
+            // @ts-ignore
             this.state.mondayTasksCols.map((taskRow,idxRow)=>React.createElement(
               "tr",
               { key:`TaskRow${idxRow}`},
               [
                 Object.keys(taskRow).pop(),
                 ...Object.keys(taskRow)
+              // @ts-ignore
               ].map((taskKey,taskKeyIdx)=>React.createElement(
                 "td",
                 {
@@ -422,6 +438,7 @@ class tasksManager extends React.Component {
                 //@ts-ignore
                 taskRow[taskKey],
                 taskKey==="actions"&&[
+                  // @ts-ignore
                   React.createElement(
                     "img",
                     {
@@ -437,6 +454,7 @@ class tasksManager extends React.Component {
                       )
                     }
                   ),
+                  // @ts-ignore
                   React.createElement(
                     "img",
                     {
@@ -457,12 +475,14 @@ class tasksManager extends React.Component {
             ))
           )
         ):
+        // @ts-ignore
         React.createElement(
           "div",
           null,
           "Loading tasks summary table"
         )
       ),
+      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -475,6 +495,7 @@ class tasksManager extends React.Component {
             width: "calc(100% - 1em)"
           }
         },
+        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -487,15 +508,19 @@ class tasksManager extends React.Component {
             }
           },
           (Object.keys(this.state.mondayTasksByDay).length && !this.state.getDatedMondayItemsToJson)?
+          // @ts-ignore
           React.createElement(
             "table",
             null,
+            // @ts-ignore
             React.createElement(
               "thead",
               null,
+              // @ts-ignore
               React.createElement(
                 "tr",
                 null,
+                // @ts-ignore
                 Object.keys(this.state.mondayTasksByDay[0]).map(taskKey=>React.createElement(
                   "th",
                   { key:`${taskKey}HeaderByDay` },
@@ -503,12 +528,15 @@ class tasksManager extends React.Component {
                 ))
               )
             ),
+            // @ts-ignore
             React.createElement(
               "tbody",
               null,
+              // @ts-ignore
               this.state.mondayTasksByDay.map((taskRow,idxRow)=>React.createElement(
                 "tr",
                 { key:`TaskRow${idxRow}ByDay`},
+                // @ts-ignore
                 Object.keys(this.state.mondayTasksByDay[0]).map(taskKey=>React.createElement(
                   "td",
                   {
@@ -523,12 +551,14 @@ class tasksManager extends React.Component {
               ))
             )
           ):
+          // @ts-ignore
           React.createElement(
             "div",
             null,
             "Loading tasks by day table"
           )
         ),
+        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -549,4 +579,5 @@ class tasksManager extends React.Component {
 const domContainer = document.querySelector("#taskManager");
 //@ts-ignore
 const root = ReactDOM.createRoot(domContainer);
+// @ts-ignore
 root.render(React.createElement(tasksManager));

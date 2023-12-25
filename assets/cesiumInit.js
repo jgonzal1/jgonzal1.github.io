@@ -27,6 +27,7 @@ function setEntity(entityId, entityName, entityLat, entityLng, entityH) {
   }
 }
 async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) {
+  const mondayApiUrl = "https://api.monday.com/v2";
   const headers = {
     "Authorization": mondayKey,
     "Content-Type": "application/json",
@@ -74,7 +75,6 @@ function initCesiumMap(cesiumApiKey, propertiesList) {
   });
   // @ts-ignore Add Cesium OSM buildingTileset, a global 3D buildings layer. Can be assigned to constant
   viewer.scene.primitives.add(Cesium.createOsmBuildings());
-  console.log(propertiesList);
   propertiesList.map(p=>{
     const e = setEntity(
       p["house_id"],
@@ -83,7 +83,6 @@ function initCesiumMap(cesiumApiKey, propertiesList) {
       parseFloat(p["lng"]),
       parseFloat(p["entity_h"])
     );
-    console.log(e);
     viewer.entities.add(e);
   });
   // Fly the camera to Copenhagen at the given longitude, latitude, and height.
@@ -93,10 +92,17 @@ function initCesiumMap(cesiumApiKey, propertiesList) {
     orientation : {
       // @ts-ignore
       heading : Cesium.Math.toRadians(160.0), /* 0 Jernbanevej 220 pr52 */
+      // @ts-ignore
       pitch : Cesium.Math.toRadians(-15.0), /* -20 pr52 -30 Jernbanevej */
       roll: 0.0
     }
   });
 }
 
-getMondayPropertiesThenInitMap(monday_key, "3488660413", cesium_api_key);
+getMondayPropertiesThenInitMap(
+  // @ts-ignore
+  monday_key,
+  "3488660413", // properties monday board
+  // @ts-ignore
+  cesium_api_key
+);

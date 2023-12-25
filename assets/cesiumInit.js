@@ -1,12 +1,12 @@
-// Your access token can be found at: https://ion.cesium.com/tokens.
-Cesium.Ion.defaultAccessToken = cesium_api_key;
-// @ts-ignore Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
-const viewer = new Cesium.Viewer('map', {
-  // @ts-ignore
-  terrainProvider: Cesium.createWorldTerrain()
-});
-// @ts-ignore Add Cesium OSM Buildings, a global 3D buildings layer.
-const buildingTileset = viewer.scene.primitives.add(Cesium.createOsmBuildings());
+const propertiesColumnRenames = {
+  "label": "house_id",
+  "numbers": "purchase_price",
+  "numbers6": "m2",
+  "numbers7": "lat",
+  "numbers77": "lng",
+  "numbers8": "entity_h",
+  "status": "status"
+};
 /**
  * position @ Jernbanevej: 12.5003437, 55.7714248, 64.5
  */
@@ -26,16 +26,77 @@ function setEntity(entityId, entityName, entityLat, entityLng, entityH) {
     }
   }
 }
-viewer.entities.add(setEntity("a", "A", 36.843, -2.455, 85));
-viewer.entities.add(setEntity("b", "B", 36.848, -2.463, 105));
-
-// Fly the camera to Copenhagen at the given longitude, latitude, and height.
-viewer.camera.flyTo({
-  // @ts-ignore 12.49, 55.76, 1000 Jernbanevej, -2.453, 36.845, 250 pr52
-  destination : Cesium.Cartesian3.fromDegrees(-2.4634, 36.8510, 250),
-  orientation : {
+async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) {
+  const headers = {
+    "Authorization": mondayKey,
+    "Content-Type": "application/json",
+  };
+  const query ="boards (ids: " + boardId + ") { " +
+    "items { id name column_values { id text value } } " +
+  "}"
+  const body = JSON.stringify({"query": "query { " + query + " }"});
+  const mondayItemsRawJsonPremise = await fetch(
+    mondayApiUrl,
+    { method: "POST", headers: headers, body: body }
+  ).then((response) => {
+    try {
+      return response.json();
+    } catch (e) {
+      console.error(e);
+      return [ response ];
+    }
+  });
+  const mondayItemsRawJson = await mondayItemsRawJsonPremise;
+  /** @type {any} */
+  let mondayItems = [];
+  let rawItemIdx = 0;
+  mondayItemsRawJson["data"]["boards"][0]["items"].map(
+    (rawItem, _rawItemIdx) => {
+      const houseIds = {
+        "item_id": rawItem["id"], "house_name": rawItem["name"]
+      };
+      mondayItems.push(houseIds);
+      rawItemIdx = _rawItemIdx;
+      rawItem.column_values.map((itemCol)=>{
+        mondayItems[rawItemIdx][propertiesColumnRenames[itemCol.id]] = itemCol.text;
+      });
+    }
+  );
+  initCesiumMap(cesiumApiKey, mondayItems);
+}
+function initCesiumMap(cesiumApiKey, propertiesList) {
+  // @ts-ignore Your access token can be found at: https://ion.cesium.com/tokens.
+  Cesium.Ion.defaultAccessToken = cesiumApiKey;
+  // @ts-ignore Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+  const viewer = new Cesium.Viewer('map', {
     // @ts-ignore
-    heading : Cesium.Math.toRadians(160.0), /* 0 Jernbanevej 220 pr52 */ pitch : Cesium.Math.toRadians(-15.0), /* -20 pr52 -30 Jernbanevej */
-    roll: 0.0
-  }
-});
+    terrainProvider: Cesium.createWorldTerrain()
+  });
+  // @ts-ignore Add Cesium OSM buildingTileset, a global 3D buildings layer. Can be assigned to constant
+  viewer.scene.primitives.add(Cesium.createOsmBuildings());
+  console.log(propertiesList);
+  propertiesList.map(p=>{
+    const e = setEntity(
+      p["house_id"],
+      p["house_name"],
+      parseFloat(p["lat"]),
+      parseFloat(p["lng"]),
+      parseFloat(p["entity_h"])
+    );
+    console.log(e);
+    viewer.entities.add(e);
+  });
+  // Fly the camera to Copenhagen at the given longitude, latitude, and height.
+  viewer.camera.flyTo({
+    // @ts-ignore 12.49, 55.76, 1000 Jernbanevej, -2.453, 36.845, 250 pr52
+    destination : Cesium.Cartesian3.fromDegrees(-2.4634, 36.8510, 250),
+    orientation : {
+      // @ts-ignore
+      heading : Cesium.Math.toRadians(160.0), /* 0 Jernbanevej 220 pr52 */
+      pitch : Cesium.Math.toRadians(-15.0), /* -20 pr52 -30 Jernbanevej */
+      roll: 0.0
+    }
+  });
+}
+
+getMondayPropertiesThenInitMap(monday_key, "3488660413", cesium_api_key);

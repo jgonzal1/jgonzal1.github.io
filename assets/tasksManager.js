@@ -26,7 +26,7 @@ class tasksManager extends React.Component {
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
-      mondayItemsJson: {},
+      mondayTasksCols: {},
       mondayTasksByCategory: [],
       mondayTasksByDay: {},
       nextClimbingDay: "undefined",
@@ -35,12 +35,12 @@ class tasksManager extends React.Component {
     };
   };
 
-  addMondayMeta = (mondayItemsJson) => {
+  addMondayMeta = (mondayTasksCols) => {
     const currentDate = new Date();
     const aYearFromNowDt = new Date();
     aYearFromNowDt.setFullYear(aYearFromNowDt.getFullYear() + 1);
     const aYearFromNow = aYearFromNowDt.toISOString().substring(0,16).replace("T"," ");
-    mondayItemsJson = mondayItemsJson.map(item=>{
+    mondayTasksCols = mondayTasksCols.map(item=>{
       if(!item["datetime"]){
         item["datetime"]=aYearFromNow
       };
@@ -52,7 +52,7 @@ class tasksManager extends React.Component {
       item["notes"] = `${item["comments"]} ${item["subitems"]}`
       return item;
     });
-    const mondayItemsJsonPayload = mondayItemsJson.map(
+    const mondayItemsJsonPayload = mondayTasksCols.map(
       (t)=>{ return {
         "category": t["category"],
         "task_name": t["task_name"],
@@ -246,7 +246,7 @@ class tasksManager extends React.Component {
     return treeMapSvgObj;
   };
 
-  getDatedMondayItemsToJson = async (
+  getDatedMondayTasksToJsons = async (
     mondayKey, boardId, columnRenames
   ) => {
     const headers = {
@@ -270,28 +270,28 @@ class tasksManager extends React.Component {
     });
     const mondayItemsRawJson = await mondayItemsRawJsonPremise;
     /** @type {any} */
-    let mondayItemsJson = [];
+    let mondayTasksCols = [];
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items"].map(
       (rawItem, _rawItemIdx) => {
         const taskIds = {
           "task_id": rawItem["id"], "task_name": rawItem["name"]
         };
-        mondayItemsJson.push(taskIds);
+        mondayTasksCols.push(taskIds);
         rawItemIdx = _rawItemIdx;
         rawItem.column_values.map((itemCol)=>{
-          mondayItemsJson[rawItemIdx][
+          mondayTasksCols[rawItemIdx][
             columnRenames[itemCol.id]
           ] = itemCol.text;
         });
       }
     );
-    const sortedMondayItemsJson = this.addMondayMeta(mondayItemsJson);
+    const sortedMondayItemsJson = this.addMondayMeta(mondayTasksCols);
     const mondayTasksByDay = this.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategory(sortedMondayItemsJson);
     
     this.setState({
-      mondayItemsJson: sortedMondayItemsJson,
+      mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
       mondayTasksByDay: mondayTasksByDay,
       getDatedMondayItemsToJson: false,
@@ -335,7 +335,7 @@ class tasksManager extends React.Component {
   render() {
     if (this.state.getDatedMondayItemsToJson) {
       //@ts-ignore
-      this.getDatedMondayItemsToJson(monday_key,boardId,columnRenames);
+      this.getDatedMondayTasksToJsons(monday_key,boardId,columnRenames);
     }
     if(this.state.mondayTasksByCategory.length) {
       const treeMapPlaceholder = document.querySelector("#treeMap");
@@ -384,7 +384,7 @@ class tasksManager extends React.Component {
             paddingTop: "0.1em"
           }
         },
-        (Object.keys(this.state.mondayItemsJson).length && !this.state.getDatedMondayItemsToJson)?
+        (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson)?
         React.createElement(
           "table",
           null,
@@ -395,8 +395,8 @@ class tasksManager extends React.Component {
               "tr",
               null,
               [
-                Object.keys(this.state.mondayItemsJson[0]).pop(),
-                ...Object.keys(this.state.mondayItemsJson[0])
+                Object.keys(this.state.mondayTasksCols[0]).pop(),
+                ...Object.keys(this.state.mondayTasksCols[0])
               ].map((taskKey,taskKeyIdx)=>React.createElement(
                 "th",
                 { key:`${taskKey}${taskKeyIdx}Header` },
@@ -407,7 +407,7 @@ class tasksManager extends React.Component {
           React.createElement(
             "tbody",
             null,
-            this.state.mondayItemsJson.map((taskRow,idxRow)=>React.createElement(
+            this.state.mondayTasksCols.map((taskRow,idxRow)=>React.createElement(
               "tr",
               { key:`TaskRow${idxRow}`},
               [

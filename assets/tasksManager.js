@@ -50,7 +50,10 @@ class tasksManager extends React.Component {
       ).toFixed(2);
       item["duration"] = +(parseFloat(item["duration"]).toFixed(1));
       item["date"] = item["datetime"].substring(0,10);
-      item["notes"] = `${item["comments"]} ${item["subitems"]}`
+      const notes = `${item["comments"]} ${item["subitems"]}`;
+      item["notes"] = notes.length < 100 ?
+        notes :
+        `${notes.substring(0,99)} ...`;
       return item;
     });
     const mondayItemsJsonPayload = mondayTasksCols.map(

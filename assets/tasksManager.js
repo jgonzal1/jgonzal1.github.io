@@ -29,6 +29,7 @@ class tasksManager extends React.Component {
       lastUpdatedItem: false,
       mondayTasksCols: {},
       mondayTasksByCategory: [],
+      mondayTasksDurationSum: 0,
       mondayTasksByDay: {},
       nextClimbingDay: "undefined",
       nextVF: "undefined",
@@ -172,6 +173,13 @@ class tasksManager extends React.Component {
         }
       }
     );
+    const mondayTasksDurationSum = treeMapChildren.map(t=>t.value).filter(dur=>dur>0).reduce(
+      (accumulator, currentValue) => accumulator + currentValue, 0
+    );
+    // @ts-ignore
+    this.setState({
+      mondayTasksDurationSum: mondayTasksDurationSum
+    });
     const [width, height] = [350, 350];
     const treeMap = {
       "name":"tasks",
@@ -377,11 +385,22 @@ class tasksManager extends React.Component {
       React.createElement(
         "span",
         {
-          id: "lastRefreshDateTime",
+          id: "lastUpdatedItem",
           style: { paddingLeft: "0.3em" }
         },
         this.state.lastUpdatedItem && `| ${
           this.state.lastUpdatedItem
+        }`
+      ),
+      // @ts-ignore
+      React.createElement(
+        "span",
+        {
+          id: "tasksDurationSum",
+          style: { paddingLeft: "0.3em" }
+        },
+        this.state.mondayTasksDurationSum && `| Total tasks duration (h): ${
+          this.state.mondayTasksDurationSum
         }`
       ),
       // @ts-ignore
@@ -435,8 +454,8 @@ class tasksManager extends React.Component {
               ].map((taskKey,taskKeyIdx)=>React.createElement(
                 "td",
                 {
-                  key:`${taskKey}${taskKeyIdx}${idxRow}Td`,
-                  className:`${taskKey}-td`,
+                  key: `${taskKey}${taskKeyIdx}${idxRow}Td`,
+                  className: `${taskKey}-td`,
                 },
                 //@ts-ignore
                 taskRow[taskKey],

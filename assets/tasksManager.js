@@ -135,7 +135,7 @@ class tasksManager extends React.Component {
             new Date(nextClimbingDay).valueOf()
           ) / msPerD
         ));
-        const isOddDayDiff = !(dayDiff%2) && (dayDiff>=0);
+        const isOddDayDiff = !!(dayDiff%2) && (dayDiff>=0);
         const durOffs = isOddDayDiff?duration+2:duration;
         const totV = ["Sat","Sun"].includes(wd)?20:12;
         const usedTime = Math.min(Math.ceil(4*durOffs),21);

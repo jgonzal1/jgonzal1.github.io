@@ -175,7 +175,7 @@ class tasksManager extends React.Component {
     );
     const mondayTasksDurationSum = treeMapChildren.map(t=>t.value).filter(dur=>dur>0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    );
+    ).toFixed(1);
     // @ts-ignore
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum

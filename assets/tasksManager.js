@@ -410,7 +410,7 @@ class tasksManager extends React.Component {
           id: "mondayTableContainer",
           className: "table-container",
           style: {
-            height: "calc(50% - 4.5em)",
+            height: "calc(100% - 320px - 4em)",
             marginTop: "0.3em",
             paddingTop: "0.1em"
           }
@@ -511,7 +511,7 @@ class tasksManager extends React.Component {
           className: "flex-container-2",
           style: {
             gap: "0em",
-            height: "50%",
+            height: "315px",
             margin: "0.3em 0.3em 0 0.1em",
             position: "relative",
             width: "calc(100% - 1em)"
@@ -524,7 +524,7 @@ class tasksManager extends React.Component {
             id: "mondayTasksByDayTableContainer",
             className: "table-container",
             style: {
-              height: "calc(100% - 0.6em)",
+              height: "305px",
               margin: "0.3em",
               width: "fit-content"
             }
@@ -586,7 +586,7 @@ class tasksManager extends React.Component {
           {
             id:"treeMap",
             style: {
-              height: "calc(100% - 0.6em)",
+              height: "305px",
               margin: "0.3em",
               width: "50%"
             }

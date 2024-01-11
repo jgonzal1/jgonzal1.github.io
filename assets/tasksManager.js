@@ -446,7 +446,12 @@ class tasksManager extends React.Component {
             // @ts-ignore
             this.state.mondayTasksCols.map((taskRow,idxRow)=>React.createElement(
               "tr",
-              { key:`TaskRow${idxRow}`},
+              {
+                key:`TaskRow${idxRow}`,
+                style: {
+                  backgroundColor: parseFloat(taskRow["h_diff"])<24?"#C666":"#0000"
+                }
+              },
               [
                 Object.keys(taskRow).pop(),
                 ...Object.keys(taskRow)

@@ -52,9 +52,7 @@ class tasksManager extends React.Component {
       item["duration"] = +(parseFloat(item["duration"]).toFixed(1));
       item["date"] = item["datetime"].substring(0,10);
       const notes = `${item["comments"]} ${item["subitems"]}`;
-      item["notes"] = notes.length < 100 ?
-        notes :
-        `${notes.substring(0,99)} ...`;
+      item["notes"] = notes;
       return item;
     });
     const mondayItemsJsonPayload = mondayTasksCols.map(
@@ -461,48 +459,57 @@ class tasksManager extends React.Component {
                 {
                   key: `${taskKey}${taskKeyIdx}${idxRow}Td`,
                   className: `${taskKey}-td`,
+                  style: { height: "2em" }
                 },
-                //@ts-ignore
-                taskRow[taskKey],
-                taskKey==="actions"&&[
+                // @ts-ignore
+                taskKey==="actions"?React.createElement(
+                  "div",
+                  { style: {
+                    height: "100%",
+                    overflowY: "auto"
+                  }},
                   // @ts-ignore
-                  React.createElement(
-                    "img",
-                    {
-                      src: "../public/prioritize.png",
-                      alt: "Prioritize",
-                      key: `${taskRow["task_id"]}PrioritizeImg`,
-                      className: "clickable-icon",
-                      onClick: () => this.putMondayDateItem(
-                        //@ts-ignore
-                        monday_key, boardId,
-                        taskRow["task_id"],
-                        this.offsetNDay(-1, taskRow["datetime"], "sec")
-                      )
-                    }
-                  ),
-                  // @ts-ignore
-                  React.createElement(
-                    "img",
-                    {
-                      src: "../public/snooze.png",
-                      alt: "Snooze",
-                      key: `${taskRow["task_id"]}SnoozeImg`,
-                      className: "clickable-icon",
-                      onClick: () => this.putMondayDateItem(
-                        //@ts-ignore
-                        monday_key, boardId,
-                        taskRow["task_id"],
-                        this.offsetNDay(1, taskRow["datetime"], "sec")
-                      )
-                    }
-                  ),
-                ]
-              ))
-            ))
+                  taskRow[taskKey],
+                  taskKey==="actions"&&[
+                    // @ts-ignore
+                    React.createElement(
+                      "img",
+                      {
+                        src: "../public/prioritize.png",
+                        alt: "Prioritize",
+                        key: `${taskRow["task_id"]}PrioritizeImg`,
+                        className: "clickable-icon",
+                        onClick: () => this.putMondayDateItem(
+                          //@ts-ignore
+                          monday_key, boardId,
+                          taskRow["task_id"],
+                          this.offsetNDay(-1, taskRow["datetime"], "sec")
+                        )
+                      }
+                    ),
+                    // @ts-ignore
+                    React.createElement(
+                      "img",
+                      {
+                        src: "../public/snooze.png",
+                        alt: "Snooze",
+                        key: `${taskRow["task_id"]}SnoozeImg`,
+                        className: "clickable-icon",
+                        onClick: () => this.putMondayDateItem(
+                          //@ts-ignore
+                          monday_key, boardId,
+                          taskRow["task_id"],
+                          this.offsetNDay(1, taskRow["datetime"], "sec")
+                        )
+                      }
+                    ),
+                  ]
+                ): // @ts-ignore
+                taskRow[taskKey]
+              )
+            )))
           )
-        ):
-        // @ts-ignore
+        ): // @ts-ignore
         React.createElement(
           "div",
           null,

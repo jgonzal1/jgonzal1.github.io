@@ -588,7 +588,8 @@ class tasksManager extends React.Component {
             style: {
               height: "305px",
               margin: "0.3em",
-              width: "50%"
+              overflow: "hidden",
+              width: "min(50%, 305px)"
             }
           },
           ""

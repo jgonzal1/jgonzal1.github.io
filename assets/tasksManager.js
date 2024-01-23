@@ -256,8 +256,9 @@ class tasksManager extends React.Component {
       "Content-Type": "application/json",
     };
     const query = "boards (ids: " + boardId + ") { " +
-      "items { id name column_values { id text value } } " +
-      "}"
+      "items_page { items { " +
+      "group { title id } id name column_values { column { id } text value } " +
+      "} } items_count }"
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       mondayApiUrl,
@@ -274,7 +275,7 @@ class tasksManager extends React.Component {
     /** @type {any} */
     let mondayTasksCols = [];
     let rawItemIdx = 0;
-    mondayItemsRawJson["data"]["boards"][0]["items"].map(
+    mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
       (rawItem, _rawItemIdx) => {
         const taskIds = {
           "task_id": rawItem["id"], "task_name": rawItem["name"]
@@ -283,7 +284,7 @@ class tasksManager extends React.Component {
         rawItemIdx = _rawItemIdx;
         rawItem.column_values.map((itemCol) => {
           mondayTasksCols[rawItemIdx][
-            columnRenames[itemCol.id]
+            columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
       }

@@ -32,10 +32,11 @@ async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) 
     "Authorization": mondayKey,
     "Content-Type": "application/json",
   };
-  const query ="boards (ids: " + boardId + ") { " +
-    "items { id name column_values { id text value } } " +
-  "}"
-  const body = JSON.stringify({"query": "query { " + query + " }"});
+  const query = "boards (ids: " + boardId + ") { " +
+    "items_page { items { " +
+    "group { title id } id name column_values { column { id } text value } " +
+    "} } items_count }";
+  const body = JSON.stringify({ "query": "query { " + query + " }" });
   const mondayItemsRawJsonPremise = await fetch(
     mondayApiUrl,
     { method: "POST", headers: headers, body: body }
@@ -44,22 +45,22 @@ async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) 
       return response.json();
     } catch (e) {
       console.error(e);
-      return [ response ];
+      return [response];
     }
   });
   const mondayItemsRawJson = await mondayItemsRawJsonPremise;
   /** @type {any} */
   let mondayItems = [];
   let rawItemIdx = 0;
-  mondayItemsRawJson["data"]["boards"][0]["items"].map(
+  mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
     (rawItem, _rawItemIdx) => {
       const houseIds = {
         "item_id": rawItem["id"], "house_name": rawItem["name"]
       };
       mondayItems.push(houseIds);
       rawItemIdx = _rawItemIdx;
-      rawItem.column_values.map((itemCol)=>{
-        mondayItems[rawItemIdx][propertiesColumnRenames[itemCol.id]] = itemCol.text;
+      rawItem.column_values.map((itemCol) => {
+        mondayItems[rawItemIdx][propertiesColumnRenames[itemCol.column.id]] = itemCol.text;
       });
     }
   );
@@ -75,7 +76,7 @@ function initCesiumMap(cesiumApiKey, propertiesList) {
   });
   // @ts-ignore Add Cesium OSM buildingTileset, a global 3D buildings layer. Can be assigned to constant
   viewer.scene.primitives.add(Cesium.createOsmBuildings());
-  propertiesList.map(p=>{
+  propertiesList.map(p => {
     const e = setEntity(
       p["house_id"],
       p["house_name"],
@@ -88,12 +89,12 @@ function initCesiumMap(cesiumApiKey, propertiesList) {
   // Fly the camera to Copenhagen at the given longitude, latitude, and height.
   viewer.camera.flyTo({
     // @ts-ignore 12.49, 55.76, 1000 Jernbanevej, -2.453, 36.845, 250 pr52
-    destination : Cesium.Cartesian3.fromDegrees(-2.4634, 36.8510, 250),
-    orientation : {
+    destination: Cesium.Cartesian3.fromDegrees(-2.4634, 36.8510, 250),
+    orientation: {
       // @ts-ignore
-      heading : Cesium.Math.toRadians(160.0), /* 0 Jernbanevej 220 pr52 */
+      heading: Cesium.Math.toRadians(160.0), /* 0 Jernbanevej 220 pr52 */
       // @ts-ignore
-      pitch : Cesium.Math.toRadians(-15.0), /* -20 pr52 -30 Jernbanevej */
+      pitch: Cesium.Math.toRadians(-15.0), /* -20 pr52 -30 Jernbanevej */
       roll: 0.0
     }
   });

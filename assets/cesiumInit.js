@@ -33,7 +33,7 @@ async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) 
     "Content-Type": "application/json",
   };
   const query = "boards (ids: " + boardId + ") { " +
-    "items_page { items { " +
+    "items_page (limit: 500) { items { " +
     "group { title id } id name column_values { column { id } text value } " +
     "} } items_count }";
   const body = JSON.stringify({ "query": "query { " + query + " }" });

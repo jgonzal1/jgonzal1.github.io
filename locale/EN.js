@@ -67,19 +67,16 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
     <td class="bold-right">
       <h3>
-        Technologies
+        Tech Stack
       </h3>
     </td>
     <td colspan="2" class="w70" style="font-size: 1.3em;">
       <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX functions, R), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy, pandas, scikit-learn...), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM handlers), <span class="highlight-red">Docker</span>, <span class="highlight-red">Terraform</span>, <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3">
       <h2>Professional experience</h2>
     </td>
@@ -87,14 +84,11 @@ function getEnglishContents() {
   `;
   const cvBody = `
   <tr>
-    <td class="bold-right">AETY</td>
+    <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
-      (Nov 21 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">
-      2023-09 - 2023-12<br>
+      (21-11 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
+
+      23-09 - 23-12<br>
       Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible<br>
       Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br><br>
       Main tasks:<ol>
@@ -108,7 +102,7 @@ function getEnglishContents() {
       <li>Database: SQL queries, Snowflake</li>
       </ol><br>
 
-      2022-05 - 2022-08<br>
+      22-05 - 22-08<br>
       Project: Jira Ultimate Customizer, Role: Full-stack Developer<br>
       Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br><br>
       Main tasks:<ol>
@@ -119,9 +113,9 @@ function getEnglishContents() {
       <li>UX design improvement</li>
       <li>Automation of testing in long-term stable JSM versions 4.5, 4.13, 5.4, 5.8</li>
       <li>automated usage of nvmrc</li>
-      </ol>
+      </ol><br>
 
-      2022-09 - 2023-04<br>
+      22-09 - 23-04<br>
       Project: Data automation on Dr. Oetker Home, public webpages content creation.<br>
       <span class="arch">Full-stack</span> software developer, data engineer, and AWS technical consultant<br>
       Project description:<br>
@@ -135,11 +129,11 @@ function getEnglishContents() {
       <li>Big <span class="arch">reduction of the technical debt</span> of the project's back-end.</li>
       <li>Creation of a web-service for Dr. Oetker internal stakeholders for enabling them to modify nginx configuration for different Dr. Oetker websites.</li></ol><br>
 
-      2022-03 - 2022-09<br>
+      22-03 - 22-09<br>
       Project:  Jira Ultimate Customizer, Role: Full-stack Developer<br>
       Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0 as well as for <span class="arch">resolving and communicating</span> on the resolution for <span class="arch">all the Service Desk incidences</span> for this App<br><br>
 
-      2022-01 - 2022-03<br>
+      22-01 - 22-03<br>
       Project: Integration between monday.com and KortInfo, Role: Software Developer<br>
       Responsible for developing an automatic real time synchronization solution for a client from monday.com to KortInfo (web map - GIS - provider)<br>
       Project description:<br>
@@ -151,7 +145,7 @@ function getEnglishContents() {
       <li>Technologies used:</li>
       <li>JavaScript, <span class="arch">API REST</span>, GraphQL, Zapier.</li></ol><br>
 
-      2021-12 - 2022-01<br>
+      21-12 - 22-01<br>
       Project: Business intelligence solution, Role: Software Developer, Data engineer / Consultant<br>
       Responsible for developing a Business Intelligence solution to provide actionable market intelligence for Atlassian's Marketplace Apps. <br>
       Project description:<br>
@@ -166,201 +160,127 @@ function getEnglishContents() {
       <li>AWS Lambda, S3, Athena, Power BI, Python, <span class="arch">API REST</span>, SQL.</li></ol>
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right">T-Systems Iberia</td>
-    <td class="w70"><br>(Nov 19 - Nov 21)<br>Full-stack developer, consultant, and Power BI technician</td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70"><br>Dec 20 - Nov 21<br>Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack
+    <td class="bold-right t0"><br>T-Systems Iberia</td>
+    <td class="w70">
+      (19-11 - 21-11)<br>
+      Full-stack developer, consultant, and Power BI technician<br><br>
+  
+      20-12 - 21-11<br>
+      Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
-      and environment test cases.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">May 21 - Oct 21<br>
-    <span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Dec 20 - May 21<br><span class="bi">Power BI technical consultant</span><br>
-    <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Oct 20 - Dec 20<br><span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Sep 20 - Oct 20<br>Software developer and consultant<br><span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Jun 20 - Sep 20<br><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">May 20 - Jun 20<br><span class="arch">Software Developer and Consultant</span><br>Software developer and consultant for a multi-language automatic translator within a public sector autonomy
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Mar 20 - Apr 20<br><span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="arch bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Dec 19 - Feb 20<br>Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
+      and environment test cases.<br><br>
+      
+      21-05 - 21-10<br>
+      <span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.<br><br>
+
+      20-12 - 21-05<br>
+      <span class="bi">Power BI technical consultant</span><br>
+      <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.<br><br>
+      
+      20-10 - 20-12<br>
+      <span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.<br><br>
+
+      20-09 - 20-10<br>
+      Software developer and consultant<br><span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy.<br><br>
+
+      Jun 20 - Sep 20<br>
+      <span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.<br><br>
+
+      20-05 - 20-06<br>
+      <span class="arch">Software Developer and Consultant</span><br>Software developer and consultant for a multi-language automatic translator within a public sector autonomy<br><br>
+
+      20-03 - 20-04<br>
+      <span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="arch bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.<br><br>
+
+      19-12 - 20-02<br>
+      Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
       connectors, third party's <span class='arch cloud webdev'>API managements</span>, big data solutions (<span class='webdev cloud'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and <span class="cloud">setting up Docker containers for all
-      the components in Docker containers</span> for a big Smart City project.
+      the components in Docker containers</span> for a big Smart City project.<br><br>
+
+      19-12 - 20-01<br>
+      <span class='webdev'>Chatbot full-stack developer</span><br>Chatbot development from scratch of a fully <span class='webdev'>serverless web chat</span> using <span class='webdev'>AJAX</span> calls for Microsoft L.U.I.S.,
+      <span class='webdev'> CSS3, HTML5 and JavaScript native development</span>.<br><br>
+
+      19-11 - 19-12<br>
+      Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Dec 19 - Jan 20<br><span class='webdev'>Chatbot full-stack developer</span><br>Chatbot development from scratch of a fully <span class='webdev'>serverless web chat</span> using <span class='webdev'>AJAX</span> calls for Microsoft L.U.I.S.,
-      <span class='webdev'> CSS3, HTML5 and JavaScript native development</span>.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Nov 19 - Dec 19<br>Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right">OpenWebinars</td>
-    <td class="w70">(Collaboration, Oct 21)<br>
+    <td class="bold-right">Open Webinars</td>
+    <td class="w70">(Collaboration, 21-10)<br>
      <span class="arch">Teacher</span> for the OpenWebinars courses and workshop for <span class="webdev">JavaScript design patters</span>.
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right">Informática El Corte Inglés</td>
-    <td class="w70">(Jul 17 - Oct 19)<br>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chat-bots</span> and <span class="bi">ETLs</span>, using <span class="cloud">Amazon Web Services</span> technologies (AWS EC2, Amazon CodeCommit,
+    <td class="bold-right t0"><br>Informática El Corte Inglés</td>
+    <td class="w70">
+      (17-07 - 19-10)<br>
+      Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chat-bots</span> and <span class="bi">ETLs</span>, using <span class="cloud">Amazon Web Services</span> technologies (AWS EC2, Amazon CodeCommit,
       <span class="bi">Amazon Redshift, Amazon Glue and Amazon S3</span> among others), Microsoft Azure (L.U.I.S., QnA, <span class='webdev'>App Service</span>, <span class="bi">Data Lake Storage, Azure Data Factory, Data Lake Analytics</span>), IBM Watson, <span class='webdev cloud'>Oracle Intelligent Bots</span>,
-      <span class="cloud">Google Cloud</span> and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi"><span class="cloud">Python</span>, U-SQL</span> and R.
+      <span class="cloud">Google Cloud</span> and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi"><span class="cloud">Python</span>, U-SQL</span> and R.<br><br>
+
+      19-06 – 19-10<br>
+      Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project<br>
+      Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
+      (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with
+      <span class="bi">Amazon Glue (boto3 and pyspark libraries)</span>, and load in
+      <span class="bi">Amazon Redshift tables which are taken by
+      <span class='webdev'>Power BI for its data representation</span></span>.<br><br>
+
+      18-11 - 19-02<br>
+      Development and <span class="arch">architecture</span> in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
+      Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.<br><br>
+
+      17-12 – 18-10<br>
+      Full-stack developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).<br><br>
+
+      17-08 - 17-11<br>
+      <span class="arch bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.
     </td>
   </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Jun 19 – Oct 19<br>Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project<br>
-    Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
-    (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with
-    <span class="bi">Amazon Glue (boto3 and pyspark libraries)</span>, and load in
-    <span class="bi">Amazon Redshift tables which are taken by
-    <span class='webdev'>Power BI for its data representation</span></span>.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Nov 18 - Feb 19<br>Development and <span class="arch">architecture</span> in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
-      Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Dec 17 – Oct 18<br>Full-stack developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right"> </td>
-    <td class="w70">Aug 17 - Nov 17<br><span class="arch bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.
-    </td>
-  </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">PrimeX Artificial Intelligence</td>
-    <td class="w70">Sep 16 - Sep 18<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="arch cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
+    <td class="w70">16-09 - 18-09<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="arch cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">BABEL Sistemas de Información</td>
-    <td class="w70">Jun 17 - Jul 17<br><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies
+    <td class="w70">17-06 - 17-07<br><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td class="w70">May 16 - May 17<br>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases leveraging</span>, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the marketing campaign.
+    <td class="w70">16-05 - 17-05<br>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases leveraging</span>, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the marketing campaign.
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Unica Group S.C.A.</td>
-    <td class="w70">Apr 15 - May 15<br>Quality control professional for foodstuff products in Cohorsan S.C.A
+    <td class="w70">15-04 - 15-05<br>Quality control professional for foodstuff products in Cohorsan S.C.A
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
@@ -370,20 +290,20 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">BSc @ Universidad de Granada</td>
-    <td colspan="2">10 - 14<br>Biochemistry with Biotechnology specialization bachelor degree.
+    <td colspan="2">2010 - 2014<br>Biochemistry with Biotechnology specialization bachelor degree.
     </td>
   </tr>
   <tr>
     <td class="bold-right">MSc @ Universidad de Granada</td>
-    <td colspan="2">14 - 15<br>Master of Science in Foodstuffs quality and technology.
+    <td colspan="2">2014 - 2015<br>Master of Science in Foodstuffs quality and technology.
     </td>
   </tr>
   <tr>
     <td class="bold-right">MD @ Universidad de Alcalá</td>
-    <td colspan="2">16 - 17<br>Master in Professional Development 4.0
+    <td colspan="2">2016 - 2017<br>Master in Professional Development 4.0
     </td>
   </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
@@ -393,107 +313,61 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Microsoft</td>
-    <td colspan="2">Feb 21<br><span class='cloud'>Microsoft AI-100</span>.
+    <td colspan="2">21-02<br><span class='cloud'>Microsoft AI-100</span>.
       Issued by Pearson VUE, Credential ID 990098386.
     </td>
   </tr>
   <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
     <td class="bold-right">Red.ES</td>
-    <td colspan="2">Dec 20<br><span class='webdev'>HTML5 and CSS3</span>
+    <td colspan="2">20-12<br><span class='webdev'>HTML5 and CSS3</span>
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">LinkedIn verified evaluation</td>
-    <td colspan="2">Jun 20<br><span class='webdev'>Javascript</span>
+    <td colspan="2">20-06<br><span class='webdev'>Javascript</span><br><br>
+
+    20-06<br>Git<br><br>
+    
+    20-06<br>Excel<br><br>
+    
+    20-06<br><span class="cloud">Python</span>
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right">LinkedIn verified evaluation</td>
-    <td colspan="2">Jun 20<br>Git
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right">LinkedIn verified evaluation</td>
-    <td colspan="2">Jun 20<br>Excel
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right">LinkedIn verified evaluation</td>
-    <td colspan="2">Jun 20<br><span class="cloud">Python</span>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Event</td>
-    <td colspan="2">May 19<br>Amazon Web Services VIP assistant in AWS Summit 19 in Spain
+    <td colspan="2">19-05<br>Amazon Web Services VIP assistant in AWS Summit 19 in Spain
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Cognitive Class.AI</td>
-    <td colspan="2">Dic 17<br><span class="cloud">Machine Learning with Python</span>
+    <td colspan="2">17-12<br><span class="cloud">Machine Learning with Python</span>
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Amazon Web Services</td>
-    <td colspan="2">Oct 17<br>AWS Technical Professional Online
+    <td colspan="2">17-10<br>AWS Technical Professional Online
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td colspan="2">May 16<br>IBM's Watson Academy Courses
+    <td colspan="2">16-05<br>IBM's Watson Academy Courses
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Universidad de Alcalá</td>
-    <td colspan="2">Abr 16<br>Probability & Statistics
+    <td colspan="2">16-04<br>Probability & Statistics
     </td>
-  </tr>
-  <tr>
-    <td colspan="3"><br></td>
   </tr>
   <tr>
     <td class="bold-right">Formación sin Barreras</td>
-    <td colspan="2">Nov 15<br><span class='webdev'>Knowledge management for companies</span>
+    <td colspan="2">
+      15-11<br>
+      <span class='webdev'>Knowledge management for companies</span><br><br>
+
+      15-09<br>Financial accountability
     </td>
   </tr>
-  <tr>
-    <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td class="bold-right">Formación sin Barreras</td>
-    <td colspan="2">Sep 15<br>Financial accountability
-    </td>
-  </tr>
-  <tr>
+  <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
@@ -523,5 +397,5 @@ function getEnglishContents() {
   <tr><td></td><td colspan="7" style="background-color:#DE935F">ai_data_scientist</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#81A2BE">technical_consultant</td></tr>
   `;
-  return [cvHeader,cvBody,legend];
+  return [cvHeader, cvBody, legend];
 }

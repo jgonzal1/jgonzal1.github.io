@@ -1,15 +1,24 @@
+a {
+  color: #99F;
+}
+
 body {
   background-color: #000;
   color: #ffe;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 1.2em;
+  font-family: 'Lucida Sans Unicode', Verdana, sans-serif;
   height: 96vh;
   text-align: justify;
 }
 
+a,
+b,
 body,
-table {
-  font-size: 0.8em;
+fieldset,
+legend,
+span,
+table,
+td {
+  font-size: 1.02em;
 }
 
 div,
@@ -26,7 +35,6 @@ fieldset {
 
 h2 {
   margin-top: 0.6em;
-  text-decoration: underline;
 }
 
 h2,
@@ -50,8 +58,6 @@ p {
 
 span {
   /* color: #669; */
-  font-size: 0.9em;
-  font-family: 'Lucida Sans Unicode', Verdana, sans-serif;
   font-style: italic;
   font-weight: bold;
   /* text-decoration-line: underline; */
@@ -73,7 +79,6 @@ thead {
 th+th {
   border-left: 1px dotted #333333;
 }
-
 
 .A4 {
   background-color: #FFF;
@@ -151,7 +156,7 @@ th+th {
 }
 
 .category-td {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .ch12 tr td:nth-child(1) {
@@ -275,7 +280,7 @@ th+th {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1.3em;
 }
 
 .navbar a:hover {
@@ -286,6 +291,11 @@ th+th {
 .navbar a.active {
   background-color: #04AA6D;
   color: white;
+}
+
+.no-border,
+.no-border td {
+  border-color: #0000;
 }
 
 .page-number {
@@ -309,6 +319,10 @@ th+th {
   position: relative;
 }
 
+.t0 {
+  vertical-align: top;
+}
+
 .w20vw {
   width: 21%;
 }
@@ -326,6 +340,12 @@ th+th {
   padding-right: 2em;
 }
 
+
+#cvWrapper {
+  left: calc((100% - 52em) / 2);
+  position: relative;
+  width: 52em;
+}
 
 #flexContentWrapper {
   border-width: 0em;
@@ -362,6 +382,10 @@ th+th {
     font-style: italic;
     text-decoration: none;
     color: #002 !important;
+  }
+
+  body {
+    margin: 0 1em 0 2em;
   }
 
   .page-number {

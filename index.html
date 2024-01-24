@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style/style.css">
-  <link
-    rel="shortcut icon" href="public/favicon.ico"
-    type="image/x-icon"
-  >
+  <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
   <script src="locale/EN.js"></script>
   <script src="locale/DA.js"></script>
   <script src="locale/ES.js"></script>
@@ -14,86 +11,110 @@
 </head>
 
 <body>
-  <!--<div><table><tr>
-    <td class="centered w25">1</td>
-    <td class="centered w25">2</td>
-    <td class="centered w25">3</td>
-    <td class="centered w25">4</td>
-  </tr></table></div>-->
-  <table id="cvHeader"></table>
-  <table id="cvBody"></table><br><br>
-  <table class="hidden printable">
-    <tr><td class="invisible">----------------------------------------</td><td>
-      Get an updated PDF version of this CV by visiting<br>
-      http://jgonzal1.github.io and selecting "Print..."<br>
-      → "Save as PDF".<br>
-      The page would be adapted to be PDF-friendly.
-    </td><td class="invisible">---------------------------------------</td></tr>
-  </table>
-  <div id="rolesTimeline"> <!-- Roles style="display:none" -->
-    <table class="ch12" id="mainRoles">
-      <caption style="font-size: 1.5em; font-weight: bold;">TOP Roles</caption>
+  <div id="cvWrapper">
+    <table id="cvHeader"></table>
+    <table id="cvBody"></table><br><br>
+    <table class="hidden printable">
       <tr>
-        <th></th>
-        <th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th>
-        <th>07</th><th>08</th><th>09</th><th>10</th><th>11</th><th>12</th>
+        <td class="invisible">----------------------------------------</td>
+        <td>
+          Get an updated PDF version of this CV by visiting<br>
+          http://jgonzal1.github.io and selecting "Print..."<br>
+          → "Save as PDF".<br>
+          The page would be adapted to be PDF-friendly.
+        </td>
+        <td class="invisible">---------------------------------------</td>
       </tr>
-      <tr><td>2024</td>
-        <td colspan="12" style="background-image: repeating-linear-gradient(90deg, #CC666666, #CC666644 calc(67% - 2px), #CC666600 calc(80% - 2px), #CC666600);">&nbsp;</td>
-      </tr>
-      <tr><td>2023</td>
-        <td colspan="1" class="bigdataeng_c">&nbsp;</td>
-        <td colspan="3" class="softwaredev_c">&nbsp;</td>
-        <td colspan="4" class="webdev_c">&nbsp;</td>
-        <td colspan="4" style="background-image: repeating-linear-gradient(90deg, #CC6666, #CC666699 calc(30% - 2px), #CC666666 calc(100%));">&nbsp;</td>
-      </tr>
-      <tr><td>2022</td>
-        <td colspan="2" class="bigdataeng_c">&nbsp;</td>
-        <td class="softwaredev_c">&nbsp;</td>
-        <td colspan="5" class="webdev_c">&nbsp;</td>
-        <td colspan="3" class="softwaredev_c">&nbsp;</td>
-        <td colspan="1" class="bigdataeng_c">&nbsp;</td>
-      </tr>
-      <tr><td>2021</td>
-        <td colspan="11" class="webdev_c">&nbsp;</td>
-        <td class="bigdataeng_c">&nbsp;</td>
-      </tr>
-      <tr><td>2020</td>
-        <td colspan="2" class="techcons_c">&nbsp;</td>
-        <td colspan="2" class="bigdataeng_c">&nbsp;</td>
-        <td class="softwaredev_c">&nbsp;</td>
-        <td colspan="3" class="dataanalistpbi_c">&nbsp;</td>
-        <td class="softwaredev_c">&nbsp;</td>
-        <td colspan="2" class="dataanalistpbi_c">&nbsp;</td>
-        <td class="webdev_c">&nbsp;</td>
-      </tr>
-      <tr><td>2019</td>
-        <td colspan="3" class="bigdataeng_c">&nbsp;</td>
-        <td colspan="2" class="softwaredev_c">&nbsp;</td>
-        <td colspan="6" class="dataanalistpbi_c">&nbsp;</td>
-        <td class="techcons_c">&nbsp;</td>
-      </tr>
-      <tr><td>2018</td>
-        <td colspan="2" class="techcons_c">&nbsp;</td>
-        <td colspan="8" class="softwaredev_c">&nbsp;</td>
-        <td colspan="2" class="bigdataeng_c">&nbsp;</td>
-      </tr>
-      <tr><td>2017</td>
-        <td colspan="6" class="aidatasci_c">&nbsp;</td>
-        <td class="softwaredev_c">&nbsp;</td>
-        <td colspan="4" class="aidatasci_c">&nbsp;</td>
-        <td class="techcons_c">&nbsp;</td>
-      </tr>
-      <tr><td>2016</td>
-        <td colspan="5">&nbsp;</td>
-        <td colspan="7" class="aidatasci_c">&nbsp;</td></tr>
-      <tr></tr>
     </table>
-    <br>
-    <table id="legend"></table>
-    <br>
+    <div id="rolesTimeline"> <!-- Roles style="display:none" -->
+      <table class="ch12" id="mainRoles">
+        <caption style="font-size: 1.5em; font-weight: bold;">TOP Roles</caption>
+        <tr>
+          <th></th>
+          <th>01</th>
+          <th>02</th>
+          <th>03</th>
+          <th>04</th>
+          <th>05</th>
+          <th>06</th>
+          <th>07</th>
+          <th>08</th>
+          <th>09</th>
+          <th>10</th>
+          <th>11</th>
+          <th>12</th>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td colspan="12"
+            style="background-image: repeating-linear-gradient(90deg, #CC666666, #CC666644 calc(67% - 2px), #CC666600 calc(80% - 2px), #CC666600);">
+            &nbsp;</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td colspan="1" class="bigdataeng_c">&nbsp;</td>
+          <td colspan="3" class="softwaredev_c">&nbsp;</td>
+          <td colspan="4" class="webdev_c">&nbsp;</td>
+          <td colspan="4"
+            style="background-image: repeating-linear-gradient(90deg, #CC6666, #CC666699 calc(30% - 2px), #CC666666 calc(100%));">
+            &nbsp;</td>
+        </tr>
+        <tr>
+          <td>2022</td>
+          <td colspan="2" class="bigdataeng_c">&nbsp;</td>
+          <td class="softwaredev_c">&nbsp;</td>
+          <td colspan="5" class="webdev_c">&nbsp;</td>
+          <td colspan="3" class="softwaredev_c">&nbsp;</td>
+          <td colspan="1" class="bigdataeng_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2021</td>
+          <td colspan="11" class="webdev_c">&nbsp;</td>
+          <td class="bigdataeng_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td colspan="2" class="techcons_c">&nbsp;</td>
+          <td colspan="2" class="bigdataeng_c">&nbsp;</td>
+          <td class="softwaredev_c">&nbsp;</td>
+          <td colspan="3" class="dataanalistpbi_c">&nbsp;</td>
+          <td class="softwaredev_c">&nbsp;</td>
+          <td colspan="2" class="dataanalistpbi_c">&nbsp;</td>
+          <td class="webdev_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2019</td>
+          <td colspan="3" class="bigdataeng_c">&nbsp;</td>
+          <td colspan="2" class="softwaredev_c">&nbsp;</td>
+          <td colspan="6" class="dataanalistpbi_c">&nbsp;</td>
+          <td class="techcons_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2018</td>
+          <td colspan="2" class="techcons_c">&nbsp;</td>
+          <td colspan="8" class="softwaredev_c">&nbsp;</td>
+          <td colspan="2" class="bigdataeng_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2017</td>
+          <td colspan="6" class="aidatasci_c">&nbsp;</td>
+          <td class="softwaredev_c">&nbsp;</td>
+          <td colspan="4" class="aidatasci_c">&nbsp;</td>
+          <td class="techcons_c">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>2016</td>
+          <td colspan="5">&nbsp;</td>
+          <td colspan="7" class="aidatasci_c">&nbsp;</td>
+        </tr>
+        <tr></tr>
+      </table>
+      <br>
+      <table id="legend"></table>
+      <br>
+    </div>
+    <br><br>
   </div>
-  <br><br>
   <div id="bottomNavBar" class="navbar">
     <a class="w20vw oob active" href="#">My CV</a>
     <span class="w20vw">
@@ -107,10 +128,9 @@
       <a href="./pages/theThreeSeas.html">The 3 seas</a>
     </span>
 
-    <a class="lt" onclick=
-      '(()=>{document.getElementById("bottomNavBar").style.display="none"})()'
-    >&times;</a>
+    <a class="lt" onclick='(()=>{document.getElementById("bottomNavBar").style.display="none"})()'>&times;</a>
   </div>
   <script src="assets/hrefHandler.js"></script>
 </body>
+
 </html>

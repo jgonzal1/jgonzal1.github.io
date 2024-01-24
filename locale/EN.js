@@ -54,16 +54,11 @@ function getEnglishContents() {
     <td class="bold-right">
       <h3>About me</h3>
     </td>
-    <td colspan="2" class="w70" style="font-size: 1.3em;">
-      <p>
-        <b>Technical</b> and <b><span class="cloud">cloud consultant expert</span></b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.
-      </p>
-      <p>
-        Greatest experience in these clouds: <span class="highlight-orange cloud"><b>Amazon Web Services</b></span> (3+ years of experience),
-      </p>
-      <p>
-        <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span> (1 year of experience within the company).
-      </p>
+    <td colspan="2" class="summary-cell w70">
+      <b>Technical</b> and <b><span class="cloud">cloud consultant expert</span></b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class="bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.<br>
+      Greatest experience in these clouds:<br>
+      <span class="highlight-orange cloud"><b>Amazon Web Services</b></span> (3+ years of experience),
+      <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span> (1 year of experience within the company).
     </td>
   </tr>
   <tr>
@@ -72,7 +67,7 @@ function getEnglishContents() {
         Tech Stack
       </h3>
     </td>
-    <td colspan="2" class="w70" style="font-size: 1.3em;">
+    <td colspan="2" class="summary-cell w70">
       <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="bi highlight-orange">Amazon Redshift</span> (SQL), <span class="bi highlight-orange">AWS Glue</span> (pyspark), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX functions, R), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy, pandas, scikit-learn...), <span class="webdev highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM handlers), <span class="highlight-red">Docker</span>, <span class="highlight-red">Terraform</span>, <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class="bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service</span>, <span class="highlight-blue">Microsoft LUIS</span>.
     </td>
   </tr>
@@ -86,16 +81,16 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
-      (21-11 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant<br><br>
+      (21-11 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant.<br><br>
 
       23-09 - 23-12<br>
-      Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible<br>
-      Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br><br>
+      Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible.<br>
+      Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br>
       Main tasks:<ol>
       <li>E2E representation of TAB geographical data on OpenLayers and Leaflet front-end environments</li>
       <li>Front-end development of the UI for Smart Build</li>
       <li>Back-end development of the API for the AI model used to improve towers</li>
-      </ol><br>
+      </ol>
       Technologies:<ol>
       <li>Python: fastapi, pandas, numpy, polars, requests</li>
       <li>Javascript/Typescript: React, Chakra, OpenLayers, LeafLet, atomic design</li>
@@ -103,8 +98,9 @@ function getEnglishContents() {
       </ol><br>
 
       22-05 - 22-08<br>
-      Project: Jira Ultimate Customizer, Role: Full-stack Developer<br>
-      Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br><br>
+      Project: Jira Ultimate Customizer<br>
+      Role: Full-stack Developer<br>
+      Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br>
       Main tasks:<ol>
       <li>Implementation of a feature for customizing different CSS and JS configurations for Ultimate Customizer</li>
       <li>Upgrade of @atlaskit/tabs code internals</li>
@@ -117,7 +113,7 @@ function getEnglishContents() {
 
       22-09 - 23-04<br>
       Project: Data automation on Dr. Oetker Home, public webpages content creation.<br>
-      <span class="arch">Full-stack</span> software developer, data engineer, and AWS technical consultant<br>
+      Role: <span class="arch">Full-stack</span> software developer, data engineer, and AWS technical consultant.<br>
       Project description:<br>
       Dr. Oetker is a producer for baking, frozen pizza, and related supermarket products, whose international webpages have been modernized and adopted a <span class="arch">data governance infrastructure and architecture</span>.<br>
       Main tasks:<ol>
@@ -130,12 +126,14 @@ function getEnglishContents() {
       <li>Creation of a web-service for Dr. Oetker internal stakeholders for enabling them to modify nginx configuration for different Dr. Oetker websites.</li></ol><br>
 
       22-03 - 22-09<br>
-      Project:  Jira Ultimate Customizer, Role: Full-stack Developer<br>
-      Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0 as well as for <span class="arch">resolving and communicating</span> on the resolution for <span class="arch">all the Service Desk incidences</span> for this App<br><br>
+      Project:  Jira Ultimate Customizer,<br>
+      Role: Full-stack Developer<br>
+      Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0 as well as for <span class="arch">resolving and communicating</span> on the resolution for <span class="arch">all the Service Desk incidences</span> for this App.<br><br>
 
       22-01 - 22-03<br>
-      Project: Integration between monday.com and KortInfo, Role: Software Developer<br>
-      Responsible for developing an automatic real time synchronization solution for a client from monday.com to KortInfo (web map - GIS - provider)<br>
+      Project: Integration between monday.com and KortInfo,<br>
+      Role: Software Developer<br>
+      Responsible for developing an automatic real time synchronization solution for a client from monday.com to KortInfo (web map - GIS - provider).<br><br>
       Project description:<br>
       The client used two systems holding the same information for different purposes (see projects on the map and manage these projects on a project management tool). They lacked an automatic way to send new projects and updates to the web map environment. The goal of the project was to implement a solution in a "serverless" environment that listens to some critical changes in monday.com.<br>
       Main tasks:<ol>
@@ -146,8 +144,10 @@ function getEnglishContents() {
       <li>JavaScript, <span class="arch">API REST</span>, GraphQL, Zapier.</li></ol><br>
 
       21-12 - 22-01<br>
-      Project: Business intelligence solution, Role: Software Developer, Data engineer / Consultant<br>
-      Responsible for developing a Business Intelligence solution to provide actionable market intelligence for Atlassian's Marketplace Apps. <br>
+      Project: Business intelligence solution,<br>
+      Role: Software Developer, Data engineer / Consultant.<br>
+      Responsible for developing a Business Intelligence solution to provide actionable market intelligence for Atlassian's Marketplace Apps.<br><br>
+
       Project description:<br>
       There is a regular high interest in automatically gathering all public add-ons information from <span class="arch">Atlassian Marketplace API</span> to understand our partnership vendors better. Javier used the programming language Python in a <span class="arch">serverless architecture</span> for the ETL and an analytical solution for performing SQL queries over the data to identify potential vendors and add-ons.<br>
       Main tasks:<ol>
@@ -167,10 +167,11 @@ function getEnglishContents() {
     <td class="bold-right t0"><br>T-Systems Iberia</td>
     <td class="w70">
       (19-11 - 21-11)<br>
-      Full-stack developer, consultant, and Power BI technician<br><br>
+      Full-stack developer, consultant, and Power BI technician.<br><br>
   
       20-12 - 21-11<br>
-      Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City<br>Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack
+      Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br>
+      Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack
       development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
       and environment test cases.<br><br>
       
@@ -185,19 +186,22 @@ function getEnglishContents() {
       <span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.<br><br>
 
       20-09 - 20-10<br>
-      Software developer and consultant<br><span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy.<br><br>
+      Software developer and consultant.<br>
+      <span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy.<br><br>
 
       Jun 20 - Sep 20<br>
       <span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.<br><br>
 
       20-05 - 20-06<br>
-      <span class="arch">Software Developer and Consultant</span><br>Software developer and consultant for a multi-language automatic translator within a public sector autonomy<br><br>
+      <span class="arch">Software Developer and Consultant</span><br>
+      Software developer and consultant for a multi-language automatic translator within a public sector autonomy.<br><br>
 
       20-03 - 20-04<br>
       <span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span class="arch bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.<br><br>
 
       19-12 - 20-02<br>
-      Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City<br>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
+      Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City.<br>
+      Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
       connectors, third party's <span class='arch cloud webdev'>API managements</span>, big data solutions (<span class='webdev cloud'>elasticsearch</span>, BERT, <span class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and <span class="cloud">setting up Docker containers for all
       the components in Docker containers</span> for a big Smart City project.<br><br>
 
@@ -206,7 +210,8 @@ function getEnglishContents() {
       <span class='webdev'> CSS3, HTML5 and JavaScript native development</span>.<br><br>
 
       19-11 - 19-12<br>
-      Azure and Power BI technical consultant<br><span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
+      Azure and Power BI technical consultant.<br>
+      <span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.
     </td>
   </tr>
   <tr class="no-border">
@@ -214,7 +219,7 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">Open Webinars</td>
-    <td class="w70">(Collaboration, 21-10)<br>
+    <td class="w70">(Collaboration, 21-10).<br>
      <span class="arch">Teacher</span> for the OpenWebinars courses and workshop for <span class="webdev">JavaScript design patters</span>.
     </td>
   </tr>
@@ -230,7 +235,7 @@ function getEnglishContents() {
       <span class="cloud">Google Cloud</span> and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi"><span class="cloud">Python</span>, U-SQL</span> and R.<br><br>
 
       19-06 – 19-10<br>
-      Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project<br>
+      Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project.<br>
       Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
       (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with
       <span class="bi">Amazon Glue (boto3 and pyspark libraries)</span>, and load in
@@ -238,14 +243,42 @@ function getEnglishContents() {
       <span class='webdev'>Power BI for its data representation</span></span>.<br><br>
 
       18-11 - 19-02<br>
-      Development and <span class="arch">architecture</span> in an <span class="bi">ETL project<br>Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
+      Development and <span class="arch">architecture</span> in an <span class="bi">ETL project.<br>
+      Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
       Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.<br><br>
 
+      18-03 - 18-10<br>
+      Full-stack Developer for a chatbot for an insurance company.<br><br>
+
+      Project description:<br>
+      A big insurance company in Spain wanted to implement a chatbot on their webpage to get a lower workload on the phone for easily answered questions. The task was to create it and implement it on the bottom of their webpage (loads when the page fully renders). The development was done using Javascript, Node.js, Python, SQL, and R.<br><br>
+
+      Tasks:<br>
+      Develop a fully functional and customizable chatbot (now in vivaz.com, loads when page fully renders) from a basic Microsoft template.<br>
+      Teach an intern how to develop and coordinate tasks with him.<br><br>
+
+      Technologies used:<br>
+      Amazon Web Services (AWS EC2, Amazon CodeCommit, Amazon Redshift, Amazon Glue, and Amazon S3 among others).<br>
+      Microsoft Azure (L.U.I.S., QnA, App Service, Data Lake Storage, Data Lake Analytics).<br>
+      IBM Watson, Oracle Intelligent Bots, Google Cloud, and SAS.<br>
+      Programming in Javascript, Node.js, Python, U-SQL, and R.<br><br>
+
       17-12 – 18-10<br>
-      Full-stack developer.<br><span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).<br><br>
+      Full-stack developer.<br>
+      <span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).<br><br>
 
       17-08 - 17-11<br>
-      <span class="arch bi">Data mining technician</span> and artificial intelligence training.<br>Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.
+      <span class="arch bi">Data mining technician</span> and machine learning.<br>
+      Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.<br><br>
+      Tasks:<br>
+      Create a Python artificial intelligence able to process laser vehicle profiles.<br>  
+      Train the model with thousands of vehicles.<br>
+      Enhance profiling detection of the vehicles.<br><br>
+
+      Technologies used:<br>
+      RHEL bash scripting.<br>
+      WinSCP.<br>
+      Python (libraries: sci-kit-learn, pickle, matplotlib).
     </td>
   </tr>
   <tr class="no-border">
@@ -253,7 +286,8 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">PrimeX Artificial Intelligence</td>
-    <td class="w70">16-09 - 18-09<br>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="arch cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
+    <td class="w70">16-09 - 18-09<br>
+    Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class="arch cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.
     </td>
   </tr>
   <tr class="no-border">
@@ -269,7 +303,8 @@ function getEnglishContents() {
   </tr>
   <tr>
     <td class="bold-right">IBM</td>
-    <td class="w70">16-05 - 17-05<br>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases leveraging</span>, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the marketing campaign.
+    <td class="w70">16-05 - 17-05<br>
+    Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases leveraging</span>, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the marketing campaign.
     </td>
   </tr>
   <tr class="no-border">
@@ -388,14 +423,31 @@ function getEnglishContents() {
     <td colspan="2">Danish</td>
   </tr>
   `;
-  const legend = `
-  <tr><td rowspan="6">Legend</td>
-      <td></td><td colspan="7" style="background-color:#B5BD68">web_developer</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#A54242">big_data_engineer</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#CC6666">software_developer</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#F0C674">data_analyst_power_bi</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#DE935F">ai_data_scientist</td></tr>
-  <tr><td></td><td colspan="7" style="background-color:#81A2BE">technical_consultant</td></tr>
-  `;
+  const legend = `<tr>
+    <td rowspan="6">Legend</td>
+    <td></td><td colspan="7" style="background-color:#A54242">
+      big_data_engineer
+    </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#CC6666">
+      software_developer
+    </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#DE935F">
+      ai_data_scientist
+    </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#F0C674">
+      data_analyst_power_bi
+    </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#B5BD68">
+      web_developer
+    </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#81A2BE">
+      technical_consultant
+    </td>
+  </tr>`;
   return [cvHeader, cvBody, legend];
 }

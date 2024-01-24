@@ -314,6 +314,11 @@ th+th {
   text-align: right;
 }
 
+.summary-cell {
+  font-size: 1.3em;
+  padding: 0.6em 0em 0.6em 0.6em;
+}
+
 .table-container {
   overflow-y: auto;
   position: relative;

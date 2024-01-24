@@ -168,19 +168,33 @@ function getEnglishContents() {
     <td class="w70">
       (19-11 - 21-11)<br>
       Full-stack developer, consultant, and Power BI technician.<br><br>
-  
-      20-12 - 21-11<br>
-      Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br>
-      Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack
-      development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
-      and environment test cases.<br><br>
       
       21-05 - 21-10<br>
       <span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.<br><br>
 
-      20-12 - 21-05<br>
+      21-05 - 21-05<br>
       <span class="bi">Power BI technical consultant</span><br>
       <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.<br><br>
+
+      20-12 - 21-04<br>
+      <span class="bi">Power BI technical consultant</span><br><br>
+      Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br>
+      Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack development of personalized reports on <span class="bi">Pentaho CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and network diagrams, Scatterplot and Tile Set Map Components,
+      and environment test cases.<br><br>
+
+      Project description:<br>
+      A big town hall publicly published its will to implement a "smart city" technology over some years, involving IoT devices around the city.<br>
+      The nourishing of the database needed to be filtered and queried to measure specific KPIs for the local administration to decide.<br>
+      The goal was to query, filter, and display the data to provide insights on the KPIs with Pentaho CDE (open-source web BI platform).<br><br>
+
+      Tasks:<br>
+      Technical validations and proof of concepts for shaping how to achieve the requirements for the client (part-time through 2 years).<br>
+      Being part of the elected development team to make the solution for the city for the 3 years of project duration.<br>
+      Full-stack development of personalized reports on Pentaho CDE.<br>
+      Test case development<br><br>
+
+      Technologies used:<br>
+      Pentaho CDE, PostgreSQL, CC charts, JavaScript, SQL, Leaflet.JS maps, Raphaël.JS, Sankey and network diagrams.<br><br>
       
       20-10 - 20-12<br>
       <span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.<br><br>
@@ -189,7 +203,7 @@ function getEnglishContents() {
       Software developer and consultant.<br>
       <span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy.<br><br>
 
-      Jun 20 - Sep 20<br>
+      20-06 - 20-09<br>
       <span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.<br><br>
 
       20-05 - 20-06<br>
@@ -242,7 +256,7 @@ function getEnglishContents() {
       <span class="bi">Amazon Redshift tables which are taken by
       <span class='webdev'>Power BI for its data representation</span></span>.<br><br>
 
-      18-11 - 19-02<br>
+      18-11 - 19-05<br>
       Development and <span class="arch">architecture</span> in an <span class="bi">ETL project.<br>
       Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App Service within Azure
       Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'>data representation</span></span>.<br><br>
@@ -263,9 +277,9 @@ function getEnglishContents() {
       IBM Watson, Oracle Intelligent Bots, Google Cloud, and SAS.<br>
       Programming in Javascript, Node.js, Python, U-SQL, and R.<br><br>
 
-      17-12 – 18-10<br>
+      17-12 – 18-02<br>
       Full-stack developer.<br>
-      <span class='webdev'>Development of a geo-analytical BI web service built with R and Javascript, and chatbot development</span> (fully development of a Node.JS chatbot for an insurance company).<br><br>
+      <span class='webdev'>Development of a geo-analytical BI web service built with R.<br><br>
 
       17-08 - 17-11<br>
       <span class="arch bi">Data mining technician</span> and machine learning.<br>

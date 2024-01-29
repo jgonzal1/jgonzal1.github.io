@@ -202,7 +202,7 @@ class tasksManager extends React.Component {
       .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
       .attr("height", height)
-      .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+      .attr("style", "font: bold 14px sans-serif; height: auto; max-width: 100%;");
 
     // Add a cell for each leaf of the hierarchy.
     const leaf = svg.selectAll("g")
@@ -224,7 +224,7 @@ class tasksManager extends React.Component {
       })
       .attr("fill-opacity", 0.6)
       .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0);
+      .attr("height", d => d.y1 - d.y0 + 10);
 
     // Append a clipPath to ensure text does not overflow.
     leaf.append("clipPath")
@@ -631,8 +631,9 @@ class tasksManager extends React.Component {
           {
             id: "treeMap",
             style: {
+              backgroundColor: "#FFF3",
               height: "305px",
-              margin: "0.3em",
+              margin: "0.1em",
               overflow: "hidden",
               width: "min(50%, 305px)"
             }

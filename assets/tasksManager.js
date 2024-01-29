@@ -12,9 +12,9 @@ const columnRenames = {
   "estado": "status",
   "label": "frequency",
   "label9": "house",
-  "numbers": "duration",
+  "numbers": "dur",
   "people": "assigned",
-  "status_1": "category",
+  "status_1": "cat",
   "subitems": "subitems",
   "text": "comments"
 };
@@ -49,7 +49,7 @@ class tasksManager extends React.Component {
       item["h_diff"] = +(
         (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH
       ).toFixed(2);
-      item["duration"] = +(parseFloat(item["duration"]).toFixed(1));
+      item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
       item["date"] = item["datetime"].substring(0, 10);
       const notes = `${item["comments"]} ${item["subitems"]}`;
       item["notes"] = notes;
@@ -58,14 +58,15 @@ class tasksManager extends React.Component {
     const mondayItemsJsonPayload = mondayTasksCols.map(
       (t) => {
         return {
-          "category": t["category"],
+          "cat": t["cat"],
           "task_name": t["task_name"],
           "datetime": t["datetime"],
           "wd": weekday[new Date(t["date"]).getDay()],
-          "duration": t["duration"],
+          "dur": t["dur"],
           "h_diff": t["h_diff"],
           "actions": t["notes"],
-          "task_id": t["task_id"]
+          "task_id": t["task_id"],
+          "group": t["group"]
         }
       }
     )
@@ -73,7 +74,7 @@ class tasksManager extends React.Component {
       (a, b) => ("" + a["datetime"]).localeCompare(b["datetime"])
     ).map(
       (t, i) => {
-        t["index"] = i + 1;
+        t["#"] = i + 1;
         return t;
       }
     );
@@ -93,12 +94,12 @@ class tasksManager extends React.Component {
       t => {
         return {
           "date": t["datetime"].substring(0, 10),
-          "duration": t["duration"]
+          "dur": t["dur"]
         }
       }
     );
     const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-      return { "date": this.offsetNDay(n), "duration": 0 }
+      return { "date": this.offsetNDay(n), "dur": 0 }
     });
     sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
       .concat(arrNext21D).sort(
@@ -109,7 +110,7 @@ class tasksManager extends React.Component {
         if (!accumulator[item["date"]]) {
           accumulator[item["date"]] = 0;
         }
-        accumulator[item["date"]] += item["duration"]
+        accumulator[item["date"]] += item["dur"]
         return accumulator
       }, {}
     );
@@ -145,10 +146,10 @@ class tasksManager extends React.Component {
   aggrTasksByCategory = (sortedMondayItemsJson) => {
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
-        if (!accumulator[item["category"]]) {
-          accumulator[item["category"]] = 0;
+        if (!accumulator[item["cat"]]) {
+          accumulator[item["cat"]] = 0;
         }
-        accumulator[item["category"]] += item["duration"]
+        accumulator[item["cat"]] += item["dur"]
         return accumulator
       }, {}
     );
@@ -278,7 +279,9 @@ class tasksManager extends React.Component {
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
       (rawItem, _rawItemIdx) => {
         const taskIds = {
-          "task_id": rawItem["id"], "task_name": rawItem["name"]
+          "task_id": rawItem["id"],
+          "task_name": rawItem["name"],
+          "group": rawItem["group"]["title"]
         };
         mondayTasksCols.push(taskIds);
         rawItemIdx = _rawItemIdx;
@@ -352,6 +355,7 @@ class tasksManager extends React.Component {
   };
 
   setBgBasedOnHDiff = (taskRow) => {
+    console.log(taskRow)
     const hToNextDay = new Date().getHours();
     const hToNextWeek = (7 - (new Date().getDay() % 7)) * 24 + hToNextDay;
     const hDiff = parseFloat(taskRow["h_diff"]);

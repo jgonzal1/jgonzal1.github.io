@@ -4,6 +4,14 @@ const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
 const mondayApiUrl = "https://api.monday.com/v2";
+let headers = {
+  'Content-Type': 'application/json',
+  'Referer': undefined,
+  'sec-ch-ua-mobile': '?0',
+  'sec-ch-ua-platform': '"Windows"',
+  'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+};
 const weekday = [
   "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
 ];
@@ -251,10 +259,7 @@ class tasksManager extends React.Component {
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
-    const headers = {
-      "Authorization": mondayKey,
-      "Content-Type": "application/json",
-    };
+    headers["Authorization"] = mondayKey;
     const query = "boards (ids: " + boardId + ") { " +
       "items_page (limit: 500) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
@@ -321,16 +326,13 @@ class tasksManager extends React.Component {
   putMondayDateItem = async (
     mondayKey, boardId, itemId, dateTimeToSet
   ) => {
+    headers["Authorization"] = mondayKey;
     const query = `mutation { change_column_value ( ${""
       }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
       }\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
       }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
       }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
       }}") { name } }`;
-    const headers = {
-      "Authorization": mondayKey,
-      "Content-Type": "application/json",
-    };
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       mondayApiUrl,

@@ -20,9 +20,9 @@ const columnRenames = {
   "estado": "status",
   "label": "frequency",
   "label9": "house",
-  "numbers": "duration",
+  "numbers": "dur",
   "people": "assigned",
-  "status_1": "category",
+  "status_1": "cat",
   "subitems": "subitems",
   "text": "comments"
 };
@@ -57,7 +57,7 @@ class tasksManager extends React.Component {
       item["h_diff"] = +(
         (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH
       ).toFixed(2);
-      item["duration"] = +(parseFloat(item["duration"]).toFixed(1));
+      item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
       item["date"] = item["datetime"].substring(0, 10);
       const notes = `${item["comments"]} ${item["subitems"]}`;
       item["notes"] = notes;
@@ -66,14 +66,15 @@ class tasksManager extends React.Component {
     const mondayItemsJsonPayload = mondayTasksCols.map(
       (t) => {
         return {
-          "category": t["category"],
+          "cat": t["cat"],
           "task_name": t["task_name"],
           "datetime": t["datetime"],
           "wd": weekday[new Date(t["date"]).getDay()],
-          "duration": t["duration"],
+          "dur": t["dur"],
           "h_diff": t["h_diff"],
           "actions": t["notes"],
-          "task_id": t["task_id"]
+          "task_id": t["task_id"],
+          "group": t["group"]
         }
       }
     )
@@ -81,7 +82,7 @@ class tasksManager extends React.Component {
       (a, b) => ("" + a["datetime"]).localeCompare(b["datetime"])
     ).map(
       (t, i) => {
-        t["index"] = i + 1;
+        t["#"] = i + 1;
         return t;
       }
     );
@@ -101,12 +102,12 @@ class tasksManager extends React.Component {
       t => {
         return {
           "date": t["datetime"].substring(0, 10),
-          "duration": t["duration"]
+          "dur": t["dur"]
         }
       }
     );
     const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-      return { "date": this.offsetNDay(n), "duration": 0 }
+      return { "date": this.offsetNDay(n), "dur": 0 }
     });
     sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
       .concat(arrNext21D).sort(
@@ -117,7 +118,7 @@ class tasksManager extends React.Component {
         if (!accumulator[item["date"]]) {
           accumulator[item["date"]] = 0;
         }
-        accumulator[item["date"]] += item["duration"]
+        accumulator[item["date"]] += item["dur"]
         return accumulator
       }, {}
     );
@@ -153,10 +154,10 @@ class tasksManager extends React.Component {
   aggrTasksByCategory = (sortedMondayItemsJson) => {
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
-        if (!accumulator[item["category"]]) {
-          accumulator[item["category"]] = 0;
+        if (!accumulator[item["cat"]]) {
+          accumulator[item["cat"]] = 0;
         }
-        accumulator[item["category"]] += item["duration"]
+        accumulator[item["cat"]] += item["dur"]
         return accumulator
       }, {}
     );
@@ -209,7 +210,7 @@ class tasksManager extends React.Component {
       .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
       .attr("height", height)
-      .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+      .attr("style", "font: bold 14px sans-serif; height: auto; max-width: 100%;");
 
     // Add a cell for each leaf of the hierarchy.
     const leaf = svg.selectAll("g")
@@ -231,7 +232,7 @@ class tasksManager extends React.Component {
       })
       .attr("fill-opacity", 0.6)
       .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0);
+      .attr("height", d => d.y1 - d.y0 + 10);
 
     // Append a clipPath to ensure text does not overflow.
     leaf.append("clipPath")
@@ -283,7 +284,9 @@ class tasksManager extends React.Component {
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
       (rawItem, _rawItemIdx) => {
         const taskIds = {
-          "task_id": rawItem["id"], "task_name": rawItem["name"]
+          "task_id": rawItem["id"],
+          "task_name": rawItem["name"],
+          "group": rawItem["group"]["title"]
         };
         mondayTasksCols.push(taskIds);
         rawItemIdx = _rawItemIdx;
@@ -630,8 +633,9 @@ class tasksManager extends React.Component {
           {
             id: "treeMap",
             style: {
+              backgroundColor: "#FFF3",
               height: "305px",
-              margin: "0.3em",
+              margin: "0.1em",
               overflow: "hidden",
               width: "min(50%, 305px)"
             }

@@ -6,7 +6,7 @@ const boardId = "3478645467";
 const mondayApiUrl = "https://api.monday.com/v2";
 let headers = {
   'Content-Type': 'application/json',
-  'Referer': undefined,
+  'Referer': '',
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-platform': '"Windows"',
   'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',

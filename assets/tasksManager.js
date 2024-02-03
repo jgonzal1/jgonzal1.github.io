@@ -74,7 +74,7 @@ class tasksManager extends React.Component {
           "h_diff": t["h_diff"],
           "actions": t["notes"],
           "task_id": t["task_id"],
-          "group": t["group"]
+          "gr": t["group"]
         }
       }
     )

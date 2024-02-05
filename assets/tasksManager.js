@@ -32,6 +32,7 @@ class tasksManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      dayOffsetValue: 1,
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
@@ -43,6 +44,11 @@ class tasksManager extends React.Component {
       nextVF: "undefined",
       nextVI: "undefined",
     };
+  };
+
+  setDayOffsetValue = (k) => {
+    // @ts-ignore
+    this.setState({ dayOffsetValue: k })
   };
 
   addMondayMeta = (mondayTasksCols) => {
@@ -414,7 +420,7 @@ class tasksManager extends React.Component {
           id: "lastRefreshDateTime",
           style: { paddingLeft: "0.3em" }
         },
-        `Last refresh datetime: ${this.state.lastRefreshDateTime}`
+        `Last refresh: ${this.state.lastRefreshDateTime}`
       ),
       // @ts-ignore
       React.createElement(
@@ -423,7 +429,7 @@ class tasksManager extends React.Component {
           id: "lastUpdatedItem",
           style: { paddingLeft: "0.3em" }
         },
-        this.state.lastUpdatedItem && `| ${this.state.lastUpdatedItem
+        this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
         }`
       ),
       // @ts-ignore
@@ -433,8 +439,26 @@ class tasksManager extends React.Component {
           id: "tasksDurationSum",
           style: { paddingLeft: "0.3em" }
         },
-        this.state.mondayTasksDurationSum && `| Total tasks duration (h): ${this.state.mondayTasksDurationSum
-        }`
+        this.state.mondayTasksDurationSum && `| Total tasks dur. (h): ${this.state.mondayTasksDurationSum
+        } | Day(s) offset: `
+      ),
+      // @ts-ignore
+      React.createElement(
+        "input",
+        {
+          id: "seyDayOffset",
+          value: this.state.dayOffsetValue,
+          // @ts-ignore
+          onChange: (e) => this.setState({ dayOffsetValue: e.target.value }),
+          style: {
+            backgroundColor: "#FFF6",
+            fontStyle: "italic",
+            fontWeight: "bold",
+            paddingLeft: "0.3em",
+            width: "3em"
+          }
+        },
+        null
       ),
       // @ts-ignore
       React.createElement(
@@ -520,7 +544,7 @@ class tasksManager extends React.Component {
                             //@ts-ignore
                             monday_key, boardId,
                             taskRow["task_id"],
-                            this.offsetNDay(-1, taskRow["datetime"], "sec")
+                            this.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
                           )
                         }
                       ),
@@ -536,7 +560,7 @@ class tasksManager extends React.Component {
                             //@ts-ignore
                             monday_key, boardId,
                             taskRow["task_id"],
-                            this.offsetNDay(1, taskRow["datetime"], "sec")
+                            this.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
                           )
                         }
                       ),

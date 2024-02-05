@@ -361,11 +361,13 @@ class tasksManager extends React.Component {
     const hToNextWeek = (7 - (new Date().getDay() % 7)) * 24 + hToNextDay;
     const hDiff = parseFloat(taskRow["h_diff"]);
     const bgRanges = [
-      { "bgRange": -9e3, "bgColor": "#C669" }, // passed
-      { "bgRange": 0, "bgColor": "#C667" }, // now
-      { "bgRange": 24 - hToNextDay, "bgColor": "#C665" }, // today
-      { "bgRange": 48 - hToNextDay, "bgColor": "#C864" }, // tomorrow
-      { "bgRange": Math.max(49 - hToNextDay, hToNextWeek), "bgColor": "#CA64" }, // this week
+      { "bgRange": -9e3, "bgColor": "#C66D" }, // passed
+      { "bgRange": 0, "bgColor": "#C669" }, // now
+      { "bgRange": 24 - hToNextDay, "bgColor": "#C667" }, // today
+      { "bgRange": 48 - hToNextDay, "bgColor": "#C665" }, // tomorrow
+      { "bgRange": 72 - hToNextDay, "bgColor": "#C865" }, // in 2d
+      { "bgRange": 96 - hToNextDay, "bgColor": "#C965" }, // in 3d
+      { "bgRange": Math.max(96 - hToNextDay, hToNextWeek), "bgColor": "#CA65" }, // this week
       { "bgRange": 168 + hToNextWeek, "bgColor": "#CC63" }, // next week
       { "bgRange": 720 - hToNextDay, "bgColor": "#CE62" }, // this month
       { "bgRange": 8760, "bgColor": "#9F62" }, // this year

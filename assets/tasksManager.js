@@ -364,7 +364,7 @@ class tasksManager extends React.Component {
 
   setBgBasedOnHDiff = (taskRow) => {
     const hToNextDay = new Date().getHours();
-    const hToNextWeek = (7 - (new Date().getDay() % 7)) * 24 + hToNextDay;
+    const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
     const hDiff = parseFloat(taskRow["h_diff"]);
     const bgRanges = [
       { "bgRange": -9e3, "bgColor": "#C66D" }, // passed

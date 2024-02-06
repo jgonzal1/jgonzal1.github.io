@@ -147,11 +147,18 @@ class tasksManager extends React.Component {
         const durStr = setDurStrAsV ?
           "v".repeat(totV) :
           `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;
+        const hDiff = Math.round(((
+          // @ts-ignore
+          new Date(k) -
+          // @ts-ignore
+          new Date((new Date().toISOString().substring(0, 10)))
+        ) + 3.6e6) / 3.6e5) / 10
         return {
           "date": k,
           "wd": wd,
           "dur_offs": durOffs,
-          "dur_str": durStr
+          "dur_str": durStr,
+          "h_diff": hDiff
         }
       }
     );
@@ -615,12 +622,14 @@ class tasksManager extends React.Component {
                 React.createElement(
                   "tr",
                   null,
-                  // @ts-ignore
-                  Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
-                    "th",
-                    { key: `${taskKey}HeaderByDay` },
-                    taskKey
-                  ))
+                  Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
+                    // @ts-ignore
+                    React.createElement(
+                      "th",
+                      { key: `${taskKey}HeaderByDay` },
+                      taskKey
+                    )
+                  )
                 )
               ),
               // @ts-ignore
@@ -630,7 +639,10 @@ class tasksManager extends React.Component {
                 // @ts-ignore
                 this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
                   "tr",
-                  { key: `TaskRow${idxRow}ByDay` },
+                  {
+                    key: `TaskRow${idxRow}ByDay`,
+                    style: { backgroundColor: this.setBgBasedOnHDiff(taskRow) }
+                  },
                   // @ts-ignore
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",

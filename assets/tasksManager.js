@@ -646,13 +646,7 @@ class tasksManager extends React.Component {
                   // @ts-ignore
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",
-                    {
-                      key: `${taskKey}${idxRow}TdByDay`,
-                      style: {
-                        fontFamily: "monospace",
-                        fontSize: "0.7rem"
-                      }
-                    },
+                    { key: `${taskKey}${idxRow}TdByDay` },
                     taskRow[taskKey]
                   ))
                 ))

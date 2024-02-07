@@ -384,6 +384,11 @@ th+th {
   max-height: 900px;
 }
 
+#mondayTasksByDayTableContainer td {
+  font-family: monospace;
+  font-size: 0.82rem;
+}
+
 
 @media (min-height:901px) and (max-width:1199) {
   .flex-container-2 {

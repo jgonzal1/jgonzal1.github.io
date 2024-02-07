@@ -80,6 +80,7 @@ th+th {
   border-left: 1px dotted #333333;
 }
 
+
 .A4 {
   background-color: #FFF;
   border: 1px solid #11111111;
@@ -183,10 +184,15 @@ th+th {
   font-size: 1.5em;
 }
 
+.first-flex-container-item {
+  height: 30vh;
+}
+
 .flex-container-2 {
-  align-items: center;
+  align-content: stretch;
+  align-items: stretch;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.3em;
   height: calc(100% - 0.3em);
   justify-content: center;
@@ -375,8 +381,29 @@ th+th {
 #map * {
   border-width: 0;
   padding: 0;
+  max-height: 900px;
 }
 
+
+@media (min-height:901px) and (max-width:1199) {
+  .flex-container-2 {
+    flex-direction: column;
+  }
+
+  .first-flex-container-item {
+    height: 30vh;
+  }
+}
+
+@media (max-height:900px) or (min-width:1200) {
+  .flex-container-2 {
+    flex-direction: row;
+  }
+
+  .first-flex-container-item {
+    height: calc(100% - 320px - 4em);
+  }
+}
 
 @media print {
   * {

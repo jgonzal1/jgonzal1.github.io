@@ -472,9 +472,8 @@ class tasksManager extends React.Component {
         "div",
         {
           id: "mondayTableContainer",
-          className: "table-container",
+          className: "first-flex-container-item table-container",
           style: {
-            height: "calc(100% - 320px - 4em)",
             marginTop: "0.3em",
             paddingTop: "0.1em"
           }
@@ -604,6 +603,7 @@ class tasksManager extends React.Component {
             id: "mondayTasksByDayTableContainer",
             className: "table-container",
             style: {
+              flexGrow: 1,
               height: "305px",
               margin: "0.3em",
               width: "fit-content"
@@ -613,7 +613,7 @@ class tasksManager extends React.Component {
             // @ts-ignore
             React.createElement(
               "table",
-              null,
+              { style: { width: "100%" } },
               // @ts-ignore
               React.createElement(
                 "thead",

@@ -185,7 +185,7 @@ th+th {
 }
 
 .first-flex-container-item {
-  height: 30vh;
+  height: calc(99vh - 400px);
 }
 
 .flex-container-2 {
@@ -390,7 +390,7 @@ th+th {
 }
 
 
-@media (min-height:901px) and (max-width:1199) {
+@media (min-height:901px) and (min-width:600) and (max-width:1199) {
   .flex-container-2 {
     flex-direction: column;
   }
@@ -400,7 +400,8 @@ th+th {
   }
 }
 
-@media (max-height:900px) or (min-width:1200) {
+@media (max-height:900px) and (max-width:599),
+(max-height:900px) and (min-width:1200) {
   .flex-container-2 {
     flex-direction: row;
   }

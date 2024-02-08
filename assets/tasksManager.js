@@ -408,64 +408,94 @@ class tasksManager extends React.Component {
     }
     // @ts-ignore
     return React.createElement(
-      "div", {
-      id: "taskManagerWrapper",
-      style: { width: "calc(100% - 0.8em)" }
-    },
+      "div",
+      {
+        id: "taskManagerWrapper",
+        style: { width: "calc(100% - 0.8em)" }
+      },
       // @ts-ignore
       React.createElement(
-        "button", {
-        id: "refreshTasksButton",
-        onClick: //@ts-ignore
-          () => this.setState({ getDatedMondayItemsToJson: true })
-      }, "Refresh tasks"
-      ),
-      // @ts-ignore
-      React.createElement(
-        "span",
-        {
-          id: "lastRefreshDateTime",
-          style: { paddingLeft: "0.3em" }
-        },
-        `Last refresh: ${this.state.lastRefreshDateTime}`
-      ),
-      // @ts-ignore
-      React.createElement(
-        "span",
-        {
-          id: "lastUpdatedItem",
-          style: { paddingLeft: "0.3em" }
-        },
-        this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
-        }`
-      ),
-      // @ts-ignore
-      React.createElement(
-        "span",
-        {
-          id: "tasksDurationSum",
-          style: { paddingLeft: "0.3em" }
-        },
-        this.state.mondayTasksDurationSum && `| Total tasks dur. (h): ${this.state.mondayTasksDurationSum
-        } | Day(s) offset: `
-      ),
-      // @ts-ignore
-      React.createElement(
-        "input",
-        {
-          id: "seyDayOffset",
-          value: this.state.dayOffsetValue,
-          // @ts-ignore
-          onChange: (e) => this.setState({ dayOffsetValue: e.target.value }),
-          style: {
-            backgroundColor: "#FFF6",
-            fontStyle: "italic",
-            fontWeight: "bold",
-            paddingLeft: "0.3em",
-            width: "3em"
-          }
-        },
-        null
+        "div",
+        null,
+        // @ts-ignore
+        React.createElement(
+          "button", {
+          id: "refreshTasksButton",
+          onClick: //@ts-ignore
+            () => this.setState({ getDatedMondayItemsToJson: true })
+        }, "Refresh tasks"
+        ),
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "lastRefreshDateTime",
+            style: {
+              border: "1px solid #fff",
+              borderRadius: "0.3em",
+              marginLeft: "0.3em",
+              padding: "0 0.3em"
+            }
+          },
+          `Last refresh: ${this.state.lastRefreshDateTime}`
+        ),
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "lastUpdatedItem",
+            style: {
+              border: this.state.lastUpdatedItem && "1px solid #fff",
+              borderRadius: "0.3em",
+              padding: "0 0.3em"
+            }
+          },
+          this.state.lastUpdatedItem && `Last upd. item: ${this.state.lastUpdatedItem
+          }`
+        ),
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "tasksDurationSum",
+            style: {
+              border: "1px solid #fff",
+              borderRadius: "0.3em",
+              padding: "0 0.3em"
+            }
+          },
+          this.state.mondayTasksDurationSum && `Total tasks dur. (h): ${this.state.mondayTasksDurationSum
+          }`
+        ),
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "daysOffsetLegend",
+            style: {
+              padding: "0 0.3em"
+            }
+          },
+          `Day(s) offset: `
+        ),
+        // @ts-ignore
+        React.createElement(
+          "input",
+          {
+            id: "seyDayOffset",
+            value: this.state.dayOffsetValue,
+            // @ts-ignore
+            onChange: (e) => this.setState({ dayOffsetValue: e.target.value }),
+            style: {
+              backgroundColor: "#FFF6",
+              fontStyle: "italic",
+              fontWeight: "bold",
+              paddingLeft: "0.3em",
+              width: "3em"
+            }
+          },
+          null
+        ),
       ),
       // @ts-ignore
       React.createElement(
@@ -606,7 +636,7 @@ class tasksManager extends React.Component {
             style: {
               flexGrow: 1,
               height: "305px",
-              margin: "0.3em",
+              margin: "0.1em",
               width: "fit-content"
             }
           },

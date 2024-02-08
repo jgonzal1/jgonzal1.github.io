@@ -474,8 +474,9 @@ class tasksManager extends React.Component {
           id: "mondayTableContainer",
           className: "first-flex-container-item table-container",
           style: {
-            marginTop: "0.3em",
-            paddingTop: "0.1em"
+            paddingTop: "0.1em",
+            width: "fit-content",
+            maxWidth: "calc(100% - 0.8em)"
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?

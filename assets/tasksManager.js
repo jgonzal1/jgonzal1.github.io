@@ -446,8 +446,9 @@ class tasksManager extends React.Component {
           id: "tasksDurationSum",
           style: { paddingLeft: "0.3em" }
         },
-        this.state.mondayTasksDurationSum && `| Total tasks dur. (h): ${this.state.mondayTasksDurationSum
-        } | Day(s) offset: `
+        this.state.mondayTasksDurationSum && `| Total tasks dur: ${this.state.mondayTasksDurationSum
+        }h/${(this.state.mondayTasksDurationSum / 18).toFixed(1)
+        }w | Day(s) offset: `
       ),
       // @ts-ignore
       React.createElement(

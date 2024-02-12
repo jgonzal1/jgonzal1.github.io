@@ -22,11 +22,21 @@
       font-size: 0.88em;
     }
   </style>
+  <script>
+    function hideMap() {
+      console.log("Hiding map");
+      document.getElementById("map").style.display = "none";
+    }
+  </script>
 </head>
 
 <body class="top-flex-container-2 flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 1.2em)">
   <div id="taskManager" style="width:min(99vw, 840px)"></div>
-  <div id="map" style="width:min(99vw, 600px)"></div>
+  <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
+    <button class="close-button" onClick='showMap()'>
+      &times; <!-- 👁 -->
+    </button>
+  </div>
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/cesiumInit.js"></script>
 </body>

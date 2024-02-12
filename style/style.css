@@ -175,6 +175,16 @@ th+th {
   width: 1.5em;
 }
 
+.close-button {
+  background-color: #000C;
+  color: #FFF;
+  top: 0.6em;
+  padding: 0 0.4em;
+  position: absolute;
+  right: 0.6em;
+  z-index: 999;
+}
+
 .colspan4 {
   padding-left: 10em;
 }
@@ -380,7 +390,6 @@ th+th {
 
 #map * {
   border-width: 0;
-  padding: 0;
   max-height: 900px;
 }
 

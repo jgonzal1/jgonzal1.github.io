@@ -1,5 +1,5 @@
 "use strict";
-
+//#region Variables
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -26,9 +26,10 @@ const columnRenames = {
   "subitems": "subitems",
   "text": "comments"
 };
-
+//#endregion
 // @ts-ignore
 class tasksManager extends React.Component {
+  //#region Constructor and functions
   constructor(props) {
     super(props);
     this.state = {
@@ -45,12 +46,6 @@ class tasksManager extends React.Component {
       nextVI: "undefined",
     };
   };
-
-  setDayOffsetValue = (k) => {
-    // @ts-ignore
-    this.setState({ dayOffsetValue: k })
-  };
-
   addMondayMeta = (mondayTasksCols) => {
     const currentDate = new Date();
     const aYearFromNowDt = new Date();
@@ -93,77 +88,6 @@ class tasksManager extends React.Component {
       }
     );
   };
-
-  aggrTasksByDay = (sortedMondayItemsJson) => {
-    const [
-      nextClimbingDay, nextVI, nextVF
-    ] = [
-      "Climb", "(v_i)", "(v_f)"
-    ].map(
-      (tn) => sortedMondayItemsJson.filter(
-        t => t["task_name"] === tn
-      ).map(t => t.datetime)[0]
-    );
-    let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
-      t => {
-        return {
-          "date": t["datetime"].substring(0, 10),
-          "dur": t["dur"]
-        }
-      }
-    );
-    const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-      return { "date": this.offsetNDay(n), "dur": 0 }
-    });
-    sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
-      .concat(arrNext21D).sort(
-        (a, b) => ("" + a["date"]).localeCompare(b["date"])
-      );
-    const mondayTasksByDayDict = sortedMondayItemsJsonWithEmptyDates.reduce(
-      (accumulator, item) => {
-        if (!accumulator[item["date"]]) {
-          accumulator[item["date"]] = 0;
-        }
-        accumulator[item["date"]] += item["dur"]
-        return accumulator
-      }, {}
-    );
-    return Object.keys(mondayTasksByDayDict).map(
-      (k) => {
-        const wd = weekday[new Date(k).getDay()];
-        const duration = +(mondayTasksByDayDict[k].toFixed(1));
-        const dayDiff = (Math.floor(
-          (
-            new Date(k).valueOf() -
-            new Date(nextClimbingDay).valueOf()
-          ) / msPerD
-        ));
-        const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
-        const durOffs = isOddDayDiff ? duration + 2 : duration;
-        const totV = ["Sat", "Sun"].includes(wd) ? 20 : 12;
-        const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
-        const unUsedTime = Math.max(totV - usedTime, 0);
-        const setDurStrAsV = (k >= nextVI && k <= nextVF);
-        const durStr = setDurStrAsV ?
-          "v".repeat(totV) :
-          `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;
-        const hDiff = Math.round(((
-          // @ts-ignore
-          new Date(k) -
-          // @ts-ignore
-          new Date((new Date().toISOString().substring(0, 10)))
-        ) + 3.6e6) / 3.6e5) / 10
-        return {
-          "date": k,
-          "wd": wd,
-          "dur_offs": durOffs,
-          "dur_str": durStr,
-          "h_diff": hDiff
-        }
-      }
-    );
-  };
-
   aggrTasksByCategory = (sortedMondayItemsJson) => {
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
@@ -269,7 +193,75 @@ class tasksManager extends React.Component {
     const treeMapSvgObj = Object.assign(svg.node());
     return treeMapSvgObj;
   };
-
+  aggrTasksByDay = (sortedMondayItemsJson) => {
+    const [
+      nextClimbingDay, nextVI, nextVF
+    ] = [
+      "Climb", "(v_i)", "(v_f)"
+    ].map(
+      (tn) => sortedMondayItemsJson.filter(
+        t => t["task_name"] === tn
+      ).map(t => t.datetime)[0]
+    );
+    let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
+      t => {
+        return {
+          "date": t["datetime"].substring(0, 10),
+          "dur": t["dur"]
+        }
+      }
+    );
+    const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
+      return { "date": this.offsetNDay(n), "dur": 0 }
+    });
+    sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
+      .concat(arrNext21D).sort(
+        (a, b) => ("" + a["date"]).localeCompare(b["date"])
+      );
+    const mondayTasksByDayDict = sortedMondayItemsJsonWithEmptyDates.reduce(
+      (accumulator, item) => {
+        if (!accumulator[item["date"]]) {
+          accumulator[item["date"]] = 0;
+        }
+        accumulator[item["date"]] += item["dur"]
+        return accumulator
+      }, {}
+    );
+    return Object.keys(mondayTasksByDayDict).map(
+      (k) => {
+        const wd = weekday[new Date(k).getDay()];
+        const duration = +(mondayTasksByDayDict[k].toFixed(1));
+        const dayDiff = (Math.floor(
+          (
+            new Date(k).valueOf() -
+            new Date(nextClimbingDay).valueOf()
+          ) / msPerD
+        ));
+        const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
+        const durOffs = isOddDayDiff ? duration + 2 : duration;
+        const totV = ["Sat", "Sun"].includes(wd) ? 20 : 12;
+        const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
+        const unUsedTime = Math.max(totV - usedTime, 0);
+        const setDurStrAsV = (k >= nextVI && k <= nextVF);
+        const durStr = setDurStrAsV ?
+          "v".repeat(totV) :
+          `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;
+        const hDiff = Math.round(((
+          // @ts-ignore
+          new Date(k) -
+          // @ts-ignore
+          new Date((new Date().toISOString().substring(0, 10)))
+        ) + 3.6e6) / 3.6e5) / 10
+        return {
+          "date": k,
+          "wd": wd,
+          "dur_offs": durOffs,
+          "dur_str": durStr,
+          "h_diff": hDiff
+        }
+      }
+    );
+  };
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
@@ -323,7 +315,6 @@ class tasksManager extends React.Component {
     });
     return sortedMondayItemsJson;
   };
-
   offsetNDay = (n, dateToOffset, precision = "day") => {
     const dateToOffsetAsValue = dateToOffset ?
       new Date(dateToOffset).valueOf() :
@@ -338,7 +329,6 @@ class tasksManager extends React.Component {
           19 // sec
     );
   };
-
   putMondayDateItem = async (
     mondayKey, boardId, itemId, dateTimeToSet
   ) => {
@@ -368,7 +358,6 @@ class tasksManager extends React.Component {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
-
   setBgBasedOnHDiff = (taskRow) => {
     const hToNextDay = new Date().getHours();
     const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
@@ -394,8 +383,13 @@ class tasksManager extends React.Component {
     });
     return bgColor;
   };
-
+  setDayOffsetValue = (k) => {
+    // @ts-ignore
+    this.setState({ dayOffsetValue: k })
+  };
+  //#endregion
   render() {
+    //#region State listeners
     if (this.state.getDatedMondayItemsToJson) {
       //@ts-ignore
       this.getDatedMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
@@ -406,6 +400,7 @@ class tasksManager extends React.Component {
       treeMapPlaceholder.innerHTML = "";
       treeMapPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
     }
+    //#endregion
     // @ts-ignore
     return React.createElement(
       "div", {
@@ -680,9 +675,10 @@ class tasksManager extends React.Component {
     )
   }
 }
-
+//#region Append to DOM
 const domContainer = document.querySelector("#taskManager");
 //@ts-ignore
 const root = ReactDOM.createRoot(domContainer);
 // @ts-ignore
 root.render(React.createElement(tasksManager));
+//#endregion

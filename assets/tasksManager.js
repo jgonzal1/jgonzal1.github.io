@@ -533,41 +533,39 @@ class tasksManager extends React.Component {
                       }
                     },
                     // @ts-ignore
-                    taskRow[taskKey],
-                    taskKey === "actions" && [
-                      // @ts-ignore
-                      React.createElement(
-                        "img",
-                        {
-                          src: "../public/prioritize.png",
-                          alt: "Prioritize",
-                          key: `${taskRow["task_id"]}PrioritizeImg`,
-                          className: "clickable-icon",
-                          onClick: () => this.putMondayDateItem(
-                            //@ts-ignore
-                            monday_key, boardId,
-                            taskRow["task_id"],
-                            this.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
-                          )
-                        }
-                      ),
-                      // @ts-ignore
-                      React.createElement(
-                        "img",
-                        {
-                          src: "../public/snooze.png",
-                          alt: "Snooze",
-                          key: `${taskRow["task_id"]}SnoozeImg`,
-                          className: "clickable-icon",
-                          onClick: () => this.putMondayDateItem(
-                            //@ts-ignore
-                            monday_key, boardId,
-                            taskRow["task_id"],
-                            this.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
-                          )
-                        }
-                      ),
-                    ]
+                    React.createElement(
+                      "img",
+                      {
+                        src: "../public/prioritize.png",
+                        alt: "Prioritize",
+                        key: `${taskRow["task_id"]}PrioritizeImg`,
+                        className: "clickable-icon",
+                        onClick: () => this.putMondayDateItem(
+                          //@ts-ignore
+                          monday_key, boardId,
+                          taskRow["task_id"],
+                          this.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                        )
+                      }
+                    ),
+                    // @ts-ignore
+                    React.createElement(
+                      "img",
+                      {
+                        src: "../public/snooze.png",
+                        alt: "Snooze",
+                        key: `${taskRow["task_id"]}SnoozeImg`,
+                        className: "clickable-icon",
+                        onClick: () => this.putMondayDateItem(
+                          //@ts-ignore
+                          monday_key, boardId,
+                          taskRow["task_id"],
+                          this.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                        )
+                      }
+                    ),
+                    // @ts-ignore
+                    taskRow[taskKey]
                   ) : // @ts-ignore
                     taskRow[taskKey]
                 )

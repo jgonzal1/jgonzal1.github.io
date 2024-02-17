@@ -1,0 +1,882 @@
+[
+  {
+    "name": "flare.analytics.AgglomerativeCluster",
+    "value": 3938
+  },
+  {
+    "name": "flare.analytics.CommunityStructure",
+    "value": 3812
+  },
+  {
+    "name": "flare.analytics.HierarchicalCluster",
+    "value": 6714
+  },
+  {
+    "name": "flare.analytics.MergeEdge",
+    "value": 743
+  },
+  {
+    "name": "flare.analytics.BetweennessCentrality",
+    "value": 3534
+  },
+  {
+    "name": "flare.analytics.LinkDistance",
+    "value": 5731
+  },
+  {
+    "name": "flare.analytics.MaxFlowMinCut",
+    "value": 7840
+  },
+  {
+    "name": "flare.analytics.ShortestPaths",
+    "value": 5914
+  },
+  {
+    "name": "flare.analytics.SpanningTree",
+    "value": 3416
+  },
+  {
+    "name": "flare.analytics.AspectRatioBanker",
+    "value": 7074
+  },
+  {
+    "name": "flare.animate.Easing",
+    "value": 17010
+  },
+  {
+    "name": "flare.animate.FunctionSequence",
+    "value": 5842
+  },
+  {
+    "name": "flare.animate.ArrayInterpolator",
+    "value": 1983
+  },
+  {
+    "name": "flare.animate.ColorInterpolator",
+    "value": 2047
+  },
+  {
+    "name": "flare.animate.DateInterpolator",
+    "value": 1375
+  },
+  {
+    "name": "flare.animate.Interpolator",
+    "value": 8746
+  },
+  {
+    "name": "flare.animate.MatrixInterpolator",
+    "value": 2202
+  },
+  {
+    "name": "flare.animate.NumberInterpolator",
+    "value": 1382
+  },
+  {
+    "name": "flare.animate.ObjectInterpolator",
+    "value": 1629
+  },
+  {
+    "name": "flare.animate.PointInterpolator",
+    "value": 1675
+  },
+  {
+    "name": "flare.animate.RectangleInterpolator",
+    "value": 2042
+  },
+  {
+    "name": "flare.animate.ISchedulable",
+    "value": 1041
+  },
+  {
+    "name": "flare.animate.Parallel",
+    "value": 5176
+  },
+  {
+    "name": "flare.animate.Pause",
+    "value": 449
+  },
+  {
+    "name": "flare.animate.Scheduler",
+    "value": 5593
+  },
+  {
+    "name": "flare.animate.Sequence",
+    "value": 5534
+  },
+  {
+    "name": "flare.animate.Transition",
+    "value": 9201
+  },
+  {
+    "name": "flare.animate.Transitioner",
+    "value": 19975
+  },
+  {
+    "name": "flare.animate.TransitionEvent",
+    "value": 1116
+  },
+  {
+    "name": "flare.animate.Tween",
+    "value": 6006
+  },
+  {
+    "name": "flare.data.Converters",
+    "value": 721
+  },
+  {
+    "name": "flare.data.DelimitedTextConverter",
+    "value": 4294
+  },
+  {
+    "name": "flare.data.GraphMLConverter",
+    "value": 9800
+  },
+  {
+    "name": "flare.data.IDataConverter",
+    "value": 1314
+  },
+  {
+    "name": "flare.data.JSONConverter",
+    "value": 2220
+  },
+  {
+    "name": "flare.data.DataField",
+    "value": 1759
+  },
+  {
+    "name": "flare.data.DataSchema",
+    "value": 2165
+  },
+  {
+    "name": "flare.data.DataSet",
+    "value": 586
+  },
+  {
+    "name": "flare.data.DataSource",
+    "value": 3331
+  },
+  {
+    "name": "flare.data.DataTable",
+    "value": 772
+  },
+  {
+    "name": "flare.data.DataUtil",
+    "value": 3322
+  },
+  {
+    "name": "flare.display.DirtySprite",
+    "value": 8833
+  },
+  {
+    "name": "flare.display.LineSprite",
+    "value": 1732
+  },
+  {
+    "name": "flare.display.RectSprite",
+    "value": 3623
+  },
+  {
+    "name": "flare.display.TextSprite",
+    "value": 10066
+  },
+  {
+    "name": "flare.flex.FlareVis",
+    "value": 4116
+  },
+  {
+    "name": "flare.physics.DragForce",
+    "value": 1082
+  },
+  {
+    "name": "flare.physics.GravityForce",
+    "value": 1336
+  },
+  {
+    "name": "flare.physics.IForce",
+    "value": 319
+  },
+  {
+    "name": "flare.physics.NBodyForce",
+    "value": 10498
+  },
+  {
+    "name": "flare.physics.Particle",
+    "value": 2822
+  },
+  {
+    "name": "flare.physics.Simulation",
+    "value": 9983
+  },
+  {
+    "name": "flare.physics.Spring",
+    "value": 2213
+  },
+  {
+    "name": "flare.physics.SpringForce",
+    "value": 1681
+  },
+  {
+    "name": "flare.query.AggregateExpression",
+    "value": 1616
+  },
+  {
+    "name": "flare.query.And",
+    "value": 1027
+  },
+  {
+    "name": "flare.query.Arithmetic",
+    "value": 3891
+  },
+  {
+    "name": "flare.query.Average",
+    "value": 891
+  },
+  {
+    "name": "flare.query.BinaryExpression",
+    "value": 2893
+  },
+  {
+    "name": "flare.query.Comparison",
+    "value": 5103
+  },
+  {
+    "name": "flare.query.CompositeExpression",
+    "value": 3677
+  },
+  {
+    "name": "flare.query.Count",
+    "value": 781
+  },
+  {
+    "name": "flare.query.DateUtil",
+    "value": 4141
+  },
+  {
+    "name": "flare.query.Distinct",
+    "value": 933
+  },
+  {
+    "name": "flare.query.Expression",
+    "value": 5130
+  },
+  {
+    "name": "flare.query.ExpressionIterator",
+    "value": 3617
+  },
+  {
+    "name": "flare.query.Fn",
+    "value": 3240
+  },
+  {
+    "name": "flare.query.If",
+    "value": 2732
+  },
+  {
+    "name": "flare.query.IsA",
+    "value": 2039
+  },
+  {
+    "name": "flare.query.Literal",
+    "value": 1214
+  },
+  {
+    "name": "flare.query.Match",
+    "value": 3748
+  },
+  {
+    "name": "flare.query.Maximum",
+    "value": 843
+  },
+  {
+    "name": "flare.query.add",
+    "value": 593
+  },
+  {
+    "name": "flare.query.and",
+    "value": 330
+  },
+  {
+    "name": "flare.query.average",
+    "value": 287
+  },
+  {
+    "name": "flare.query.count",
+    "value": 277
+  },
+  {
+    "name": "flare.query.distinct",
+    "value": 292
+  },
+  {
+    "name": "flare.query.div",
+    "value": 595
+  },
+  {
+    "name": "flare.query.eq",
+    "value": 594
+  },
+  {
+    "name": "flare.query.fn",
+    "value": 460
+  },
+  {
+    "name": "flare.query.gt",
+    "value": 603
+  },
+  {
+    "name": "flare.query.gte",
+    "value": 625
+  },
+  {
+    "name": "flare.query.iff",
+    "value": 748
+  },
+  {
+    "name": "flare.query.isa",
+    "value": 461
+  },
+  {
+    "name": "flare.query.lt",
+    "value": 597
+  },
+  {
+    "name": "flare.query.lte",
+    "value": 619
+  },
+  {
+    "name": "flare.query.max",
+    "value": 283
+  },
+  {
+    "name": "flare.query.min",
+    "value": 283
+  },
+  {
+    "name": "flare.query.mod",
+    "value": 591
+  },
+  {
+    "name": "flare.query.mul",
+    "value": 603
+  },
+  {
+    "name": "flare.query.neq",
+    "value": 599
+  },
+  {
+    "name": "flare.query.not",
+    "value": 386
+  },
+  {
+    "name": "flare.query.or",
+    "value": 323
+  },
+  {
+    "name": "flare.query.orderby",
+    "value": 307
+  },
+  {
+    "name": "flare.query.range",
+    "value": 772
+  },
+  {
+    "name": "flare.query.select",
+    "value": 296
+  },
+  {
+    "name": "flare.query.stddev",
+    "value": 363
+  },
+  {
+    "name": "flare.query.sub",
+    "value": 600
+  },
+  {
+    "name": "flare.query.sum",
+    "value": 280
+  },
+  {
+    "name": "flare.query.update",
+    "value": 307
+  },
+  {
+    "name": "flare.query.variance",
+    "value": 335
+  },
+  {
+    "name": "flare.query.where",
+    "value": 299
+  },
+  {
+    "name": "flare.query.xor",
+    "value": 354
+  },
+  {
+    "name": "flare.query._",
+    "value": 264
+  },
+  {
+    "name": "flare.query.Minimum",
+    "value": 843
+  },
+  {
+    "name": "flare.query.Not",
+    "value": 1554
+  },
+  {
+    "name": "flare.query.Or",
+    "value": 970
+  },
+  {
+    "name": "flare.query.Query",
+    "value": 13896
+  },
+  {
+    "name": "flare.query.Range",
+    "value": 1594
+  },
+  {
+    "name": "flare.query.StringUtil",
+    "value": 4130
+  },
+  {
+    "name": "flare.query.Sum",
+    "value": 791
+  },
+  {
+    "name": "flare.query.Variable",
+    "value": 1124
+  },
+  {
+    "name": "flare.query.Variance",
+    "value": 1876
+  },
+  {
+    "name": "flare.query.Xor",
+    "value": 1101
+  },
+  {
+    "name": "flare.scale.IScaleMap",
+    "value": 2105
+  },
+  {
+    "name": "flare.scale.LinearScale",
+    "value": 1316
+  },
+  {
+    "name": "flare.scale.LogScale",
+    "value": 3151
+  },
+  {
+    "name": "flare.scale.OrdinalScale",
+    "value": 3770
+  },
+  {
+    "name": "flare.scale.QuantileScale",
+    "value": 2435
+  },
+  {
+    "name": "flare.scale.QuantitativeScale",
+    "value": 4839
+  },
+  {
+    "name": "flare.scale.RootScale",
+    "value": 1756
+  },
+  {
+    "name": "flare.scale.Scale",
+    "value": 4268
+  },
+  {
+    "name": "flare.scale.ScaleType",
+    "value": 1821
+  },
+  {
+    "name": "flare.scale.TimeScale",
+    "value": 5833
+  },
+  {
+    "name": "flare.util.Arrays",
+    "value": 8258
+  },
+  {
+    "name": "flare.util.Colors",
+    "value": 10001
+  },
+  {
+    "name": "flare.util.Dates",
+    "value": 8217
+  },
+  {
+    "name": "flare.util.Displays",
+    "value": 12555
+  },
+  {
+    "name": "flare.util.Filter",
+    "value": 2324
+  },
+  {
+    "name": "flare.util.Geometry",
+    "value": 10993
+  },
+  {
+    "name": "flare.util.FibonacciHeap",
+    "value": 9354
+  },
+  {
+    "name": "flare.util.HeapNode",
+    "value": 1233
+  },
+  {
+    "name": "flare.util.IEvaluable",
+    "value": 335
+  },
+  {
+    "name": "flare.util.IPredicate",
+    "value": 383
+  },
+  {
+    "name": "flare.util.IValueProxy",
+    "value": 874
+  },
+  {
+    "name": "flare.util.DenseMatrix",
+    "value": 3165
+  },
+  {
+    "name": "flare.util.IMatrix",
+    "value": 2815
+  },
+  {
+    "name": "flare.util.SparseMatrix",
+    "value": 3366
+  },
+  {
+    "name": "flare.util.Maths",
+    "value": 17705
+  },
+  {
+    "name": "flare.util.Orientation",
+    "value": 1486
+  },
+  {
+    "name": "flare.util.ColorPalette",
+    "value": 6367
+  },
+  {
+    "name": "flare.util.Palette",
+    "value": 1229
+  },
+  {
+    "name": "flare.util.ShapePalette",
+    "value": 2059
+  },
+  {
+    "name": "flare.util.SizePalette",
+    "value": 2291
+  },
+  {
+    "name": "flare.util.Property",
+    "value": 5559
+  },
+  {
+    "name": "flare.util.Shapes",
+    "value": 19118
+  },
+  {
+    "name": "flare.util.Sort",
+    "value": 6887
+  },
+  {
+    "name": "flare.util.Stats",
+    "value": 6557
+  },
+  {
+    "name": "flare.util.Strings",
+    "value": 22026
+  },
+  {
+    "name": "flare.vis.Axes",
+    "value": 1302
+  },
+  {
+    "name": "flare.vis.Axis",
+    "value": 24593
+  },
+  {
+    "name": "flare.vis.AxisGridLine",
+    "value": 652
+  },
+  {
+    "name": "flare.vis.AxisLabel",
+    "value": 636
+  },
+  {
+    "name": "flare.vis.CartesianAxes",
+    "value": 6703
+  },
+  {
+    "name": "flare.vis.AnchorControl",
+    "value": 2138
+  },
+  {
+    "name": "flare.vis.ClickControl",
+    "value": 3824
+  },
+  {
+    "name": "flare.vis.Control",
+    "value": 1353
+  },
+  {
+    "name": "flare.vis.ControlList",
+    "value": 4665
+  },
+  {
+    "name": "flare.vis.DragControl",
+    "value": 2649
+  },
+  {
+    "name": "flare.vis.ExpandControl",
+    "value": 2832
+  },
+  {
+    "name": "flare.vis.HoverControl",
+    "value": 4896
+  },
+  {
+    "name": "flare.vis.IControl",
+    "value": 763
+  },
+  {
+    "name": "flare.vis.PanZoomControl",
+    "value": 5222
+  },
+  {
+    "name": "flare.vis.SelectionControl",
+    "value": 7862
+  },
+  {
+    "name": "flare.vis.TooltipControl",
+    "value": 8435
+  },
+  {
+    "name": "flare.vis.Data",
+    "value": 20544
+  },
+  {
+    "name": "flare.vis.DataList",
+    "value": 19788
+  },
+  {
+    "name": "flare.vis.DataSprite",
+    "value": 10349
+  },
+  {
+    "name": "flare.vis.EdgeSprite",
+    "value": 3301
+  },
+  {
+    "name": "flare.vis.NodeSprite",
+    "value": 19382
+  },
+  {
+    "name": "flare.vis.ArrowType",
+    "value": 698
+  },
+  {
+    "name": "flare.vis.EdgeRenderer",
+    "value": 5569
+  },
+  {
+    "name": "flare.vis.IRenderer",
+    "value": 353
+  },
+  {
+    "name": "flare.vis.ShapeRenderer",
+    "value": 2247
+  },
+  {
+    "name": "flare.vis.ScaleBinding",
+    "value": 11275
+  },
+  {
+    "name": "flare.vis.Tree",
+    "value": 7147
+  },
+  {
+    "name": "flare.vis.TreeBuilder",
+    "value": 9930
+  },
+  {
+    "name": "flare.vis.DataEvent",
+    "value": 2313
+  },
+  {
+    "name": "flare.vis.SelectionEvent",
+    "value": 1880
+  },
+  {
+    "name": "flare.vis.TooltipEvent",
+    "value": 1701
+  },
+  {
+    "name": "flare.vis.VisualizationEvent",
+    "value": 1117
+  },
+  {
+    "name": "flare.vis.Legend",
+    "value": 20859
+  },
+  {
+    "name": "flare.vis.LegendItem",
+    "value": 4614
+  },
+  {
+    "name": "flare.vis.LegendRange",
+    "value": 10530
+  },
+  {
+    "name": "flare.vis.BifocalDistortion",
+    "value": 4461
+  },
+  {
+    "name": "flare.vis.Distortion",
+    "value": 6314
+  },
+  {
+    "name": "flare.vis.FisheyeDistortion",
+    "value": 3444
+  },
+  {
+    "name": "flare.vis.ColorEncoder",
+    "value": 3179
+  },
+  {
+    "name": "flare.vis.Encoder",
+    "value": 4060
+  },
+  {
+    "name": "flare.vis.PropertyEncoder",
+    "value": 4138
+  },
+  {
+    "name": "flare.vis.ShapeEncoder",
+    "value": 1690
+  },
+  {
+    "name": "flare.vis.SizeEncoder",
+    "value": 1830
+  },
+  {
+    "name": "flare.vis.FisheyeTreeFilter",
+    "value": 5219
+  },
+  {
+    "name": "flare.vis.GraphDistanceFilter",
+    "value": 3165
+  },
+  {
+    "name": "flare.vis.VisibilityFilter",
+    "value": 3509
+  },
+  {
+    "name": "flare.vis.IOperator",
+    "value": 1286
+  },
+  {
+    "name": "flare.vis.Labeler",
+    "value": 9956
+  },
+  {
+    "name": "flare.vis.RadialLabeler",
+    "value": 3899
+  },
+  {
+    "name": "flare.vis.StackedAreaLabeler",
+    "value": 3202
+  },
+  {
+    "name": "flare.vis.AxisLayout",
+    "value": 6725
+  },
+  {
+    "name": "flare.vis.BundledEdgeRouter",
+    "value": 3727
+  },
+  {
+    "name": "flare.vis.CircleLayout",
+    "value": 9317
+  },
+  {
+    "name": "flare.vis.CirclePackingLayout",
+    "value": 12003
+  },
+  {
+    "name": "flare.vis.DendrogramLayout",
+    "value": 4853
+  },
+  {
+    "name": "flare.vis.ForceDirectedLayout",
+    "value": 8411
+  },
+  {
+    "name": "flare.vis.IcicleTreeLayout",
+    "value": 4864
+  },
+  {
+    "name": "flare.vis.IndentedTreeLayout",
+    "value": 3174
+  },
+  {
+    "name": "flare.vis.Layout",
+    "value": 7881
+  },
+  {
+    "name": "flare.vis.NodeLinkTreeLayout",
+    "value": 12870
+  },
+  {
+    "name": "flare.vis.PieLayout",
+    "value": 2728
+  },
+  {
+    "name": "flare.vis.RadialTreeLayout",
+    "value": 12348
+  },
+  {
+    "name": "flare.vis.RandomLayout",
+    "value": 870
+  },
+  {
+    "name": "flare.vis.StackedAreaLayout",
+    "value": 9121
+  },
+  {
+    "name": "flare.vis.TreeMapLayout",
+    "value": 9191
+  },
+  {
+    "name": "flare.vis.Operator",
+    "value": 2490
+  },
+  {
+    "name": "flare.vis.OperatorList",
+    "value": 5248
+  },
+  {
+    "name": "flare.vis.OperatorSequence",
+    "value": 4190
+  },
+  {
+    "name": "flare.vis.OperatorSwitch",
+    "value": 2581
+  },
+  {
+    "name": "flare.vis.SortOperator",
+    "value": 2023
+  },
+  {
+    "name": "flare.vis.Visualization",
+    "value": 16540
+  }
+]

@@ -80,6 +80,7 @@ th+th {
   border-left: 1px dotted #333333;
 }
 
+
 .A4 {
   background-color: #FFF;
   border: 1px solid #11111111;
@@ -174,6 +175,16 @@ th+th {
   width: 1.5em;
 }
 
+.close-button {
+  background-color: #000C;
+  color: #FFF;
+  top: 0.6em;
+  padding: 0 0.4em;
+  position: absolute;
+  right: 0.6em;
+  z-index: 999;
+}
+
 .colspan4 {
   padding-left: 10em;
 }
@@ -183,10 +194,15 @@ th+th {
   font-size: 1.5em;
 }
 
+.first-flex-container-item {
+  height: calc(99vh - 400px);
+}
+
 .flex-container-2 {
-  align-items: center;
+  align-content: stretch;
+  align-items: stretch;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.3em;
   height: calc(100% - 0.3em);
   justify-content: center;
@@ -314,6 +330,11 @@ th+th {
   text-align: right;
 }
 
+.summary-cell {
+  font-size: 1.3em;
+  padding: 0.6em 0em 0.6em 0.6em;
+}
+
 .table-container {
   overflow-y: auto;
   position: relative;
@@ -369,9 +390,55 @@ th+th {
 
 #map * {
   border-width: 0;
-  padding: 0;
+  max-height: 900px;
 }
 
+#mondayTasksByDayTableContainer td {
+  font-family: monospace;
+  font-size: 0.82rem;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.6em;
+  height: 0.6em;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.3em;
+  background: #666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+::-webkit-scrollbar-corner {
+  opacity: 0;
+}
+
+
+@media (min-height:901px) and (min-width:600) and (max-width:1199) {
+  .flex-container-2 {
+    flex-direction: column;
+  }
+
+  .first-flex-container-item {
+    height: 30vh;
+  }
+}
+
+@media (max-height:900px) and (max-width:599),
+(max-height:900px) and (min-width:1200) {
+  .flex-container-2 {
+    flex-direction: row;
+  }
+
+  .first-flex-container-item {
+    height: calc(100% - 320px - 4em);
+  }
+}
 
 @media print {
   * {

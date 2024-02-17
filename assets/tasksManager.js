@@ -26,6 +26,72 @@ const columnRenames = {
   "subitems": "subitems",
   "text": "comments"
 };
+function createTreeMap(dataCategoriesAndValues, width, height, customColors) {
+  const treeMap = {
+    "name": "tasks",
+    "children": dataCategoriesAndValues
+  };
+  // @ts-ignore
+  const root = d3.treemap().tile(d3.treemapSquarify)
+    .size([width, height])
+    .padding(1)
+    .round(true)
+    // @ts-ignore
+    (d3.hierarchy(treeMap)
+      .sum(d => d.value)
+      .sort((a, b) => b.value - a.value));
+
+  // @ts-ignore Create the SVG container.
+  const svg = d3.create("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("width", width)
+    .attr("height", height)
+    .attr("style", "font: bold 14px sans-serif; height: auto; max-width: 100%;");
+
+  // Add a cell for each leaf of the hierarchy.
+  const leaf = svg.selectAll("g")
+    .data(root.leaves())
+    .join("g")
+    .attr("transform", d => `translate(${d.x0},${d.y0})`);
+
+  // @ts-ignore Append a tooltip.
+  const format = d3.format(",d");
+  leaf.append("title")
+    .text(d => `${d.ancestors().reverse().map(d => d.data.name).join(".")}\n${format(d.value)}`);
+
+  // Append a color rectangle.
+  leaf.append("rect")
+    .attr("id", (d, dIdx) => d.leafUid = `leaf${dIdx}`)
+    .attr("fill", d => {
+      while (d.depth > 1) d = d.parent;
+      return customColors[parseInt(d.data.name.substring(0, 1), 10)];
+    })
+    .attr("fill-opacity", 0.6)
+    .attr("width", d => d.x1 - d.x0)
+    .attr("height", d => d.y1 - d.y0 + 10);
+
+  // Append a clipPath to ensure text does not overflow.
+  leaf.append("clipPath")
+    .attr("id", (d, dIdx) => d.clipUid = `clip${dIdx}`)
+    .append("use")
+    .attr("xlink:href", d => d.leafUid.href);
+
+  // Append multiline text. The last line shows the value and has a specific formatting.
+  leaf.append("text")
+    .attr("clip-path", d => d.clipUid)
+    .selectAll("tspan")
+    .data(d => d.data.name.split(/(?=[A-Z][a-z])|\s+/g).concat(format(d.value)))
+    .join("tspan")
+    .attr("x", 3)
+    // @ts-ignore
+    // @ts-ignore
+    .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
+    // @ts-ignore
+    .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
+    .text(d => d);
+  const treeMapSvgObj = Object.assign(svg.node());
+  return treeMapSvgObj;
+}
 //#endregion
 // @ts-ignore
 class tasksManager extends React.Component {
@@ -89,6 +155,7 @@ class tasksManager extends React.Component {
     );
   };
   aggrTasksByCategory = (sortedMondayItemsJson) => {
+    //#region Prepare data and setState
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
@@ -98,7 +165,7 @@ class tasksManager extends React.Component {
         return accumulator
       }, {}
     );
-    const treeMapChildren = Object.keys(mondayTasksByCatDict).map(
+    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {
         const duration = +(mondayTasksByCatDict[k].toFixed(1));
         return {
@@ -107,7 +174,7 @@ class tasksManager extends React.Component {
         }
       }
     );
-    const mondayTasksDurationSum = treeMapChildren.map(t => t.value).filter(dur => dur > 0).reduce(
+    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
     ).toFixed(1);
     // @ts-ignore
@@ -115,11 +182,7 @@ class tasksManager extends React.Component {
       mondayTasksDurationSum: mondayTasksDurationSum
     });
     const [width, height] = [350, 350];
-    const treeMap = {
-      "name": "tasks",
-      "children": treeMapChildren
-    }
-    const color = [
+    const customColors = [
       "#e15759",
       "#59a14f", // 🏠
       "#9c755f", // 💰
@@ -131,67 +194,76 @@ class tasksManager extends React.Component {
       "#76b7b2", // 🌐
       "#bab0ab", // ➕
       ""
-    ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10);
-    // @ts-ignore
-    const root = d3.treemap().tile(d3.treemapSquarify)
-      .size([width, height])
-      .padding(1)
-      .round(true)
-      // @ts-ignore
-      (d3.hierarchy(treeMap)
-        .sum(d => d.value)
-        .sort((a, b) => b.value - a.value));
+    ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
+    const color = d3.scaleOrdinal(customColors); // for bubbleChart
+    const bubbleChart = dataCategoriesAndValues.map(nv => {
+      return {
+        "id": `tc.${nv.name}`,
+        "value": nv.value
+      }
+    });
+    //#endregion
+    //#region Plot Bubble Chart
+    const margin = 1; // to avoid clipping the root circle stroke
+    const name = d => d.id.split(".").pop(); // "Strings" of "flare.util.Strings"
+    const group = d => d.id.split(".")[1]; // "util" of "flare.util.Strings"
+    const names = d => name(d).split(/(?=[A-Z][a-z])|\s+/g); // ["Legend", "Item"] of "flare.vis.legend.LegendItems"
 
-    // @ts-ignore Create the SVG container.
+    // Number format for values
+    const format = d3.format(",d");
+
+    // Create layout
+    const pack = d3.pack()
+      .size([width - margin * 2, height - margin * 2])
+      .padding(3);
+
+    // Compute the hierarchy from the (flat) bubbleChart data
+    const root = pack(d3.hierarchy({ children: bubbleChart })
+      .sum(d => d.value));
+
     const svg = d3.create("svg")
-      .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
       .attr("height", height)
-      .attr("style", "font: bold 14px sans-serif; height: auto; max-width: 100%;");
+      .attr("viewBox", [-margin, -margin, width, height])
+      .attr("style", "max-width: 100%; height: auto; font: 1.4em sans-serif;")
+      .attr("text-anchor", "middle");
 
-    // Add a cell for each leaf of the hierarchy.
-    const leaf = svg.selectAll("g")
+    // Place each (leaf) node according to the layout's x and y values
+    const node = svg.append("g")
+      .selectAll()
       .data(root.leaves())
       .join("g")
-      .attr("transform", d => `translate(${d.x0},${d.y0})`);
+      .attr("transform", d => `translate(${d.x},${d.y})`);
 
-    // @ts-ignore Append a tooltip.
-    const format = d3.format(",d");
-    leaf.append("title")
-      .text(d => `${d.ancestors().reverse().map(d => d.data.name).join(".")}\n${format(d.value)}`);
+    node.append("title")
+      .text(d => `${d.data.id}\n${format(d.value)}`);
 
-    // Append a color rectangle.
-    leaf.append("rect")
-      .attr("id", (d, dIdx) => d.leafUid = `leaf${dIdx}`)
-      .attr("fill", d => {
-        while (d.depth > 1) d = d.parent;
-        return color[parseInt(d.data.name.substring(0, 1), 10)];
-      })
-      .attr("fill-opacity", 0.6)
-      .attr("width", d => d.x1 - d.x0)
-      .attr("height", d => d.y1 - d.y0 + 10);
+    node.append("circle")
+      .attr("fill-opacity", 0.7)
+      .attr("fill", d => customColors[group(d.data)])
+      .attr("r", d => d.r);
 
-    // Append a clipPath to ensure text does not overflow.
-    leaf.append("clipPath")
-      .attr("id", (d, dIdx) => d.clipUid = `clip${dIdx}`)
-      .append("use")
-      .attr("xlink:href", d => d.leafUid.href);
+    // Add the labels
+    const text = node.append("text")
+      .attr("clip-path", d => `circle(${d.r})`);
 
-    // Append multiline text. The last line shows the value and has a specific formatting.
-    leaf.append("text")
-      .attr("clip-path", d => d.clipUid)
-      .selectAll("tspan")
-      .data(d => d.data.name.split(/(?=[A-Z][a-z])|\s+/g).concat(format(d.value)))
+    // Add a tspan for each CamelCase-separated word.
+    text.selectAll()
+      .data(d => names(d.data))
       .join("tspan")
-      .attr("x", 3)
-      // @ts-ignore
-      // @ts-ignore
-      .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
-      // @ts-ignore
-      .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
+      .attr("x", 0)
+      .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.35}em`)
       .text(d => d);
-    const treeMapSvgObj = Object.assign(svg.node());
-    return treeMapSvgObj;
+
+    // Add a tspan for the node's value.
+    text.append("tspan")
+      .attr("x", 0)
+      .attr("y", d => `${names(d.data).length / 2 + 0.35}em`)
+      .attr("fill-opacity", 0.7)
+      .text(d => format(d.value));
+
+    return Object.assign(svg.node(), { scales: { color } });
+    //#endregion
   };
   aggrTasksByDay = (sortedMondayItemsJson) => {
     const [

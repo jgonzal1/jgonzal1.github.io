@@ -5,7 +5,37 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="../libs/d3.v5.js"></script>
-  <script src="private/credentials.js"></script>
+  <!--<script src="private/credentials.js"></script>-->
+  <script>
+    function hideMap() {
+      console.log("Hiding map");
+      document.getElementById("map").style.display = "none";
+    }
+    function assignHrefVarName(href, varName) {
+      const varTmp = href.substring(href.search(`${varName}=`) === -1 ? 0 : (href.search(`${varName}=`) + varName.length + 1));
+      const varNameResult = varTmp === href ? href : varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length : varTmp.search("&"));
+      // console.log(`${varName}=${varNameResult}`);
+      return varNameResult;
+    }
+    function handleCredentials() {
+      if ("cesium_api_key" in window && "idealista_api_key" in window && "idealista_api_secret" in window && "monday_key" in window) {
+        console.log("Credentials loaded via private folder");
+        return;
+      }
+      const url = window.location.href;
+      const href = url.substring(url.indexOf("#") + 1);
+      window.cesium_api_key = assignHrefVarName(href, "cesium_api_key");
+      window.idealista_api_key = assignHrefVarName(href, "idealista_api_key");
+      window.idealista_api_secret = assignHrefVarName(href, "idealista_api_secret");
+      window.monday_key = assignHrefVarName(href, "monday_key");
+      if ((!"cesium_api_key" in window) || !("idealista_api_key" in window) || !("idealista_api_secret" in window) || !("monday_key" in window)) {
+        console.error("Some credentials were missing via href");
+        return;
+      }
+      console.log("Credentials loaded via href");
+    }
+    handleCredentials();
+  </script>
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.103/Build/Cesium/Cesium.js"></script>
   <link href="../style/style.css" rel="stylesheet">
   <link href="../style/cesium-widgets-1.103.css" rel="stylesheet">
@@ -22,12 +52,6 @@
       font-size: 0.88em;
     }
   </style>
-  <script>
-    function hideMap() {
-      console.log("Hiding map");
-      document.getElementById("map").style.display = "none";
-    }
-  </script>
 </head>
 
 <body class="top-flex-container-2 flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 1.2em)">

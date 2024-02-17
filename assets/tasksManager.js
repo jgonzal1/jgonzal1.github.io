@@ -199,7 +199,7 @@ class tasksManager extends React.Component {
     const bubbleChart = dataCategoriesAndValues.map(nv => {
       return {
         "id": `tc.${nv.name}`,
-        "value": nv.value
+        "value": 1 + nv.value
       }
     });
     //#endregion
@@ -467,10 +467,10 @@ class tasksManager extends React.Component {
       this.getDatedMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
     }
     if (this.state.mondayTasksByCategory.length) {
-      const treeMapPlaceholder = document.querySelector("#treeMap");
-      if (!treeMapPlaceholder) { return; }
-      treeMapPlaceholder.innerHTML = "";
-      treeMapPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
+      const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
+      if (!tasksByCategoryPlaceholder) { return; }
+      tasksByCategoryPlaceholder.innerHTML = "";
+      tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
     }
     //#endregion
     // @ts-ignore
@@ -730,9 +730,9 @@ class tasksManager extends React.Component {
         React.createElement(
           "div",
           {
-            id: "treeMap",
+            id: "tasksByCategory",
             style: {
-              backgroundColor: "#FFF3",
+              // backgroundColor: "#FFF3", only like this for treeMap
               height: "305px",
               margin: "0.1em",
               overflow: "hidden",

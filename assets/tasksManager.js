@@ -84,7 +84,6 @@ function createTreeMap(dataCategoriesAndValues, width, height, customColors) {
     .join("tspan")
     .attr("x", 3)
     // @ts-ignore
-    // @ts-ignore
     .attr("y", (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`)
     // @ts-ignore
     .attr("fill-opacity", (d, i, nodes) => i === nodes.length - 1 ? 0.7 : null)
@@ -195,6 +194,7 @@ class tasksManager extends React.Component {
       "#bab0ab", // ➕
       ""
     ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
+    // @ts-ignore
     const color = d3.scaleOrdinal(customColors); // for bubbleChart
     const bubbleChart = dataCategoriesAndValues.map(nv => {
       return {
@@ -209,18 +209,19 @@ class tasksManager extends React.Component {
     const group = d => d.id.split(".")[1]; // "util" of "flare.util.Strings"
     const names = d => name(d).split(/(?=[A-Z][a-z])|\s+/g); // ["Legend", "Item"] of "flare.vis.legend.LegendItems"
 
-    // Number format for values
-    const format = d3.format(",d");
+    //@ts-ignore [Number format for values](https://observablehq.com/@d3/d3-format?collection=@d3/d3-format)
+    const format = d3.format(".1f");
 
-    // Create layout
+    // @ts-ignore Create layout
     const pack = d3.pack()
       .size([width - margin * 2, height - margin * 2])
       .padding(3);
 
-    // Compute the hierarchy from the (flat) bubbleChart data
+    // @ts-ignore Compute the hierarchy from the (flat) bubbleChart data
     const root = pack(d3.hierarchy({ children: bubbleChart })
       .sum(d => d.value));
 
+    // @ts-ignore
     const svg = d3.create("svg")
       .attr("width", width)
       .attr("height", height)
@@ -252,6 +253,7 @@ class tasksManager extends React.Component {
       .data(d => names(d.data))
       .join("tspan")
       .attr("x", 0)
+      // @ts-ignore
       .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.35}em`)
       .text(d => d);
 
@@ -320,9 +322,7 @@ class tasksManager extends React.Component {
           `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;
         const hDiff = Math.round(((
           // @ts-ignore
-          new Date(k) -
-          // @ts-ignore
-          new Date((new Date().toISOString().substring(0, 10)))
+          new Date(k) - new Date((new Date().toISOString().substring(0, 10)))
         ) + 3.6e6) / 3.6e5) / 10
         return {
           "date": k,

@@ -16,7 +16,15 @@ const linedInGeoCodes = [
 ];
 
 /*
-https://www.linkedin.com/jobs/search/?f_PP=104236363%2C104691271%2C104750956%2C104989726%2C106633403%2C108025228%2C111746588
+https://www.linkedin.com/jobs/search/
+?f_PP=104236363%2C (Lausanne)
+104691271%2C (Bern general)
+104750956%2C (Montreux)
+104989726%2C (Fribourg)
+106633403%2C (Geneva)
+108025228%2C (Lausanne all)
+111746588 (Geneve)
 &f_E=4 (experience mid-senior)
 &f_WT=3%2 (work type hybrid and remote)
+[→](https://www.linkedin.com/jobs/search/?f_PP=104236363%2C104691271%2C104750956%2C104989726%2C106633403%2C108025228%2C111746588&f_E=4&f_WT=2)
 */

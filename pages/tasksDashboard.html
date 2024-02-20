@@ -14,7 +14,9 @@
     function assignHrefVarName(href, varName) {
       const varTmp = href.substring(href.search(`${varName}=`) === -1 ? 0 : (href.search(`${varName}=`) + varName.length + 1));
       const varNameResult = varTmp === href ? href : varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length : varTmp.search("&"));
-      // console.log(`${varName}=${varNameResult}`);
+      if (!varNameResult.length) {
+        console.error(`At least ${varName} was missing via href`);
+      }
       return varNameResult;
     }
     function handleCredentials() {
@@ -23,11 +25,11 @@
       ];
       const loaded_credentials = credentials_list.map(credential => {
         if (!credential in window) {
-          console.error(`At least ${credential} was missing via href`);
+          console.error(`At least ${credential} was missing via private folder`);
           return false;
         }
         return true;
-      })
+      });
       if (!loaded_credentials.filter(credential => !credential).length) {
         console.log("Credentials loaded via private folder");
         return;
@@ -35,7 +37,7 @@
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
       credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
-      console.log("Credentials loaded via href");
+      console.log("Credentials done loading via href");
     }
     handleCredentials();
   </script>

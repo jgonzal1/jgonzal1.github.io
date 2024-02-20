@@ -18,20 +18,23 @@
       return varNameResult;
     }
     function handleCredentials() {
-      if ("cesium_api_key" in window && "idealista_api_key" in window && "idealista_api_secret" in window && "monday_key" in window) {
+      const credentials_list = [
+        "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
+      ];
+      const loaded_credentials = credentials_list.map(credential => {
+        if (!credential in window) {
+          console.error(`At least ${credential} was missing via href`);
+          return false;
+        }
+        return true;
+      })
+      if (!loaded_credentials.filter(credential => !credential).length) {
         console.log("Credentials loaded via private folder");
         return;
       }
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
-      window.cesium_api_key = assignHrefVarName(href, "cesium_api_key");
-      window.idealista_api_key = assignHrefVarName(href, "idealista_api_key");
-      window.idealista_api_secret = assignHrefVarName(href, "idealista_api_secret");
-      window.monday_key = assignHrefVarName(href, "monday_key");
-      if ((!"cesium_api_key" in window) || !("idealista_api_key" in window) || !("idealista_api_secret" in window) || !("monday_key" in window)) {
-        console.error("Some credentials were missing via href");
-        return;
-      }
+      credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
       console.log("Credentials loaded via href");
     }
     handleCredentials();

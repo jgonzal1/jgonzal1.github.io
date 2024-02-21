@@ -64,16 +64,21 @@ async function getMondayPropertiesThenInitMap(mondayKey, boardId, cesiumApiKey) 
       });
     }
   );
-  initCesiumMap(cesiumApiKey, mondayItems);
+  setTimeout(() => initCesiumMap(cesiumApiKey, mondayItems), 3000);
 }
 function initCesiumMap(cesiumApiKey, propertiesList) {
   // @ts-ignore Your access token can be found at: https://ion.cesium.com/tokens.
   Cesium.Ion.defaultAccessToken = cesiumApiKey;
-  // @ts-ignore Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
-  const viewer = new Cesium.Viewer('map', {
-    // @ts-ignore
-    terrainProvider: Cesium.createWorldTerrain()
-  });
+  let viewer;
+  try {
+    // @ts-ignore Initialize the Cesium Viewer in the HTML element with the `arg[1]` ID.
+    viewer = new Cesium.Viewer('map', {
+      // @ts-ignore
+      terrainProvider: Cesium.createWorldTerrain()
+    });
+  } catch (e) {
+    console.error(e);
+  }
   // @ts-ignore Add Cesium OSM buildingTileset, a global 3D buildings layer. Can be assigned to constant
   viewer.scene.primitives.add(Cesium.createOsmBuildings());
   propertiesList.map(p => {

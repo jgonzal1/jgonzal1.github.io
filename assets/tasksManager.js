@@ -637,7 +637,7 @@ class tasksManager extends React.Component {
                       }
                     ),
                     // @ts-ignore
-                    taskRow[taskKey]
+                    (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
                   ) : // @ts-ignore
                     taskRow[taskKey]
                 )

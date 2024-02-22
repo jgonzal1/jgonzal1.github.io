@@ -736,7 +736,8 @@ class tasksManager extends React.Component {
               height: "305px",
               margin: "0.1em",
               overflow: "hidden",
-              width: "min(50%, 305px)"
+              textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
+              width: "min(50%, 305px)",
             }
           },
           ""

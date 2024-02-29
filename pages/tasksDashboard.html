@@ -4,7 +4,7 @@
   <title>Tasks Manager Dashboard</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="../libs/d3.v5.js"></script>
+  <script src="../libs/d3.v7.js"></script>
   <script src="private/credentials.js"></script>
   <script>
     function hideMap() {
@@ -65,13 +65,14 @@
 
 <body class="top-flex-container-2 flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 1.2em)">
   <div id="taskManager" style="width:min(99vw, 840px)"></div>
-  <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
+  <div id="tasksByCategoryAndDay" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative"></div>
+  <script src="../assets/tasksManager.js"></script>
+  <!--<div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
     <button class="close-button" onClick='hideMap()'>
-      &times; <!-- 👁 -->
+      &times; <span style="display:none">👁</span>
     </button>
   </div>
-  <script src="../assets/tasksManager.js"></script>
-  <script src="../assets/cesiumInit.js"></script>
+  <script src="../assets/cesiumInit.js"></script>-->
 </body>
 
 </html>

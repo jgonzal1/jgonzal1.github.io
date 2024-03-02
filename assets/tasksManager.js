@@ -391,6 +391,14 @@ class tasksManager extends React.Component {
       .call(d3.axisBottom(x))
       .selectAll("text")
       .style("text-anchor", "end")
+      .attr("fill", (d) => {
+        const hDiff = Math.round(((
+          // @ts-ignore
+          new Date(d) - new Date((new Date().toISOString().substring(0, 10)))
+        ) + 3.6e6) / 3.6e5) / 10
+        const color = this.setBgBasedOnHDiff(hDiff).substring(0, 7);
+        return color;
+      })
       .attr("dx", "-.8em")
       .attr("dy", ".15em")
       .attr("transform", "rotate(-65)");
@@ -403,14 +411,14 @@ class tasksManager extends React.Component {
       // .tickFormat(x => (x / 1e9).toFixed(0)))
       .call(g => g.select(".domain").remove())
       .call(g => g.select(".tick:last-of-type text").clone()
-        .attr("x", 3)
+        .attr("x", 5)
         .attr("text-anchor", "start")
         .attr("font-weight", "bold")
         .text("minutes"));
 
     colorsMatrix.map((colorPair, idx) => {
-      svg.append("circle").attr("cx", 200).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
-      svg.append("text").attr("x", 210).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
+      svg.append("circle").attr("cx", 500).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
+      svg.append("text").attr("x", 510).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
 
@@ -581,22 +589,22 @@ class tasksManager extends React.Component {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
-  setBgBasedOnHDiff = (taskRow) => {
+  setBgBasedOnHDiff = (hDiffStr) => {
     const hToNextDay = new Date().getHours();
     const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
-    const hDiff = parseFloat(taskRow["h_diff"]);
+    const hDiff = parseFloat(hDiffStr);
     const bgRanges = [
-      { "bgRange": -9e3, "bgColor": "#C66D" }, // passed
-      { "bgRange": 0, "bgColor": "#C669" }, // now
-      { "bgRange": 24 - hToNextDay, "bgColor": "#C667" }, // today
-      { "bgRange": 48 - hToNextDay, "bgColor": "#C665" }, // tomorrow
-      { "bgRange": 72 - hToNextDay, "bgColor": "#C865" }, // in 2d
-      { "bgRange": 96 - hToNextDay, "bgColor": "#C965" }, // in 3d
-      { "bgRange": Math.max(96 - hToNextDay, hToNextWeek), "bgColor": "#CA65" }, // this week
-      { "bgRange": 168 + hToNextWeek, "bgColor": "#CC63" }, // next week
-      { "bgRange": 720 - hToNextDay, "bgColor": "#CE62" }, // this month
-      { "bgRange": 8760, "bgColor": "#9F62" }, // this year
-      { "bgRange": 9e9, "bgColor": "#BBFF6606" }
+      { "bgRange": -9e3, /*                                   */ "bgColor": "#CC6666DD" }, // passed
+      { "bgRange": 0, /*                                      */ "bgColor": "#CC666699" }, // now
+      { "bgRange": 24 - hToNextDay, /*                        */ "bgColor": "#CC766677" }, // today
+      { "bgRange": 48 - hToNextDay, /*                        */ "bgColor": "#CC866655" }, // tomorrow
+      { "bgRange": 72 - hToNextDay, /*                        */ "bgColor": "#CC986655" }, // in_2d
+      { "bgRange": 96 - hToNextDay, /*                        */ "bgColor": "#CCA96655" }, // in_3d
+      { "bgRange": Math.max(96 - hToNextDay, hToNextWeek), /* */ "bgColor": "#CCB06655" }, // this_week
+      { "bgRange": 168 + hToNextWeek, /*                      */ "bgColor": "#CCCC6633" }, // next_week
+      { "bgRange": 720 - hToNextDay, /*                       */ "bgColor": "#CCEE6622" }, // this_month
+      { "bgRange": 8760, /*                                   */ "bgColor": "#99FF6622" }, // this_year
+      { "bgRange": 9e9, /*                                    */ "bgColor": "#BBFF6606" } // next_year
     ];
     let bgColor = "#0000";
     bgRanges.filter(
@@ -738,7 +746,7 @@ class tasksManager extends React.Component {
                 {
                   key: `TaskRow${idxRow}`,
                   style: {
-                    backgroundColor: this.setBgBasedOnHDiff(taskRow)
+                    backgroundColor: this.setBgBasedOnHDiff(taskRow["h_diff"])
                   }
                 },
                 [
@@ -865,7 +873,7 @@ class tasksManager extends React.Component {
                   "tr",
                   {
                     key: `TaskRow${idxRow}ByDay`,
-                    style: { backgroundColor: this.setBgBasedOnHDiff(taskRow) }
+                    style: { backgroundColor: this.setBgBasedOnHDiff(taskRow["h_diff"]) }
                   },
                   // @ts-ignore
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(

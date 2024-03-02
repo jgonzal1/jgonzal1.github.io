@@ -311,7 +311,7 @@ class tasksManager extends React.Component {
     );
     /*console.log(tasksDurationByDayCategory);*/
 
-    const colors = new Map([
+    const colorsMatrix = [
       ["1.🏠", "#59a14f"],
       ["2.💰", "#9c755f"],
       ["3.🍏", "#edc949"],
@@ -321,7 +321,8 @@ class tasksManager extends React.Component {
       ["7.🎮", "#4e79a7"],
       ["8.🌐", "#76b7b2"],
       ["9.➕", "#bab0ab"]
-    ]);/*console.log(colors);*/
+    ];
+    const colors = new Map(colorsMatrix);/*console.log(colors);*/
 
     const series = d3.stack()
       .keys(colors.keys())
@@ -334,15 +335,14 @@ class tasksManager extends React.Component {
         s.forEach(d =>
           d.data = d.data.get(s.key)
         ), s
-      )).map(k => k.filter(l => !!l.data))
-    console.log(series);
+      ))//.map(k => k.filter(l => !!l.data))
 
     const width = 600;
-    const height = 1000;
-    const marginTop = 100;
-    const marginRight = 100;
-    const marginBottom = 100;
-    const marginLeft = 100;
+    const height = 800;
+    const marginTop = 10;
+    const marginRight = 10;
+    const marginBottom = 80;
+    const marginLeft = 30;
 
     const x = d3.scaleBand()
       .domain(tasksDurationByDayCategory.map(d => d.x))
@@ -407,6 +407,12 @@ class tasksManager extends React.Component {
         .attr("text-anchor", "start")
         .attr("font-weight", "bold")
         .text("minutes"));
+
+    colorsMatrix.map((colorPair, idx) => {
+      svg.append("circle").attr("cx", 200).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
+      svg.append("text").attr("x", 210).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
+        .attr("alignment-baseline", "middle").attr("fill", "#FFF")
+    })
 
     return Object.assign(svg.node(), { scales: { color } });
   }

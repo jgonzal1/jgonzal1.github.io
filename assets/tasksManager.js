@@ -270,7 +270,9 @@ class tasksManager extends React.Component {
   };
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     const startYear = 2024;
+    // @ts-ignore
     const msPerDay = (24 * 3600 * 1000);
+    // @ts-ignore
     const daysSince1970UntilStartYear = (startYear - 1970) * 365.25;
     const tasksDurationByDayCategoryPk = sortedMondayItemsJson.map(t => {
       return {
@@ -322,13 +324,17 @@ class tasksManager extends React.Component {
       ["8.🌐", "#76b7b2"],
       ["9.➕", "#bab0ab"]
     ];
+    // @ts-ignore
     const colors = new Map(colorsMatrix);/*console.log(colors);*/
 
+    // @ts-ignore
     const series = d3.stack()
       .keys(colors.keys())
       .value((group, key) => group.get(key)?.value ?? 0)
+      // @ts-ignore
       .order(d3.stackOrderReverse)
       (
+        // @ts-ignore
         d3.rollup(tasksDurationByDayCategory,
           ([d]) => d, d => d.x, d => d.name).values()
       ).map(s => (
@@ -344,19 +350,24 @@ class tasksManager extends React.Component {
     const marginBottom = 80;
     const marginLeft = 30;
 
+    // @ts-ignore
     const x = d3.scaleBand()
       .domain(tasksDurationByDayCategory.map(d => d.x))
       .rangeRound([marginLeft, width - marginRight]);
 
+    // @ts-ignore
     const y = d3.scaleLinear()
+      // @ts-ignore
       .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
       .range([height - marginBottom, marginTop]);
 
+    // @ts-ignore
     const color = d3.scaleOrdinal()
       .domain(colors.keys())
       .range(colors.values());
 
     // Create the SVG container.
+    // @ts-ignore
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
@@ -388,6 +399,7 @@ class tasksManager extends React.Component {
     // Create X axis
     svg.append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
+      // @ts-ignore
       .call(d3.axisBottom(x))
       .selectAll("text")
       .style("text-anchor", "end")
@@ -396,7 +408,7 @@ class tasksManager extends React.Component {
           // @ts-ignore
           new Date(d) - new Date((new Date().toISOString().substring(0, 10)))
         ) + 3.6e6) / 3.6e5) / 10
-        const color = this.setBgBasedOnHDiff(hDiff).substring(0, 7);
+        const color = `${this.setBgBasedOnHDiff(hDiff).substring(0, 7)}CC`;
         return color;
       })
       .attr("dx", "-.8em")
@@ -407,6 +419,7 @@ class tasksManager extends React.Component {
 
     svg.append("g")
       .attr("transform", `translate(${marginLeft},0)`)
+      // @ts-ignore
       .call(d3.axisLeft(y))
       // .tickFormat(x => (x / 1e9).toFixed(0)))
       .call(g => g.select(".domain").remove())

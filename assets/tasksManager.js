@@ -1,5 +1,6 @@
 "use strict";
 //#region Variables
+const categoryAggrDaysRange = 30;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -430,8 +431,7 @@ class tasksManager extends React.Component {
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     // @ts-ignore
     const msPerDay = (24 * 3600 * 1000);
-    // @ts-ignore
-    const dateOn60d = new Date(new Date().getTime() + (60 * msPerDay))
+    const categoryAggrDaysRangeEnd = new Date(new Date().getTime() + (categoryAggrDaysRange * msPerDay))
     const renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
       return {
         "x": //Math.floor(
@@ -469,7 +469,7 @@ class tasksManager extends React.Component {
         "name": name,
         "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
       };
-    }).filter(k => (new Date(k["x"]) <= new Date(dateOn60d)));
+    }).filter(k => (new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)));
 
     // @ts-ignore Determine the series that need to be stacked.
     const series = d3.stack().offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut)

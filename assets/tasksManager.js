@@ -477,7 +477,6 @@ class tasksManager extends React.Component {
       .keys(d3.union(tasksDurationByDayCategory.map(d => d.name))) // distinct series keys, in input order
       .value(([, D], key) => D.get(key).value) //@ts-ignore get value for each series key and stack
       (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name)); // group by stack then series key
-    console.log(series);
 
     const customColors = [
       //"#e15759",

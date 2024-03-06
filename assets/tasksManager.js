@@ -93,10 +93,6 @@ function createTreeMap(dataCategoriesAndValues, width, height, customColors) {
 }
 function createBubbleChart(sortedMondayItemsJson) {
   const startYear = 2024;
-  // @ts-ignore
-  const msPerDay = (24 * 3600 * 1000);
-  // @ts-ignore
-  const daysSince1970UntilStartYear = (startYear - 1970) * 365.25;
   const tasksDurationByDayCategoryPk = sortedMondayItemsJson.map(t => {
     return {
       "x": //Math.floor(
@@ -195,11 +191,6 @@ function createBubbleChart(sortedMondayItemsJson) {
     .attr("width", width)
     .attr("height", height)
     .attr("style", "max-width: 100%; height: auto;");
-
-  // Create the bars.
-  // const formatRevenue = x => (+(x / 1e9).toFixed(2) >= 1)
-  //   ? `${(x / 1e9).toFixed(2)}B`
-  //   : `${(x / 1e6).toFixed(0)}M`;
 
   svg.append("g")
     .selectAll("g")
@@ -437,11 +428,9 @@ class tasksManager extends React.Component {
     //#endregion
   };
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
-    const startYear = 2024;
     // @ts-ignore
     const msPerDay = (24 * 3600 * 1000);
     // @ts-ignore
-    const daysSince1970UntilStartYear = (startYear - 1970) * 365.25;
     const dateOn60d = new Date(new Date().getTime() + (60 * msPerDay))
     const renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
       return {
@@ -568,6 +557,23 @@ class tasksManager extends React.Component {
       .attr("d", area)
       .append("title")
       .text(d => d.key);
+
+    // Legend
+    [
+      ["1.🏠", "#59a14f"],
+      ["2.💰", "#9c755f"],
+      ["3.🍏", "#edc949"],
+      ["4.🚩🇩🇰", "#f28e2c"],
+      ["5.🔬", "#ff9da7"],
+      ["6.📺", "#af7aa1"],
+      ["7.🎮", "#4e79a7"],
+      ["8.🌐", "#76b7b2"],
+      ["9.➕", "#bab0ab"]
+    ].map((colorPair, idx) => {
+      svg.append("circle").attr("cx", 470).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
+      svg.append("text").attr("x", 480).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
+        .attr("alignment-baseline", "middle").attr("fill", "#FFF")
+    })
 
     // Return the chart with the color scale as a property (for the legend).
     return Object.assign(svg.node(), { scales: { color } });

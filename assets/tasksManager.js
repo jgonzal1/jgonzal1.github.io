@@ -777,7 +777,8 @@ class tasksManager extends React.Component {
         const totV = ["Sat", "Sun"].includes(wd) ? 20 : 12;
         const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
         const unUsedTime = Math.max(totV - usedTime, 0);
-        const setDurStrAsV = (k >= nextVI && k <= nextVF);
+        const nextViD = nextVI.substring(0, 10)
+        const setDurStrAsV = (k >= nextViD && k <= nextVF);
         const durStr = setDurStrAsV ?
           "v".repeat(totV) :
           `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;

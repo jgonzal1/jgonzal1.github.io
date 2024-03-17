@@ -1,6 +1,6 @@
 "use strict";
 //#region Variables
-const categoryAggrDaysRange = 30;
+const categoryAggrDaysRange = 70;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -509,7 +509,7 @@ class tasksManager extends React.Component {
     const bubbleChart = dataCategoriesAndValues.map(nv => {
       return {
         "id": `tc.${nv.name}`,
-        "value": 1 + nv.value
+        "value": nv.value + 2
       }
     });
     //#endregion
@@ -572,7 +572,7 @@ class tasksManager extends React.Component {
       .attr("x", 0)
       .attr("y", d => `${names(d.data).length / 2 + 0.35}em`)
       .attr("fill-opacity", 0.7)
-      .text(d => format(d.value));
+      .text(d => format(d.value - 2));
 
     return Object.assign(svg.node(), { scales: { color } });
     //#endregion

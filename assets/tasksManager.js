@@ -783,12 +783,12 @@ class tasksManager extends React.Component {
           nextViD = nextVI.substring(0, 10);
         }
         const setDurStrAsV = (k >= nextViD && k <= nextVF);
-        const durStr = setDurStrAsV ?
-          "v".repeat(totV) :
-          `${"|".repeat(usedTime)}${".".repeat(unUsedTime)}`;
+        const durStr = `${"|".repeat(usedTime)}${setDurStrAsV ?
+          "v".repeat(unUsedTime) :
+          ".".repeat(unUsedTime)}`;
         const hDiff = Math.round(((
           // @ts-ignore
-          new Date(k) - new Date((new Date().toISOString().substring(0, 10)))
+          new Date(k) - new Date(new Date().toISOString().substring(0, 10))
         ) + 3.6e6) / 3.6e5) / 10
         return {
           "date": k,

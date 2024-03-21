@@ -1,5 +1,6 @@
 "use strict";
 //#region Variables
+const nextViAsV = false;
 const categoryAggrDaysRange = 70;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
@@ -777,7 +778,10 @@ class tasksManager extends React.Component {
         const totV = ["Sat", "Sun"].includes(wd) ? 20 : 12;
         const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
         const unUsedTime = Math.max(totV - usedTime, 0);
-        const nextViD = nextVI.substring(0, 10)
+        let nextViD = nextVI;
+        if (nextViAsV) {
+          nextViD = nextVI.substring(0, 10);
+        }
         const setDurStrAsV = (k >= nextViD && k <= nextVF);
         const durStr = setDurStrAsV ?
           "v".repeat(totV) :

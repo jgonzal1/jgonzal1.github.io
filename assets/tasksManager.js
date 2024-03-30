@@ -1,7 +1,7 @@
 "use strict";
 //#region Variables
 const nextViAsV = false;
-const categoryAggrDaysRange = 70;
+const categoryAggrDaysRange = 28;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -142,7 +142,7 @@ function createBubbleChart(sortedMondayItemsJson) {
     ["6.📺", "#af7aa1"],
     ["7.🎮", "#4e79a7"],
     ["8.🌐", "#76b7b2"],
-    ["9.➕", "#bab0ab"]
+    ["9.➕", "#bab0ab66"]
   ];
   // @ts-ignore
   const colors = new Map(colorsMatrix);
@@ -312,7 +312,7 @@ function streamGraph(sortedMondayItemsJson) {
     "#af7aa1", // 📺
     "#4e79a7", // 🎮
     "#76b7b2", // 🌐
-    "#bab0ab", // ➕
+    "#bab0ab66", // ➕
     ""
   ];
   //@ts-ignore
@@ -391,7 +391,7 @@ function streamGraph(sortedMondayItemsJson) {
     ["6.📺", "#af7aa1"],
     ["7.🎮", "#4e79a7"],
     ["8.🌐", "#76b7b2"],
-    ["9.➕", "#bab0ab"]
+    ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
     svg.append("circle").attr("cx", 470).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
     svg.append("text").attr("x", 480).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
@@ -502,7 +502,7 @@ class tasksManager extends React.Component {
       "#af7aa1", // 📺
       "#4e79a7", // 🎮
       "#76b7b2", // 🌐
-      "#bab0ab", // ➕
+      "#bab0ab66", // ➕
       ""
     ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
     // @ts-ignore
@@ -581,7 +581,9 @@ class tasksManager extends React.Component {
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     // @ts-ignore
     const msPerDay = (24 * 3600 * 1000);
-    const categoryAggrDaysRangeEnd = new Date(new Date().getTime() + (categoryAggrDaysRange * msPerDay))
+    const daysRangeStart = new Date().getTime();
+    const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
+    const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
     const renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
       return {
         "x": //Math.floor(
@@ -620,6 +622,27 @@ class tasksManager extends React.Component {
         "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
       };
     }).filter(k => (new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)));
+    let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
+      (accumulator, item) => {
+        if (!accumulator[item["x"]]) {
+          accumulator[item["x"]] = 0;
+        }
+        accumulator[item["x"]] += item["value"]
+        return accumulator
+      }, {}
+    );
+    Object.keys(remainingTasksDurationsByDay).map(d => {
+      const wd = weekday[new Date(d).getDay()];
+      const maxForDay = ["Sat", "Sun"].includes(wd) ? 300 : 180;
+      tasksDurationByDayCategory.filter(
+        tddcf => (tddcf["x"] === d && tddcf["name"] === "9.➕")
+      ).map(tddc => {
+        tddc["value"] += Math.max(
+          0, maxForDay - remainingTasksDurationsByDay[d]
+        );
+        return tddc;
+      });
+    });
 
     // @ts-ignore Determine the series that need to be stacked.
     const series = d3.stack()
@@ -638,7 +661,7 @@ class tasksManager extends React.Component {
       "#af7aa1", // 📺
       "#4e79a7", // 🎮
       "#76b7b2", // 🌐
-      "#bab0ab", // ➕
+      "#bab0ab66", // ➕
       ""
     ];
     //@ts-ignore
@@ -719,7 +742,7 @@ class tasksManager extends React.Component {
       ["6.📺", "#af7aa1"],
       ["7.🎮", "#4e79a7"],
       ["8.🌐", "#76b7b2"],
-      ["9.➕", "#bab0ab"]
+      ["9.➕", "#bab0ab66"]
     ].map((colorPair, idx) => {
       svg.append("circle").attr("cx", 470).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
       svg.append("text").attr("x", 480).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")

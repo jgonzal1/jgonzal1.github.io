@@ -631,24 +631,39 @@ class tasksManager extends React.Component {
         return accumulator
       }, {}
     );
-    Object.keys(remainingTasksDurationsByDay).map(d => {
+    Array.from({ length: categoryAggrDaysRange }, (_, i) => {
+      const d = daysRangeStart + (i * msPerDay);
       const wd = weekday[new Date(d).getDay()];
       const maxForDay = ["Sat", "Sun"].includes(wd) ? 300 : 180;
+      const date = new Date(d).toISOString().substring(0, 10);
+      let matched = false;
       tasksDurationByDayCategory.filter(
-        tddcf => (tddcf["x"] === d && tddcf["name"] === "9.➕")
+        tddcf => (tddcf["x"] === date && tddcf["name"] === "9.➕")
       ).map(tddc => {
+        matched = true;
+        const remaining = maxForDay - (remainingTasksDurationsByDay[date] ?? 0);
         tddc["value"] += Math.max(
-          0, maxForDay - remainingTasksDurationsByDay[d]
+          0, remaining
         );
         return tddc;
       });
+      if (!matched) {
+        tasksDurationByDayCategory.push({
+          "x": date,
+          "name": "9.➕",
+          "value": maxForDay
+        })
+      }
     });
+    tasksDurationByDayCategory.sort((a, b) => {
+      return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
+    })
 
     // @ts-ignore Determine the series that need to be stacked.
     const series = d3.stack()
       //@ts-ignore .offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) For StreamGraph
       .keys(d3.union(tasksDurationByDayCategory.map(d => d.name))) // distinct series keys, in input order
-      .value(([, D], key) => D.get(key).value) //@ts-ignore get value for each series key and stack
+      .value(([, D], key) => D.get(key)?.value ?? 0) //@ts-ignore get value for each series key and stack
       (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name)); // group by stack then series key
 
     const customColors = [

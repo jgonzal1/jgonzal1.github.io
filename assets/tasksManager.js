@@ -1,7 +1,7 @@
 "use strict";
 //#region Variables
 const nextViAsV = false;
-const categoryAggrDaysRange = 28;
+const categoryAggrDaysRange = 13;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -635,12 +635,12 @@ class tasksManager extends React.Component {
       const wd = weekday[new Date(d).getDay()];
       const maxForDay = ["Sat", "Sun"].includes(wd) ? 300 : 180;
       tasksDurationByDayCategory.filter(
-        tddcf => (tddcf["x"] === d && tddcf["name"] === "9.➕")
-      ).map(tddc => {
-        tddc["value"] += Math.max(
+        filteredRow => (filteredRow["x"] === d && filteredRow["name"] === "9.➕")
+      ).map(row => {
+        row["value"] += Math.max(
           0, maxForDay - remainingTasksDurationsByDay[d]
         );
-        return tddc;
+        return row;
       });
     });
 

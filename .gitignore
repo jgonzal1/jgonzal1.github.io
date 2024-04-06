@@ -1,8 +1,9 @@
+*.tsv
+*.xcf
 **/.DS_Store
-desktop.ini
 d3.v*.js
+desktop.ini
 games/
 jquery*.js
 private/
 test_*.*
-*.xcf

@@ -1112,6 +1112,7 @@ class tasksManager extends React.Component {
                     "div",
                     {
                       style: {
+                        width: "16em",
                         height: "100%",
                         overflowY: "auto"
                       }

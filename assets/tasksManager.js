@@ -134,15 +134,15 @@ function createBubbleChart(sortedMondayItemsJson) {
   );
 
   const colorsMatrix = [
-    ["1.🏠", "#59a14f"],
-    ["2.💰", "#9c755f"],
-    ["3.🍏", "#edc949"],
+    ["1.🏠",   "#59a14f"],
+    ["2.💰",   "#9c755f"],
+    ["3.🍏",   "#edc949"],
     ["4.🚩🇩🇰", "#f28e2c"],
-    ["5.🔬", "#ff9da7"],
-    ["6.📺", "#af7aa1"],
-    ["7.🎮", "#4e79a7"],
-    ["8.🌐", "#76b7b2"],
-    ["9.➕", "#bab0ab66"]
+    ["5.🔬",   "#ff9da7"],
+    ["6.📺",   "#af7aa1"],
+    ["7.🎮",   "#4e79a7"],
+    ["8.🌐",   "#76b7b2"],
+    ["9.➕",   "#bab0ab66"]
   ];
   // @ts-ignore
   const colors = new Map(colorsMatrix);

@@ -2,7 +2,7 @@
 *.xcf
 **/.DS_Store
 d3.v*.js
-data/*.csv
+data/**/*.csv
 desktop.ini
 games/
 jquery*.js

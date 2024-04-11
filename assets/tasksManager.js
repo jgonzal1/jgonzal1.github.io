@@ -7,6 +7,7 @@ const msPerD = msPerH * 24;
 const boardId = "3478645467";
 const mondayApiUrl = "https://api.monday.com/v2";
 let headers = {
+  'Access-Control-Allow-Origin': "*",
   'Content-Type': 'application/json',
   'Referer': '',
   'sec-ch-ua-mobile': '?0',
@@ -134,15 +135,15 @@ function createBubbleChart(sortedMondayItemsJson) {
   );
 
   const colorsMatrix = [
-    ["1.🏠",   "#59a14f"],
-    ["2.💰",   "#9c755f"],
-    ["3.🍏",   "#edc949"],
-    ["4.🚩🇩🇰", "#f28e2c"],
-    ["5.🔬",   "#ff9da7"],
-    ["6.📺",   "#af7aa1"],
-    ["7.🎮",   "#4e79a7"],
-    ["8.🌐",   "#76b7b2"],
-    ["9.➕",   "#bab0ab66"]
+    ["1.🏠", /*  */ "#59a14f"],
+    ["2.💰", /*  */ "#9c755f"],
+    ["3.🍏", /*  */ "#edc949"],
+    ["4.🚩🇩🇰", /**/ "#f28e2c"],
+    ["5.🔬", /*  */ "#ff9da7"],
+    ["6.📺", /*  */ "#af7aa1"],
+    ["7.🎮", /*  */ "#4e79a7"],
+    ["8.🌐", /*  */ "#76b7b2"],
+    ["9.➕", /*  */ "#bab0ab66"]
   ];
   // @ts-ignore
   const colors = new Map(colorsMatrix);
@@ -638,14 +639,12 @@ class tasksManager extends React.Component {
       const date = new Date(d).toISOString().substring(0, 10);
       let matched = false;
       tasksDurationByDayCategory.filter(
-        tddcf => (tddcf["x"] === date && tddcf["name"] === "9.➕")
-      ).map(tddc => {
+        taskToFilter => (taskToFilter["x"] === date && taskToFilter["name"] === "9.➕")
+      ).map(filteredTask => {
         matched = true;
         const remaining = maxForDay - (remainingTasksDurationsByDay[date] ?? 0);
-        tddc["value"] += Math.max(
-          0, remaining
-        );
-        return tddc;
+        filteredTask["value"] += Math.max(0, remaining);
+        return filteredTask;
       });
       if (!matched) {
         tasksDurationByDayCategory.push({

@@ -81,7 +81,20 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
-      (21-11 – Nowadays)<br>Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant.<br><br>
+      (21-11 – Nowadays / Part-time)<br>
+      Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant.<br><br>
+
+      24-03 - Nowadays<br>
+      Project: ETL SYS102 for VURDST<br>
+      Role: Data engineer at UFST<br>
+      Responsible for data pipeline development on AWS to gather all the data sources required for<br>
+      a Business Intelligence solution for the properties tax agency in Denmark.<br>
+
+      24-01 - 24-02<br>
+      Project: Jira Ultimate Customizer<br>
+      Role: Full-stack Developer<br>
+      Responsible for Jira's Ultimate Customizer and Issue Lock help desk resolutions.<br>
+      <br>
 
       23-09 - 23-12<br>
       Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible.<br>
@@ -168,7 +181,7 @@ function getEnglishContents() {
     <td class="w70">
       (19-11 - 21-11)<br>
       Full-stack developer, consultant, and Power BI technician.<br><br>
-      
+
       21-05 - 21-10<br>
       <span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road trackings, and user management, all accesible within a React.JS webpage. <span class="cloud">Docker, Python</span>, JavaScript, SQL, <span class="arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.<br><br>
 
@@ -195,7 +208,7 @@ function getEnglishContents() {
 
       Technologies used:<br>
       Pentaho CDE, PostgreSQL, CC charts, JavaScript, SQL, Leaflet.JS maps, Raphaël.JS, Sankey and network diagrams.<br><br>
-      
+
       20-10 - 20-12<br>
       <span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.<br><br>
 
@@ -285,7 +298,7 @@ function getEnglishContents() {
       <span class="arch bi">Data mining technician</span> and machine learning.<br>
       Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.<br><br>
       Tasks:<br>
-      Create a Python artificial intelligence able to process laser vehicle profiles.<br>  
+      Create a Python artificial intelligence able to process laser vehicle profiles.<br>
       Train the model with thousands of vehicles.<br>
       Enhance profiling detection of the vehicles.<br><br>
 
@@ -376,9 +389,9 @@ function getEnglishContents() {
     <td colspan="2">20-06<br><span class='webdev'>Javascript</span><br><br>
 
     20-06<br>Git<br><br>
-    
+
     20-06<br>Excel<br><br>
-    
+
     20-06<br><span class="cloud">Python</span>
     </td>
   </tr>
@@ -440,27 +453,27 @@ function getEnglishContents() {
   const legend = `<tr>
     <td rowspan="6">Legend</td>
     <td></td><td colspan="7" style="background-color:#A54242">
-      big_data_engineer
+      Big data engineer
     </td>
   </tr><tr>
     <td></td><td colspan="7" style="background-color:#CC6666">
-      software_developer
+      Full stack software developer
     </td>
   </tr><tr>
     <td></td><td colspan="7" style="background-color:#DE935F">
-      ai_data_scientist
+      AI data scientist
     </td>
   </tr><tr>
     <td></td><td colspan="7" style="background-color:#F0C674">
-      data_analyst_power_bi
+      Data analyst Power BI
     </td>
   </tr><tr>
     <td></td><td colspan="7" style="background-color:#B5BD68">
-      web_developer
+      Web developer
     </td>
   </tr><tr>
     <td></td><td colspan="7" style="background-color:#81A2BE">
-      technical_consultant
+      Technical consultant
     </td>
   </tr>`;
   return [cvHeader, cvBody, legend];

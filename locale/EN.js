@@ -89,6 +89,7 @@ function getEnglishContents() {
       Role: Data engineer at UFST<br>
       Responsible for data pipeline development on AWS to gather all the data sources required for<br>
       a Business Intelligence solution for the properties tax agency in Denmark.<br>
+      <br>
 
       24-01 - 24-02<br>
       Project: Jira Ultimate Customizer<br>

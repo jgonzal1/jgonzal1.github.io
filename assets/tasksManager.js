@@ -220,11 +220,11 @@ function createBubbleChart(sortedMondayItemsJson) {
     .selectAll("text")
     .style("text-anchor", "end")
     .attr("fill", (d) => {
-      const hDiff = Math.round(((
+      const dDiff = Math.round(((
         // @ts-ignore
         new Date(d) - new Date((new Date().toISOString().substring(0, 10)))
-      ) + 3.6e6) / 3.6e5) / 10
-      const color = `${this.setBgBasedOnHDiff(hDiff).substring(0, 7)}CC`;
+      ) + 3.6e6) / 3.6e5) / 240
+      const color = `${this.setBgBasedOnDDiff(dDiff).substring(0, 7)}CC`;
       return color;
     })
     .attr("dx", "-.8em")
@@ -432,8 +432,8 @@ class tasksManager extends React.Component {
       if (!item["datetime"]) {
         item["datetime"] = aYearFromNow
       };
-      item["h_diff"] = +(
-        (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH
+      item["d_diff"] = +(
+        (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
       ).toFixed(2);
       item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
       item["date"] = item["datetime"].substring(0, 10);
@@ -449,7 +449,7 @@ class tasksManager extends React.Component {
           "datetime": t["datetime"],
           "wd": weekday[new Date(t["date"]).getDay()],
           "dur": t["dur"],
-          "h_diff": t["h_diff"],
+          "d_diff": t["d_diff"],
           "actions": t["notes"],
           "task_id": t["task_id"],
           "gr": t["group"]
@@ -823,16 +823,16 @@ class tasksManager extends React.Component {
         const durStr = `${"|".repeat(usedTime)}${setDurStrAsV ?
           "v".repeat(unUsedTime) :
           ".".repeat(unUsedTime)}`;
-        const hDiff = Math.round(((
+        const dDiff = (((
           // @ts-ignore
           new Date(k) - new Date(new Date().toISOString().substring(0, 10))
-        ) + 3.6e6) / 3.6e5) / 10
+        ) + 3.6e6) / 3.6e5 / 240).toFixed(2);
         return {
           "date": k,
           "wd": wd,
           "dur_offs": durOffs,
           "dur_str": durStr,
-          "h_diff": hDiff
+          "d_diff": dDiff
         }
       }
     );
@@ -935,26 +935,26 @@ class tasksManager extends React.Component {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
-  setBgBasedOnHDiff = (hDiffStr) => {
+  setBgBasedOnDDiff = (dDiffStr) => {
     const hToNextDay = new Date().getHours();
     const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
-    const hDiff = parseFloat(hDiffStr);
+    const dDiff = parseFloat(dDiffStr);
     const bgRanges = [
-      { "bgRange": -9e3, /*                                   */ "bgColor": "#CC6666DD" }, // passed
-      { "bgRange": 0, /*                                      */ "bgColor": "#CC666699" }, // now
-      { "bgRange": 24 - hToNextDay, /*                        */ "bgColor": "#CC766677" }, // today
-      { "bgRange": 48 - hToNextDay, /*                        */ "bgColor": "#CC866655" }, // tomorrow
-      { "bgRange": 72 - hToNextDay, /*                        */ "bgColor": "#CC986655" }, // in_2d
-      { "bgRange": 96 - hToNextDay, /*                        */ "bgColor": "#CCA96655" }, // in_3d
-      { "bgRange": Math.max(96 - hToNextDay, hToNextWeek), /* */ "bgColor": "#CCB06655" }, // this_week
-      { "bgRange": 168 + hToNextWeek, /*                      */ "bgColor": "#CCCC6633" }, // next_week
-      { "bgRange": 720 - hToNextDay, /*                       */ "bgColor": "#CCEE6622" }, // this_month
-      { "bgRange": 8760, /*                                   */ "bgColor": "#99FF6622" }, // this_year
-      { "bgRange": 9e9, /*                                    */ "bgColor": "#BBFF6606" } // next_year
+      { "bgRange": -9e3, /*                                          */ "bgColor": "#CC6666DD" }, // passed
+      { "bgRange": 0, /*                                             */ "bgColor": "#CC666699" }, // now
+      { "bgRange": (24 - hToNextDay) / 24, /*                        */ "bgColor": "#CC766677" }, // today
+      { "bgRange": (48 - hToNextDay) / 24, /*                        */ "bgColor": "#CC866655" }, // tomorrow
+      { "bgRange": (72 - hToNextDay) / 24, /*                        */ "bgColor": "#CC986655" }, // in_2d
+      { "bgRange": (96 - hToNextDay) / 24, /*                        */ "bgColor": "#CCA96655" }, // in_3d
+      { "bgRange": (Math.max(96 - hToNextDay, hToNextWeek)) / 24, /* */ "bgColor": "#CCB06655" }, // this_week
+      { "bgRange": (168 + hToNextWeek) / 24, /*                      */ "bgColor": "#CCCC6633" }, // next_week
+      { "bgRange": (720 - hToNextDay) / 24, /*                       */ "bgColor": "#CCEE6622" }, // this_month
+      { "bgRange": 365, /*                                           */ "bgColor": "#99FF6622" }, // this_year
+      { "bgRange": 3e4, /*                                           */ "bgColor": "#BBFF6606" } // next_year
     ];
     let bgColor = "#0000";
     bgRanges.filter(
-      (bgPair, idx) => hDiff > bgPair.bgRange && hDiff <= bgRanges[idx + 1].bgRange
+      (bgPair, idx) => dDiff > bgPair.bgRange && dDiff <= bgRanges[idx + 1].bgRange
     ).map(bgPair => {
       bgColor = bgPair.bgColor;
     });
@@ -1092,7 +1092,7 @@ class tasksManager extends React.Component {
                 {
                   key: `TaskRow${idxRow}`,
                   style: {
-                    backgroundColor: this.setBgBasedOnHDiff(taskRow["h_diff"])
+                    backgroundColor: this.setBgBasedOnDDiff(taskRow["d_diff"])
                   }
                 },
                 [
@@ -1220,7 +1220,7 @@ class tasksManager extends React.Component {
                   "tr",
                   {
                     key: `TaskRow${idxRow}ByDay`,
-                    style: { backgroundColor: this.setBgBasedOnHDiff(taskRow["h_diff"]) }
+                    style: { backgroundColor: this.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
                   // @ts-ignore
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(

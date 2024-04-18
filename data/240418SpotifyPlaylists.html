@@ -2,6 +2,10 @@
 <title>Spotify Playlists</title>
 <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon">
 <style>
+  table {
+    width: 100%;
+  }
+
   th,
   td {
     border: 1px solid #333;
@@ -10,11 +14,7 @@
     padding: 0.3em;
   }
 
-  .others-playlist
-
-  /*,
-  .my-playlist*/
-    {
+  .others-playlist {
     display: none;
   }
 
@@ -5749,12 +5749,12 @@
       Array.from(tr.children).map(td => {
         // td.style.display = "inline"
         td.style.fontWeight = "bold";
-        td.style.color = "#600";
-        td.style.backgroundColor = "#C66";
+        td.style.color = "#300C";
+        td.style.backgroundColor = "#C666";
       })
     })
   }
-  restrictResults(30, 50);
+  restrictResults(40, 50);
 </script>
 
 </html>

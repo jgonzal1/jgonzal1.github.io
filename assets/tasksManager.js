@@ -1,5 +1,7 @@
 "use strict";
 //#region Variables
+const quartersOfHourWeekdays = 14; //3.5h
+const quartersOfHourWeekends = 20; //5.0h
 const nextViAsV = false;
 const categoryAggrDaysRange = 28;
 const msPerH = 3600000;
@@ -353,7 +355,7 @@ function streamGraph(sortedMondayItemsJson) {
   svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
     //@ts-ignore
-    .call(d3.axisLeft(y).ticks(height / 80).tickFormat((d) => Math.abs(d).toLocaleString("en-US")))
+    .call(d3.axisLeft(y).ticks(height / 80).tickFormat((d) => Math.abs(d).toLocaleString("es-ES")))
     .call(g => g.select(".domain").remove())
     .call(g => g.selectAll(".tick line").clone()
       .attr("x2", width - marginLeft - marginRight)
@@ -635,7 +637,7 @@ class tasksManager extends React.Component {
     Array.from({ length: categoryAggrDaysRange }, (_, i) => {
       const d = daysRangeStart + (i * msPerDay);
       const wd = weekday[new Date(d).getDay()];
-      const maxForDay = ["Sat", "Sun"].includes(wd) ? 300 : 180;
+      const maxForDay = ["Sat", "Sun"].includes(wd) ? (quartersOfHourWeekends * 15) : (quartersOfHourWeekdays * 15);
       const date = new Date(d).toISOString().substring(0, 10);
       let matched = false;
       tasksDurationByDayCategory.filter(
@@ -812,7 +814,7 @@ class tasksManager extends React.Component {
         ));
         const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
         const durOffs = isOddDayDiff ? duration + 2 : duration;
-        const totV = ["Sat", "Sun"].includes(wd) ? 20 : 12;
+        const totV = ["Sat", "Sun"].includes(wd) ? quartersOfHourWeekends : quartersOfHourWeekdays;
         const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
         const unUsedTime = Math.max(totV - usedTime, 0);
         let nextViD = nextVI;

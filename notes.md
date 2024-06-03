@@ -4,7 +4,7 @@
 
 - [Notes](#notes)
   - [Gmail parsing](#gmail-parsing)
-  - [Pending](#pending)
+  - [Music analytics](#music-analytics)
 
 <!-- /TOC -->
 
@@ -17,7 +17,7 @@ const mails = Array.from(
 );res[0]
 ```
 
-## Pending
+## Music analytics
 
 \d+,datathon,(.+)\n\d+,electro yolo,\1
 at data/duplicated_tracks_per_playlist_prog_dt_ey.csv

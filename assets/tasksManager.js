@@ -658,7 +658,9 @@ class tasksManager extends React.Component {
     });
     tasksDurationByDayCategory.sort((a, b) => {
       return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
-    })
+    });
+    const popUpDiv = document.getElementById("popUpDiv") ?? document.createElement("div");
+
 
     // @ts-ignore Determine the series that need to be stacked.
     const series = d3.stack()
@@ -696,7 +698,6 @@ class tasksManager extends React.Component {
     const x = d3.scaleUtc() // @ts-ignore
       .domain(d3.extent(tasksDurationByDayCategory, d => new Date(d.x)))
       .range([marginLeft, width - marginRight]);
-
     //@ts-ignore
     const y = d3.scaleLinear() // @ts-ignore
       .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]) // d3.extent(series.flat(2)) for StreamGraph
@@ -715,7 +716,7 @@ class tasksManager extends React.Component {
       .attr("height", height)
       .attr("style", "max-width: 100%; height: auto;");
 
-    // Add the y-axis, remove the domain line, add grid lines and a label.
+    // Add the y-axis, remove the domain line, add grid lines and y-label.
     svg.append("g")
       .attr("transform", `translate(${marginLeft},0)`)
       //@ts-ignore
@@ -738,13 +739,19 @@ class tasksManager extends React.Component {
       .call(d3.axisBottom(x).tickSizeOuter(0)) // ↓ optional
       .call(g => g.select(".domain").remove());
 
-    // Append a path for each series.
+    // Append the filling path to graph each serie
     svg.append("g")
       .selectAll()
       .data(series)
       .join("path")
       .attr("fill", d => color(d.key))
       .attr("d", area)
+      .on("mouseover", (d) => {
+        popUpDiv.innerHTML = d.target.textContent;
+        popUpDiv.style.left = (d.x) + "px";
+        popUpDiv.style.top = (d.y - 30) + "px";
+        popUpDiv.style.backgroundColor = color(d.target.textContent);
+      })
       .append("title")
       .text(d => d.key);
 

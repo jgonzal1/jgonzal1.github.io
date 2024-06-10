@@ -10,20 +10,40 @@
 // ==/UserScript==
 
 function tryFoldSidebar() {
+  const body = document.getElementsByTagName("body");
   const parents = document.getElementsByClassName("awsui_drawer_1uo6m_117ru_109");
   const children = document.getElementsByClassName(
     "awsui_drawer-content_1uo6m_117ru_129 "
     + "awsui_drawer-content-clickable_1uo6m_117ru_141 "
     + "awsui_navigation_1fj9k_1uvk8_9"
   );
+  [
+    1, 5, 6, 8, 13, 14, 15, 17, 20, 23, 24, 26, 31, 32, 38
+  ].map(el => {
+    document.getElementsByClassName(
+      "awsui-select-dropdown-option "
+      + "awsui-select-dropdown-option-selectable "
+      + "glue__expandable-button-dropdown-option"
+      // @ts-ignore
+    )[el].style.backgroundColor = "#454"
+  });
+  [
+    3, 4, 7, 16, 19, 25, 27, 29, 34, 35, 37, 39
+  ].map(el => {
+    document.getElementsByClassName(
+      "awsui-select-dropdown-option "
+      + "awsui-select-dropdown-option-selectable "
+      + "glue__expandable-button-dropdown-option"
+      // @ts-ignore
+    )[el].style.backgroundColor = "#544"
+  });
   if (Array.from(parents).length & Array.from(children).length) {
+    body[0].style.fontSize = "0.8rem";
     // @ts-ignore
     parents[0].style.width = "150px";
     // @ts-ignore
     children[0].style.width = "150px";
     return true;
-  } else {
-    console.log(parents, children);
   }
   return false;
 }

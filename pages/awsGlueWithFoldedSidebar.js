@@ -18,7 +18,7 @@ function tryFoldSidebar() {
     + "awsui_navigation_1fj9k_1uvk8_9"
   );
   [
-    1, 5, 6, 8, 13, 14, 15, 17, 20, 23, 24, 26, 31, 32, 38
+    1, 5, 6, 8, 13, 14, 15, 17, 20, 23, 24, 26, 31, 32, 36, 38
   ].map(el => {
     document.getElementsByClassName(
       "awsui-select-dropdown-option "

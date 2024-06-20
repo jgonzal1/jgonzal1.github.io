@@ -756,6 +756,7 @@ class tasksManager extends React.Component {
       .text(d => d.key);
 
     // Legend
+    svg.append("rect").attr("x", 455).attr("y", 5).attr("width", 85).attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#666C");
     [
       ["1.🏠", "#59a14f"],
       ["2.💰", "#9c755f"],

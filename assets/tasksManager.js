@@ -756,7 +756,7 @@ class tasksManager extends React.Component {
       .text(d => d.key);
 
     // Legend
-    svg.append("rect").attr("x", 455).attr("y", 5).attr("width", 85).attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#666C");
+    svg.append("rect").attr("x", 455).attr("y", 485).attr("width", 85).attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#666C");
     [
       ["1.🏠", "#59a14f"],
       ["2.💰", "#9c755f"],
@@ -768,8 +768,8 @@ class tasksManager extends React.Component {
       ["8.🌐", "#76b7b2"],
       ["9.➕", "#bab0ab66"]
     ].map((colorPair, idx) => {
-      svg.append("circle").attr("cx", 470).attr("cy", 20 * idx + 20).attr("r", 6).style("fill", colorPair[1])
-      svg.append("text").attr("x", 480).attr("y", 20 * idx + 20).text(colorPair[0]).style("font-size", "15px")
+      svg.append("circle").attr("cx", 470).attr("cy", 20 * idx + 500).attr("r", 6).style("fill", colorPair[1])
+      svg.append("text").attr("x", 480).attr("y", 20 * idx + 500).text(colorPair[0]).style("font-size", "15px")
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
 

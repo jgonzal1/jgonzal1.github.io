@@ -15,11 +15,13 @@ function getEnglishContents() {
         <legend>📲 (please inform before calling)</legend>
         <span>(+34) 664383902</span>
       </fieldset>
-      <fieldset>
+      <fieldset style="font-family:monospace">
         <legend>🗣</legend>
-        English<br>
-        Spanish (nationality)<br>
-        More TBD
+        <span style="color:#FF0">★★★★★</span> EN<br>
+        <span style="color:#FF0">★★★★★</span> ES<br>
+        <span style="color:#FF0">★★</span>☆☆☆ DE<br>
+        <span style="color:#FF0">★★</span>☆☆☆ FR<br>
+        <span style="color:#FF0">★★</span>☆☆☆ DA<br>
       </fieldset>
     </td>
     <td>
@@ -31,7 +33,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Copenhagen, Denmark
+        Lucerne, Switzerland
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
@@ -41,7 +43,7 @@ function getEnglishContents() {
     <td class="centered">
       <fieldset>
         <legend>📸</legend>
-        <img src="public/javier.png" alt="Javier González">
+        <img src="public/javier.jpg" alt="Javier González">
       </fieldset>
     </td>
   </tr>

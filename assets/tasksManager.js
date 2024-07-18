@@ -411,7 +411,8 @@ class tasksManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayOffsetValue: 1,
+      minsOffsetValue: 60,
+      dayOffsetValue: 1 / 24,
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
@@ -1011,19 +1012,72 @@ class tasksManager extends React.Component {
       ),
       // @ts-ignore
       React.createElement(
+        "input",
+        {
+          id: "setMinsOffset",
+          value: this.state.minsOffsetValue,
+          // @ts-ignore
+          onChange: (e) => this.setState({
+            minsOffsetValue: e.target.value,
+            dayOffsetValue: e.target.value / 24 / 60
+          }),
+          style: {
+            backgroundColor: "#FFF6",
+            fontStyle: "italic",
+            fontWeight: "bold",
+            marginLeft: "0.3em",
+            paddingLeft: "0.3em",
+            width: "4em"
+          }
+        },
+        null
+      ),
+      // @ts-ignore
+      React.createElement(
         "span",
         {
           id: "lastRefreshDateTime",
           style: { paddingLeft: "0.3em" }
         },
-        `Last refresh: ${this.state.lastRefreshDateTime}`
+        `minute(s) offset |`
+      ),
+      // @ts-ignore
+      React.createElement(
+        "input",
+        {
+          id: "setDayOffset",
+          value: this.state.dayOffsetValue,
+          // @ts-ignore
+          onChange: (e) => this.setState({
+            minsOffsetValue: (e.target.value * 60 * 24).toExponential(5),
+            dayOffsetValue: e.target.value
+          }),
+          style: {
+            backgroundColor: "#FFF6",
+            fontStyle: "italic",
+            fontWeight: "bold",
+            marginLeft: "0.3em",
+            paddingLeft: "0.3em",
+            width: "4em"
+          }
+        },
+        null
+      ),
+      // @ts-ignore
+      React.createElement(
+        "span",
+        {
+          id: "lastRefreshDateTime",
+          style: { paddingLeft: "0.3em" }
+        },
+        `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
       ),
       // @ts-ignore
       React.createElement(
         "span",
         {
           id: "lastUpdatedItem",
-          style: { paddingLeft: "0.3em" }
+          style: { paddingLeft: "0.1em" }
         },
         this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
         }`
@@ -1033,30 +1087,13 @@ class tasksManager extends React.Component {
         "span",
         {
           id: "tasksDurationSum",
-          style: { paddingLeft: "0.3em" }
+          style: { paddingLeft: "0.1em" }
         },
         this.state.mondayTasksDurationSum && `| Total tasks dur: ${this.state.mondayTasksDurationSum
         }h/${(this.state.mondayTasksDurationSum / (quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2)).toFixed(1)
-        }w | Day(s) offset: `
+        }w`
       ),
-      // @ts-ignore
-      React.createElement(
-        "input",
-        {
-          id: "seyDayOffset",
-          value: this.state.dayOffsetValue,
-          // @ts-ignore
-          onChange: (e) => this.setState({ dayOffsetValue: e.target.value }),
-          style: {
-            backgroundColor: "#FFF6",
-            fontStyle: "italic",
-            fontWeight: "bold",
-            paddingLeft: "0.3em",
-            width: "3em"
-          }
-        },
-        null
-      ),
+
       // @ts-ignore
       React.createElement(
         "div",

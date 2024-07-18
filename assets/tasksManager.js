@@ -412,7 +412,7 @@ class tasksManager extends React.Component {
     super(props);
     this.state = {
       minsOffsetValue: 60,
-      dayOffsetValue: 1 / 24,
+      dayOffsetValue: Number(1 / 24),
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,

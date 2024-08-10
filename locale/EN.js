@@ -6,8 +6,8 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td>
-      <fieldset>
+    <td style="border-width:0">
+      <fieldset style="">
         <legend>🧔</legend>
         Javier González Berenguel
       </fieldset>
@@ -15,16 +15,17 @@ function getEnglishContents() {
         <legend>📲 (please inform before calling)</legend>
         <span>(+34) 664383902</span>
       </fieldset>
-      <fieldset style="font-family:monospace">
+      <fieldset style="font-family:monospace;">
         <legend>🗣</legend>
         <span style="color:#FF0">★★★★★</span> EN<br>
         <span style="color:#FF0">★★★★★</span> ES<br>
         <span style="color:#FF0">★★</span>☆☆☆ DE<br>
         <span style="color:#FF0">★★</span>☆☆☆ FR<br>
         <span style="color:#FF0">★★</span>☆☆☆ DA<br>
+        <span style="color:#FF0">★</span>☆☆☆☆ LT<br>
       </fieldset>
     </td>
-    <td>
+    <td style="border-width:0">
       <fieldset>
         <legend>📩</legend>
         <a href="mailto:javier.gonzalezberenguel@gmail.com" target="_blank">
@@ -40,8 +41,8 @@ function getEnglishContents() {
         Availability for international projects
       </fieldset>
     </td>
-    <td class="centered">
-      <fieldset>
+    <td class="centered" style="border-width:0">
+      <fieldset style="height:16em">
         <legend>📸</legend>
         <img src="public/javier.jpg" alt="Javier González">
       </fieldset>

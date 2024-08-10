@@ -448,7 +448,8 @@ function getSpanishContents() {
     <td colspan="2">Danés</td>
   </tr>
   `;
-  const legend = `
+  const legend = `<tr>
+    <td colspan="3"></td>
   <tr><td rowspan="6">Leyenda</td>
       <td></td><td colspan="7" style="background-color:#B5BD68">Desarrollador web</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#A54242">Ingeniero Big Data</td></tr>
@@ -457,5 +458,5 @@ function getSpanishContents() {
   <tr><td></td><td colspan="7" style="background-color:#DE935F">Científico de datos e Inteligencia Artificial</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#81A2BE">Consultor técnico</td></tr>
   `;
-  return [cvHeader,cvBody, legend];
+  return [cvHeader, cvBody, legend];
 }

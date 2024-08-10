@@ -33,7 +33,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Lucerne, Switzerland
+        Europe
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
@@ -454,6 +454,10 @@ function getEnglishContents() {
   </tr>
   `;
   const legend = `<tr>
+    <td colspan="9" style="font-size:0.75rem">
+    * Holidays 2w Xmas, Easter, 3w end of Jul/start of Aug
+    </td>
+  <tr></tr>
     <td rowspan="6">Legend</td>
     <td></td><td colspan="7" style="background-color:#A54242">
       Big data engineer

@@ -472,6 +472,7 @@ function getDanishContents() {
   </tr>
   `;
   const legend = `
+  <tr><td colspan="3"></td></tr>
   <tr><td rowspan="6">Legend</td>
       <td></td><td colspan="7" style="background-color:#B5BD68">web_developer</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#A54242">big_data_engineer</td></tr>
@@ -480,5 +481,5 @@ function getDanishContents() {
   <tr><td></td><td colspan="7" style="background-color:#DE935F">ai_data_scientist</td></tr>
   <tr><td></td><td colspan="7" style="background-color:#81A2BE">technical_consultant</td></tr>
   `;
-  return [cvHeader,cvBody,legend];
+  return [cvHeader, cvBody, legend];
 }

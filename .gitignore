@@ -1,3 +1,4 @@
+*.db
 *.tsv
 *.xcf
 **/.DS_Store

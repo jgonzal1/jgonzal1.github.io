@@ -1,0 +1,7 @@
+status in (
+  "Awaiting implementation", "Final review", "In Progress",
+  Open, "Peer review", Reopened, Review,
+  "Selected for development", "To Do",
+  "Waiting for support", "Work in progress"
+) AND assignee in (currentUser())
+ORDER BY priority DESC, status DESC, originalEstimate ASC

@@ -689,7 +689,7 @@ class tasksManager extends React.Component {
       .range(customColors);
 
     const width = 600;
-    const height = 460;
+    const height = 450;
     const marginTop = 10;
     const marginRight = 10;
     const marginBottom = 80;
@@ -775,9 +775,11 @@ class tasksManager extends React.Component {
       svg.append("text").attr("x", 510).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
-
+    const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
+    mondayTasksByCategoryAndDay.style.position = "absolute";
+    mondayTasksByCategoryAndDay.style.top = 380;
     // Return the chart with the color scale as a property (for the legend).
-    return Object.assign(svg.node(), { scales: { color } });
+    return mondayTasksByCategoryAndDay;
   }
   aggrTasksByDay = (sortedMondayItemsJson) => {
     const [

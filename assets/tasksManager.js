@@ -689,7 +689,7 @@ class tasksManager extends React.Component {
       .range(customColors);
 
     const width = 600;
-    const height = 800;
+    const height = 460;
     const marginTop = 10;
     const marginRight = 10;
     const marginBottom = 80;
@@ -757,7 +757,8 @@ class tasksManager extends React.Component {
       .text(d => d.key);
 
     // Legend
-    svg.append("rect").attr("x", 485).attr("y", 285).attr("width", 85).attr("height", 190)
+    const yOffset = 150;
+    svg.append("rect").attr("x", 485).attr("y", yOffset).attr("width", 85).attr("height", 190)
       .attr("rx", 10).attr("ry", 10).style("fill", "#666C");
     [
       ["1.🏠", "#59a14f"],
@@ -770,8 +771,8 @@ class tasksManager extends React.Component {
       ["8.🌐", "#76b7b2"],
       ["9.➕", "#bab0ab66"]
     ].map((colorPair, idx) => {
-      svg.append("circle").attr("cx", 500).attr("cy", 20 * idx + 300).attr("r", 6).style("fill", colorPair[1])
-      svg.append("text").attr("x", 510).attr("y", 20 * idx + 300).text(colorPair[0]).style("font-size", "15px")
+      svg.append("circle").attr("cx", 500).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])
+      svg.append("text").attr("x", 510).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
 
@@ -992,17 +993,17 @@ class tasksManager extends React.Component {
     if (this.state.mondayTasksByCategoryAndDay.length) { // Add Stacked Bar Chart
       const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");
       if (!tasksByCategoryAndDayPlaceholder) { return; }
-      tasksByCategoryAndDayPlaceholder.innerHTML = "";
+      // tasksByCategoryAndDayPlaceholder.innerHTML = "";
       tasksByCategoryAndDayPlaceholder.appendChild(this.state.mondayTasksByCategoryAndDay[0]);
     }
     //#endregion
-    // @ts-ignore
+    // @ts-ignore taskManagerWrapper
     return React.createElement(
       "div", {
       id: "taskManagerWrapper",
       style: { width: "calc(100% - 0.8em)" }
     },
-      // @ts-ignore
+      // @ts-ignore refreshTasksButton
       React.createElement(
         "button", {
         id: "refreshTasksButton",
@@ -1010,7 +1011,7 @@ class tasksManager extends React.Component {
           () => this.setState({ getDatedMondayItemsToJson: true })
       }, "Refresh tasks"
       ),
-      // @ts-ignore
+      // @ts-ignore setMinsOffset
       React.createElement(
         "input",
         {
@@ -1032,7 +1033,7 @@ class tasksManager extends React.Component {
         },
         null
       ),
-      // @ts-ignore
+      // @ts-ignore lastRefreshDateTime
       React.createElement(
         "span",
         {
@@ -1041,7 +1042,7 @@ class tasksManager extends React.Component {
         },
         `minute(s) offset |`
       ),
-      // @ts-ignore
+      // @ts-ignore setDayOffset
       React.createElement(
         "input",
         {
@@ -1063,7 +1064,7 @@ class tasksManager extends React.Component {
         },
         null
       ),
-      // @ts-ignore
+      // @ts-ignore lastRefreshDateTime
       React.createElement(
         "span",
         {
@@ -1072,7 +1073,7 @@ class tasksManager extends React.Component {
         },
         `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
       ),
-      // @ts-ignore
+      // @ts-ignore lastUpdatedItem
       React.createElement(
         "span",
         {
@@ -1082,7 +1083,7 @@ class tasksManager extends React.Component {
         this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
         }`
       ),
-      // @ts-ignore
+      // @ts-ignore tasksDurationSum
       React.createElement(
         "span",
         {
@@ -1094,7 +1095,7 @@ class tasksManager extends React.Component {
         }w`
       ),
 
-      // @ts-ignore
+      // @ts-ignore mondayTableContainer
       React.createElement(
         "div",
         {
@@ -1210,7 +1211,7 @@ class tasksManager extends React.Component {
             "Loading tasks summary table"
           )
       ),
-      // @ts-ignore
+      // @ts-ignore durs list & cat bubbles
       React.createElement(
         "div",
         {

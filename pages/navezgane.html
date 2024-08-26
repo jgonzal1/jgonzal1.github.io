@@ -59,7 +59,7 @@
             map.setView([long, lat], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, _bounds).addTo(map);
         }
-        createImgMap("../style/maps/navezgane.jpg");
+        createImgMap("../public/maps/navezgane.jpg");
 
         function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
             size = rel_size * 16;
@@ -90,9 +90,9 @@
             }
             ).addTo(map);
         }
-        const greenIcon = L.icon(createIcon("../style/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
-        const orangeIcon = L.icon(createIcon("../style/world_map_markers/orange_circle.png", "Town", rel_size = 1));
-        const redIcon = L.icon(createIcon("../style/world_map_markers/red_circle.png", "City", rel_size = 1.2));
+        const greenIcon = L.icon(createIcon("../public/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
+        const orangeIcon = L.icon(createIcon("../public/world_map_markers/orange_circle.png", "Town", rel_size = 1));
+        const redIcon = L.icon(createIcon("../public/world_map_markers/red_circle.png", "City", rel_size = 1.2));
 
         cities.map(function (city) {
             spawnMarker(

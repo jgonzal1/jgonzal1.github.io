@@ -776,6 +776,7 @@ class tasksManager extends React.Component {
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
     const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
+    mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay"
     mondayTasksByCategoryAndDay.style.position = "absolute";
     mondayTasksByCategoryAndDay.style.top = 380;
     // Return the chart with the color scale as a property (for the legend).
@@ -995,7 +996,7 @@ class tasksManager extends React.Component {
     if (this.state.mondayTasksByCategoryAndDay.length) { // Add Stacked Bar Chart
       const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");
       if (!tasksByCategoryAndDayPlaceholder) { return; }
-      // tasksByCategoryAndDayPlaceholder.innerHTML = "";
+      tasksByCategoryAndDayPlaceholder.innerHTML = "";
       tasksByCategoryAndDayPlaceholder.appendChild(this.state.mondayTasksByCategoryAndDay[0]);
     }
     //#endregion

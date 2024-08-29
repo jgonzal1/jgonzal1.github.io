@@ -1094,7 +1094,7 @@ class tasksManager extends React.Component {
           style: { paddingLeft: "0.1em" }
         },
         this.state.mondayTasksDurationSum && `| Total tasks dur: ${this.state.mondayTasksDurationSum
-        }h/${(this.state.mondayTasksDurationSum / (quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2)).toFixed(1)
+        }h/${(this.state.mondayTasksDurationSum / 20).toFixed(1)
         }w`
       ),
 

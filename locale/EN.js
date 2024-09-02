@@ -87,12 +87,18 @@ function getEnglishContents() {
       (21-11 – Nowadays / Part-time)<br>
       Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant.<br><br>
 
-      24-03 - Nowadays<br>
-      Project: ETL SYS102 for VURDST<br>
-      Role: Data engineer at UFST<br>
+      24-03 - 2407<br>
+      Project: ETL SYS102 for UFST/VURDST<br>
+      Role: AWS cloud software developer and data engineer<br>
       Responsible for data pipeline development on AWS to gather all the data sources required for<br>
-      a Business Intelligence solution for the properties tax agency in Denmark.<br>
-      <br>
+      a Business Intelligence solution for the property tax agency VURDST in Denmark.<br><br>
+
+      Main tasks:<ol>
+      <li>Develop lambda functions to get raw XML documents and transform them into JSON,
+      un-flatten them to Parquet files, and save them in S3 to be usable in Athena.</li>
+      <li>Replicate the logic in AWS Glue ETL visual jobs for scalability.</li>
+      <li>Make the foundational technical data flows on the solution for UFST's self-maintenance.</li>
+      </ol>
 
       24-01 - 24-02<br>
       Project: Jira Ultimate Customizer<br>

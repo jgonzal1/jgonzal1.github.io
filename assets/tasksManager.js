@@ -778,7 +778,7 @@ class tasksManager extends React.Component {
     const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
     mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay"
     mondayTasksByCategoryAndDay.style.position = "absolute";
-    mondayTasksByCategoryAndDay.style.top = 380;
+    mondayTasksByCategoryAndDay.style.top = 420;
     // Return the chart with the color scale as a property (for the legend).
     return mondayTasksByCategoryAndDay;
   }

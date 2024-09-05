@@ -1108,7 +1108,7 @@ class tasksManager extends React.Component {
             paddingTop: "0.1em",
             width: "fit-content",
             maxWidth: "calc(100% - 0.8em)",
-            maxHeight: "640px"
+            maxHeight: "440px" // 640
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?

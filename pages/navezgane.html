@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navezgane</title>
     <script src="../libs/leaflet.js"></script>
-    <script src="../data/7d2d_coords.js"></script>
+    <script src="../data/7d2dCoords.js"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
         .leaflet-overlay-pane svg {
             z-index: 99;
         }
+
         #map {
             height: 97vh;
         }
@@ -39,15 +40,15 @@
         function createImgMap(img, bounds) {
             map = L.map(
                 'map', {
-                    crs: L.CRS.Simple,
-                    inertia: true,
-                    inertiaMaxSpeed: 1000,
-                    tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
-                    wheelPxPerZoomLevel: 50,
-                    scrollWheelZoom: true,
-                    minZoom: -3, //4
-                    maxZoom: 1 //7
-                }
+                crs: L.CRS.Simple,
+                inertia: true,
+                inertiaMaxSpeed: 1000,
+                tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
+                wheelPxPerZoomLevel: 50,
+                scrollWheelZoom: true,
+                minZoom: -3, //4
+                maxZoom: 1 //7
+            }
             );
             map.zoomControl.setPosition("bottomright");
             const zoom = 2;
@@ -58,7 +59,7 @@
             map.setView([long, lat], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, _bounds).addTo(map);
         }
-        createImgMap("../style/maps/navezgane.jpg");
+        createImgMap("../public/maps/navezgane.jpg");
 
         function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
             size = rel_size * 16;
@@ -78,22 +79,22 @@
         }
 
         /**
-         * @param {string} name 
-         * @param {L.icon} _icon 
+         * @param {string} name
+         * @param {L.icon} _icon
          */
         function spawnMarker(name, _icon, _lat, _long) {
             return L.marker(
                 [_lat, _long], {
-                    title: name,
-                    icon: _icon
-                }
+                title: name,
+                icon: _icon
+            }
             ).addTo(map);
         }
-        const greenIcon = L.icon(createIcon("../style/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
-        const orangeIcon = L.icon(createIcon("../style/world_map_markers/orange_circle.png", "Town", rel_size = 1));
-        const redIcon = L.icon(createIcon("../style/world_map_markers/red_circle.png", "City", rel_size = 1.2));
+        const greenIcon = L.icon(createIcon("../public/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
+        const orangeIcon = L.icon(createIcon("../public/world_map_markers/orange_circle.png", "Town", rel_size = 1));
+        const redIcon = L.icon(createIcon("../public/world_map_markers/red_circle.png", "City", rel_size = 1.2));
 
-        cities.map(function(city) {
+        cities.map(function (city) {
             spawnMarker(
                 city["ct"], orangeIcon, city["coords"][0], city["coords"][1]
             );

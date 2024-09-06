@@ -6,8 +6,8 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td>
-      <fieldset>
+    <td style="border-width:0">
+      <fieldset style="">
         <legend>🧔</legend>
         Javier González Berenguel
       </fieldset>
@@ -15,16 +15,17 @@ function getEnglishContents() {
         <legend>📲 (please inform before calling)</legend>
         <span>(+34) 664383902</span>
       </fieldset>
-      <fieldset style="font-family:monospace">
+      <fieldset style="font-family:monospace;">
         <legend>🗣</legend>
         <span style="color:#F0C674">★★★★★</span> EN<br>
         <span style="color:#F0C674">★★★★★</span> ES<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DE<br>
         <span style="color:#F0C674">★★</span>☆☆☆ FR<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
+        <span style="color:#F0C674">★</span>☆☆☆☆ LT<br>
       </fieldset>
     </td>
-    <td>
+    <td style="border-width:0">
       <fieldset>
         <legend>📩</legend>
         <a href="mailto:javier.gonzalezberenguel@gmail.com" target="_blank">
@@ -33,15 +34,15 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Lucerne, Switzerland
+        Europe
       </fieldset>
       <fieldset>
         <legend>🗺</legend>
         Availability for international projects
       </fieldset>
     </td>
-    <td class="centered">
-      <fieldset>
+    <td class="centered" style="border-width:0">
+      <fieldset style="height:16em">
         <legend>📸</legend>
         <img src="public/javier.jpg" alt="Javier González">
       </fieldset>
@@ -424,6 +425,10 @@ function getEnglishContents() {
   </tr>
   `;
   const legend = `<tr>
+    <td colspan="9" style="font-size:0.75rem">
+    * Holidays 2w Xmas, Easter, 3w end of Jul/start of Aug
+    </td>
+  <tr></tr>
     <td rowspan="6">Legend</td>
     <td></td><td colspan="7" style="background-color:#A54242">
       Big data engineer

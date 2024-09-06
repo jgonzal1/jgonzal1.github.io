@@ -1,0 +1,10 @@
+status in (
+  "Awaiting implementation", Backlog, BACKLOG,
+  Escalated, "Final review", "In Progress",
+  "On hold", Open, "Peer review",
+  Pending, Reopened, Review,
+  "Selected for development", "To Do",
+  "Waiting for support", "Work in progress"
+) AND assignee in (currentUser())
+ORDER BY priority DESC, originalEstimate ASC,
+status ASC, "Epic Link" DESC

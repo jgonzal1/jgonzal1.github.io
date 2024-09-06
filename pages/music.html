@@ -17,40 +17,54 @@
       cursor: default;
       pointer-events: none;
     }
+
     a.mix_link {
       color: #60CC60 !important;
     }
+
     a.self_link {
       color: #0060CCAA !important;
       /*text-shadow: 0 0 3px #FFFFDF, 0 0 5px #FFFF9FAA;*/
     }
+
     a.other_link {
       color: #600060 !important;
       text-shadow: 0 0 2px #DFFFDF, 0 0 3px #9FFF9F99;
     }
-    .leaflet-container { background: #000; }
+
+    .leaflet-container {
+      background: #000;
+    }
+
     .leaflet-container a.leaflet-popup-close-button {
       color: #900;
       font-size: smaller;
       top: -0.5em;
       right: -2em;
     }
-    .leaflet-overlay-pane svg { z-index: 99; }
-    .leaflet-popup-content { margin: 0; }
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+
+    .leaflet-overlay-pane svg {
+      z-index: 99;
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
       background: #FFFFFF00;
       box-shadow: none;
       font-weight: bolder;
       text-align: center;
     }
-    #map { height: 95vh; }
+
+    #map {
+      height: 95vh;
+    }
   </style>
-  <link rel="apple-touch-icon"
-    sizes="152x152" href="../public/favicon.ico"
-  >
-  <link rel="icon"
-    type="image/x-icon" href="../public/favicon.ico"
-  >
+  <link rel="apple-touch-icon" sizes="152x152" href="../public/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
 </head>
 
 <body>
@@ -69,31 +83,31 @@
     function createImgMap(img, bounds) {
       map = L.map(
         'map', {
-          crs: L.CRS.Simple,
-          inertia: true,
-          inertiaMaxSpeed: 1000,
-          tilt: true, /* moves w/ mobiles
+        crs: L.CRS.Simple,
+        inertia: true,
+        inertiaMaxSpeed: 1000,
+        tilt: true, /* moves w/ mobiles
           giroscope(deviceOrientation) */
-          wheelPxPerZoomLevel: 50,
-          scrollWheelZoom: true,
-          minZoom: 0,
-          maxZoom: 2,
-          zIndex: -1
-        }
+        wheelPxPerZoomLevel: 50,
+        scrollWheelZoom: true,
+        minZoom: 0,
+        maxZoom: 2,
+        zIndex: -1
+      }
       );
       map.zoomControl.setPosition("bottomright");
       const zoom = 2;
       const _bounds = (bounds || [
-        [0,  0],
-        [798,1300]
+        [0, 0],
+        [798, 1300]
       ]);
       map.setView([long, lat], zoom).setMaxBounds(_bounds);
       L.imageOverlay(img, _bounds).addTo(map);
     }
-    createImgMap("../style/maps/music_genres.svg"); // png
+    createImgMap("../public/maps/music_genres.svg"); // png
 
     const coordsGeoJson = new L.geoJson(buildingPoints, {
-      pointToLayer: function(feature, latlng) {
+      pointToLayer: function (feature, latlng) {
         return new L.CircleMarker(
           [latlng.lat, latlng.lng],
           {
@@ -102,14 +116,14 @@
           }
         );
       },
-      onEachFeature: function(feature, layer) {
+      onEachFeature: function (feature, layer) {
         L.popup(
           { height: "5em" }
         ).setContent(
-          "<a class='"+(feature.properties.url==="#"?"def_":(feature.properties.self?(feature.properties.self===2?"mix_":"self_"):"other_"))+
-            "link' href='"+(/\w{22}/.test(feature.properties.url)?"https://open.spotify.com/playlist/":"")+
-            feature.properties.url+"' target='_blank'"+(feature.properties.url==="#"?" disabled":"")+">"+
-            feature.properties.text+
+          "<a class='" + (feature.properties.url === "#" ? "def_" : (feature.properties.self ? (feature.properties.self === 2 ? "mix_" : "self_") : "other_")) +
+          "link' href='" + (/\w{22}/.test(feature.properties.url) ? "https://open.spotify.com/playlist/" : "") +
+          feature.properties.url + "' target='_blank'" + (feature.properties.url === "#" ? " disabled" : "") + ">" +
+          feature.properties.text +
           "</a>"
         ).openPopup().setLatLng(
           layer.getLatLng()

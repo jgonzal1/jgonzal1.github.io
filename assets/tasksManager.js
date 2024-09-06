@@ -778,7 +778,7 @@ class tasksManager extends React.Component {
     const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
     mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay"
     mondayTasksByCategoryAndDay.style.position = "absolute";
-    mondayTasksByCategoryAndDay.style.top = 380;
+    mondayTasksByCategoryAndDay.style.top = 420;
     // Return the chart with the color scale as a property (for the legend).
     return mondayTasksByCategoryAndDay;
   }
@@ -1023,7 +1023,7 @@ class tasksManager extends React.Component {
           // @ts-ignore
           onChange: (e) => this.setState({
             minsOffsetValue: e.target.value,
-            dayOffsetValue: e.target.value / 24 / 60
+            dayOffsetValue: (e.target.value / 24 / 60).toExponential(2)
           }),
           style: {
             backgroundColor: "#FFF6",
@@ -1031,7 +1031,7 @@ class tasksManager extends React.Component {
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
-            width: "4em"
+            width: "4.6em"
           }
         },
         null
@@ -1053,7 +1053,7 @@ class tasksManager extends React.Component {
           value: this.state.dayOffsetValue,
           // @ts-ignore
           onChange: (e) => this.setState({
-            minsOffsetValue: (e.target.value * 60 * 24).toExponential(5),
+            minsOffsetValue: (e.target.value * 60 * 24).toExponential(2),
             dayOffsetValue: e.target.value
           }),
           style: {
@@ -1062,7 +1062,7 @@ class tasksManager extends React.Component {
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
-            width: "4em"
+            width: "4.6em"
           }
         },
         null
@@ -1108,7 +1108,7 @@ class tasksManager extends React.Component {
             paddingTop: "0.1em",
             width: "fit-content",
             maxWidth: "calc(100% - 0.8em)",
-            maxHeight: "640px"
+            maxHeight: "440px" // 640
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?

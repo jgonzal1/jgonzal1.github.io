@@ -1,4 +1,5 @@
 *.db
+*.ignore.*
 *.tsv
 *.xcf
 **/.DS_Store

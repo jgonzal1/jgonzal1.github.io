@@ -1023,7 +1023,7 @@ class tasksManager extends React.Component {
           // @ts-ignore
           onChange: (e) => this.setState({
             minsOffsetValue: e.target.value,
-            dayOffsetValue: (e.target.value / 24 / 60).toExponential(2)
+            dayOffsetValue: (e.target.value / 24 / 60).toExponential(3)
           }),
           style: {
             backgroundColor: "#FFF6",
@@ -1062,7 +1062,7 @@ class tasksManager extends React.Component {
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
-            width: "4.6em"
+            width: "5em"
           }
         },
         null

@@ -3,7 +3,7 @@
 const quartersOfHourWeekdays = 14; //3.5h
 const quartersOfHourWeekends = 20; //5.0h
 const nextViAsV = false;
-const categoryAggrDaysRange = 28;
+const categoryAggrDaysRange = 63; // 28
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -776,7 +776,7 @@ class tasksManager extends React.Component {
         .attr("alignment-baseline", "middle").attr("fill", "#FFF")
     })
     const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
-    mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay"
+    mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay";
     mondayTasksByCategoryAndDay.style.position = "absolute";
     mondayTasksByCategoryAndDay.style.top = 420;
     // Return the chart with the color scale as a property (for the legend).

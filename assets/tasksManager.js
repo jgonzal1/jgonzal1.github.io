@@ -3,7 +3,7 @@
 const quartersOfHourWeekdays = 14; //3.5h
 const quartersOfHourWeekends = 20; //5.0h
 const nextViAsV = false;
-const categoryAggrDaysRange = 63; // 28
+const categoryAggrDaysRange = 42; // 63
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";

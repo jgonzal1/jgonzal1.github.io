@@ -1,0 +1,277 @@
+<html>
+<style>
+  img {
+    width: 110px;
+    height: 180px;
+  }
+</style>
+
+<body>
+
+</body>
+<script>
+  const ids_to_exclude = [
+    1052,
+    1202,
+    4865,
+    20995,
+    142108,
+    13592460,
+    17947522,
+    26156469,
+    37971631,
+    39855073,
+    49960370,
+    54266743,
+    54266769,
+    57730411,
+    61194729
+  ]
+  const book_imgs = [
+
+    {
+      "author_name": "James V. Green",
+      "title": "The Opportunity Analysis Canvas",
+      "book_id": 17947522,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1369111260l\/17947522.jpg"
+    },
+    {
+      "author_name": "Greg Sidelnikov",
+      "title": "CSS Visual Dictionary",
+      "book_id": 40574961,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1529354424l\/40574961._SX318_.jpg"
+    },
+    {
+      "author_name": "Douglas Crockford",
+      "title": "JavaScript: The Good Parts",
+      "book_id": 2998152,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1328834793l\/2998152.jpg"
+    },
+    {
+      "author_name": "Kyle Simpson",
+      "title": "Functional-Light JavaScript: Pragmatic, Balanced FP in JavaScript",
+      "book_id": 37482278,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1513113640l\/37482278._SX318_.jpg"
+    },
+    {
+      "author_name": "Rex van der Spuy",
+      "title": "Advanced Game Design with HTML5 and JavaScript",
+      "book_id": 25580285,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1432276904l\/25580285._SX318_.jpg"
+    },
+    {
+      "author_name": "Evan Burchard",
+      "title": "The Web Game Developer's Cookbook: Using JavaScript and HTML5 to Develop Games",
+      "book_id": 16269925,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1375065098l\/16269925.jpg"
+    },
+    {
+      "author_name": "Loiane Groner",
+      "title": "Learning JavaScript Data Structures and Algorithms",
+      "book_id": 30805593,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1493693732l\/30805593.jpg"
+    },
+    {
+      "author_name": "Ana Rodr\u00edguez Vera",
+      "title": "IES Hist\u00f3rico Universal Sabuco",
+      "book_id": 61194729,
+      "book_large_image_url": "https:\/\/s.gr-assets.com\/assets\/nophoto\/book\/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+    },
+    {
+      "author_name": "Yuval Noah Harari",
+      "title": "Sapiens: A Brief History of Humankind",
+      "book_id": 23692271,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1703329310l\/23692271._SY475_.jpg"
+    },
+    {
+      "author_name": "Jos\u00e9 Luis Comellas",
+      "title": "Historia de los cambios clim\u00e1ticos",
+      "book_id": 36296796,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1506276285l\/36296796.jpg"
+    },
+    {
+      "author_name": "Joseph Albahari",
+      "title": "C# 5.0 in a Nutshell: The Definitive Reference",
+      "book_id": 13592460,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1345701234l\/13592460.jpg"
+    },
+    {
+      "author_name": "Joanna Gaines",
+      "title": "Homebody: A Guide to Creating Spaces You Never Want to Leave",
+      "book_id": 39855073,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1529336501l\/39855073.jpg"
+    },
+    {
+      "author_name": "Robert Greene",
+      "title": "The Art of Seduction",
+      "book_id": 20995,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1388282563l\/20995.jpg"
+    },
+    {
+      "author_name": "Morgan Housel",
+      "title": "The Psychology of Money",
+      "book_id": 41881472,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1581527774l\/41881472._SY475_.jpg"
+    },
+    {
+      "author_name": "Dale Carnegie",
+      "title": "How to Win Friends and Influence People",
+      "book_id": 4865,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1442726934l\/4865._SY475_.jpg"
+    },
+    {
+      "author_name": "James Clear",
+      "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+      "book_id": 40121378,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1655988385l\/40121378.jpg"
+    },
+    {
+      "author_name": "Jos\u00e9 Luis C\u00e1rpatos",
+      "title": "Leones contra gacelas: Manual completo del especulador (Deusto) (Spanish Edition)",
+      "book_id": 24567894,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1421625675l\/24567894.jpg"
+    },
+    {
+      "author_name": "George S. Clason",
+      "title": "The Richest Man in Babylon",
+      "book_id": 57730411,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1618329485l\/57730411._SY475_.jpg"
+    },
+    {
+      "author_name": "J.  Scott",
+      "title": "The Book on Estimating Rehab Costs: The Investor's Guide to Defining Your Renovation Plan, Building Your Budget, and Knowing Exactly How Much It All Costs",
+      "book_id": 41946424,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1537381457l\/41946424._SX318_.jpg"
+    },
+    {
+      "author_name": "Joshua Dorkin",
+      "title": "How to Invest in Real Estate: The Ultimate Beginner's Guide to Getting Started",
+      "book_id": 37971631,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1536701638l\/37971631.jpg"
+    },
+    {
+      "author_name": "Brandon Turner",
+      "title": "The Book on Managing Rental Properties: Find, Screen, and Manage Tenants With Fewer Headaches and Maximum Profits",
+      "book_id": 54266769,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1593114390l\/54266769._SY475_.jpg"
+    },
+    {
+      "author_name": "Yang Hu",
+      "title": "Easy Learning Design Patterns ES6 + JavaScript: ES6 JavaScript Object Oriented Design Pattern",
+      "book_id": 46232004,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1560141931l\/46232004._SY475_.jpg"
+    },
+    {
+      "author_name": "Donald Voet",
+      "title": "Principles of Biochemistry",
+      "book_id": 5489002,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1356450174l\/5489002.jpg"
+    },
+    {
+      "author_name": "David Wallace-Wells",
+      "title": "The Uninhabitable Earth: Life After Warming",
+      "book_id": 41552709,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1603323079l\/41552709.jpg"
+    },
+    {
+      "author_name": "Michael Greger",
+      "title": "How Not to Die: Discover the Foods Scientifically Proven to Prevent and Reverse Disease",
+      "book_id": 25663961,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1436292289l\/25663961._SY475_.jpg"
+    },
+    {
+      "author_name": "Hope Jahren",
+      "title": "The Story of More: How We Got to Climate Change and Where to Go from Here",
+      "book_id": 49960370,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1574331253l\/49960370.jpg"
+    },
+    {
+      "author_name": "Patricia Spigarelli Aston",
+      "title": "Crisis Preparedness Handbook: A Comprehensive Guide to Home Storage and Physical Survival",
+      "book_id": 55163317,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1598728520l\/55163317._SX318_.jpg"
+    },
+    {
+      "author_name": "Robert T. Kiyosaki",
+      "title": "Rich Dad's Cashflow Quadrant: Rich Dad's Guide to Financial Freedom",
+      "book_id": 81922,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1483023081l\/81922.jpg"
+    },
+    {
+      "author_name": "T. Harv Eker",
+      "title": "Secrets of the Millionaire Mind: Mastering the Inner Game of Wealth",
+      "book_id": 785092,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1347940515l\/785092.jpg"
+    },
+    {
+      "author_name": "Chris Voss",
+      "title": "Never Split the Difference: Negotiating As If Your Life Depended On It",
+      "book_id": 26156469,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1460910517l\/26156469.jpg"
+    },
+    {
+      "author_name": "George S. Clason",
+      "title": "The Richest Man in Babylon",
+      "book_id": 1052,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1348336780l\/1052.jpg"
+    },
+    {
+      "author_name": "Ram\u00f3n Campayo",
+      "title": "Desarrolla una mente prodigiosa (Psicologia y Autoayuda) (Spanish Edition)",
+      "book_id": 2946598,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1267390158l\/2946598.jpg"
+    },
+    {
+      "author_name": "Robert T. Kiyosaki",
+      "title": "Rich Dad, Poor Dad",
+      "book_id": 69571,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1388211242l\/69571.jpg"
+    },
+    {
+      "author_name": "Daniel Kahneman",
+      "title": "Thinking, Fast and Slow",
+      "book_id": 11468377,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1317793965l\/11468377.jpg"
+    },
+    {
+      "author_name": "Brandon Turner",
+      "title": "The Book on Investing In Real Estate with No (and Low) Money Down: Creative Strategies for Investing in Real Estate Using Other People's Money",
+      "book_id": 53440290,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1589832713l\/53440290._SY475_.jpg"
+    },
+    {
+      "author_name": "David     Greene",
+      "title": "Long-Distance Real Estate Investing: How to Buy, Rehab, and Manage Out-of-State Rental Properties",
+      "book_id": 37509707,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1513206447l\/37509707._SY475_.jpg"
+    },
+    {
+      "author_name": "Brandon Turner",
+      "title": "The Book on Rental Property Investing: How to Create Wealth With Intelligent Buy and Hold Real Estate Investing",
+      "book_id": 54266743,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1593114127l\/54266743._SY475_.jpg"
+    },
+    {
+      "author_name": "Steven D. Levitt",
+      "title": "Freakonomics: A Rogue Economist Explores the Hidden Side of Everything",
+      "book_id": 1202,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1550917827l\/1202._SX318_.jpg"
+    },
+    {
+      "author_name": "Robert T. Kiyosaki",
+      "title": "Rich Dad's Guide to Investing: What the Rich Invest in That the Poor and Middle Class Do Not!",
+      "book_id": 142108,
+      "book_large_image_url": "https:\/\/i.gr-assets.com\/images\/S\/compressed.photo.goodreads.com\/books\/1388183306l\/142108.jpg"
+    }
+  ]
+    ;
+  book_imgs.filter(bu => !ids_to_exclude.includes(bu["book_id"])).map(bu => {
+    i = document.createElement("img");
+    i.src = bu["book_large_image_url"];
+    i.title = `${bu["author_name"]} - ${bu["title"]}`
+    document.body.appendChild(i);
+  })
+
+</script>
+
+</html>

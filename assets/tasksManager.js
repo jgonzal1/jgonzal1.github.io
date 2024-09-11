@@ -468,7 +468,202 @@ class tasksManager extends React.Component {
       }
     );
   };
-  aggrTasksByCategory = (sortedMondayItemsJson) => {
+  aggrTasksByCategoryPieChart = (sortedMondayItemsJson) => {
+    //#region Prepare data and setState
+    const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
+      (accumulator, item) => {
+        if (!accumulator[item["cat"]]) {
+          accumulator[item["cat"]] = 0;
+        }
+        accumulator[item["cat"]] += item["dur"]
+        return accumulator
+      }, {}
+    );
+    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
+      (k) => {
+        const duration = +(mondayTasksByCatDict[k].toFixed(1));
+        return {
+          "name": k,
+          "value": duration
+        }
+      }
+    );
+    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
+      (accumulator, currentValue) => accumulator + currentValue, 0
+    ).toFixed(1);
+    // @ts-ignore
+    this.setState({
+      mondayTasksDurationSum: mondayTasksDurationSum
+    });
+    const tasksByCategoryWidth =
+      parseInt(window.getComputedStyle(
+        // @ts-ignore
+        document.getElementById("tasksByCategory")
+      )["width"], 10);
+    const tasksByCategoryHeight =
+      Math.min(parseInt(window.getComputedStyle(
+        // @ts-ignore
+        document.getElementById("tasksByCategory")
+      )["height"], 10), tasksByCategoryWidth * 0.8)
+      ;
+    const customColors = [
+      "#e15759",
+      "#59a14f", // 🏠
+      "#9c755f", // 💰
+      "#edc949", // 🍏
+      "#f28e2c", // 🚩🇩🇰
+      "#ff9da7", // 🔬
+      "#af7aa1", // 📺
+      "#4e79a7", // 🎮
+      "#76b7b2", // 🌐
+      "#bab0ab66", // ➕
+      ""
+    ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
+    // @ts-ignore
+    const color = d3.scaleOrdinal(customColors); // for mapping
+    const pieChartData = dataCategoriesAndValues.map(nv => {
+      return {
+        "label": `tc.${nv.name}`,
+        "value": nv.value + 2
+      }
+    });
+    //#endregion
+    //#region Plot Donut Chart
+    const transitionDurationsMs = 200;
+
+    // @ts-ignore
+    var svg = d3.select("body")
+      .append("svg")
+      .append("g")
+
+    svg.append("g")
+      .attr("class", "slices");
+    svg.append("g")
+      .attr("class", "labels");
+    svg.append("g")
+      .attr("class", "lines");
+
+    var radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2;
+
+    // @ts-ignore
+    var pie = d3.pie()
+      // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
+      .sort(null)
+      .value((d) => d.value);
+
+    // @ts-ignore
+    var arc = d3.arc()
+      .outerRadius(radius * 0.8)
+      .innerRadius(radius * 0.4);
+
+    // @ts-ignore
+    var outerArc = d3.arc()
+      .innerRadius(radius * 0.9)
+      .outerRadius(radius * 0.9);
+
+    svg.attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
+
+    var key = (d) => d.data.label;
+
+    //function plotData() {
+    //  var labels = color.domain();
+    //  labels = pieChartData;
+    //  return labels;
+    //}
+
+    (() => {
+      var slice = svg.select(".slices").selectAll("path.slice")
+        .data(pie(pieChartData), key);
+
+      slice.enter()
+        .insert("path")
+        .style("fill", (d) => color(d.data.label))
+        .attr("class", "slice");
+
+      slice
+        .transition().duration(transitionDurationsMs)
+        .attrTween("d", (d) => {
+          this._current = this._current || d;
+          // @ts-ignore
+          var interpolate = d3.interpolate(this._current, d);
+          this._current = interpolate(0);
+          return (t) => arc(interpolate(t));
+        })
+
+      slice.exit()
+        .remove();
+
+      var text = svg.select(".labels").selectAll("text")
+        .data(pie(pieChartData), key);
+
+      text.enter()
+        .append("text")
+        .attr("dy", ".35em")
+        .text((d) => {
+          const label = `${d.data.label} ${d.data.value.toPrecision(3)}`;
+          console.log(label);
+          return label;
+        })
+
+      function midAngle(d) {
+        return d.startAngle + (d.endAngle - d.startAngle) / 2;
+      }
+
+      text.transition().duration(transitionDurationsMs)
+        .attrTween("transform", (d) => {
+          this._current = this._current || d;
+          // @ts-ignore
+          var interpolate = d3.interpolate(this._current, d);
+          this._current = interpolate(0);
+          return (t) => {
+            var d2 = interpolate(t);
+            var pos = outerArc.centroid(d2);
+            pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+            return "translate(" + pos + ")";
+          };
+        })
+        .styleTween("text-anchor", (d) => {
+          this._current = this._current || d;
+          // @ts-ignore
+          var interpolate = d3.interpolate(this._current, d);
+          this._current = interpolate(0);
+          return (t) => {
+            var d2 = interpolate(t);
+            return midAngle(d2) < Math.PI ? "start" : "end";
+          };
+        });
+
+      text.exit()
+        .remove();
+
+      var polyline = svg.select(".lines").selectAll("polyline")
+        .data(pie(pieChartData), key);
+
+      polyline.enter()
+        .append("polyline");
+
+      polyline.transition().duration(transitionDurationsMs)
+        .attrTween("points", (d) => {
+          this._current = this._current || d;
+          // @ts-ignore
+          var interpolate = d3.interpolate(this._current, d);
+          this._current = interpolate(0);
+          return (t) => {
+            var d2 = interpolate(t);
+            var pos = outerArc.centroid(d2);
+            pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+            return [arc.centroid(d2), outerArc.centroid(d2), pos];
+          };
+        });
+
+      polyline.exit()
+        .remove();
+    })()
+
+    return Object.assign(svg.node(), { scales: { color } });
+    //#endregion
+  };
+  aggrTasksByCategoryBubbleChart = (sortedMondayItemsJson) => {
     //#region Prepare data and setState
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
@@ -895,7 +1090,7 @@ class tasksManager extends React.Component {
     );
     const sortedMondayItemsJson = this.addMondayMeta(mondayTasksCols);
     const mondayTasksByDay = this.aggrTasksByDay(sortedMondayItemsJson);
-    const mondayTasksByCategory = this.aggrTasksByCategory(sortedMondayItemsJson);
+    const mondayTasksByCategory = this.aggrTasksByCategoryBubbleChart(sortedMondayItemsJson);
     const mondayTasksByCategoryAndDay = this.aggrTasksByCategoryAndDay(sortedMondayItemsJson);
     // @ts-ignore
     this.setState({

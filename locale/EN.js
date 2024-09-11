@@ -85,9 +85,9 @@ function getEnglishContents() {
     <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
       (21-11 – Nowadays / Part-time)<br>
-      Full-stack developer, data engineer, and AWS/monday.com/JSM/Power BI technical consultant.<br><br>
+      Full-stack developer, data engineer, and AWS/JSM/Power BI/monday.com technical consultant.<br><br>
 
-      24-03 - 2407<br>
+      24-03 - 24-07<br>
       Project: ETL SYS102 for UFST/VURDST<br>
       Role: AWS cloud software developer and data engineer<br>
       Responsible for data pipeline development on AWS to gather all the data sources required for<br>

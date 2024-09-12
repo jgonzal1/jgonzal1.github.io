@@ -556,7 +556,7 @@ class tasksManager extends React.Component {
     return mondayTasksByCategoryAndDay;
   }
   aggrTasksByDay = (sortedMondayItemsJson) => {
-    const currentDate = new Date();
+    const currentDate = new Date(new Date().toISOString().substring(0, 10)); // Hets current day at 00.00
     const msPerH = 3.6e6;
     const [
       nextClimbingDay, nextVI, nextVF

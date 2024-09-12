@@ -26,13 +26,16 @@ class tasksManager extends globalThis.React.Component {
         if (!accumulator[item["cat"]]) {
           accumulator[item["cat"]] = 0;
         }
-        accumulator[item["cat"]] += item["dur"]
-        return accumulator
+        accumulator[item["cat"]] += item["dur"];
+        return accumulator;
       }, {}
     );
+    Object.keys(mondayTasksByCatDict).map(
+      k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
+    )
     const mondayTasksDurationSum = Object.values(mondayTasksByCatDict).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ).toPrecision(3);
+    );
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
@@ -48,7 +51,7 @@ class tasksManager extends globalThis.React.Component {
     const margin = 40
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const svg = globalThis.d3.create("svg")
+    const svg = globalThis.d3.select("body").append("svg")
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
       .append("g")

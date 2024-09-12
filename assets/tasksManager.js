@@ -294,7 +294,7 @@ function aggrTasksByDay(sortedMondayItemsJson) {
     }
   );
   const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-    return { "date": this.offsetNDay(n), "dur": 0 }
+    return { "date": offsetNDay(n), "dur": 0 }
   });
   sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
     .concat(arrNext21D).sort(

@@ -46,16 +46,10 @@
   <script>
     const transitionDurationsMs = 200;
 
-    var svg = d3.select("body")
-      .append("svg")
-      .append("g")
-
-    svg.append("g")
-      .attr("class", "slices");
-    svg.append("g")
-      .attr("class", "labels");
-    svg.append("g")
-      .attr("class", "lines");
+    var svg = d3.select("body").append("svg").append("g")
+    svg.append("g").attr("class", "slices");
+    svg.append("g").attr("class", "labels");
+    svg.append("g").attr("class", "lines");
 
     var width = parseInt(window.getComputedStyle(document.body)["width"], 10)
       // because we expect it to be <= 80% w because we place labels
@@ -64,8 +58,7 @@
 
     var pie = d3.layout.pie()
       // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
-      .sort(null)
-      .value((d) => d.value);
+      .sort(null).value((d) => d.value);
 
     var arc = d3.svg.arc()
       .outerRadius(radius * 0.8)
@@ -88,17 +81,18 @@
       ]);
 
     function randomData() {
-      var labels = color.domain();
-      return labels.map((label) => { return { label: label, value: 10 * Math.random() } });
+      const labels = color.domain();
+      const data = labels.map((label) => {
+        return {
+          label: label, value: parseInt(1000 * Math.random()) / 100
+        }
+      });
+      return data;
     }
 
     change(randomData());
 
-    d3.select("#randomizeDonutChart")
-      .on("click", () => {
-        change(randomData());
-      });
-
+    d3.select("#randomizeDonutChart").on("click", () => change(randomData()));
 
     function change(data) {
 
@@ -119,21 +113,16 @@
           return (t) => arc(interpolate(t));
         })
 
-      slice.exit()
-        .remove();
+      slice.exit().remove();
 
-      var text = svg.select(".labels").selectAll("text")
+      svg.selectAll("text.donut-chart-labels").remove();
+      var text = svg.selectAll("text.donut-chart-labels")
         .data(pie(data), key);
-
       text.enter()
-        .append("text")
-        .attr("dy", ".35em")
-        .text((d) => d.data.label);
-      // ${d.data.label} ${d.data.value.toPrecision(3)}`
+        .append("text").attr("class", "donut-chart-labels").attr("dy", ".35em")
+        .text((d) => `${d.data.label} ${d.data.value.toPrecision(3)}`);
 
-      function midAngle(d) {
-        return d.startAngle + (d.endAngle - d.startAngle) / 2;
-      }
+      midAngle = (d) => d.startAngle + (d.endAngle - d.startAngle) / 2;
 
       text.transition().duration(transitionDurationsMs)
         .attrTween("transform", (d) => {
@@ -157,14 +146,12 @@
           };
         });
 
-      text.exit()
-        .remove();
+      text.exit().remove();
 
       var polyline = svg.select(".lines").selectAll("polyline")
         .data(pie(data), key);
 
-      polyline.enter()
-        .append("polyline");
+      polyline.enter().append("polyline");
 
       polyline.transition().duration(transitionDurationsMs)
         .attrTween("points", (d) => {
@@ -179,8 +166,7 @@
           };
         });
 
-      polyline.exit()
-        .remove();
+      polyline.exit().remove();
     };
 
   </script>

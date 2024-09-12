@@ -84,19 +84,19 @@ class tasksManager extends React.Component {
     const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
     ).toFixed(1);
-    // @ts-ignore
+    //
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
     const tasksByCategoryWidth =
       parseInt(window.getComputedStyle(
-        // @ts-ignore
-        document.getElementById("tasksByCategory")
+        //
+        document.getElementById("tasksByCategory") ?? document.createElement("div")
       )["width"], 10);
     const tasksByCategoryHeight =
       Math.min(parseInt(window.getComputedStyle(
-        // @ts-ignore
-        document.getElementById("tasksByCategory")
+        //
+        document.getElementById("tasksByCategory") ?? document.createElement("div")
       )["height"], 10), tasksByCategoryWidth * 0.8)
       ;
     const customColors = [
@@ -111,9 +111,9 @@ class tasksManager extends React.Component {
       "#76b7b2", // 🌐
       "#bab0ab66", // ➕
       ""
-    ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
-    // @ts-ignore
-    const color = d3.scaleOrdinal(customColors); // for mapping
+    ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
+    //
+    const color = globalThis.d3.scaleOrdinal(customColors); // for mapping
     const pieChartData = dataCategoriesAndValues.map(nv => {
       return {
         "label": `tc.${nv.name}`,
@@ -124,8 +124,8 @@ class tasksManager extends React.Component {
     //#region Plot Donut Chart
     const transitionDurationsMs = 200;
 
-    // @ts-ignore
-    var svg = d3.select("body")
+    //
+    var svg = globalThis.d3.select("body")
       .append("svg")
       .append("g")
 
@@ -138,19 +138,19 @@ class tasksManager extends React.Component {
 
     var radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2;
 
-    // @ts-ignore
-    var pie = d3.pie()
-      // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
+    //
+    var pie = globalThis.d3.pie()
+      // sort usually accepts globalThis.d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null)
       .value((d) => d.value);
 
-    // @ts-ignore
-    var arc = d3.arc()
+    //
+    var arc = globalThis.d3.arc()
       .outerRadius(radius * 0.8)
       .innerRadius(radius * 0.4);
 
-    // @ts-ignore
-    var outerArc = d3.arc()
+    //
+    var outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
@@ -177,8 +177,8 @@ class tasksManager extends React.Component {
         .transition().duration(transitionDurationsMs)
         .attrTween("d", (d) => {
           this._current = this._current || d;
-          // @ts-ignore
-          var interpolate = d3.interpolate(this._current, d);
+          //
+          var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => arc(interpolate(t));
         })
@@ -205,8 +205,8 @@ class tasksManager extends React.Component {
       text.transition().duration(transitionDurationsMs)
         .attrTween("transform", (d) => {
           this._current = this._current || d;
-          // @ts-ignore
-          var interpolate = d3.interpolate(this._current, d);
+          //
+          var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
             var d2 = interpolate(t);
@@ -217,8 +217,8 @@ class tasksManager extends React.Component {
         })
         .styleTween("text-anchor", (d) => {
           this._current = this._current || d;
-          // @ts-ignore
-          var interpolate = d3.interpolate(this._current, d);
+          //
+          var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
             var d2 = interpolate(t);
@@ -238,8 +238,8 @@ class tasksManager extends React.Component {
       polyline.transition().duration(transitionDurationsMs)
         .attrTween("points", (d) => {
           this._current = this._current || d;
-          // @ts-ignore
-          var interpolate = d3.interpolate(this._current, d);
+          //
+          var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
             var d2 = interpolate(t);
@@ -279,7 +279,7 @@ class tasksManager extends React.Component {
     const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
     ).toFixed(1);
-    // @ts-ignore
+    //
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
@@ -296,9 +296,9 @@ class tasksManager extends React.Component {
       "#76b7b2", // 🌐
       "#bab0ab66", // ➕
       ""
-    ]; // d3.scaleOrdinal(treeMapChildren.map(d => d.name), d3.schemeTableau10); // alternative
-    // @ts-ignore
-    const color = d3.scaleOrdinal(customColors); // for bubbleChart
+    ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
+    //
+    const color = globalThis.d3.scaleOrdinal(customColors); // for bubbleChart
     const bubbleChart = dataCategoriesAndValues.map(nv => {
       return {
         "id": `tc.${nv.name}`,
@@ -313,19 +313,19 @@ class tasksManager extends React.Component {
     const names = d => name(d).split(/(?=[A-Z][a-z])|\s+/g); // ["Legend", "Item"] of "flare.vis.legend.LegendItems"
 
     //@ts-ignore [Number format for values](https://observablehq.com/@d3/d3-format?collection=@d3/d3-format)
-    const format = d3.format(".1f");
+    const format = globalThis.d3.format(".1f");
 
-    // @ts-ignore Create layout
-    const pack = d3.pack()
+    // Create layout
+    const pack = globalThis.d3.pack()
       .size([width - margin * 2, height - margin * 2])
       .padding(3);
 
-    // @ts-ignore Compute the hierarchy from the (flat) bubbleChart data
-    const root = pack(d3.hierarchy({ children: bubbleChart })
+    // Compute the hierarchy from the (flat) bubbleChart data
+    const root = pack(globalThis.d3.hierarchy({ children: bubbleChart })
       .sum(d => d.value));
 
-    // @ts-ignore
-    const svg = d3.create("svg")
+    //
+    const svg = globalThis.d3.create("svg")
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [-margin, -margin, width, height])
@@ -356,7 +356,7 @@ class tasksManager extends React.Component {
       .data(d => names(d.data))
       .join("tspan")
       .attr("x", 0)
-      // @ts-ignore
+      //
       .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.35}em`)
       .text(d => d);
 
@@ -371,7 +371,7 @@ class tasksManager extends React.Component {
     //#endregion
   };
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
-    // @ts-ignore
+    //
     const msPerDay = (24 * 3600 * 1000);
     const daysRangeStart = new Date().getTime();
     const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
@@ -451,8 +451,8 @@ class tasksManager extends React.Component {
     const popUpDiv = document.getElementById("popUpDiv") ?? document.createElement("div");
 
 
-    // @ts-ignore Determine the series that need to be stacked.
-    const series = d3.stack()
+    // Determine the series that need to be stacked.
+    const series = globalThis.d3.stack()
       //@ts-ignore .offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) For StreamGraph
       .keys(d3.union(tasksDurationByDayCategory.map(d => d.name))) // distinct series keys, in input order
       .value(([, D], key) => D.get(key)?.value ?? 0) //@ts-ignore get value for each series key and stack
@@ -472,7 +472,7 @@ class tasksManager extends React.Component {
       ""
     ];
     //@ts-ignore
-    const color = d3.scaleOrdinal()
+    const color = globalThis.d3.scaleOrdinal()
       .domain(series.map(d => d.key).sort())
       .range(customColors);
 
@@ -483,23 +483,25 @@ class tasksManager extends React.Component {
     const marginBottom = 80;
     const marginLeft = 30;
 
-    // @ts-ignore Prepare the scales for positional and color encodings.
-    const x = d3.scaleUtc() // @ts-ignore
-      .domain(d3.extent(tasksDurationByDayCategory, d => new Date(d.x)))
+    // Prepare the scales for positional and color encodings.
+    const x = globalThis.d3.scaleUtc() //
+      .domain(globalThis.d3.extent(
+        tasksDurationByDayCategory, d => new Date(d.x)
+      ))
       .range([marginLeft, width - marginRight]);
     //@ts-ignore
-    const y = d3.scaleLinear() // @ts-ignore
-      .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]) // d3.extent(series.flat(2)) for StreamGraph
+    const y = globalThis.d3.scaleLinear() //
+      .domain([0, globalThis.d3.max(series, d => globalThis.d3.max(d, d => d[1]))]) // globalThis.d3.extent(series.flat(2)) for StreamGraph
       .rangeRound([height - marginBottom, marginTop]);
 
     //@ts-ignore Construct an area shape.
-    const area = d3.area()
+    const area = globalThis.d3.area()
       .x(d => x(d.data[0]))
       .y0(d => y(d[0]))
       .y1(d => y(d[1]));
 
     //@ts-ignore Create the SVG container.
-    const svg = d3.create("svg")
+    const svg = globalThis.d3.create("svg")
       .attr("viewBox", [0, 0, width, height])
       .attr("width", width)
       .attr("height", height)
@@ -571,6 +573,8 @@ class tasksManager extends React.Component {
     return mondayTasksByCategoryAndDay;
   }
   aggrTasksByDay = (sortedMondayItemsJson) => {
+    const currentDate = new Date();
+    const msPerH = 3.6e6;
     const [
       nextClimbingDay, nextVI, nextVF
     ] = [
@@ -627,10 +631,11 @@ class tasksManager extends React.Component {
         const durStr = `${"|".repeat(usedTime)}${setDurStrAsV ?
           "v".repeat(unUsedTime) :
           ".".repeat(unUsedTime)}`;
-        const dDiff = (((
-          // @ts-ignore
-          new Date(k) - new Date(new Date().toISOString().substring(0, 10))
-        ) + 3.6e6) / 3.6e5 / 240).toFixed(2);
+        const kDate = new Date(k);
+        const dDiff = (
+          ((+kDate - +currentDate) + msPerH)
+          / msPerH / 24
+        ).toFixed(2);
         return {
           "date": k,
           "wd": wd,
@@ -685,7 +690,7 @@ class tasksManager extends React.Component {
     const mondayTasksByDay = this.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategoryBubbleChart(sortedMondayItemsJson);
     const mondayTasksByCategoryAndDay = this.aggrTasksByCategoryAndDay(sortedMondayItemsJson);
-    // @ts-ignore
+    //
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
@@ -735,7 +740,7 @@ class tasksManager extends React.Component {
     const mondayPutResponse = await mondayPutResponsePremise;
     const lastUpdatedItem = mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? false;
     if (lastUpdatedItem) {
-      // @ts-ignore
+      //
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
@@ -765,7 +770,7 @@ class tasksManager extends React.Component {
     return bgColor;
   };
   setDayOffsetValue = (k) => {
-    // @ts-ignore
+    //
     this.setState({ dayOffsetValue: k })
   };
   //#endregion
@@ -788,13 +793,13 @@ class tasksManager extends React.Component {
       tasksByCategoryAndDayPlaceholder.appendChild(this.state.mondayTasksByCategoryAndDay[0]);
     }
     //#endregion
-    // @ts-ignore taskManagerWrapper
+    // taskManagerWrapper
     return React.createElement(
       "div", {
       id: "taskManagerWrapper",
       style: { width: "calc(100% - 0.8em)" }
     },
-      // @ts-ignore refreshTasksButton
+      // refreshTasksButton
       React.createElement(
         "button", {
         id: "refreshTasksButton",
@@ -802,13 +807,13 @@ class tasksManager extends React.Component {
           () => this.setState({ getDatedMondayItemsToJson: true })
       }, "Refresh tasks"
       ),
-      // @ts-ignore setMinsOffset
+      // setMinsOffset
       React.createElement(
         "input",
         {
           id: "setMinsOffset",
           value: this.state.minsOffsetValue,
-          // @ts-ignore
+          //
           onChange: (e) => this.setState({
             minsOffsetValue: e.target.value,
             dayOffsetValue: (parseFloat(e.target.value) / 24 / 60).toExponential(3)
@@ -824,7 +829,7 @@ class tasksManager extends React.Component {
         },
         null
       ),
-      // @ts-ignore lastRefreshDateTime
+      // lastRefreshDateTime
       React.createElement(
         "span",
         {
@@ -833,13 +838,13 @@ class tasksManager extends React.Component {
         },
         `minute(s) offset |`
       ),
-      // @ts-ignore setDayOffset
+      // setDayOffset
       React.createElement(
         "input",
         {
           id: "setDayOffset",
           value: this.state.dayOffsetValue,
-          // @ts-ignore
+          //
           onChange: (e) => this.setState({
             minsOffsetValue: (parseFloat(e.target.value) * 60 * 24).toExponential(2),
             dayOffsetValue: e.target.value
@@ -855,7 +860,7 @@ class tasksManager extends React.Component {
         },
         null
       ),
-      // @ts-ignore lastRefreshDateTime
+      // lastRefreshDateTime
       React.createElement(
         "span",
         {
@@ -864,7 +869,7 @@ class tasksManager extends React.Component {
         },
         `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
       ),
-      // @ts-ignore lastUpdatedItem
+      // lastUpdatedItem
       React.createElement(
         "span",
         {
@@ -874,7 +879,7 @@ class tasksManager extends React.Component {
         this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
         }`
       ),
-      // @ts-ignore tasksDurationSum
+      // tasksDurationSum
       React.createElement(
         "span",
         {
@@ -886,7 +891,7 @@ class tasksManager extends React.Component {
         }w`
       ),
 
-      // @ts-ignore mondayTableContainer
+      // mondayTableContainer
       React.createElement(
         "div",
         {
@@ -900,22 +905,22 @@ class tasksManager extends React.Component {
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?
-          // @ts-ignore
+          //
           React.createElement(
             "table",
             null,
-            // @ts-ignore
+            //
             React.createElement(
               "thead",
               null,
-              // @ts-ignore
+              //
               React.createElement(
                 "tr",
                 null,
                 [
                   Object.keys(this.state.mondayTasksCols[0]).pop(),
                   ...Object.keys(this.state.mondayTasksCols[0])
-                  // @ts-ignore
+                  //
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "th",
                   { key: `${taskKey}${taskKeyIdx}Header` },
@@ -923,11 +928,11 @@ class tasksManager extends React.Component {
                 ))
               )
             ),
-            // @ts-ignore
+            //
             React.createElement(
               "tbody",
               null,
-              // @ts-ignore
+              //
               this.state.mondayTasksCols.map((taskRow, idxRow) => React.createElement(
                 "tr",
                 {
@@ -939,7 +944,7 @@ class tasksManager extends React.Component {
                 [
                   Object.keys(taskRow).pop(),
                   ...Object.keys(taskRow)
-                  // @ts-ignore
+                  //
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "td",
                   {
@@ -947,7 +952,7 @@ class tasksManager extends React.Component {
                     className: `${taskKey}-td`,
                     style: { height: "2em" }
                   },
-                  // @ts-ignore
+                  //
                   taskKey === "actions" ? React.createElement(
                     "div",
                     {
@@ -957,7 +962,7 @@ class tasksManager extends React.Component {
                         overflowY: "auto"
                       }
                     },
-                    // @ts-ignore
+                    //
                     React.createElement(
                       "img",
                       {
@@ -973,7 +978,7 @@ class tasksManager extends React.Component {
                         )
                       }
                     ),
-                    // @ts-ignore
+                    //
                     React.createElement(
                       "img",
                       {
@@ -989,21 +994,21 @@ class tasksManager extends React.Component {
                         )
                       }
                     ),
-                    // @ts-ignore
+                    //
                     (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
-                  ) : // @ts-ignore
-                    taskRow[taskKey]
+                  ) : //
+                    taskRow[taskKey ?? ""]
                 )
                 )))
             )
-          ) : // @ts-ignore
+          ) : //
           React.createElement(
             "div",
             null,
             "Loading tasks summary table"
           )
       ),
-      // @ts-ignore durs list & cat bubbles
+      // durs list & cat bubbles
       React.createElement(
         "div",
         {
@@ -1016,7 +1021,7 @@ class tasksManager extends React.Component {
             width: "calc(100% - 1em)"
           }
         },
-        // @ts-ignore
+        //
         React.createElement(
           "div",
           {
@@ -1030,20 +1035,20 @@ class tasksManager extends React.Component {
             }
           },
           (Object.keys(this.state.mondayTasksByDay).length && !this.state.getDatedMondayItemsToJson) ?
-            // @ts-ignore
+            //
             React.createElement(
               "table",
               { style: { width: "100%" } },
-              // @ts-ignore
+              //
               React.createElement(
                 "thead",
                 null,
-                // @ts-ignore
+                //
                 React.createElement(
                   "tr",
                   null,
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
-                    // @ts-ignore
+                    //
                     React.createElement(
                       "th",
                       { key: `${taskKey}HeaderByDay` },
@@ -1052,18 +1057,18 @@ class tasksManager extends React.Component {
                   )
                 )
               ),
-              // @ts-ignore
+              //
               React.createElement(
                 "tbody",
                 null,
-                // @ts-ignore
+                //
                 this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
                   "tr",
                   {
                     key: `TaskRow${idxRow}ByDay`,
                     style: { backgroundColor: this.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
-                  // @ts-ignore
+                  //
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",
                     { key: `${taskKey}${idxRow}TdByDay` },
@@ -1072,14 +1077,14 @@ class tasksManager extends React.Component {
                 ))
               )
             ) :
-            // @ts-ignore
+            //
             React.createElement(
               "div",
               null,
               "Loading tasks by day table"
             )
         ),
-        // @ts-ignore
+        //
         React.createElement(
           "div",
           {
@@ -1103,6 +1108,6 @@ class tasksManager extends React.Component {
 const domContainer = document.querySelector("#taskManager");
 //@ts-ignore
 const root = ReactDOM.createRoot(domContainer);
-// @ts-ignore
+//
 root.render(React.createElement(tasksManager));
 //#endregion

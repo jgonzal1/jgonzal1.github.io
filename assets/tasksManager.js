@@ -6,8 +6,8 @@ const categoryAggrDaysRange = 42; // 63
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
-const mondayApiUrl = "https://api.monday.com/v2";
-let headers = {
+globalThis.mondayApiUrl = "https://api.monday.com/v2";
+globalThis.headers = {
   'Access-Control-Allow-Origin': "*",
   'Content-Type': 'application/json',
   'Referer': '',
@@ -30,7 +30,7 @@ const columnRenames = {
   "subitems": "subitems",
   "text": "comments"
 };
-function addMondayMeta(mondayTasksCols) {
+globalThis.addMondayMeta = (mondayTasksCols) => {
   const currentDate = new Date();
   const aYearFromNowDt = new Date();
   aYearFromNowDt.setFullYear(aYearFromNowDt.getFullYear() + 1);
@@ -72,7 +72,7 @@ function addMondayMeta(mondayTasksCols) {
     }
   );
 }
-function aggrTasksByCategoryAndDay(sortedMondayItemsJson) {
+globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const msPerDay = (24 * 3600 * 1000);
   const daysRangeStart = new Date().getTime();
   const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
@@ -273,7 +273,7 @@ function aggrTasksByCategoryAndDay(sortedMondayItemsJson) {
   // Return the chart with the color scale as a property (for the legend).
   return mondayTasksByCategoryAndDay;
 }
-function aggrTasksByDay(sortedMondayItemsJson) {
+globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
   const currentDate = new Date(new Date().toISOString().substring(0, 10)); // Hets current day at 00.00
   const msPerH = 3.6e6;
   const [
@@ -571,7 +571,7 @@ function createBubbleChart(sortedMondayItemsJson) {
 
   return Object.assign(svg.node(), { scales: { color } });
 }
-function offsetNDay(n, dateToOffset, precision = "day") {
+globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
   const dateToOffsetAsValue = dateToOffset ?
     new Date(dateToOffset).valueOf() :
     new Date().valueOf();
@@ -585,7 +585,7 @@ function offsetNDay(n, dateToOffset, precision = "day") {
         19 // sec
   );
 }
-function setBgBasedOnDDiff(dDiffStr) {
+globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextDay = new Date().getHours();
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);

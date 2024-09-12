@@ -1,5 +1,5 @@
 "use strict";
-class tasksManager extends React.Component {
+class tasksManager extends globalThis.React.Component {
   //#region Constructor and functions
   constructor(props) {
     super(props);
@@ -315,15 +315,15 @@ class tasksManager extends React.Component {
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
-    headers["Authorization"] = mondayKey;
+    globalThis.headers["Authorization"] = mondayKey;
     const query = "boards (ids: " + boardId + ") { " +
       "items_page (limit: 500) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
       "} } items_count }"
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
-      mondayApiUrl,
-      { method: "POST", headers: headers, body: body }
+      globalThis.mondayApiUrl,
+      { method: "POST", headers: globalThis.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -352,10 +352,10 @@ class tasksManager extends React.Component {
         });
       }
     );
-    const sortedMondayItemsJson = addMondayMeta(mondayTasksCols);
-    const mondayTasksByDay = aggrTasksByDay(sortedMondayItemsJson);
+    const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
+    const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategoryBubbleChart(sortedMondayItemsJson);
-    const mondayTasksByCategoryAndDay = aggrTasksByCategoryAndDay(sortedMondayItemsJson);
+    const mondayTasksByCategoryAndDay = globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson); //?
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
@@ -366,11 +366,10 @@ class tasksManager extends React.Component {
     });
     return sortedMondayItemsJson;
   };
-
   putMondayDateItem = async (
     mondayKey, boardId, itemId, dateTimeToSet
   ) => {
-    headers["Authorization"] = mondayKey;
+    globalThis.headers["Authorization"] = mondayKey;
     const query = `mutation { change_column_value ( ${""
       }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
       }\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
@@ -379,8 +378,8 @@ class tasksManager extends React.Component {
       }}") { name } }`;
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
-      mondayApiUrl,
-      { method: "POST", headers: headers, body: body }
+      globalThis.mondayApiUrl,
+      { method: "POST", headers: globalThis.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -513,7 +512,6 @@ class tasksManager extends React.Component {
         }h/${(this.state.mondayTasksDurationSum / 20).toFixed(1)
         }w`
       ),
-
       // mondayTableContainer
       React.createElement(
         "div",
@@ -555,7 +553,7 @@ class tasksManager extends React.Component {
                 {
                   key: `TaskRow${idxRow}`,
                   style: {
-                    backgroundColor: setBgBasedOnDDiff(taskRow["d_diff"])
+                    backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"])
                   }
                 },
                 [
@@ -588,7 +586,7 @@ class tasksManager extends React.Component {
                           //@ts-ignore
                           monday_key, boardId,
                           taskRow["task_id"],
-                          offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
                         )
                       }
                     ),
@@ -603,7 +601,7 @@ class tasksManager extends React.Component {
                           //@ts-ignore
                           monday_key, boardId,
                           taskRow["task_id"],
-                          offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                          globalThis.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
                         )
                       }
                     ),
@@ -671,7 +669,7 @@ class tasksManager extends React.Component {
                   "tr",
                   {
                     key: `TaskRow${idxRow}ByDay`,
-                    style: { backgroundColor: setBgBasedOnDDiff(taskRow["d_diff"]) }
+                    style: { backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",

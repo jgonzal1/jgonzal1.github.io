@@ -19,7 +19,7 @@ class tasksManager extends globalThis.React.Component {
       nextVI: "undefined",
     };
   };
-  aggrTasksByCategoryPieChart = (sortedMondayItemsJson) => {
+  aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
     //#region Prepare data and setState
     const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
@@ -30,174 +30,106 @@ class tasksManager extends globalThis.React.Component {
         return accumulator
       }, {}
     );
-    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
-      (k) => {
-        const duration = +(mondayTasksByCatDict[k].toFixed(1));
-        return {
-          "name": k,
-          "value": duration
-        }
-      }
-    );
-    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
+    const mondayTasksDurationSum = Object.values(mondayTasksByCatDict).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ).toFixed(1);
+    ).toPrecision(3);
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
     const tasksByCategoryWidth =
-      parseInt(window.getComputedStyle(
+      Math.max(parseInt(window.getComputedStyle(
         document.getElementById("tasksByCategory") ?? document.createElement("div")
-      )["width"], 10);
+      )["width"], 10), 300);
     const tasksByCategoryHeight =
       Math.min(parseInt(window.getComputedStyle(
         document.getElementById("tasksByCategory") ?? document.createElement("div")
       )["height"], 10), tasksByCategoryWidth * 0.8)
       ;
-    const customColors = [
-      "#e15759",
-      "#59a14f", // 🏠
-      "#9c755f", // 💰
-      "#edc949", // 🍏
-      "#f28e2c", // 🚩🇩🇰
-      "#ff9da7", // 🔬
-      "#af7aa1", // 📺
-      "#4e79a7", // 🎮
-      "#76b7b2", // 🌐
-      "#bab0ab66", // ➕
-      ""
-    ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
-    const color = globalThis.d3.scaleOrdinal(customColors); // for mapping
-    const pieChartData = dataCategoriesAndValues.map(nv => {
-      return {
-        "label": `tc.${nv.name}`,
-        "value": nv.value + 2
-      }
-    });
-    //#endregion
-    //#region Plot Donut Chart
-    const transitionDurationsMs = 200;
+    const margin = 40
+    const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    var svg = globalThis.d3.select("body")
-      .append("svg")
+    const svg = globalThis.d3.create("svg")
+      .attr("width", tasksByCategoryWidth)
+      .attr("height", tasksByCategoryHeight)
       .append("g")
+      .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
-    svg.append("g")
-      .attr("class", "slices");
-    svg.append("g")
-      .attr("class", "labels");
-    svg.append("g")
-      .attr("class", "lines");
+    const labels = Object.keys(mondayTasksByCatDict).sort();
+    const color = globalThis.d3.scaleOrdinal().domain(
+      labels
+    ).range(
+      [
+        //"#e15759",
+        "#59a14f", // 🏠
+        "#9c755f", // 💰
+        "#edc949", // 🍏
+        "#f28e2c", // 🚩🇩🇰
+        "#ff9da7", // 🔬
+        "#af7aa1", // 📺
+        "#4e79a7", // 🎮
+        "#76b7b2", // 🌐
+        "#bab0ab66", // ➕
+      ]
+    );
 
-    var radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2;
+
 
     var pie = globalThis.d3.pie()
-      // sort usually accepts globalThis.d3.descending, but here we can only do this, to prevent labels cramming
-      .sort(null)
-      .value((d) => d.value);
+      // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
+      .sort(null).value((d) => d[1]);
+    const data_ready = pie(Object.entries(mondayTasksByCatDict))
 
-    var arc = globalThis.d3.arc()
-      .outerRadius(radius * 0.8)
-      .innerRadius(radius * 0.4);
 
-    var outerArc = globalThis.d3.arc()
+    const arc = globalThis.d3.arc()
+      .innerRadius(radius * 0.4)
+      .outerRadius(radius * 0.8);
+
+    const outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
-    svg.attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
+    svg
+      .selectAll('allSlices')
+      .data(data_ready)
+      .join('path')
+      .attr('d', arc)
+      .attr('fill', d => color(d.data[1]))
+      .attr("stroke", "white")
+      .style("stroke-width", "2px")
+      .style("opacity", 0.7);
 
-    var key = (d) => d.data.label;
+    svg
+      .selectAll('allPolylines')
+      .data(data_ready)
+      .join('polyline')
+      .attr("stroke", "black")
+      .style("fill", "none")
+      .attr("stroke-width", 1)
+      .attr('points', (d) => {
+        const posA = arc.centroid(d) // line insertion in the slice
+        const posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
+        const posC = outerArc.centroid(d); // Label position = almost the same as posB
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+        posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+        return [posA, posB, posC]
+      });
 
-    //function plotData() {
-    //  var labels = color.domain();
-    //  labels = pieChartData;
-    //  return labels;
-    //}
+    svg
+      .selectAll('allLabels')
+      .data(data_ready)
+      .join('text')
+      .text(d => `${d.data[0]} ${d.data[1]}`)
+      .attr('transform', function (d) {
+        const pos = outerArc.centroid(d);
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+        return `translate(${pos})`;
+      })
+      .style('text-anchor', (d) => {
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        return (midangle < Math.PI ? 'start' : 'end')
+      })
 
-    (() => {
-      var slice = svg.select(".slices").selectAll("path.slice")
-        .data(pie(pieChartData), key);
-
-      slice.enter()
-        .insert("path")
-        .style("fill", (d) => color(d.data.label))
-        .attr("class", "slice");
-
-      slice
-        .transition().duration(transitionDurationsMs)
-        .attrTween("d", (d) => {
-          this._current = this._current || d;
-          var interpolate = globalThis.d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => arc(interpolate(t));
-        })
-
-      slice.exit()
-        .remove();
-
-      var text = svg.select(".labels").selectAll("text")
-        .data(pie(pieChartData), key);
-
-      text.enter()
-        .append("text")
-        .attr("dy", ".35em")
-        .text((d) => {
-          const label = `${d.data.label} ${d.data.value.toPrecision(3)}`;
-          console.log(label);
-          return label;
-        })
-
-      function midAngle(d) {
-        return d.startAngle + (d.endAngle - d.startAngle) / 2;
-      }
-
-      text.transition().duration(transitionDurationsMs)
-        .attrTween("transform", (d) => {
-          this._current = this._current || d;
-          var interpolate = globalThis.d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            var pos = outerArc.centroid(d2);
-            pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-            return "translate(" + pos + ")";
-          };
-        })
-        .styleTween("text-anchor", (d) => {
-          this._current = this._current || d;
-          var interpolate = globalThis.d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            return midAngle(d2) < Math.PI ? "start" : "end";
-          };
-        });
-
-      text.exit()
-        .remove();
-
-      var polyline = svg.select(".lines").selectAll("polyline")
-        .data(pie(pieChartData), key);
-
-      polyline.enter()
-        .append("polyline");
-
-      polyline.transition().duration(transitionDurationsMs)
-        .attrTween("points", (d) => {
-          this._current = this._current || d;
-          var interpolate = globalThis.d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            var pos = outerArc.centroid(d2);
-            pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-            return [arc.centroid(d2), outerArc.centroid(d2), pos];
-          };
-        });
-
-      polyline.exit()
-        .remove();
-    })()
 
     return Object.assign(svg.node(), { scales: { color } });
     //#endregion

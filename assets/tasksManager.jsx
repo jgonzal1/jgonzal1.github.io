@@ -84,18 +84,15 @@ class tasksManager extends React.Component {
     const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
     ).toFixed(1);
-    //
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
     const tasksByCategoryWidth =
       parseInt(window.getComputedStyle(
-        //
         document.getElementById("tasksByCategory") ?? document.createElement("div")
       )["width"], 10);
     const tasksByCategoryHeight =
       Math.min(parseInt(window.getComputedStyle(
-        //
         document.getElementById("tasksByCategory") ?? document.createElement("div")
       )["height"], 10), tasksByCategoryWidth * 0.8)
       ;
@@ -112,7 +109,6 @@ class tasksManager extends React.Component {
       "#bab0ab66", // ➕
       ""
     ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
-    //
     const color = globalThis.d3.scaleOrdinal(customColors); // for mapping
     const pieChartData = dataCategoriesAndValues.map(nv => {
       return {
@@ -124,7 +120,6 @@ class tasksManager extends React.Component {
     //#region Plot Donut Chart
     const transitionDurationsMs = 200;
 
-    //
     var svg = globalThis.d3.select("body")
       .append("svg")
       .append("g")
@@ -138,18 +133,15 @@ class tasksManager extends React.Component {
 
     var radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2;
 
-    //
     var pie = globalThis.d3.pie()
       // sort usually accepts globalThis.d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null)
       .value((d) => d.value);
 
-    //
     var arc = globalThis.d3.arc()
       .outerRadius(radius * 0.8)
       .innerRadius(radius * 0.4);
 
-    //
     var outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
@@ -177,7 +169,6 @@ class tasksManager extends React.Component {
         .transition().duration(transitionDurationsMs)
         .attrTween("d", (d) => {
           this._current = this._current || d;
-          //
           var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => arc(interpolate(t));
@@ -205,7 +196,6 @@ class tasksManager extends React.Component {
       text.transition().duration(transitionDurationsMs)
         .attrTween("transform", (d) => {
           this._current = this._current || d;
-          //
           var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
@@ -217,7 +207,6 @@ class tasksManager extends React.Component {
         })
         .styleTween("text-anchor", (d) => {
           this._current = this._current || d;
-          //
           var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
@@ -238,7 +227,6 @@ class tasksManager extends React.Component {
       polyline.transition().duration(transitionDurationsMs)
         .attrTween("points", (d) => {
           this._current = this._current || d;
-          //
           var interpolate = globalThis.d3.interpolate(this._current, d);
           this._current = interpolate(0);
           return (t) => {
@@ -279,7 +267,6 @@ class tasksManager extends React.Component {
     const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
     ).toFixed(1);
-    //
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
@@ -297,7 +284,6 @@ class tasksManager extends React.Component {
       "#bab0ab66", // ➕
       ""
     ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
-    //
     const color = globalThis.d3.scaleOrdinal(customColors); // for bubbleChart
     const bubbleChart = dataCategoriesAndValues.map(nv => {
       return {
@@ -324,7 +310,6 @@ class tasksManager extends React.Component {
     const root = pack(globalThis.d3.hierarchy({ children: bubbleChart })
       .sum(d => d.value));
 
-    //
     const svg = globalThis.d3.create("svg")
       .attr("width", width)
       .attr("height", height)
@@ -356,7 +341,6 @@ class tasksManager extends React.Component {
       .data(d => names(d.data))
       .join("tspan")
       .attr("x", 0)
-      //
       .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.35}em`)
       .text(d => d);
 
@@ -371,7 +355,6 @@ class tasksManager extends React.Component {
     //#endregion
   };
   aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
-    //
     const msPerDay = (24 * 3600 * 1000);
     const daysRangeStart = new Date().getTime();
     const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
@@ -690,7 +673,6 @@ class tasksManager extends React.Component {
     const mondayTasksByDay = this.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategoryBubbleChart(sortedMondayItemsJson);
     const mondayTasksByCategoryAndDay = this.aggrTasksByCategoryAndDay(sortedMondayItemsJson);
-    //
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
@@ -740,7 +722,6 @@ class tasksManager extends React.Component {
     const mondayPutResponse = await mondayPutResponsePremise;
     const lastUpdatedItem = mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? false;
     if (lastUpdatedItem) {
-      //
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
@@ -770,7 +751,6 @@ class tasksManager extends React.Component {
     return bgColor;
   };
   setDayOffsetValue = (k) => {
-    //
     this.setState({ dayOffsetValue: k })
   };
   //#endregion
@@ -813,7 +793,6 @@ class tasksManager extends React.Component {
         {
           id: "setMinsOffset",
           value: this.state.minsOffsetValue,
-          //
           onChange: (e) => this.setState({
             minsOffsetValue: e.target.value,
             dayOffsetValue: (parseFloat(e.target.value) / 24 / 60).toExponential(3)
@@ -844,7 +823,6 @@ class tasksManager extends React.Component {
         {
           id: "setDayOffset",
           value: this.state.dayOffsetValue,
-          //
           onChange: (e) => this.setState({
             minsOffsetValue: (parseFloat(e.target.value) * 60 * 24).toExponential(2),
             dayOffsetValue: e.target.value
@@ -905,22 +883,18 @@ class tasksManager extends React.Component {
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?
-          //
           React.createElement(
             "table",
             null,
-            //
             React.createElement(
               "thead",
               null,
-              //
               React.createElement(
                 "tr",
                 null,
                 [
                   Object.keys(this.state.mondayTasksCols[0]).pop(),
                   ...Object.keys(this.state.mondayTasksCols[0])
-                  //
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "th",
                   { key: `${taskKey}${taskKeyIdx}Header` },
@@ -928,11 +902,9 @@ class tasksManager extends React.Component {
                 ))
               )
             ),
-            //
             React.createElement(
               "tbody",
               null,
-              //
               this.state.mondayTasksCols.map((taskRow, idxRow) => React.createElement(
                 "tr",
                 {
@@ -944,7 +916,6 @@ class tasksManager extends React.Component {
                 [
                   Object.keys(taskRow).pop(),
                   ...Object.keys(taskRow)
-                  //
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "td",
                   {
@@ -952,7 +923,6 @@ class tasksManager extends React.Component {
                     className: `${taskKey}-td`,
                     style: { height: "2em" }
                   },
-                  //
                   taskKey === "actions" ? React.createElement(
                     "div",
                     {
@@ -962,7 +932,6 @@ class tasksManager extends React.Component {
                         overflowY: "auto"
                       }
                     },
-                    //
                     React.createElement(
                       "img",
                       {
@@ -978,7 +947,6 @@ class tasksManager extends React.Component {
                         )
                       }
                     ),
-                    //
                     React.createElement(
                       "img",
                       {
@@ -994,7 +962,6 @@ class tasksManager extends React.Component {
                         )
                       }
                     ),
-                    //
                     (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
                   ) : //
                     taskRow[taskKey ?? ""]
@@ -1021,7 +988,6 @@ class tasksManager extends React.Component {
             width: "calc(100% - 1em)"
           }
         },
-        //
         React.createElement(
           "div",
           {
@@ -1035,20 +1001,16 @@ class tasksManager extends React.Component {
             }
           },
           (Object.keys(this.state.mondayTasksByDay).length && !this.state.getDatedMondayItemsToJson) ?
-            //
             React.createElement(
               "table",
               { style: { width: "100%" } },
-              //
               React.createElement(
                 "thead",
                 null,
-                //
                 React.createElement(
                   "tr",
                   null,
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
-                    //
                     React.createElement(
                       "th",
                       { key: `${taskKey}HeaderByDay` },
@@ -1057,18 +1019,15 @@ class tasksManager extends React.Component {
                   )
                 )
               ),
-              //
               React.createElement(
                 "tbody",
                 null,
-                //
                 this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
                   "tr",
                   {
                     key: `TaskRow${idxRow}ByDay`,
                     style: { backgroundColor: this.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
-                  //
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",
                     { key: `${taskKey}${idxRow}TdByDay` },
@@ -1077,14 +1036,12 @@ class tasksManager extends React.Component {
                 ))
               )
             ) :
-            //
             React.createElement(
               "div",
               null,
               "Loading tasks by day table"
             )
         ),
-        //
         React.createElement(
           "div",
           {

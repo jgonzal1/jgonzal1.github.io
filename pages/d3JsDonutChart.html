@@ -42,22 +42,11 @@
   <h4>D3.JS donut chart</h4>
   <!--<button id="randomizeDonutChart">Randomize</button>-->
 
-  <script src="../libs/d3.v7.js"></script>
+  <script src="../libs/d3.v7.js">
+    globalThis.d3 = d3;
+  </script>
   <script>
-    const transitionDurationsMs = 200;
-    const width = parseInt(window.getComputedStyle(document.body)["width"], 10)
-    // because we expect it to be <= 80% w because we place labels
-    const height = Math.min(parseInt(window.getComputedStyle(document.body)["height"], 10), width * 0.8)
-    const margin = 40
-    const radius = Math.min(width, height) / 2 - margin;
-
-    const svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-    const data = {
+    const mondayTasksByCatDict = {
       "1.🏠": 15.5,
       "2.💰": 12.7,
       "3.🍏": 11.9,
@@ -68,15 +57,36 @@
       "8.🌐": 10.3,
       "9.➕": 4.1
     };
-    const labels = Object.keys(data).sort();
-
+    //aggrTasksByCategoryDonutChart = (mondayTasksByCatDict) => {
     /*
-    svg.append("g").attr("class", "slices");
-    svg.append("g").attr("class", "labels");
-    svg.append("g").attr("class", "lines");
+    donutChartSvg.append("g").attr("class", "slices");
+    donutChartSvg.append("g").attr("class", "labels");
+    donutChartSvg.append("g").attr("class", "lines");
+    const transitionDurationsMs = 200;
     */
+    const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
+    let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
+    if (tasksByCatPlaceholder) {
+      const tasksByCategoryWidth =
+        Math.max(parseInt(window.getComputedStyle(
+          tasksByCatPlaceholder
+        )["width"], 10), 500);
+      const tasksByCategoryHeight =
+        Math.min(parseInt(window.getComputedStyle(
+          tasksByCatPlaceholder
+        )["height"], 10), tasksByCategoryWidth * 0.8);
+    }
+    const margin = 40;
+    const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const color = d3.scaleOrdinal().domain(
+    const donutChartSvg = globalThis.d3.select("body").append("svg")
+      .attr("width", tasksByCategoryWidth)
+      .attr("height", tasksByCategoryHeight)
+      .append("g")
+      .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
+
+    const labels = Object.keys(mondayTasksByCatDict).sort();
+    const color = globalThis.d3.scaleOrdinal().domain(
       labels
     ).range(
       [
@@ -93,23 +103,21 @@
       ]
     );
 
-
-
-    var pie = d3.pie()
+    var pie = globalThis.d3.pie()
       // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null).value((d) => d[1]);
-    const data_ready = pie(Object.entries(data))
+    const data_ready = pie(Object.entries(mondayTasksByCatDict))
 
 
-    const arc = d3.arc()
+    const arc = globalThis.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
 
-    const outerArc = d3.arc()
+    const outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
-    svg
+    donutChartSvg
       .selectAll('allSlices')
       .data(data_ready)
       .join('path')
@@ -119,7 +127,7 @@
       .style("stroke-width", "2px")
       .style("opacity", 0.7);
 
-    svg
+    donutChartSvg
       .selectAll('allPolylines')
       .data(data_ready)
       .join('polyline')
@@ -135,7 +143,7 @@
         return [posA, posB, posC]
       });
 
-    svg
+    donutChartSvg
       .selectAll('allLabels')
       .data(data_ready)
       .join('text')
@@ -150,6 +158,11 @@
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
         return (midangle < Math.PI ? 'start' : 'end')
       })
+    //return Object.assign(donutChartSvg);
+    //}
+    //const dc = aggrTasksByCategoryDonutChart();
+    //console.log(dc);
+    //document.body.appendChild(dc);
 
     /*
     var key = (d) => d.data.label;
@@ -170,7 +183,7 @@
 
     function change(data) {
 
-      var slice = svg.select(".slices").selectAll("path.slice")
+      var slice = donutChartSvg.select(".slices").selectAll("path.slice")
         .data(pie(data), key);
 
       slice.enter()
@@ -189,8 +202,8 @@
 
       slice.exit().remove();
 
-      svg.selectAll("text.donut-chart-labels").remove();
-      var text = svg.selectAll("text.donut-chart-labels")
+      donutChartSvg.selectAll("text.donut-chart-labels").remove();
+      var text = donutChartSvg.selectAll("text.donut-chart-labels")
         .data(pie(data), key);
       text.enter()
         .append("text").attr("class", "donut-chart-labels").attr("dy", ".35em")
@@ -222,7 +235,7 @@
 
       text.exit().remove();
 
-      var polyline = svg.select(".lines").selectAll("polyline")
+      var polyline = donutChartSvg.select(".lines").selectAll("polyline")
         .data(pie(data), key);
 
       polyline.enter().append("polyline");

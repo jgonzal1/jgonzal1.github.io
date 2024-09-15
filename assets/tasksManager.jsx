@@ -39,19 +39,22 @@ class tasksManager extends globalThis.React.Component {
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
-    const tasksByCategoryWidth =
-      Math.max(parseInt(window.getComputedStyle(
-        document.getElementById("tasksByCategory") ?? document.createElement("div")
-      )["width"], 10), 300);
-    const tasksByCategoryHeight =
-      Math.min(parseInt(window.getComputedStyle(
-        document.getElementById("tasksByCategory") ?? document.createElement("div")
-      )["height"], 10), tasksByCategoryWidth * 0.8)
-      ;
-    const margin = 40
+    const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
+    let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
+    /*if (tasksByCatPlaceholder) {
+      const tasksByCategoryWidth =
+        Math.max(parseInt(window.getComputedStyle(
+          tasksByCatPlaceholder
+        )["width"], 10), 500);
+      const tasksByCategoryHeight =
+        Math.min(parseInt(window.getComputedStyle(
+          tasksByCatPlaceholder
+        )["height"], 10), tasksByCategoryWidth * 0.8);
+    }*/
+    const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const svg = globalThis.d3.select("body").append("svg")
+    const donutChartSvg = globalThis.d3.select("body").append("svg")
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
       .append("g")
@@ -75,8 +78,6 @@ class tasksManager extends globalThis.React.Component {
       ]
     );
 
-
-
     var pie = globalThis.d3.pie()
       // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null).value((d) => d[1]);
@@ -91,7 +92,7 @@ class tasksManager extends globalThis.React.Component {
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
-    svg
+    donutChartSvg
       .selectAll('allSlices')
       .data(data_ready)
       .join('path')
@@ -101,7 +102,7 @@ class tasksManager extends globalThis.React.Component {
       .style("stroke-width", "2px")
       .style("opacity", 0.7);
 
-    svg
+    donutChartSvg
       .selectAll('allPolylines')
       .data(data_ready)
       .join('polyline')
@@ -117,7 +118,7 @@ class tasksManager extends globalThis.React.Component {
         return [posA, posB, posC]
       });
 
-    svg
+    donutChartSvg
       .selectAll('allLabels')
       .data(data_ready)
       .join('text')
@@ -133,8 +134,7 @@ class tasksManager extends globalThis.React.Component {
         return (midangle < Math.PI ? 'start' : 'end')
       })
 
-
-    return Object.assign(svg.node(), { scales: { color } });
+    return Object.assign(donutChartSvg.node());//, { scales: { color } }
     //#endregion
   };
   aggrTasksByCategoryBubbleChart = (sortedMondayItemsJson) => {

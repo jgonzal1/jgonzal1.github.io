@@ -329,11 +329,15 @@ class tasksManager extends globalThis.React.Component {
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
     const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(sortedMondayItemsJson);
-    const mondayTasksByCategoryAndDay = globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson); //?
+    const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");
+    if (!tasksByCategoryAndDayPlaceholder) { return; }
+    tasksByCategoryAndDayPlaceholder.innerHTML = "";
+    tasksByCategoryAndDayPlaceholder.appendChild(
+      globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson)
+    );
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
-      mondayTasksByCategoryAndDay: [mondayTasksByCategoryAndDay],
       mondayTasksByDay: mondayTasksByDay,
       getDatedMondayItemsToJson: false,
       lastRefreshDateTime: new Date().toISOString().substring(2, 19).replace("T", " ")
@@ -383,12 +387,6 @@ class tasksManager extends globalThis.React.Component {
       if (!tasksByCategoryPlaceholder) { return; }
       tasksByCategoryPlaceholder.innerHTML = "";
       tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
-    }
-    if (this.state.mondayTasksByCategoryAndDay.length) { // Add Stacked Bar Chart
-      const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");
-      if (!tasksByCategoryAndDayPlaceholder) { return; }
-      tasksByCategoryAndDayPlaceholder.innerHTML = "";
-      tasksByCategoryAndDayPlaceholder.appendChild(this.state.mondayTasksByCategoryAndDay[0]);
     }
     //#endregion
     // taskManagerWrapper
@@ -608,6 +606,20 @@ class tasksManager extends globalThis.React.Component {
         React.createElement(
           "div",
           {
+            id: "tasksByCategoryAndDay",
+            style: {
+              flexGrow: 1,
+              height: "305px",
+              margin: "0.1em",
+              width: "fit-content"
+            }
+          },
+          "Loading tasks by category and day"
+        )
+        ,
+        /*React.createElement(
+          "div",
+          {
             id: "mondayTasksByDayTableContainer",
             className: "table-container",
             style: {
@@ -658,7 +670,7 @@ class tasksManager extends globalThis.React.Component {
               null,
               "Loading tasks by day table"
             )
-        ),
+        ),*/
         React.createElement(
           "div",
           {

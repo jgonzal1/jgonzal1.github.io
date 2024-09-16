@@ -79,7 +79,6 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const daysRangeStart = new Date().getTime();
   const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
-  /*
   const currentDate = new Date(
     new Date().toISOString().substring(0, 10)
   ); // Gets current day at 00.00
@@ -92,8 +91,15 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       t => t["task_name"] === tn
     ).map(t => t.datetime)[0]
   );
-  const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-    return { "date": offsetNDay(n), "dur": 0 }
+  const arrNextClimbingDays = Array.from(
+    { length: categoryAggrDaysRange }, (_, n) => n
+  ).filter(
+    n => (((
+      (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))
+      / msPerDay
+    ) + 1) % 2)
+  ).map((n) => {
+    return { "x": offsetNDay(n), "name": "3.🍏", "value": 120 }
   });
   let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
     t => {
@@ -103,11 +109,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       }
     }
   );
-  sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
-    .concat(arrNext21D).sort(
-      (a, b) => ("" + a["date"]).localeCompare(b["date"])
-    );
-  const mondayTasksByDayDict = sortedMondayItemsJsonWithEmptyDates.reduce(
+  let mondayTasksByDayDict = sortedMondayItemsJsonWithEmptyDates.reduce(
     (accumulator, item) => {
       if (!accumulator[item["date"]]) {
         accumulator[item["date"]] = 0;
@@ -116,9 +118,10 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       return accumulator
     }, {}
   );
-  console.log(mondayTasksByDayDict);
-  */
-  const renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
+  Object.keys(mondayTasksByDayDict).map(
+    k => mondayTasksByDayDict[k] = mondayTasksByDayDict[k].toPrecision(3)
+  );
+  let renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
     return {
       "x": //Math.floor(new Date(
         t["datetime"].substring(0, 10),
@@ -127,6 +130,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       "value": Math.round(t["dur"] * 60)
     };
   });
+  renamedSortedMondayItemsJson = renamedSortedMondayItemsJson.concat(arrNextClimbingDays);
   const days = renamedSortedMondayItemsJson.map(t => t["x"])
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
@@ -223,11 +227,11 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     .domain(series.map(d => d.key).sort())
     .range(customColors);
 
-  const width = 600;
-  const height = 450;
+  const width = 500;
+  const height = 320;
   const marginTop = 10;
   const marginRight = 10;
-  const marginBottom = 80;
+  const marginBottom = 30;
   const marginLeft = 30;
 
   // Prepare the scales for positional and color encodings.
@@ -298,8 +302,9 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     .text(d => d.key);
 
   // Legend
-  const yOffset = 150;
-  svg.append("rect").attr("x", 485).attr("y", yOffset).attr("width", 85).attr("height", 190)
+  const yOffset = 50;
+  const xOffset = 400;
+  svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85).attr("height", 190)
     .attr("rx", 10).attr("ry", 10).style("fill", "#666C");
   [
     ["1.🏠", "#59a14f"],
@@ -312,14 +317,14 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     ["8.🌐", "#76b7b2"],
     ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
-    svg.append("circle").attr("cx", 500).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])
-    svg.append("text").attr("x", 510).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
+    svg.append("circle").attr("cx", xOffset + 15).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])
+    svg.append("text").attr("x", xOffset + 25).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
       .attr("alignment-baseline", "middle").attr("fill", "#FFF")
   })
   const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
   mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay";
   mondayTasksByCategoryAndDay.style.position = "absolute";
-  mondayTasksByCategoryAndDay.style.top = 420;
+  mondayTasksByCategoryAndDay.style.top = 0;
   // Return the chart with the color scale as a property (for the legend).
   return mondayTasksByCategoryAndDay;
 };

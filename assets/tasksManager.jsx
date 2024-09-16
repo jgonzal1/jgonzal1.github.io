@@ -30,11 +30,23 @@ class tasksManager extends globalThis.React.Component {
         return accumulator;
       }, {}
     );
+    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
+      (k) => {
+        const duration = +(mondayTasksByCatDict[k].toPrecision(3));
+        return {
+          "name": k,
+          "value": duration
+        }
+      }
+    );
+    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
+      (accumulator, currentValue) => accumulator + currentValue, 0
+    ).toFixed(1);
+    this.setState({
+      mondayTasksDurationSum: mondayTasksDurationSum
+    });
     Object.keys(mondayTasksByCatDict).map(
       k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
-    )
-    const mondayTasksDurationSum = Object.values(mondayTasksByCatDict).filter(dur => dur > 0).reduce(
-      (accumulator, currentValue) => accumulator + currentValue, 0
     );
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum

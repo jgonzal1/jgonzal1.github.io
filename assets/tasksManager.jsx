@@ -118,6 +118,10 @@ class tasksManager extends globalThis.React.Component {
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
+    const fullArc = globalThis.d3.arc()
+      .innerRadius(radius)
+      .outerRadius(radius);
+
     donutChartSvg
       .selectAll('allSlices')
       .data(data_ready)
@@ -154,7 +158,7 @@ class tasksManager extends globalThis.React.Component {
       .join('text')
       .text(d => `${d.data[0]} ${d.data[1]}`)
       .attr('transform', function (d) {
-        const pos = outerArc.centroid(d);
+        const pos = fullArc.centroid(d);
         /*
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         const toLeft = 0.85; // 0.99

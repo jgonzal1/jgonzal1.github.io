@@ -5,16 +5,16 @@ class tasksManager extends globalThis.React.Component {
     super(props);
     this.state = {
       colors: {
-        "0.?": "#e15759",
-        "1.🏠": "#59a14f",
-        "2.💰": "#9c755f",
-        "3.🍏": "#edc949",
-        "4.🚩🇩🇰": "#f28e2c",
-        "5.🔬": "#ff9da7",
-        "6.📺": "#af7aa1",
-        "7.🎮": "#4e79a7",
-        "8.🌐": "#76b7b2",
-        "9.➕": "#bab0ab66"
+        "0.➕": /*  */ "#e15759",
+        "1.🏠": /*  */ "#59a14f",
+        "2.💰": /*  */ "#9c755f",
+        "3.🍏": /*  */ "#edc949",
+        "4.🚩🇩🇰": /**/ "#f28e2c",
+        "5.🔬": /*  */ "#ff9da7",
+        "6.📺": /*  */ "#af7aa1",
+        "7.🎮": /*  */ "#4e79a7",
+        "8.🌐": /*  */ "#76b7b2",
+        "9.➕": /*  */ "#bab0ab66"
       },
       dayOffsetValue: Number(1 / 24),
       getDatedMondayItemsToJson: true,
@@ -138,10 +138,13 @@ class tasksManager extends globalThis.React.Component {
       .attr('points', (d) => {
         const posA = arc.centroid(d) // line insertion in the slice
         const posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-        //const posC = outerArc.centroid(d); // Label position = almost the same as posB
-        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-        //const toLeft = 0.8 // 0.95 [-1,1] to put it on the right or on the left
-        //posC[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1); //
+        /*
+        const posC = outerArc.centroid(d); // Label position = almost the same as posB
+        We need the angle to see if the X position will be at the extreme right or extreme left
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        const toLeft = 0.8 // 0.95 [-1,1] to put it on the right or on the left
+        posC[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
+        */
         return [posA, posB]//, posC]
       });
 
@@ -152,9 +155,11 @@ class tasksManager extends globalThis.React.Component {
       .text(d => `${d.data[0]} ${d.data[1]}`)
       .attr('transform', function (d) {
         const pos = outerArc.centroid(d);
-        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-        //const toLeft = 0.85; // 0.99
-        //pos[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
+        /*
+        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        const toLeft = 0.85; // 0.99
+        pos[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
+        */
         return `translate(${pos})`;
       })
       .style('text-anchor', (d) => {
@@ -186,9 +191,10 @@ class tasksManager extends globalThis.React.Component {
         }
       }
     );
-    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
-      (accumulator, currentValue) => accumulator + currentValue, 0
-    ).toFixed(1);
+    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value)
+      .filter(dur => dur > 0).reduce(
+        (accumulator, currentValue) => accumulator + currentValue, 0
+      ).toFixed(1);
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });

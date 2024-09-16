@@ -73,10 +73,50 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
   );
 }
 globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
-  const msPerDay = (24 * 3600 * 1000);
+  const msPerH = 3.6e6;
+  const msPerDay = (24 * msPerH);
   const daysRangeStart = new Date().getTime();
   const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
+  /*
+  const currentDate = new Date(
+    new Date().toISOString().substring(0, 10)
+  ); // Gets current day at 00.00
+  const [
+    nextClimbingDay, nextVI, nextVF
+  ] = [
+    "Climb", "(v_i)", "(v_f)"
+  ].map(
+    (tn) => sortedMondayItemsJson.filter(
+      t => t["task_name"] === tn
+    ).map(t => t.datetime)[0]
+  );
+  const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
+    return { "date": offsetNDay(n), "dur": 0 }
+  });
+  let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
+    t => {
+      return {
+        "date": t["datetime"].substring(0, 10),
+        "dur": t["dur"]
+      }
+    }
+  );
+  sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
+    .concat(arrNext21D).sort(
+      (a, b) => ("" + a["date"]).localeCompare(b["date"])
+    );
+  const mondayTasksByDayDict = sortedMondayItemsJsonWithEmptyDates.reduce(
+    (accumulator, item) => {
+      if (!accumulator[item["date"]]) {
+        accumulator[item["date"]] = 0;
+      }
+      accumulator[item["date"]] += item["dur"]
+      return accumulator
+    }, {}
+  );
+  console.log(mondayTasksByDayDict);
+  */
   const renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
     return {
       "x": //Math.floor(
@@ -150,7 +190,6 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
   });
   const popUpDiv = document.getElementById("popUpDiv") ?? document.createElement("div");
-
 
   // Determine the series that need to be stacked.
   const series = globalThis.d3.stack()
@@ -274,7 +313,9 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   return mondayTasksByCategoryAndDay;
 }
 globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
-  const currentDate = new Date(new Date().toISOString().substring(0, 10)); // Hets current day at 00.00
+  const currentDate = new Date(
+    new Date().toISOString().substring(0, 10)
+  ); // Gets current day at 00.00
   const msPerH = 3.6e6;
   const [
     nextClimbingDay, nextVI, nextVF

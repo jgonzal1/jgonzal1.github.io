@@ -74,10 +74,10 @@ class tasksManager extends globalThis.React.Component {
       mondayTasksDurationSum: mondayTasksDurationSum
     });
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
-    let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
+    let tasksByCategoryWidth = 350, tasksByCategoryHeight = 300;
     if (tasksByCatPlaceholder) {
       tasksByCategoryWidth =
-        Math.max(
+        Math.min(
           parseInt(window.getComputedStyle(
             tasksByCatPlaceholder
           )["width"], 10)
@@ -88,8 +88,7 @@ class tasksManager extends globalThis.React.Component {
           parseInt(window.getComputedStyle(
             tasksByCatPlaceholder
           )["height"], 10)
-          , tasksByCategoryWidth * 0.8
-          //, tasksByCategoryHeight
+          , tasksByCategoryHeight
         );
     }
     const margin = 40;
@@ -105,7 +104,8 @@ class tasksManager extends globalThis.React.Component {
     const node = donutChartSvg.append("g")
       .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
-    var pie = globalThis.d3.pie()
+    const donutChartStartAngle = 45;
+    var pie = globalThis.d3.pie().startAngle(donutChartStartAngle)
       // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
@@ -138,10 +138,11 @@ class tasksManager extends globalThis.React.Component {
       .attr('points', (d) => {
         const posA = arc.centroid(d) // line insertion in the slice
         const posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-        const posC = outerArc.centroid(d); // Label position = almost the same as posB
-        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-        posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-        return [posA, posB, posC]
+        //const posC = outerArc.centroid(d); // Label position = almost the same as posB
+        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
+        //const toLeft = 0.8 // 0.95 [-1,1] to put it on the right or on the left
+        //posC[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1); //
+        return [posA, posB]//, posC]
       });
 
     donutChartSvg
@@ -151,13 +152,14 @@ class tasksManager extends globalThis.React.Component {
       .text(d => `${d.data[0]} ${d.data[1]}`)
       .attr('transform', function (d) {
         const pos = outerArc.centroid(d);
-        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-        pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
+        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        //const toLeft = 0.85; // 0.99
+        //pos[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
         return `translate(${pos})`;
       })
       .style('text-anchor', (d) => {
-        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-        return (midangle < Math.PI ? 'start' : 'end')
+        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        return "middle"; //(midangle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
 

@@ -36,16 +36,25 @@
       height: 100%;
     }
   </style>
+  <!--<script crossorigin src="../libs/react.development.js">
+    globalThis.React = React;
+  </script>
+  <script crossorigin src="../libs/react-dom.development.js">
+    globalThis.ReactDOM = ReactDOM;
+  </script>-->
+  <script src="../libs/d3.v7.js">
+    globalThis.d3 = d3;
+  </script>
 </head>
 
 <body>
   <h4>D3.JS donut chart</h4>
   <!--<button id="randomizeDonutChart">Randomize</button>-->
+  <div id="pieChartManager"></div>
+  <div id="tasksByCategory"></div>
 
-  <script src="../libs/d3.v7.js">
-    globalThis.d3 = d3;
-  </script>
   <script>
+    "use strict";
     const mondayTasksByCatDict = {
       "1.🏠": 15.5,
       "2.💰": 12.7,
@@ -58,12 +67,7 @@
       "9.➕": 4.1
     };
     //aggrTasksByCategoryDonutChart = (mondayTasksByCatDict) => {
-    /*
-    donutChartSvg.append("g").attr("class", "slices");
-    donutChartSvg.append("g").attr("class", "labels");
-    donutChartSvg.append("g").attr("class", "lines");
-    const transitionDurationsMs = 200;
-    */
+
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
     let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
     if (tasksByCatPlaceholder) {
@@ -79,7 +83,7 @@
     const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const donutChartSvg = globalThis.d3.select("body").append("svg")
+    const donutChartSvg = globalThis.d3.select("body").append("svg")//.create("svg")//
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
       .append("g")
@@ -158,106 +162,42 @@
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
         return (midangle < Math.PI ? 'start' : 'end')
       })
-    //return Object.assign(donutChartSvg);
+
+    //  return Object.assign(donutChartSvg.node(), { scales: { color } });
     //}
-    //const dc = aggrTasksByCategoryDonutChart();
-    //console.log(dc);
-    //document.body.appendChild(dc);
+    //const mondayTasksByCategory = aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
+    //console.log(donutChartSvg.node())
+    //const mondayTasksByCategory = Object.assign(donutChartSvg.node(), { scales: { color } });
+    //const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
+    //tasksByCategoryPlaceholder.appendChild(mondayTasksByCategory);//[0]);
 
-    /*
-    var key = (d) => d.data.label;
+    /*class pieChartManager extends globalThis.React.Component {
+      //#region Constructor and functions
+      constructor(props) {
+        super(props);
+        this.state = {
+          mondayTasksByCategory: [],
+        };
+      };
 
-    function randomData() {
-      const labels = color.domain();
-      const data = labels.map((label) => {
-        return {
-          label: label, value: parseInt(1000 * Math.random()) / 100
+
+      render() {
+        const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
+        this.setState({
+          mondayTasksByCategory: [mondayTasksByCategory]
+        });
+        if (this.state.mondayTasksByCategory.length) { // Add Bubble Chart
+          const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
+          if (!tasksByCategoryPlaceholder) { return; }
+          tasksByCategoryPlaceholder.innerHTML = "";
+          tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
         }
-      });
-      return data;
+      }
     }
-
-    change(randomData());
-
-    d3.select("#randomizeDonutChart").on("click", () => change(randomData()));
-
-    function change(data) {
-
-      var slice = donutChartSvg.select(".slices").selectAll("path.slice")
-        .data(pie(data), key);
-
-      slice.enter()
-        .insert("path")
-        .style("fill", (d) => color(d.data.label))
-        .attr("class", "slice");
-
-      slice
-        .transition().duration(transitionDurationsMs)
-        .attrTween("d", (d) => {
-          this._current = this._current || d;
-          var interpolate = d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => arc(interpolate(t));
-        })
-
-      slice.exit().remove();
-
-      donutChartSvg.selectAll("text.donut-chart-labels").remove();
-      var text = donutChartSvg.selectAll("text.donut-chart-labels")
-        .data(pie(data), key);
-      text.enter()
-        .append("text").attr("class", "donut-chart-labels").attr("dy", ".35em")
-        .text((d) => `${d.data.label} ${d.data.value.toPrecision(3)}`);
-
-      midAngle = (d) => d.startAngle + (d.endAngle - d.startAngle) / 2;
-
-      text.transition().duration(transitionDurationsMs)
-        .attrTween("transform", (d) => {
-          this._current = this._current || d;
-          var interpolate = d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            var pos = outerArc.centroid(d2);
-            pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-            return "translate(" + pos + ")";
-          };
-        })
-        .styleTween("text-anchor", (d) => {
-          this._current = this._current || d;
-          var interpolate = d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            return midAngle(d2) < Math.PI ? "start" : "end";
-          };
-        });
-
-      text.exit().remove();
-
-      var polyline = donutChartSvg.select(".lines").selectAll("polyline")
-        .data(pie(data), key);
-
-      polyline.enter().append("polyline");
-
-      polyline.transition().duration(transitionDurationsMs)
-        .attrTween("points", (d) => {
-          this._current = this._current || d;
-          var interpolate = d3.interpolate(this._current, d);
-          this._current = interpolate(0);
-          return (t) => {
-            var d2 = interpolate(t);
-            var pos = outerArc.centroid(d2);
-            pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-            return [arc.centroid(d2), outerArc.centroid(d2), pos];
-          };
-        });
-
-      polyline.exit().remove();
-
-    };
+    const domContainer = document.querySelector("#pieChartManager");
+    const root = globalThis.ReactDOM.createRoot(domContainer);
+    root.render(React.createElement(pieChartManager));
     */
-
   </script>
 </body>
 

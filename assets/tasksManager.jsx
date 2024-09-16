@@ -92,7 +92,6 @@ class tasksManager extends globalThis.React.Component {
           //, tasksByCategoryHeight
         );
     }
-    console.log(tasksByCategoryWidth, tasksByCategoryHeight)
     const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 

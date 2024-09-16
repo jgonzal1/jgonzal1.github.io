@@ -75,16 +75,24 @@ class tasksManager extends globalThis.React.Component {
     });
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
     let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
-    /*if (tasksByCatPlaceholder) {
-      const tasksByCategoryWidth =
-        Math.max(parseInt(window.getComputedStyle(
-          tasksByCatPlaceholder
-        )["width"], 10), 500);
-      const tasksByCategoryHeight =
-        Math.min(parseInt(window.getComputedStyle(
-          tasksByCatPlaceholder
-        )["height"], 10), tasksByCategoryWidth * 0.8);
-    }*/
+    if (tasksByCatPlaceholder) {
+      tasksByCategoryWidth =
+        Math.max(
+          parseInt(window.getComputedStyle(
+            tasksByCatPlaceholder
+          )["width"], 10)
+          , tasksByCategoryWidth
+        );
+      tasksByCategoryHeight =
+        Math.min(
+          parseInt(window.getComputedStyle(
+            tasksByCatPlaceholder
+          )["height"], 10)
+          , tasksByCategoryWidth * 0.8
+          //, tasksByCategoryHeight
+        );
+    }
+    console.log(tasksByCategoryWidth, tasksByCategoryHeight)
     const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 

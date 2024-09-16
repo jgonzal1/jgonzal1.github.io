@@ -4,16 +4,28 @@ class tasksManager extends globalThis.React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      minsOffsetValue: 60,
+      colors: {
+        "0.?": "#e15759",
+        "1.🏠": "#59a14f",
+        "2.💰": "#9c755f",
+        "3.🍏": "#edc949",
+        "4.🚩🇩🇰": "#f28e2c",
+        "5.🔬": "#ff9da7",
+        "6.📺": "#af7aa1",
+        "7.🎮": "#4e79a7",
+        "8.🌐": "#76b7b2",
+        "9.➕": "#bab0ab66"
+      },
       dayOffsetValue: Number(1 / 24),
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
-      mondayTasksCols: {},
-      mondayTasksByCategoryAndDay: [],
+      minsOffsetValue: 60,
       mondayTasksByCategory: [],
-      mondayTasksDurationSum: 0,
+      mondayTasksByCategoryAndDay: [],
       mondayTasksByDay: {},
+      mondayTasksCols: {},
+      mondayTasksDurationSum: 0,
       nextClimbingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
@@ -21,7 +33,7 @@ class tasksManager extends globalThis.React.Component {
   };
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
     //#region Prepare data and setState
-    const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
+    let mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
           accumulator[item["cat"]] = 0;
@@ -30,12 +42,25 @@ class tasksManager extends globalThis.React.Component {
         return accumulator;
       }, {}
     );
+    Object.keys(mondayTasksByCatDict).map(
+      k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
+    );
+    mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort(
+      (a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
+    ).reduce(
+      (obj, key) => {
+        obj[key] = mondayTasksByCatDict[key];
+        return obj;
+      },
+      {}
+    );
     const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {
-        const duration = +(mondayTasksByCatDict[k].toPrecision(3));
+        const duration = +(mondayTasksByCatDict[k]);
         return {
           "name": k,
-          "value": duration
+          "value": duration,
+          "color": this.state.colors[k]
         }
       }
     );
@@ -45,9 +70,6 @@ class tasksManager extends globalThis.React.Component {
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
-    Object.keys(mondayTasksByCatDict).map(
-      k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
-    );
     this.setState({
       mondayTasksDurationSum: mondayTasksDurationSum
     });
@@ -76,29 +98,10 @@ class tasksManager extends globalThis.React.Component {
     const node = donutChartSvg.append("g")
       .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
-    const labels = Object.keys(mondayTasksByCatDict).sort();
-    const color = globalThis.d3.scaleOrdinal().domain(
-      labels
-    ).range(
-      [
-        //"#e15759",
-        "#59a14f", // 🏠
-        "#9c755f", // 💰
-        "#edc949", // 🍏
-        "#f28e2c", // 🚩🇩🇰
-        "#ff9da7", // 🔬
-        "#af7aa1", // 📺
-        "#4e79a7", // 🎮
-        "#76b7b2", // 🌐
-        "#bab0ab66", // ➕
-      ]
-    );
-
     var pie = globalThis.d3.pie()
       // sort usually accepts d3.descending, but here we can only do this, to prevent labels cramming
       .sort(null).value((d) => d[1]);
-    const data_ready = pie(Object.entries(mondayTasksByCatDict))
-
+    const data_ready = pie(Object.entries(mondayTasksByCatDict));
 
     const arc = globalThis.d3.arc()
       .innerRadius(radius * 0.4)
@@ -113,7 +116,7 @@ class tasksManager extends globalThis.React.Component {
       .data(data_ready)
       .join('path')
       .attr('d', arc)
-      .attr('fill', d => color(d.data[1]))
+      .attr('fill', d => this.state.colors[d.data[0]])
       .attr("stroke", "white")
       .style("stroke-width", "2px")
       .style("opacity", 0.7);
@@ -151,7 +154,7 @@ class tasksManager extends globalThis.React.Component {
       })
       .style('fill', () => '#FFF');
 
-    return Object.assign(donutChartSvg.node(), { scales: { color } });
+    return Object.assign(donutChartSvg.node());
     //#endregion
   };
   aggrTasksByCategoryBubbleChart = (sortedMondayItemsJson) => {

@@ -54,10 +54,14 @@ class tasksManager extends globalThis.React.Component {
     const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const donutChartSvg = globalThis.d3.select("body").append("svg")
+    const donutChartSvg = globalThis.d3.create("svg")
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
-      .append("g")
+      .attr("viewBox", [-tasksByCategoryWidth / 2, -tasksByCategoryHeight / 2, tasksByCategoryWidth, tasksByCategoryHeight])
+      .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
+      .attr("text-anchor", "middle");
+
+    const node = donutChartSvg.append("g")
       .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
     const labels = Object.keys(mondayTasksByCatDict).sort();
@@ -106,9 +110,9 @@ class tasksManager extends globalThis.React.Component {
       .selectAll('allPolylines')
       .data(data_ready)
       .join('polyline')
-      .attr("stroke", "black")
+      .attr("stroke", "white")
       .style("fill", "none")
-      .attr("stroke-width", 1)
+      .attr("stroke-width", 2)
       .attr('points', (d) => {
         const posA = arc.centroid(d) // line insertion in the slice
         const posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
@@ -133,8 +137,9 @@ class tasksManager extends globalThis.React.Component {
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
         return (midangle < Math.PI ? 'start' : 'end')
       })
+      .style('fill', () => '#FFF');
 
-    return Object.assign(donutChartSvg.node());//, { scales: { color } }
+    return Object.assign(donutChartSvg.node(), { scales: { color } });
     //#endregion
   };
   aggrTasksByCategoryBubbleChart = (sortedMondayItemsJson) => {
@@ -289,7 +294,7 @@ class tasksManager extends globalThis.React.Component {
     );
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
     const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);
-    const mondayTasksByCategory = this.aggrTasksByCategoryBubbleChart(sortedMondayItemsJson);
+    const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(sortedMondayItemsJson);
     const mondayTasksByCategoryAndDay = globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson); //?
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
@@ -626,6 +631,7 @@ class tasksManager extends globalThis.React.Component {
             id: "tasksByCategory",
             style: {
               // backgroundColor: "#FFF3", only like this for treeMap
+              color: "#FFF",
               height: "305px",
               margin: "0.1em",
               overflow: "hidden",

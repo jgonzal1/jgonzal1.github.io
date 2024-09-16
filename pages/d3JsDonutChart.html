@@ -49,9 +49,9 @@
 
 <body>
   <h4>D3.JS donut chart</h4>
-  <!--<button id="randomizeDonutChart">Randomize</button>-->
-  <div id="pieChartManager"></div>
-  <div id="tasksByCategory"></div>
+  <!--<button id="randomizeDonutChart">Randomize</button>
+  <div id="pieChartManager"></div>-->
+  <div id="tasksByCategory" style="width:315;height:210"></div>
 
   <script>
     "use strict";
@@ -70,7 +70,7 @@
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
     let tasksByCategoryWidth = 315, tasksByCategoryHeight = 210;
-    if (tasksByCatPlaceholder) {
+    /*f (tasksByCatPlaceholder) {
       const tasksByCategoryWidth =
         Math.max(parseInt(window.getComputedStyle(
           tasksByCatPlaceholder
@@ -79,14 +79,18 @@
         Math.min(parseInt(window.getComputedStyle(
           tasksByCatPlaceholder
         )["height"], 10), tasksByCategoryWidth * 0.8);
-    }
+    }*/
     const margin = 40;
     const radius = Math.min(tasksByCategoryWidth, tasksByCategoryHeight) / 2 - margin;
 
-    const donutChartSvg = globalThis.d3.select("body").append("svg")//.create("svg")//
+    const donutChartSvg = globalThis.d3.create("svg")
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
-      .append("g")
+      .attr("viewBox", [-tasksByCategoryWidth / 2, -tasksByCategoryHeight / 2, tasksByCategoryWidth, tasksByCategoryHeight])
+      .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
+      .attr("text-anchor", "middle");
+
+    const node = donutChartSvg.append("g")
       .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
     const labels = Object.keys(mondayTasksByCatDict).sort();
@@ -167,9 +171,9 @@
     //}
     //const mondayTasksByCategory = aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
     //console.log(donutChartSvg.node())
-    //const mondayTasksByCategory = Object.assign(donutChartSvg.node(), { scales: { color } });
-    //const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
-    //tasksByCategoryPlaceholder.appendChild(mondayTasksByCategory);//[0]);
+    const mondayTasksByCategory = Object.assign(donutChartSvg.node(), { scales: { color } });
+    const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
+    tasksByCategoryPlaceholder.appendChild(mondayTasksByCategory);//[0]);
 
     /*class pieChartManager extends globalThis.React.Component {
       //#region Constructor and functions

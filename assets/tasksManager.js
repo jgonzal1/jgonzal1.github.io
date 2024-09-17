@@ -97,7 +97,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     n => (((
       (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))
       / msPerDay
-    ) + 1) % 2)
+    ) + 1) % 2) && (offsetNDay(n) !== nextClimbingDay.substring(0, 10))
   ).map((n) => {
     return { "x": offsetNDay(n), "name": "3.🍏", "value": 120 }
   });

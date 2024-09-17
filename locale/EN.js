@@ -433,6 +433,20 @@ function getEnglishContents() {
     <td colspan="2">Danish</td>
   </tr>
   `;
+  const skills = `
+  Agile, Amazon Dynamodb, Amazon Elastic Compute Cloud, Amazon Redshift
+  ,Amazon Simple Storage Service, Amazon Web Services, API, AWS athena
+  ,Azure Cloud Services, Azure DevOps, BERT, Big Data, Business Intelligence
+  ,Confluence, Continuous Integration/Delivery, CSS, Data Analysis, Data Migration
+  ,Data Science, Data Structure, Database, Datasets, Deployment, Django, Docker
+  ,Drug Discovery, ElasticSearch, ETL, Excel, Front-end, GIS, Git, Google Sheets
+  ,GraphQL, Helpdesk, HTML, Identity and Access Management, Javascript
+  ,marketing analysis, Microservice, Microsoft Azure, MySQL
+  ,Natural Language Processing, Node.Js, Pentaho, PostgreSQL, Power BI, Python
+  ,ReactJS, Real Estate, REST, Serverless Architecture, SQL, sql queries
+  ,Technical Requirements, Typescript, Unstructured Data, Use Cases
+  ,User Experience Design, User Interface, Web Services
+  `;
   const legend = `<tr>
     <td colspan="9" style="font-size:0.75rem">
     * Holidays 2w Xmas, Easter, 3w end of Jul/start of Aug

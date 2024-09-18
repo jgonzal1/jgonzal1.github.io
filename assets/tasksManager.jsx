@@ -349,7 +349,7 @@ class tasksManager extends globalThis.React.Component {
           id: "lastRefreshDateTime",
           style: {
             display: "inline-block",
-            paddingLeft: "0.3em"
+            padding: "0 0.3em"
           }
         },
         `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
@@ -361,7 +361,6 @@ class tasksManager extends globalThis.React.Component {
           id: "lastUpdatedItem",
           style: {
             display: "inline-block",
-            height: "1em",
             right: "10em",
             paddingLeft: "0.1em",
             top: "0em",

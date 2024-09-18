@@ -2,6 +2,7 @@
 
 <head>
   <title>Tasks Manager Dashboard</title>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
     globalThis.React = React;
   </script>
@@ -107,6 +108,22 @@
   <div id="popUpDiv" style="width: 2.6em; height: 1.2em; position: absolute; right: 5em; top: 0.8em;"></div>
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/tasksManager.jsx"></script>
+  <script type="text/babel">
+    const urlPrefix = location.href.substring(0, location.href.search("/pages/"));
+    console.log(urlPrefix)
+    const sideBarDom = document.getElementsByClassName('sidebar')[0];
+    const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
+    sideBarRoot.render(
+      <div className="space-children-1em">
+        <a href="#" onClick={() => document.location = urlPrefix + '/index.html'}>cv</a>
+        <a href="#" onClick={() => document.location = urlPrefix + '/pages/books.html'}>books</a>
+        <a href="#" onClick={() => document.location = urlPrefix + '/pages/music.html'}>music</a>
+        <a href="#" onClick={() => document.location = urlPrefix + '/pages/navezgane.html'}>navezgane</a>
+        <a href="#" onClick={() => document.location = urlPrefix + '/pages/tasksDashboard.html'}>tasksDashboard</a>
+        <a href="#" onClick={() => document.location = urlPrefix + '/pages/theThreeSeas.html'}>theThreeSeas</a>
+      </div >
+    )
+  </script>
   <!--<div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
     <button class="close-button" onClick='hideMap()'>
       &times; <span style="display:none">👁</span>

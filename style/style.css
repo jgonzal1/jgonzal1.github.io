@@ -318,6 +318,10 @@ th+th {
   border-color: #0000;
 }
 
+.space-children-1em>* {
+  margin: 1em 0;
+}
+
 .page-number {
   position: relative;
   text-align: center;

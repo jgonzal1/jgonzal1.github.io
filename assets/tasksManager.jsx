@@ -314,9 +314,12 @@ class tasksManager extends globalThis.React.Component {
         "span",
         {
           id: "lastRefreshDateTime",
-          style: { paddingLeft: "0.3em" }
+          style: {
+            display: "inline-block",
+            paddingLeft: "0.3em"
+          }
         },
-        `minute(s) offset |`
+        `min(s) offset |`
       ),
       // setDayOffset
       React.createElement(
@@ -344,18 +347,28 @@ class tasksManager extends globalThis.React.Component {
         "span",
         {
           id: "lastRefreshDateTime",
-          style: { paddingLeft: "0.3em" }
+          style: {
+            display: "inline-block",
+            paddingLeft: "0.3em"
+          }
         },
         `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
       ),
       // lastUpdatedItem
       React.createElement(
-        "span",
+        "div",
         {
           id: "lastUpdatedItem",
-          style: { paddingLeft: "0.1em" }
+          style: {
+            display: "inline-block",
+            height: "1em",
+            right: "10em",
+            paddingLeft: "0.1em",
+            top: "0em",
+            width: "fit-content"
+          }
         },
-        this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem
+        this.state.lastUpdatedItem && `Last upd. item: ${this.state.lastUpdatedItem
         }`
       ),
       // mondayTableContainer

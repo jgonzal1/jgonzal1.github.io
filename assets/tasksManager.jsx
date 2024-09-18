@@ -31,7 +31,6 @@ class tasksManager extends globalThis.React.Component {
     };
   };
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
-    //#region Prepare data and setState
     let mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
@@ -167,11 +166,10 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
 
     donutChartSvg.append("text").style("fill", "#FFF").text(() =>
-      `${mondayTasksDurationSum} h / ${(parseFloat(mondayTasksDurationSum) / 20).toFixed(1)}w`
+      `${mondayTasksDurationSum}h/${(parseFloat(mondayTasksDurationSum) / 20).toFixed(1)}w`
     );
 
     return Object.assign(donutChartSvg.node());
-    //#endregion
   };
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames

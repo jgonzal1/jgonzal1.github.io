@@ -231,8 +231,8 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const height = 320;
   const marginTop = 10;
   const marginRight = 10;
-  const marginBottom = 30;
-  const marginLeft = 30;
+  const marginBottom = 45;
+  const marginLeft = 40;
 
   // Prepare the scales for positional and color encodings.
   const x = globalThis.d3.scaleUtc() //
@@ -247,20 +247,20 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     ]) // globalThis.d3.extent(series.flat(2)) for StreamGraph
     .rangeRound([height - marginBottom, marginTop]);
 
-  //@ts-ignore Construct an area shape.
+  //@ts-ignore Construct an area shape
   const area = globalThis.d3.area()
     .x(d => x(d.data[0]))
     .y0(d => y(d[0]))
     .y1(d => y(d[1]));
 
-  //@ts-ignore Create the SVG container.
+  //@ts-ignore Create the SVG container
   const svg = globalThis.d3.create("svg")
     .attr("viewBox", [0, 0, width, height])
     .attr("width", width)
     .attr("height", height)
     .attr("style", "max-width: 100%; height: auto;");
 
-  // Add the y-axis, remove the domain line, add grid lines and y-label.
+  // y-axis without domain line, grid lines and y-label
   svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
     //@ts-ignore
@@ -273,19 +273,24 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       .attr("stroke-opacity", 0.1))
     .call(g => g.append("text")
       .attr("x", -marginLeft)
-      .attr("y", 10)
+      .attr("y", 30)
       .attr("fill", "currentColor")
       .attr("text-anchor", "start")
       .text("↑ minutes"));
 
-  // Append the x-axis and remove the domain line.
+  // x-axis without domain line
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
-    .call(d3.axisBottom(x).tickSizeOuter(0)) // ↓ optional
+    .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%m-%d %a")) // ↓ optional
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-0.5em")
+    .attr("dy", "0.1em")
+    .attr("transform", (d) => "rotate(-45)")
     .call(g => g.select(".domain").remove());
 
-  // Append the filling path to graph each serie
+  // Filling path to graph each serie
   svg.append("g")
     .selectAll()
     .data(series)
@@ -320,12 +325,12 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     svg.append("circle").attr("cx", xOffset + 15).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])
     svg.append("text").attr("x", xOffset + 25).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
       .attr("alignment-baseline", "middle").attr("fill", "#FFF")
-  })
+  });
+
   const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
   mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay";
   mondayTasksByCategoryAndDay.style.position = "absolute";
   mondayTasksByCategoryAndDay.style.top = 0;
-  // Return the chart with the color scale as a property (for the legend).
   return mondayTasksByCategoryAndDay;
 };
 globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {

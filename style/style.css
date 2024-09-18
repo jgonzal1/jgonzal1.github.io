@@ -343,9 +343,16 @@ th+th {
   display: flex;
   height: min(calc(100% - 1em), 800px);
   justify-content: center;
-  transform: rotate(180deg);
+  /*transform: rotate(180deg);*/
   width: 2em;
   writing-mode: vertical-rl;
+}
+
+.sidebar img {
+  background-color: #FFF6;
+  border-radius: 0.5em;
+  max-width: 2em;
+  padding: 0.2em;
 }
 
 .summary-cell {

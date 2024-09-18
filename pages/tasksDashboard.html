@@ -115,13 +115,22 @@
     const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
     sideBarRoot.render(
       <div className="space-children-1em">
-        <a href={urlPrefix + '/index.html'} onClick={() => document.location = urlPrefix + '/index.html'}>cv</a>
-        <a href={urlPrefix + '/pages/books.html'} onClick={() => document.location = urlPrefix + '/pages/books.html'}>books</a>
-        <a href={urlPrefix + '/pages/music.html'} onClick={() => document.location = urlPrefix + '/pages/music.html'}>music</a>
-        <a href={urlPrefix + '/pages/navezgane.html'} onClick={() => document.location = urlPrefix + '/pages/navezgane.html'}>navezgane</a>
-        <a href={urlPrefix + '/pages/tasksDashboard.html'} onClick={() => document.location = urlPrefix + '/pages/tasksDashboard.html'}>tasksDashboard</a>
-        <a href={urlPrefix + '/pages/theThreeSeas.html'} onClick={() => document.location = urlPrefix + '/pages/theThreeSeas.html'}>theThreeSeas</a>
-      </div >
+        <a href="#CV" onClick={() => document.location = urlPrefix + '/index.html'}>
+          <img src="../public/cv.png" />
+        </a>
+        <a href="#Music" onClick={() => document.location = urlPrefix + '/pages/music.html'}>
+          <img src="../public/music.png" />
+        </a>
+        <a href="#Navezgane map" onClick={() => document.location = urlPrefix + '/pages/navezgane.html'}>
+          <img src="../public/zombie.png" />
+        </a>
+        <a href="#Tasks dashboard" onClick={() => document.location = urlPrefix + '/pages/tasksDashboard.html'}>
+          <img src="../public/prioritize.png" />
+        </a>
+        <a href="#The three seas map" onClick={() => document.location = urlPrefix + '/pages/theThreeSeas.html'}>
+          <img src="../public/map.png" />
+        </a>
+      </div>
     )
   </script>
   <!--

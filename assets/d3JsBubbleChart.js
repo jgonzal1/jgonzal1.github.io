@@ -159,3 +159,115 @@ function createBubbleChart(sortedMondayItemsJson) {
 
   return Object.assign(svg.node(), { scales: { color } });
 }
+
+function aggrTasksByCategoryBubbleChart(sortedMondayItemsJson) {
+  //#region Prepare data and setState
+  const mondayTasksByCatDict = sortedMondayItemsJson.reduce(
+    (accumulator, item) => {
+      if (!accumulator[item["cat"]]) {
+        accumulator[item["cat"]] = 0;
+      }
+      accumulator[item["cat"]] += item["dur"]
+      return accumulator
+    }, {}
+  );
+  const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
+    (k) => {
+      const duration = +(mondayTasksByCatDict[k].toFixed(1));
+      return {
+        "name": k,
+        "value": duration
+      }
+    }
+  );
+  const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value)
+    .filter(dur => dur > 0).reduce(
+      (accumulator, currentValue) => accumulator + currentValue, 0
+    ).toFixed(1);
+  this.setState({
+    mondayTasksDurationSum: mondayTasksDurationSum
+  });
+  const [width, height] = [350, 350];
+  const customColors = [
+    "#e15759",
+    "#59a14f", // 🏠
+    "#9c755f", // 💰
+    "#edc949", // 🍏
+    "#f28e2c", // 🚩🇩🇰
+    "#ff9da7", // 🔬
+    "#af7aa1", // 📺
+    "#4e79a7", // 🎮
+    "#76b7b2", // 🌐
+    "#bab0ab66", // ➕
+    ""
+  ]; // globalThis.d3.scaleOrdinal(treeMapChildren.map(d => d.name), globalThis.d3.schemeTableau10); // alternative
+  const color = globalThis.d3.scaleOrdinal(customColors); // for bubbleChart
+  const bubbleChart = dataCategoriesAndValues.map(nv => {
+    return {
+      "id": `tc.${nv.name}`,
+      "value": nv.value + 2
+    }
+  });
+  //#endregion
+  //#region Plot Bubble Chart
+  const margin = 1; // to avoid clipping the root circle stroke
+  const name = d => d.id.split(".").pop(); // "Strings" of "flare.util.Strings"
+  const group = d => d.id.split(".")[1]; // "util" of "flare.util.Strings"
+  const names = d => name(d).split(/(?=[A-Z][a-z])|\s+/g); // ["Legend", "Item"] of "flare.vis.legend.LegendItems"
+
+  //@ts-ignore [Number format for values](https://observablehq.com/@d3/d3-format?collection=@d3/d3-format)
+  const format = globalThis.d3.format(".1f");
+
+  // Create layout
+  const pack = globalThis.d3.pack()
+    .size([width - margin * 2, height - margin * 2])
+    .padding(3);
+
+  // Compute the hierarchy from the (flat) bubbleChart data
+  const root = pack(globalThis.d3.hierarchy({ children: bubbleChart })
+    .sum(d => d.value));
+
+  const svg = globalThis.d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", [-margin, -margin, width, height])
+    .attr("style", "max-width: 100%; height: auto; font: 1.4em sans-serif;")
+    .attr("text-anchor", "middle");
+
+  // Place each (leaf) node according to the layout's x and y values
+  const node = svg.append("g")
+    .selectAll()
+    .data(root.leaves())
+    .join("g")
+    .attr("transform", d => `translate(${d.x},${d.y})`);
+
+  node.append("title")
+    .text(d => `${d.data.id}\n${format(d.value)}`);
+
+  node.append("circle")
+    .attr("fill-opacity", 0.7)
+    .attr("fill", d => customColors[group(d.data)])
+    .attr("r", d => d.r);
+
+  // Add the labels
+  const text = node.append("text")
+    .attr("clip-path", d => `circle(${d.r})`);
+
+  // Add a tspan for each CamelCase-separated word.
+  text.selectAll()
+    .data(d => names(d.data))
+    .join("tspan")
+    .attr("x", 0)
+    .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.35}em`)
+    .text(d => d);
+
+  // Add a tspan for the node's value.
+  text.append("tspan")
+    .attr("x", 0)
+    .attr("y", d => `${names(d.data).length / 2 + 0.35}em`)
+    .attr("fill-opacity", 0.7)
+    .text(d => format(d.value - 2));
+
+  return Object.assign(svg.node(), { scales: { color } });
+  //#endregion
+}

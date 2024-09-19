@@ -380,7 +380,7 @@ class tasksManager extends globalThis.React.Component {
             paddingTop: "0.1em",
             width: "fit-content",
             maxWidth: "calc(100% - 0.8em)",
-            maxHeight: "440px" // 640
+            maxHeight: `calc(440px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})` // 640
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?
@@ -421,7 +421,7 @@ class tasksManager extends globalThis.React.Component {
                   "td",
                   {
                     key: `${taskKey}${taskKeyIdx}${idxRow}Td`,
-                    className: `${taskKey}-td`,
+                    className: `${taskKey} - td`,
                     style: { height: "2em" }
                   },
                   taskKey === "actions" ? React.createElement(
@@ -528,7 +528,7 @@ class tasksManager extends globalThis.React.Component {
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
                     React.createElement(
                       "th",
-                      { key: `${taskKey}HeaderByDay` },
+                      { key: `${ taskKey }HeaderByDay` },
                       taskKey
                     )
                   )
@@ -540,12 +540,12 @@ class tasksManager extends globalThis.React.Component {
                 this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
                   "tr",
                   {
-                    key: `TaskRow${idxRow}ByDay`,
+                    key: `TaskRow${ idxRow }ByDay`,
                     style: { backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",
-                    { key: `${taskKey}${idxRow}TdByDay` },
+                    { key: `${ taskKey }${ idxRow }TdByDay` },
                     taskRow[taskKey]
                   ))
                 ))

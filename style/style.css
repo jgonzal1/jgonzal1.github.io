@@ -353,10 +353,14 @@ th+th {
 
 .sidebar img {
   background-color: #FFF3;
-  border: 1px solid #CCCC;
+  border: 1px solid #FFF6;
   border-radius: 0.5em;
   max-width: 2em;
-  padding: 0.5em;
+  padding: 0.3em;
+}
+
+.sidebar img:hover {
+  background-color: #CCCC;
 }
 
 .summary-cell {

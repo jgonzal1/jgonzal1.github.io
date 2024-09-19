@@ -21,7 +21,7 @@ td {
   font-size: 1.02em;
 }
 
-div,
+/*div,*/
 th,
 td {
   border: 1px solid #CCC;
@@ -318,8 +318,8 @@ th+th {
   border-color: #0000;
 }
 
-.space-children-1em>* {
-  margin: 1em 0;
+.space-children-05em>* {
+  margin: 0.5em 0;
 }
 
 .page-number {
@@ -339,20 +339,24 @@ th+th {
 }
 
 .sidebar {
+  /*
   align-items: center;
+  justify-content: center;
+  transform: rotate(180deg);
+  width: 2em;
+  */
   display: flex;
   height: min(calc(100% - 1em), 800px);
-  justify-content: center;
-  /*transform: rotate(180deg);*/
-  width: 2em;
+  margin-right: 0.5em;
   writing-mode: vertical-rl;
 }
 
 .sidebar img {
-  background-color: #FFF6;
+  background-color: #FFF3;
+  border: 1px solid #CCCC;
   border-radius: 0.5em;
   max-width: 2em;
-  padding: 0.2em;
+  padding: 0.5em;
 }
 
 .summary-cell {

@@ -284,10 +284,11 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%m-%d %a")) // ↓ optional
     .selectAll("text")
+    .style("font-family", "courier")
     .style("text-anchor", "end")
     .attr("dx", "-0.5em")
     .attr("dy", "0.1em")
-    .attr("transform", (d) => "rotate(-45)")
+    .attr("transform", () => "rotate(-30)")
     .call(g => g.select(".domain").remove());
 
   // Filling path to graph each serie

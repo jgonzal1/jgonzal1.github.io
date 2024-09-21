@@ -257,6 +257,30 @@ class tasksManager extends globalThis.React.Component {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
+  archiveMondayItem = async (
+    mondayKey, boardId, itemId
+  ) => {
+    globalThis.headers["Authorization"] = mondayKey;
+    const query = `mutation { archive_item ( ${""
+      }item_id: ${itemId}) { name } }`;
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      globalThis.mondayApiUrl,
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
+      }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.["name"] ?? false;
+    if (lastUpdatedItem) {
+      this.setState({ lastUpdatedItem: lastUpdatedItem });
+    }
+  }
   setDayOffsetValue = (k) => {
     this.setState({ dayOffsetValue: k })
   };
@@ -460,6 +484,20 @@ class tasksManager extends globalThis.React.Component {
                           monday_key, boardId,
                           taskRow["task_id"],
                           globalThis.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                        )
+                      }
+                    ),
+                    React.createElement(
+                      "img",
+                      {
+                        src: "../public/archive.png",
+                        alt: "Archive",
+                        key: `${taskRow["task_id"]}ArchiveImg`,
+                        className: "clickable-icon",
+                        onClick: () => this.archiveMondayItem(
+                          //@ts-ignore
+                          monday_key, boardId,
+                          taskRow["task_id"]
                         )
                       }
                     ),

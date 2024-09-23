@@ -105,8 +105,7 @@ function getEnglishContents() {
       "bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.<br>
       Greatest experience in these clouds:<br>
       <span class="highlight-orange cloud"><b>Amazon Web Services</b></span> (3+ years of experience),
-      <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span> (1 year of experience within the
-      company).
+      <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span>.
     </td>
   </tr>
   <tr>

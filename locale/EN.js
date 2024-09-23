@@ -1,4 +1,47 @@
 function getEnglishContents() {
+  const skills = `
+  Amazon DynamoDB, Amazon EC2, Amazon Redshift, Amazon S3,
+  Amazon Web Services, API development, AWS Athena, AWS Lambda,
+  Azure Data Factory, Azure DevOps, BERT, boto3, Business Intelligence,
+  CI/CD, CSS, D3.JS, Data Engineering, Data Migration,
+  Database Administrator, Django, Docker, ElasticSearch, ETL,
+  Excel, Front-end, GIS, Git, GraphQL, IAM, Javascript, Leaflet,
+  Microservices Architecture, Microsoft Azure Cloud Services,
+  MySQL, Natural Language Processing, Node.Js, pandas, Pentaho,
+  PL/SQL, PostgreSQL, Power BI, Python, React, Real Estate,
+  Redshift, RegEx, REST, Serverless Architecture, Software Developer,
+  SQL, sqlite, Typescript, User Experience Design,
+  Web Development, Web Services`;
+  /*,<span class="highlight-orange">AWS EC2</span>
+  ,<span class="highlight-orange">Amazon Code Commit</span> (git)
+  ,<span class="bi highlight-orange">Amazon Redshift</span> (SQL)
+  ,<span class="bi highlight-orange">AWS Glue</span> (pyspark)
+  ,<span class="highlight-blue">Excel</span> (advanced)
+  ,<span class="bi highlight-yellow">Power BI</span> (DAX functions, R)
+  ,<span class="highlight-red cloud">Python</span> (boto3
+  ,<span class="bi">pyspark</span>, numpy, pandas, scikit-learn...)
+  ,<span class="webdev highlight-red">JavaScript</span>
+  (experience on full stack development with React, Angular, jQuery
+  ,Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and
+  TypeScript), <span class="webdev highlight-red">CSS</span>
+  (BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span>
+  (complex structures and DOM handlers), <span class="highlight-red">Docker</span>
+  ,<span class="highlight-red Kubernetes">Kubernetes</span>
+  ,<span class="highlight-red">Terraform</span>
+  ,<span class="webdev highlight-red">Regular Expressions</span> (advanced)
+  ,<span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class=
+  "bi highlight-blue">Azure Data Factory</span>(ETLs)
+  ,<span class="highlight-gray">IBM Watson</span> (AI solutions)
+  ,<span class="webdev highlight-blue">Azure App Service</span>
+  ,<span class="highlight-blue">Microsoft LUIS</span>, <span class="kafka">Kafka</span>.
+  */
+  const minorSkills = `
+  Agile, Big Data, Confluence, CSS, Data Analysis, Data Modeling
+  ,Data Science, Datasets, Deployment, Drug Discovery, Excel
+  ,Google Sheets, Helpdesk, HTML, Marketing Analysis, ReactJS
+  ,sql queries, Technical Requirements, Unstructured Data
+  ,Use Cases, User Interface, Web Services
+  `;
   const cvHeader = `
   <tr>
     <td colspan="3">
@@ -21,7 +64,7 @@ function getEnglishContents() {
         <span style="color:#F0C674">★★★★★</span> ES<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DE<br>
         <span style="color:#F0C674">★★</span>☆☆☆ FR<br>
-        <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
+        <span style="color:#F0C674">★&#11242;</span>☆☆☆ DA<br>
         <span style="color:#F0C674">★</span>☆☆☆☆ LT<br>
       </fieldset>
     </td>
@@ -69,20 +112,10 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right">
       <h3>
-        Tech Stack
+        Tech Stack (Alphabetical)
       </h3>
     </td>
-    <td colspan="2" class="summary-cell w70">
-      <span class="highlight-orange">AWS EC2</span>, <span class="highlight-orange">Amazon Code Commit</span> (git), <span class="bi highlight-orange">Amazon Redshift</span> (SQL),
-      <span class="bi highlight-orange">AWS Glue</span> (pyspark), <span class="highlight-blue">Excel</span> (advanced), <span class="bi highlight-yellow">Power BI</span> (DAX
-      functions, R), <span class="highlight-red cloud">Python</span> (boto3, <span class="bi">pyspark</span>, numpy, pandas, scikit-learn...), <span class="webdev
-      highlight-red">JavaScript</span> (experience on full stack development with React, Angular, jQuery, Leaflet, BootStrap, D3.JS, Ionic, Node.JS, Three.JS, ESLint and
-      TypeScript), <span class="webdev highlight-red">CSS</span>(BootStrap, LeafLet, AwesomeFonts), <span class="webdev highlight-red">HTML</span> (complex structures and DOM
-      handlers), <span class="highlight-red">Docker</span>, <span class="highlight-red Kubernetes">Kubernetes</span>, <span class="highlight-red">Terraform</span>,
-      <span class="webdev highlight-red"> Regular Expressions</span> (advanced), <span class="bi highlight-blue">Azure Data Lake Analytics</span> (U-SQL, C#), <span class=
-      "bi highlight-blue">Azure Data Factory</span>(ETLs), <span class="highlight-gray">IBM Watson</span> (AI solutions), <span class="webdev highlight-blue">Azure App Service
-      </span>, <span class="highlight-blue">Microsoft LUIS</span>, <span class="kafka">Kafka</span>.
-    </td>
+    <td colspan="2" class="summary-cell w70">${skills}</td>
   </tr>
   <tr class="no-border">
     <td colspan="3">
@@ -493,20 +526,6 @@ function getEnglishContents() {
     <td class="bold-right">Basic Level</td>
     <td colspan="2">Danish</td>
   </tr>
-  `;
-  const skills = `
-  Agile, Amazon Dynamodb, Amazon Elastic Compute Cloud, Amazon Redshift
-  ,Amazon Simple Storage Service, Amazon Web Services, API, AWS athena
-  ,Azure Cloud Services, Azure DevOps, BERT, Big Data, Business Intelligence
-  ,Confluence, Continuous Integration/Delivery, CSS, Data Analysis, Data Migration
-  ,Data Science, Data Structure, Database, Datasets, Deployment, Django, Docker
-  ,Drug Discovery, ElasticSearch, ETL, Excel, Front-end, GIS, Git, Google Sheets
-  ,GraphQL, Helpdesk, HTML, Identity and Access Management, Javascript
-  ,marketing analysis, Microservice, Microsoft Azure, MySQL
-  ,Natural Language Processing, Node.Js, Pentaho, PostgreSQL, Power BI, Python
-  ,ReactJS, Real Estate, REST, Serverless Architecture, SQL, sql queries
-  ,Technical Requirements, Typescript, Unstructured Data, Use Cases
-  ,User Experience Design, User Interface, Web Services
   `;
   const legend = `<tr>
     <td colspan="9" style="font-size:0.75rem">

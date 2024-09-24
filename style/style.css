@@ -37,7 +37,7 @@ fieldset {
 }
 
 h2 {
-  margin-top: 0.6em;
+  margin: 0;
 }
 
 h2,
@@ -211,6 +211,10 @@ th+th {
   height: calc(100% - 0.3em);
   justify-content: center;
   width: 100%;
+}
+
+.font-size-12-rem {
+  font-size: 1.2rem;
 }
 
 .grid-container-3 {

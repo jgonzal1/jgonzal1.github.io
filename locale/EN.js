@@ -1,17 +1,27 @@
 function getEnglishContents() {
   const skills = `
+  <fieldset class="font-size-12-rem"><legend class="category-td">Amazon Web Services (AWS)</legend>
   Amazon DynamoDB, Amazon EC2, Amazon Redshift, Amazon S3,
-  Amazon Web Services, API development, AWS Athena, AWS Lambda,
-  Azure Data Factory, Azure DevOps, BERT, boto3, Business Intelligence,
-  CI/CD, CSS, D3.JS, Data Engineering, Data Migration,
-  Database Administrator, Django, Docker, ElasticSearch, ETL,
-  Excel, Front-end, GIS, Git, GraphQL, IAM, Javascript, Leaflet,
-  Microservices Architecture, Microsoft Azure Cloud Services,
-  MySQL, Natural Language Processing, Node.Js, pandas, Pentaho,
-  PL/SQL, PostgreSQL, Power BI, Python, React, Real Estate,
-  Redshift, RegEx, REST, Serverless Architecture, Software Developer,
-  SQL, sqlite, Typescript, User Experience Design,
-  Web Development, Web Services`;
+  AWS Athena, AWS CLI, AWS Lambda, boto3, IAM
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Microsoft / Azure</legend>
+  Azure Data Factory, Azure DevOps, Azure Cloud Services,
+  Microsoft LUIS, Power BI, VSCode
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Data Engineering</legend>
+  Business Intelligence, Database Migrations, Database Administrator,
+  DAX, ElasticSearch, ETL, GIS, GraphQL, GSheets/Excel, MySQL, pandas,
+  Pentaho Data Integration, PL/SQL, PostgreSQL, SQL, sqlite
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Full-stack software engineer</legend>
+  API development, CI/CD, Django, Docker, Git,
+  Microservices Architecture, NLP, Node.Js, Python, ReactJS, RegEx, REST,
+  Serverless Architecture, Typescript, Web Services Integrations
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Web developer</legend>
+  CSS, D3.JS, Figma User Experience Design, Front-end, Javascript, React Native
+  </fieldset>
+  `;
   /*,<span class="highlight-orange">AWS EC2</span>
   ,<span class="highlight-orange">Amazon Code Commit</span> (git)
   ,<span class="bi highlight-orange">Amazon Redshift</span> (SQL)
@@ -36,11 +46,11 @@ function getEnglishContents() {
   ,<span class="highlight-blue">Microsoft LUIS</span>, <span class="kafka">Kafka</span>.
   */
   const minorSkills = `
-  Agile, Big Data, Confluence, CSS, Data Analysis, Data Modeling
-  ,Data Science, Datasets, Deployment, Drug Discovery, Excel
-  ,Google Sheets, Helpdesk, HTML, Marketing Analysis, ReactJS
-  ,sql queries, Technical Requirements, Unstructured Data
-  ,Use Cases, User Interface, Web Services
+    Agile, Big Data, Confluence, CSS, Data Analysis, Data Modeling
+    ,Data Science, Datasets, Deployment, Drug Discovery, Excel
+    ,Google Sheets, Helpdesk, HTML, Marketing Analysis, ReactJS
+    ,sql queries, Technical Requirements, Unstructured Data
+    ,Use Cases, User Interface, Web Services
   `;
   const cvHeader = `
   <tr>
@@ -77,11 +87,7 @@ function getEnglishContents() {
       </fieldset>
       <fieldset>
         <legend>📫</legend>
-        Europe
-      </fieldset>
-      <fieldset>
-        <legend>🗺</legend>
-        Availability for international projects
+        Copenhagen, Denmark, 🗺:<br>availability for international projects
       </fieldset>
     </td>
     <td class="centered" style="border-width:0">
@@ -100,18 +106,15 @@ function getEnglishContents() {
     <td class="bold-right">
       <h3>About me</h3>
     </td>
-    <td colspan="2" class="summary-cell w70">
-      <b>Technical</b> and <b><span class="cloud">cloud consultant expert</span></b> in <span class="bi highlight-yellow"><b>ETLs</b></span>, <span class=
-      "bi highlight-yellow"><b>BI</b></span>, <span class="webdev highlight-red"><b>web development</b></span> and NLP.<br>
-      Greatest experience in these clouds:<br>
-      <span class="highlight-orange cloud"><b>Amazon Web Services</b></span> (3+ years of experience),
-      <span class="highlight-blue cloud"><b>Azure</b></span> (3 years of experience) and <span class="highlight-gray cloud"><b>IBM</b></span>.
+    <td colspan="2" class="font-size-12-rem w70">
+      Technical consultant expert in data engineering, full-stack software development,
+      BI, and cloud architectures in AWS, Azure, GCP, monday.com and JSM.
     </td>
   </tr>
   <tr>
     <td class="bold-right">
       <h3>
-        Tech Stack (Alphabetical)
+        Tech Stack
       </h3>
     </td>
     <td colspan="2" class="summary-cell w70">${skills}</td>
@@ -526,7 +529,8 @@ function getEnglishContents() {
     <td colspan="2">Danish</td>
   </tr>
   `;
-  const legend = `<tr>
+  const legend = `
+  <tr>
     <td colspan="9" style="font-size:0.75rem">
     * Holidays 2w Xmas, Easter, 3w end of Jul/start of Aug
     </td>
@@ -555,6 +559,7 @@ function getEnglishContents() {
     <td></td><td colspan="7" style="background-color:#81A2BE">
       Technical consultant
     </td>
-  </tr>`;
+  </tr>
+  `;
   return [cvHeader, cvBody, legend];
 }

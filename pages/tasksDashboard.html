@@ -140,10 +140,10 @@
       <div className="space-children-05em">
         {
           sideBarPages.map(p => (
-            <a href={`#${p.name}`}
+            <a key={`${p.img}A`} href={`#${p.name}`}
               onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
             >
-              <img
+              <img key={`${p.img}Img`}
                 src={`../public/${p.img}.png`}
                 className={location.href === `${urlPrefix}/${p.location}.html` ? "highlight-active" : ""}
               />

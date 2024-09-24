@@ -229,6 +229,11 @@ th+th {
   border: 0.1em solid #000000;
 }
 
+.highlight-active {
+  background-color: #04AA6D33;
+  background-image: repeating-linear-gradient(90deg, #04AA6D33, #04AA6D33);
+}
+
 .highlight-blue {
   background-color: #81A2BE;
   color: #000000;

@@ -111,26 +111,45 @@
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/tasksManager.jsx"></script>
   <script type="text/babel">
-    const urlPrefix = location.href.substring(0, location.href.search("/pages/"));
+    const urlPrefixPos = location.href.search("/pages/");
+    const urlPrefix = location.href.substring(0, urlPrefixPos);
     const sideBarDom = document.getElementsByClassName('sidebar')[0];
     const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
+    const sideBarPages = [{
+      name: "CV",
+      location: "index",
+      img: "cv"
+    }, {
+      name: "Tasks dashboard",
+      location: "pages/tasksDashboard",
+      img: "prioritize"
+    }, {
+      name: "Music",
+      location: "pages/music",
+      img: "music"
+    }, {
+      name: "Navezgane map",
+      location: "pages/navezgane",
+      img: "zombie"
+    }, {
+      name: "The three seas map",
+      location: "pages/theThreeSeas",
+      img: "map"
+    }];
     sideBarRoot.render(
       <div className="space-children-05em">
-        <a href="#CV" onClick={() => document.location = urlPrefix + '/index.html'}>
-          <img src="../public/cv.png" />
-        </a>
-        <a href="#Tasks dashboard" onClick={() => document.location = urlPrefix + '/pages/tasksDashboard.html'}>
-          <img src="../public/prioritize.png" />
-        </a>
-        <a href="#Music" onClick={() => document.location = urlPrefix + '/pages/music.html'}>
-          <img src="../public/music.png" />
-        </a>
-        <a href="#Navezgane map" onClick={() => document.location = urlPrefix + '/pages/navezgane.html'}>
-          <img src="../public/zombie.png" />
-        </a>
-        <a href="#The three seas map" onClick={() => document.location = urlPrefix + '/pages/theThreeSeas.html'}>
-          <img src="../public/map.png" />
-        </a>
+        {
+          sideBarPages.map(p => (
+            <a href={`#${p.name}`}
+              onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
+            >
+              <img
+                src={`../public/${p.img}.png`}
+                className={location.href === `${urlPrefix}/${p.location}.html` ? "highlight-active" : ""}
+              />
+            </a>
+          ))
+        }
       </div>
     )
   </script>

@@ -64,7 +64,7 @@ function getEnglishContents() {
         <span style="color:#F0C674">★★★★★</span> ES<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DE<br>
         <span style="color:#F0C674">★★</span>☆☆☆ FR<br>
-        <span style="color:#F0C674">★&#11242;</span>☆☆☆ DA<br>
+        <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
         <span style="color:#F0C674">★</span>☆☆☆☆ LT<br>
       </fieldset>
     </td>

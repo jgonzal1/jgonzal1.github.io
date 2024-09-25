@@ -11,15 +11,17 @@
 
   // TODO: Add SDKs for Firebase products that you want to use
   // <https://firebase.google.com/docs/web/setup#available-libraries>
+  const projectId = "darcs-dk";
+  const region = "europe-west1";
   const firebaseConfig = {
     apiKey: firebase_api_key,
-    authDomain: "darcs-dk.firebaseapp.com",
-    projectId: "darcs-dk",
-    storageBucket: "darcs-dk.appspot.com",
+    authDomain: `${projectId}.firebaseapp.com`,
+    projectId: projectId,
+    storageBucket: `${projectId}.appspot.com`,
     messagingSenderId: firebase_messaging_sender_id,
     appId: `1:${firebase_messaging_sender_id}:web:${firebase_web_id}`,
     measurementId: firebase_measurement_id, // optional for Firebase JS SDK v7.20.0 and later
-    databaseURL: "https://darcs-dk-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: `https://${projectId}-default-rtdb.${region}.firebasedatabase.app`,
   };
 
   const app = initializeApp(firebaseConfig);
@@ -43,7 +45,6 @@
     .then((userCredential) => {
       // Signed in
       globalThis.userId = userCredential.user;
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -55,14 +56,10 @@
   const db = getDatabase();
 
   function writeUserData(userId, data) {
-    const db = getDatabase();
     set(ref(db, 'users/' + userId), data);
   }
-  const data = {
-    col_1: "row_1",
-    col_2: "row_2"
-  };
-  writeUserData(globalThis.userId, data)
+  const data = { col_1: "row_1", col_2: "row_2" };
+  writeUserData(globalThis.userId, data);
 
   const dbRef = ref(getDatabase());
   get(child(dbRef, `users/${globalThis.userId}`)).then((snapshot) => {
@@ -74,6 +71,7 @@
   }).catch((error) => {
     console.error(error);
   });
+
   /*signOut(auth).then(() => {
       // Sign-out successful.
     }).catch((error) => {

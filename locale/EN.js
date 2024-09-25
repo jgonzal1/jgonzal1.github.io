@@ -164,7 +164,7 @@ function getEnglishContents() {
       <li>Database: SQL queries, Snowflake</li>
       </ol><br>
 
-      22-05 - 22-08<br>
+      23-05 - 23-08<br>
       Project: Jira Ultimate Customizer<br>
       Role: Full-stack Developer<br>
       Responsible for Jira's Ultimate Customizer feature to modularize custom JS/CSS and main help desk resolution management resource.<br>
@@ -253,12 +253,11 @@ function getEnglishContents() {
       <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.<br><br>
 
       20-12 - 21-04<br>
-      <span class="bi">Power BI technical consultant</span><br><br>
+      <span class="bi">Data engineer and front-end consultant</span><br><br>
       Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br>
       Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack development of personalized reports on <span class="bi">Pentaho
-      CDE</span> <span class='webdev'>ctools</span> with <span class="bi">postgresql</span> data sources, such as CC charts, <span class='webdev'>Raphaël.JS</span> Sankey and
-      network diagrams, Scatterplot and Tile Set Map Components,
-      and environment test cases.<br><br>
+      CDE</span> <span class='webdev'>ctools</span> and <span class='webdev'>D3.js</span> with <span class="bi">postgresql</span> data sources, such as CC charts, Sankey and
+      network diagrams, Scatterplot and Tile Set Map Components use cases.<br><br>
       Project description:<br>
       A big town hall publicly published its will to implement a "smart city" technology over some years, involving IoT devices around the city.<br>
       The nourishing of the database needed to be filtered and queried to measure specific KPIs for the local administration to decide.<br>

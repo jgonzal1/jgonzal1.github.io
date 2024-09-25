@@ -106,39 +106,115 @@ th+th {
   color: inherit !important;
 }
 
+.client-ibm,
+.client-lda,
+.client-pas,
+.client-uoc,
+.client-redexis,
+/*.client-t-systems,*/
+.client-ayto-valladolid,
+.client-ferrovial,
+/*.client-clever,*/
+.client-uc,
+.client-oetker,
+.client-tdc,
+.client-ufst {
+  background-size: auto 2em;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.client-ibm {
+  background-image: url("../public/clients/ibm.png");
+}
+
+.client-pas {
+  background-image: url("../public/clients/pas-mexico-usa.png");
+}
+
+.client-lda {
+  background-image: url("../public/clients/linea-directa.png");
+}
+
+.client-uoc {
+  background-image: url("../public/clients/uoc.png");
+}
+
+.client-redexis {
+  background-image: url("../public/clients/redexis-gas.png");
+}
+
+.client-t-systems {
+  background-image: url("../public/clients/t-systems.png");
+  background-size: 3em auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.client-ayto-valladolid {
+  background-image: url("../public/clients/ayuntamiento-valladolid.png");
+}
+
+.client-ferrovial {
+  background-image: url("../public/clients/ferrovial.png");
+}
+
+.client-clever {
+  background-image: url("../public/clients/clever.png");
+  background-size: 3em auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.client-uc {
+  background-image: url("../public/clients/ultimate-customizer.png");
+}
+
+.client-oetker {
+  background-image: url("../public/clients/dr-oetker.png");
+}
+
+.client-tdc {
+  background-image: url("../public/clients/tdc-net.png");
+}
+
+.client-ufst {
+  background-image: url("../public/clients/ufst.svg");
+}
+
 .aidatasci_c {
   background-color: #DE935F;
-  background-image: repeating-linear-gradient(90deg, #DE935FAA, #DE935F 2px, #DE935F calc(100% - 2px), #DE935FAA);
+  /*background-image: repeating-linear-gradient(90deg, #DE935FAA, #DE935F 2px, #DE935F calc(100% - 2px), #DE935FAA);*/
 }
 
 .arch_c {
   background-color: #B294BB;
-  background-image: repeating-linear-gradient(90deg, #B294BBAA, #B294BB 2px, #B294BB calc(100% - 2px), #B294BBAA);
+  /*background-image: repeating-linear-gradient(90deg, #B294BBAA, #B294BB 2px, #B294BB calc(100% - 2px), #B294BBAA);*/
 }
 
 .bigdataeng_c {
   background-color: #A54242;
-  background-image: repeating-linear-gradient(90deg, #A54242AA, #A54242 2px, #A54242 calc(100% - 2px), #A54242AA);
+  /*background-image: repeating-linear-gradient(90deg, #A54242AA, #A54242 2px, #A54242 calc(100% - 2px), #A54242AA);*/
 }
 
 .dataanalistpbi_c {
   background-color: #F0C674;
-  background-image: repeating-linear-gradient(90deg, #F0C674AA, #F0C674 2px, #F0C674 calc(100% - 2px), #F0C674AA);
+  /*background-image: repeating-linear-gradient(90deg, #F0C674AA, #F0C674 2px, #F0C674 calc(100% - 2px), #F0C674AA);*/
 }
 
 .softwaredev_c {
   background-color: #CC6666;
-  background-image: repeating-linear-gradient(90deg, #CC6666AA, #CC6666 2px, #CC6666 calc(100% - 2px), #CC6666AA);
+  /*background-image: repeating-linear-gradient(90deg, #CC6666AA, #CC6666 2px, #CC6666 calc(100% - 2px), #CC6666AA);*/
 }
 
 .techcons_c {
   background-color: #81A2BE;
-  background-image: repeating-linear-gradient(90deg, #81A2BEAA, #81A2BE 2px, #81A2BE calc(100% - 2px), #81A2BEAA);
+  /*background-image: repeating-linear-gradient(90deg, #81A2BEAA, #81A2BE 2px, #81A2BE calc(100% - 2px), #81A2BEAA);*/
 }
 
 .webdev_c {
   background-color: #B5BD68;
-  background-image: repeating-linear-gradient(90deg, #B5BD68AA, #B5BD68 2px, #B5BD68 calc(100% - 2px), #B5BD68AA);
+  /*background-image: repeating-linear-gradient(90deg, #B5BD68AA, #B5BD68 2px, #B5BD68 calc(100% - 2px), #B5BD68AA);*/
 }
 
 .bob {

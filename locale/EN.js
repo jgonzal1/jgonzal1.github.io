@@ -1,5 +1,18 @@
 function getEnglishContents() {
   const skills = `
+  <fieldset class="font-size-12-rem"><legend class="category-td">Full-stack software developer</legend>
+  API development, CI/CD, Django, Docker, Git,
+  Microservices Architecture, NLP, Node.Js, Python, ReactJS, RegEx, REST,
+  Serverless Architecture, Typescript, Web Services Integrations
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Data Engineering</legend>
+  Business Intelligence, Database Migrations, Database Administrator,
+  DAX, ElasticSearch, ETL, GIS, GraphQL, GSheets/Excel, MySQL, pandas,
+  Pentaho Data Integration, PL/SQL, PostgreSQL, SQL, sqlite
+  </fieldset>
+  <fieldset class="font-size-12-rem"><legend class="category-td">Web developer</legend>
+  CSS, D3.JS, Figma User Experience Design, Front-end, Javascript, React Native
+  </fieldset>
   <fieldset class="font-size-12-rem"><legend class="category-td">Amazon Web Services (AWS)</legend>
   Amazon DynamoDB, Amazon EC2, Amazon Redshift, Amazon S3,
   AWS Athena, AWS CLI, AWS Lambda, boto3, IAM
@@ -7,19 +20,6 @@ function getEnglishContents() {
   <fieldset class="font-size-12-rem"><legend class="category-td">Microsoft / Azure</legend>
   Azure Data Factory, Azure DevOps, Azure Cloud Services,
   Microsoft LUIS, Power BI, VSCode
-  </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Data Engineering</legend>
-  Business Intelligence, Database Migrations, Database Administrator,
-  DAX, ElasticSearch, ETL, GIS, GraphQL, GSheets/Excel, MySQL, pandas,
-  Pentaho Data Integration, PL/SQL, PostgreSQL, SQL, sqlite
-  </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Full-stack software engineer</legend>
-  API development, CI/CD, Django, Docker, Git,
-  Microservices Architecture, NLP, Node.Js, Python, ReactJS, RegEx, REST,
-  Serverless Architecture, Typescript, Web Services Integrations
-  </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Web developer</legend>
-  CSS, D3.JS, Figma User Experience Design, Front-end, Javascript, React Native
   </fieldset>
   `;
   /*,<span class="highlight-orange">AWS EC2</span>
@@ -72,9 +72,9 @@ function getEnglishContents() {
         <legend>🗣</legend>
         <span style="color:#F0C674">★★★★★</span> EN<br>
         <span style="color:#F0C674">★★★★★</span> ES<br>
+        <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DE<br>
         <span style="color:#F0C674">★★</span>☆☆☆ FR<br>
-        <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
         <span style="color:#F0C674">★</span>☆☆☆☆ LT<br>
       </fieldset>
     </td>
@@ -107,7 +107,7 @@ function getEnglishContents() {
       <h3>About me</h3>
     </td>
     <td colspan="2" class="font-size-12-rem w70">
-      Technical consultant expert in data engineering, full-stack software development,
+      I am a technical consultant expert in data engineering, full-stack software development,
       BI, and cloud architectures in AWS, Azure, GCP, monday.com and JSM.
     </td>
   </tr>
@@ -151,7 +151,7 @@ function getEnglishContents() {
       Responsible for Jira's Ultimate Customizer and Issue Lock help desk resolutions.<br><br>
 
       23-09 - 23-12<br>
-      Project: TDC´s Smart Build solution, Role: Full-stack developer and UX implementation responsible.<br>
+      Project: TDC's Smart Build solution, Role: Full-stack developer and UX implementation responsible.<br>
       Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.<br>
       Main tasks:<ol>
       <li>E2E representation of TAB geographical data on OpenLayers and Leaflet front-end environments</li>
@@ -256,8 +256,8 @@ function getEnglishContents() {
       <span class="bi">Data engineer and front-end consultant</span><br><br>
       Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br>
       Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack development of personalized reports on <span class="bi">Pentaho
-      CDE</span> <span class='webdev'>ctools</span> and <span class='webdev'>D3.js</span> with <span class="bi">postgresql</span> data sources, such as CC charts, Sankey and
-      network diagrams, Scatterplot and Tile Set Map Components use cases.<br><br>
+      CDE</span> <span class='webdev'>c tools</span> and <span class='webdev'>D3.js</span> with <span class="bi">postgresql</span> data sources, such as CC charts, Sankey and
+      network diagrams, Scatter plot and Tile Set Map Components use cases.<br><br>
       Project description:<br>
       A big town hall publicly published its will to implement a "smart city" technology over some years, involving IoT devices around the city.<br>
       The nourishing of the database needed to be filtered and queried to measure specific KPIs for the local administration to decide.<br>
@@ -268,7 +268,7 @@ function getEnglishContents() {
       Full-stack development of personalized reports on Pentaho CDE.<br>
       Test case development<br><br>
       Technologies used:<br>
-      Pentaho CDE, PostgreSQL, CC charts, JavaScript, SQL, Leaflet.JS maps, Raphaël.JS, Sankey and network diagrams.<br><br>
+      Pentaho CDE, PostgreSQL, CC charts, JavaScript, SQL, Leaflet.JS maps, Sankey and network diagrams.<br><br>
 
       20-10 - 20-12<br>
       <span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track
@@ -408,7 +408,7 @@ function getEnglishContents() {
   <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
-  <tr>
+  <tr style="display:none">
     <td class="bold-right">Unica Group S.C.A.</td>
     <td class="w70">15-04 - 15-05<br>Quality control professional for foodstuff products in Cohorsan S.C.A
     </td>
@@ -476,8 +476,8 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right">Amazon Web Services</td>
     <td colspan="2">
-    22-07<br>AWS Certified Data Analytics – Specialty<br>Including <span class="kafka">Kafka</span> concepts and hands-on for its preparation<br><br>
-    22-03<br>AWS Certified Developer – Associate<br>Including <span class="kafka">Kafka</span> concepts and hands-on for its preparation<br><br>
+    22-07<br>AWS Certified Data Analytics – Specialty<br><br>
+    22-03<br>AWS Certified Developer – Associate<br><br>
     17-10<br>AWS Technical Professional Online
     </td>
   </tr>
@@ -501,31 +501,6 @@ function getEnglishContents() {
   </tr>
   <tr class="no-border">
     <td colspan="3"><br></td>
-  </tr>
-  <tr>
-    <td colspan="3" class="colspan4">
-      <h2>Languages</h2>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right">Native Language</td>
-    <td colspan="2">Spanish</td>
-  </tr>
-  <tr>
-    <td class="bold-right">High Level</td>
-    <td colspan="2">English (B2 Cambridge certificate)</td>
-  </tr>
-  <tr>
-    <td class="bold-right">Basic Level</td>
-    <td colspan="2">German</td>
-  </tr>
-    <tr>
-    <td class="bold-right">Basic Level</td>
-    <td colspan="2">French</td>
-  </tr>
-  <tr>
-    <td class="bold-right">Basic Level</td>
-    <td colspan="2">Danish</td>
   </tr>
   `;
   const legend = `

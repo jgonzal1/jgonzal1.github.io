@@ -55,12 +55,18 @@
   //const db = getFirestore();
   const db = getDatabase();
 
+  /*
+  Create,
+  Update (rerunning will update since everything is inside same schema ({})),
+  Delete (if data is null)
+  */
   function writeUserData(userId, data) {
     set(ref(db, 'users/' + userId), data);
   }
   const data = { col_1: "row_1", col_2: "row_2" };
   writeUserData(globalThis.userId, data);
 
+  // Read
   const dbRef = ref(getDatabase());
   get(child(dbRef, `users/${globalThis.userId}`)).then((snapshot) => {
     if (snapshot.exists()) {

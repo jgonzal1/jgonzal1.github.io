@@ -18,7 +18,7 @@ globalThis.headers = {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 };
 const weekday = [
-  "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+  "U", "M", "T", "W", "R", "F", "S"
 ];
 const columnRenames = {
   "date": "datetime",
@@ -173,7 +173,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   Array.from({ length: categoryAggrDaysRange }, (_, i) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
-    const maxForDay = ["Sat", "Sun"].includes(wd)
+    const maxForDay = ["S", "U"].includes(wd)
       ? (quartersOfHourWeekends * 15)
       : (quartersOfHourWeekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);
@@ -232,7 +232,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const marginTop = 10;
   const marginRight = 10;
   const marginBottom = 45;
-  const marginLeft = 40;
+  const marginLeft = 55;
 
   // Prepare the scales for positional and color encodings.
   const x = globalThis.d3.scaleUtc() //
@@ -282,7 +282,12 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
-    .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%m-%d %a")) // ↓ optional
+    .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%y-%m-%d") // %a for weekday
+      .tickFormat((d) => `${new Date(d).toISOString().slice(2, 7)
+        } ${weekday[new Date(d).getDay()]
+        } ${(100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)).toFixed(0).slice(1, 3)
+        }`))
+    // ↓ optional
     .selectAll("text")
     .style("font-family", "courier")
     .style("text-anchor", "end")

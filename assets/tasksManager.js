@@ -289,9 +289,11 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%y-%m-%d") // %a for weekday
-      .tickFormat((d) => `${new Date(d).toISOString().slice(2, 7)
+      .tickFormat((d) => `${(
+        100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)
+      ).toFixed(0).slice(1, 3)
+        } ${new Date(d).toISOString().slice(5, 10)
         } ${weekday[new Date(d).getDay()]
-        } ${(100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)).toFixed(0).slice(1, 3)
         }`))
     .selectAll("text")
     .style("font-family", "courier")

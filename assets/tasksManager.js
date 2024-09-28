@@ -278,7 +278,13 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       .attr("text-anchor", "start")
       .text("↑ minutes"));
 
-  // x-axis without domain line
+  /** x-axis
+  const xTicks = globalThis.d3.axisBottom(x).tickSizeOuter(0)
+    .ticks(categoryAggrDaysRange / 2, "%y-%m-%d");
+  const xScale = globalThis.d3.scaleTime()
+    .domain(globalThis.d3.extent(tasksDurationByDayCategory, d => d.x))
+    .range([marginLeft, width - marginRight]);
+  */
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
@@ -287,16 +293,22 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
         } ${weekday[new Date(d).getDay()]
         } ${(100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)).toFixed(0).slice(1, 3)
         }`))
-    // ↓ optional
     .selectAll("text")
     .style("font-family", "courier")
     .style("text-anchor", "end")
     .attr("dx", "-0.5em")
     .attr("dy", "0.1em")
     .attr("transform", () => "rotate(-30)")
-    .call(g => g.select(".domain").remove());
+  /* ↓ optional
+  .call(g => g
+    .attr('class', 'grid-lines').selectAll('line')
+    .data(xScale.ticks()).join('line')
+    .attr('x1', d => xScale(d)).attr('x2', d => xScale(d))
+    .attr('y1', marginTop).attr('y2', height - marginBottom))
+  .call(g => g.select(".domain").remove())
+  */
 
-  // Filling path to graph each serie
+  // Filling path to graph each series
   svg.append("g")
     .selectAll()
     .data(series)
@@ -316,7 +328,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const yOffset = 50;
   const xOffset = 400;
   svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85).attr("height", 190)
-    .attr("rx", 10).attr("ry", 10).style("fill", "#666C");
+    .attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
     ["1.🏠", "#59a14f"],
     ["2.💰", "#9c755f"],

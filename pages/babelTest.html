@@ -1,0 +1,184 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="../assets/componentTwo.jsx"></script>
+  <script src="../assets/componentOne.jsx"></script>
+  <script src="../assets/babel.jsx"></script>
+  <!--<script type='text/babel'>
+    class SetTimer extends React.Component {
+      render() {
+        return (
+          <div className="set-timer">work <br /> session
+            <div className="minus-add">
+              <button className="setting-button" id="minus-timer" onClick={this.props.minus}>-</button>
+              <button className="setting-button" id="add-timer" onClick={this.props.add}>+</button>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    class SetBreak extends React.Component {
+
+      render() {
+        return (
+          <div className="set-break"> break<br /> session
+            <div className="minus-add">
+              <button className="setting-button" id="minus-break" onClick={this.props.minusbreak}>-</button>
+              <button className="setting-button" id="add-break" onClick={this.props.addbreak}>+</button>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    const leftPad = (time) => {
+      return (time < 10) ? '0' + time : time
+    }
+    const TimerDisplay = (props) => (
+      <div className="timer-display"><span className="worklabel">Work session time</span><br />
+        {props.currentTime}
+        <div className="breaktime"><span className="breaklabel">break session time</span><br />{props.breakTime}</div>
+      </div>
+    );
+    // let baseTime= 25;
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          baseTime: 25,
+          breakTime: 5,
+          currentTime: moment.duration(25, 'minutes'),
+          timer: null,
+          startbuttonvisible: true,
+          pausebuttonvisible: false,
+          resumebuttonvisible: false,
+          stopbuttonvisible: false,
+        }
+        this.minus = this.minus.bind(this);
+        this.add = this.add.bind(this);
+        this.minusbreak = this.minusbreak.bind(this);
+        this.addbreak = this.addbreak.bind(this);
+        this.startTimer = this.startTimer.bind(this);
+        this.pauseTimer = this.pauseTimer.bind(this);
+        this.resumeTimer = this.resumeTimer.bind(this);
+        this.stopTimer = this.stopTimer.bind(this);
+        this.reduceTimer = this.reduceTimer.bind(this);
+
+      }
+      add() {
+        this.setState({
+          baseTime: this.state.baseTime + 1
+        });
+      }
+      minus() {
+        this.setState({
+          baseTime: this.state.baseTime - 1
+        });
+      }
+      addbreak() {
+        this.setState({
+          breakTime: this.state.breakTime + 1
+        });
+      }
+      minusbreak() {
+        this.setState({
+          breakTime: this.state.breakTime - 1
+        });
+      }
+      startTimer() {
+        this.setState({
+          timer: setInterval(this.reduceTimer, 1000),
+          startbuttonvisible: false,
+          pausebuttonvisible: true,
+          stopbuttonvisible: true,
+        });
+      }
+      pauseTimer() {
+        clearInterval(this.state.timer);
+        this.setState({
+          pausebuttonvisible: false,
+          resumebuttonvisible: true,
+        });
+      }
+      resumeTimer() {
+        this.setState({
+          timer: setInterval(this.reduceTimer, 1000),
+          startbuttonvisible: false,
+          pausebuttonvisible: true,
+          stopbuttonvisible: true,
+          resumebuttonvisible: false,
+        });
+      }
+      stopTimer() {
+        clearInterval(this.state.timer);
+        this.setState({
+          baseTime: 25,
+          timer: null,
+          startbuttonvisible: true,
+          pausebuttonvisible: false,
+          stopbuttonvisible: false,
+          resumebuttonvisible: false,
+        });
+      }
+      reduceTimer() {
+        if (this.state.baseTime === 0) return;
+        const newTime = this.state.baseTime - 1;
+        this.setState({
+          baseTime: newTime,
+        });
+      }
+      render() {
+
+        return (
+          <div className="container">
+            <div className="timebox">
+              <div className="header">
+                Pomodoro Clock
+              </div>
+              <TimerDisplay currentTime={this.state.baseTime} breakTime={this.state.breakTime} />
+              <div id="action-title">
+                <small>SETTINGS</small>
+              </div>
+              <div className="actions">
+                <SetTimer minus={this.minus} add={this.add} />
+                <SetBreak minusbreak={this.minusbreak} addbreak={this.addbreak} />
+              </div>
+              <div className="timer-control">
+                {this.state.startbuttonvisible ? <button id="start-timer" onClick={this.startTimer}>
+                  START
+                </button> : null}
+                {this.state.pausebuttonvisible ? <button id="pause-timer" onClick={this.pauseTimer}>
+                  PAUSE
+                </button> : null}
+                {this.state.resumebuttonvisible ? <button id="resume-timer" onClick={this.resumeTimer}>
+                  RESUME
+                </button> : null}
+                {this.state.stopbuttonvisible ? <button id="stop-timer" onClick={this.stopTimer}>
+                  STOP
+                </button> : null}
+              </div>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root')
+    );
+
+  </script>-->
+</body>
+
+</html>

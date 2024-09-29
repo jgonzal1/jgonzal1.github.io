@@ -479,6 +479,16 @@ th+th {
   padding-right: 2em;
 }
 
+#calendarIframe {
+  border-width: 0;
+  border: 1px solid #CCC;
+  display: block;
+  height: 780;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  width: 600;
+}
 
 #cvWrapper {
   left: calc((100% - 52em) / 2);

@@ -48,9 +48,12 @@
     }
     handleCredentials();
   </script>
+  <!--
+  <script src="../libs/jquery.min.js">globalThis.$ = $;</script>
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.103/Build/Cesium/Cesium.js"></script>
-  <link href="../style/style.css" rel="stylesheet">
   <link href="../style/cesium-widgets-1.103.css" rel="stylesheet">
+  -->
+  <link href="../style/style.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="../public/real-estate-investing-management.ico">
   <style>
     a,
@@ -87,27 +90,31 @@
   <div class="sidebar">Sidebar</div>
   <div id="taskManager" style="width:min(99vw, 840px); height:min(calc(100% - 1em), 800px)"></div>
   <div id="calendar" style="width:min(99vw, 600px); height:min(calc(100% - 1em), 800px); position:relative;">
-    <iframe
-      style="position:absolute; display:block; top:0; opacity:0.8; width:600; height:780; border-width:0; border: 1px solid #CCC"
-      src="
-			https://calendar.google.com/calendar/embed?
+    <iframe id="calendarIframe"></iframe>
+    <!--<div id="tasksByCategoryAndDay"></div>-->
+  </div>
+  <div id="popUpDiv" style="width: 2.6em; height: 1.2em; position: absolute; right: 5em; top: 0.8em;"></div>
+  <script>
+    const calendarSrc = `https://calendar.google.com/calendar/embed?
 				bgcolor=%23000000
 				&color=%23000000
 				&ctz=Europe%2FCopenhagen
 				&height=760
 				&mode=WEEK
-				&showCalendars=0
 				&showNav=1
-				&showPrint=0
-				&showTabs=0
-				&showTitle=0
-				&showTz=0
+				&showCalendars=0&showPrint=0&showTabs=0&showTitle=0&showTz=0
 				&src=MW9vMWliZ2RmbWtuYzBkMWVobWhkZTg3cnNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
-				&wkst=2
-		"></iframe><!--				&color=%23 #7986CB
-    <div id="tasksByCategoryAndDay"></div>-->
-  </div>
-  <div id="popUpDiv" style="width: 2.6em; height: 1.2em; position: absolute; right: 5em; top: 0.8em;"></div>
+				&wkst=${(new Date().getDay() + 1).toString()}`;
+    const calendarDom = document.getElementById("calendarIframe").src = calendarSrc;
+    /*setTimeout(() => {
+      // Hide calendar hours before 6 AM
+      console.log("yAxis", document.getElementsByClassName("tg-times-pri")[0]);
+      const yAxisHours = Array.from(document.getElementsByClassName("tg-times-pri")[0].children)
+        .filter((v, i) => (i <= 6 && i >= 22)).map(v => v.style.display = "none");
+      const cellHours = Array.from(document.getElementsByClassName("tg-hourmarkers")[0].children)
+        .filter((v, i) => (i <= 6 && i >= 22)).map(v => v.style.display = "none");
+    }, 3000);*/
+  </script>
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/tasksManager.jsx"></script>
   <script type="text/babel">

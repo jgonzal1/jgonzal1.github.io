@@ -31,6 +31,18 @@ class tasksManager extends globalThis.React.Component {
     };
   };
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
+    let mondayDursByGroup = sortedMondayItemsJson.reduce(
+      (accumulator, item) => {
+        if (!accumulator[item["gr"]]) {
+          accumulator[item["gr"]] = 0;
+        }
+        accumulator[item["gr"]] += item["dur"];
+        return accumulator;
+      }, {}
+    );
+    Object.keys(mondayDursByGroup).map(
+      k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
+    );
     let mondayTasksByCatDict = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
@@ -62,9 +74,9 @@ class tasksManager extends globalThis.React.Component {
         }
       }
     );
-    const mondayTasksDurationSum = dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
+    let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ).toFixed(1);
+    ) - mondayDursByGroup["3. 🔚"]).toFixed(1);
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
     let tasksByCategoryWidth = 350, tasksByCategoryHeight = 300;

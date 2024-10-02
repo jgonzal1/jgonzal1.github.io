@@ -79,7 +79,7 @@ class tasksManager extends globalThis.React.Component {
     ) - mondayDursByGroup["3. 🔚"]).toFixed(1);
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
-    let tasksByCategoryWidth = 350, tasksByCategoryHeight = 300;
+    let tasksByCategoryWidth = 350, tasksByCategoryHeight = 305;
     if (tasksByCatPlaceholder) {
       tasksByCategoryWidth =
         Math.min(
@@ -308,6 +308,15 @@ class tasksManager extends globalThis.React.Component {
       if (!tasksByCategoryPlaceholder) { return; }
       tasksByCategoryPlaceholder.innerHTML = "";
       tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
+      const treesPlantedDom = document.createElement("span");
+      treesPlantedDom.innerHTML = "0/400 trees planted";
+      Object.assign(treesPlantedDom.style, {
+        position: "absolute",
+        right: 0,
+        top: 0,
+        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.["values"][1]["value"] ?? 305
+      });
+      tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
     //#endregion
     // taskManagerWrapper
@@ -355,7 +364,7 @@ class tasksManager extends globalThis.React.Component {
             paddingLeft: "0.3em"
           }
         },
-        `min(s) offset |`
+        `min(s) offset | `
       ),
       // setDayOffset
       React.createElement(
@@ -388,7 +397,7 @@ class tasksManager extends globalThis.React.Component {
             padding: "0 0.3em"
           }
         },
-        `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime}`
+        `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime} `
       ),
       // lastUpdatedItem
       React.createElement(
@@ -403,8 +412,8 @@ class tasksManager extends globalThis.React.Component {
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `Last upd. item: ${this.state.lastUpdatedItem
-        }`
+        this.state.lastUpdatedItem && `Last upd.item: ${this.state.lastUpdatedItem
+        } `
       ),
       // mondayTableContainer
       React.createElement(
@@ -434,7 +443,7 @@ class tasksManager extends globalThis.React.Component {
                   ...Object.keys(this.state.mondayTasksCols[0])
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "th",
-                  { key: `${taskKey}${taskKeyIdx}Header` },
+                  { key: `${taskKey}${taskKeyIdx} Header` },
                   taskKey
                 ))
               )
@@ -445,7 +454,7 @@ class tasksManager extends globalThis.React.Component {
               this.state.mondayTasksCols.map((taskRow, idxRow) => React.createElement(
                 "tr",
                 {
-                  key: `TaskRow${idxRow}`,
+                  key: `TaskRow${idxRow} `,
                   style: {
                     backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"])
                   }
@@ -456,7 +465,7 @@ class tasksManager extends globalThis.React.Component {
                 ].map((taskKey, taskKeyIdx) => React.createElement(
                   "td",
                   {
-                    key: `${taskKey}${taskKeyIdx}${idxRow}Td`,
+                    key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
                     className: `${taskKey} - td`,
                     style: { height: "2em" }
                   },
@@ -474,7 +483,7 @@ class tasksManager extends globalThis.React.Component {
                       {
                         src: "../public/prioritize.png",
                         alt: "Prioritize",
-                        key: `${taskRow["task_id"]}PrioritizeImg`,
+                        key: `${taskRow["task_id"]} PrioritizeImg`,
                         className: "clickable-icon",
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.putMondayDateItem(
@@ -490,7 +499,7 @@ class tasksManager extends globalThis.React.Component {
                       {
                         src: "../public/snooze.png",
                         alt: "Snooze",
-                        key: `${taskRow["task_id"]}SnoozeImg`,
+                        key: `${taskRow["task_id"]} SnoozeImg`,
                         className: "clickable-icon",
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.putMondayDateItem(
@@ -506,7 +515,7 @@ class tasksManager extends globalThis.React.Component {
                       {
                         src: "../public/archive.png",
                         alt: "Archive",
-                        key: `${taskRow["task_id"]}ArchiveImg`,
+                        key: `${taskRow["task_id"]} ArchiveImg`,
                         className: "clickable-icon",
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.archiveMondayItem(
@@ -583,7 +592,7 @@ class tasksManager extends globalThis.React.Component {
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
                     React.createElement(
                       "th",
-                      { key: `${ taskKey }HeaderByDay` },
+                      { key: `${ taskKey } HeaderByDay` },
                       taskKey
                     )
                   )
@@ -595,12 +604,12 @@ class tasksManager extends globalThis.React.Component {
                 this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
                   "tr",
                   {
-                    key: `TaskRow${ idxRow }ByDay`,
+                    key: `TaskRow${ idxRow } ByDay`,
                     style: { backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"]) }
                   },
                   Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
                     "td",
-                    { key: `${ taskKey }${ idxRow }TdByDay` },
+                    { key: `${ taskKey }${ idxRow } TdByDay` },
                     taskRow[taskKey]
                   ))
                 ))

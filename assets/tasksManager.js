@@ -319,9 +319,13 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     .attr("d", area)
     .on("mouseover", (d) => {
       popUpDiv.innerHTML = d.target.textContent;
-      popUpDiv.style.left = (d.x) + "px";
-      popUpDiv.style.top = (d.y - 30) + "px";
-      popUpDiv.style.backgroundColor = color(d.target.textContent);
+      Object.assign(popUpDiv.style, {
+        backgroundColor: color(d.target.textContent),
+        borderRadius: "0.3em",
+        left: (d.x) + "px",
+        padding: "0.1em 0 0.3em 0.3em",
+        top: (d.y - 30) + "px"
+      })
     })
     .append("title")
     .text(d => d.key);

@@ -2,7 +2,7 @@
 const quartersOfHourWeekdays = 14; // 3.5 h
 const quartersOfHourWeekends = 20; // 5.0 h
 const nextViAsV = false;
-const categoryAggrDaysRange = 42; // 63 prev.
+const categoryAggrDaysRange = 35; // 63 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -251,7 +251,8 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const area = globalThis.d3.area()
     .x(d => x(d.data[0]))
     .y0(d => y(d[0]))
-    .y1(d => y(d[1]));
+    .y1(d => y(d[1]))
+    .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 mostly curved, 1 no curve
 
   //@ts-ignore Create the SVG container
   const svg = globalThis.d3.create("svg")

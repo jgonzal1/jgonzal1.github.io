@@ -436,6 +436,7 @@ globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
   );
 };
 globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
+  dateToOffset = parseFloat((Math.round(dateToOffset * 96) / 96).toFixed(4))
   const dateToOffsetAsValue = dateToOffset ?
     new Date(dateToOffset).valueOf() :
     new Date().valueOf();

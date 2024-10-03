@@ -321,9 +321,11 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       popUpDiv.innerHTML = d.target.textContent;
       Object.assign(popUpDiv.style, {
         backgroundColor: color(d.target.textContent),
+        border: "1px solid #666",
         borderRadius: "0.3em",
         left: (d.x) + "px",
         padding: "0.1em 0 0.3em 0.3em",
+        textShadow: "#000 0 0 1px",
         top: (d.y - 30) + "px"
       })
     })

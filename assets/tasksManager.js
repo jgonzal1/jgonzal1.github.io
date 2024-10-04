@@ -437,12 +437,12 @@ globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
   );
 };
 globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
-  dateToOffset = parseFloat((Math.round(dateToOffset * 96) / 96).toFixed(4))
   const dateToOffsetAsValue = dateToOffset ?
     new Date(dateToOffset).valueOf() :
     new Date().valueOf();
   const offsetMs = n * msPerD;
-  const dateValueOffset = dateToOffsetAsValue + offsetMs;
+  let dateValueOffset = dateToOffsetAsValue + offsetMs;
+  dateValueOffset = parseFloat((Math.round(dateValueOffset * 96) / 96).toFixed(4));
   return new Date(
     dateValueOffset
   ).toISOString().substring(0,

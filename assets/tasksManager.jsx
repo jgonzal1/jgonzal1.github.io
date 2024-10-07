@@ -74,9 +74,9 @@ class tasksManager extends globalThis.React.Component {
         }
       }
     );
-    let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
+    /*let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value).filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ) - mondayDursByGroup["3. 🔚"]).toFixed(1);
+    ) - mondayDursByGroup["3.🔚"]).toFixed(1);*/
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory") ?? document.createElement("div");
     let tasksByCategoryWidth = 350, tasksByCategoryHeight = 305;
@@ -177,8 +177,14 @@ class tasksManager extends globalThis.React.Component {
       })
       .style('fill', () => '#FFF');
 
-    donutChartSvg.append("text").style("fill", "#FFF").text(() =>
-      `${mondayTasksDurationSum}h/${(parseFloat(mondayTasksDurationSum) / 20).toFixed(1)}w`
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "-15").text(() =>
+      `1🐇${mondayDursByGroup["1.🐇"]}h/${(parseFloat(mondayDursByGroup["1.🐇"]) / 20).toFixed(1)}w`
+    );
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").text(() =>
+      `2🐢${mondayDursByGroup["2.🐢"]}h/${(parseFloat(mondayDursByGroup["2.🐢"]) / 20).toFixed(1)}w`
+    );
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "15").text(() =>
+      `3🔚${mondayDursByGroup["3.🔚"]}h/${(parseFloat(mondayDursByGroup["3.🔚"]) / 20).toFixed(1)}w`
     );
 
     return Object.assign(donutChartSvg.node());
@@ -309,7 +315,7 @@ class tasksManager extends globalThis.React.Component {
       tasksByCategoryPlaceholder.innerHTML = "";
       tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
       const treesPlantedDom = document.createElement("span");
-      treesPlantedDom.innerHTML = "0/400 trees planted";
+      treesPlantedDom.innerHTML = "0/400 🌳";
       Object.assign(treesPlantedDom.style, {
         position: "absolute",
         right: 0,

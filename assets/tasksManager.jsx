@@ -192,11 +192,14 @@ class tasksManager extends globalThis.React.Component {
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
+    const subItemColNames = [
+      "datetime", "dur", "status", "freq", "cat", "house", "notes"
+    ];
     globalThis.headers["Authorization"] = mondayKey;
     const query = "boards (ids: " + boardId + ") { " +
       "items_page (limit: 500) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
-      "} } items_count }"
+      "subitems { name column_values { text } } } } items_count }"
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       globalThis.mondayApiUrl,
@@ -227,9 +230,24 @@ class tasksManager extends globalThis.React.Component {
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
+        if (rawItem["subitems"].length) {
+          rawItem["subitems"].map((subItem, subItemIdx) => {
+            const taskIds = {
+              "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
+              "task_name": `${rawItem["id"]}: ${subItem["name"]}`,
+              "group": rawItem["group"]["title"]
+            };
+            subItem["column_values"].map((subItemCol, subItemColIdx) => {
+              taskIds[subItemColNames[subItemColIdx]] = subItemCol.text;
+            });
+            mondayTasksCols.push(taskIds);
+          });
+        }
       }
     );
+    console.log(mondayTasksCols);
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
+    console.log(sortedMondayItemsJson);
     const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);
     const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(sortedMondayItemsJson);
     const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");

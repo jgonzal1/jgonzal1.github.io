@@ -440,7 +440,7 @@ th+th {
 .sidebar img {
   background-color: #FFF3;
   border: 1px solid #6666;
-  border-radius: 1em 0 0 1em;
+  border-radius: 0.75em 0 0 0.75em;
   max-width: 2em;
   padding: 1em 0.3em;
 }

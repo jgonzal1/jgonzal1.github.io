@@ -310,8 +310,8 @@ th+th {
 }
 
 .highlight-active {
-  background-color: #04AA6D33;
-  background-image: repeating-linear-gradient(90deg, #04AA6D33, #04AA6D33);
+  background-color: #9999;
+  background-image: repeating-linear-gradient(90deg, #9999, #9999);
 }
 
 .highlight-blue {
@@ -403,8 +403,8 @@ th+th {
   border-color: #0000;
 }
 
-.space-children-05em>* {
-  margin: 0.5em 0;
+.space-children-01em>* {
+  margin: 0.1em 0;
 }
 
 .page-number {
@@ -430,6 +430,7 @@ th+th {
   transform: rotate(180deg);
   width: 2em;
   */
+  border-right: 1px solid #6666;
   display: flex;
   height: min(calc(100% - 1em), 800px);
   margin-right: 0.5em;
@@ -438,10 +439,10 @@ th+th {
 
 .sidebar img {
   background-color: #FFF3;
-  border: 1px solid #FFF6;
-  border-radius: 0.5em;
+  border: 1px solid #6666;
+  border-radius: 1em 0 0 1em;
   max-width: 2em;
-  padding: 0.3em;
+  padding: 1em 0.3em;
 }
 
 .sidebar img:hover {

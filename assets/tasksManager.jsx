@@ -223,18 +223,18 @@ class tasksManager extends globalThis.React.Component {
           "task_name": rawItem["name"],
           "group": rawItem["group"]["title"]
         };
-        mondayTasksCols.push(taskIds);
         rawItemIdx = _rawItemIdx;
+        mondayTasksCols.push(taskIds);
         rawItem.column_values.map((itemCol) => {
           mondayTasksCols[rawItemIdx][
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
-        if (rawItem["subitems"].length) {
+        /*if (rawItem["subitems"].length) {
           rawItem["subitems"].map((subItem, subItemIdx) => {
             const taskIds = {
               "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
-              "task_name": `${rawItem["id"]}: ${subItem["name"]}`,
+              "task_name": `${rawItem["name"]}: ${subItem["name"]}`,
               "group": rawItem["group"]["title"]
             };
             subItem["column_values"].map((subItemCol, subItemColIdx) => {
@@ -242,10 +242,9 @@ class tasksManager extends globalThis.React.Component {
             });
             mondayTasksCols.push(taskIds);
           });
-        }
+        }*/
       }
     );
-    console.log(mondayTasksCols);
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
     console.log(sortedMondayItemsJson);
     const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);

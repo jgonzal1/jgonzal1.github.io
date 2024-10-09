@@ -56,7 +56,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         "task_name": t["task_name"],
         "datetime": t["datetime"],
         "wd": weekday[new Date(t["date"]).getDay()],
-        "dur": t["dur"],
+        "dur": isNaN(t["dur"]) ? 0.5 : parseFloat(t["dur"]),
         "d_diff": t["d_diff"],
         "actions": t["notes"],
         "task_id": t["task_id"],

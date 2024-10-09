@@ -230,7 +230,7 @@ class tasksManager extends globalThis.React.Component {
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
-        /*if (rawItem["subitems"].length) {
+        if (rawItem["subitems"].length) {
           rawItem["subitems"].map((subItem, subItemIdx) => {
             const taskIds = {
               "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
@@ -242,7 +242,7 @@ class tasksManager extends globalThis.React.Component {
             });
             mondayTasksCols.push(taskIds);
           });
-        }*/
+        }
       }
     );
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);

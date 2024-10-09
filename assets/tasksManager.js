@@ -33,12 +33,11 @@ const columnRenames = {
 };
 globalThis.addMondayMeta = (mondayTasksCols) => {
   const currentDate = new Date();
-  const aYearFromNowDt = new Date();
-  aYearFromNowDt.setFullYear(aYearFromNowDt.getFullYear() + 1);
-  const aYearFromNow = aYearFromNowDt.toISOString().substring(0, 16).replace("T", " ");
+  const lastRangeDay = new Date(offsetNDay(categoryAggrDaysRange + 1))
+    .toISOString().substring(0, 16).replace("T", " ");
   mondayTasksCols = mondayTasksCols.map(item => {
     if (!item["datetime"]) {
-      item["datetime"] = aYearFromNow
+      item["datetime"] = lastRangeDay
     };
     item["d_diff"] = +(
       (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
@@ -52,7 +51,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
   const mondayItemsJsonPayload = mondayTasksCols.map(
     (t) => {
       return {
-        "cat": t["cat"],
+        "cat": t["cat"] ?? "9.➕",
         "task_name": t["task_name"],
         "datetime": t["datetime"],
         "wd": weekday[new Date(t["date"]).getDay()],

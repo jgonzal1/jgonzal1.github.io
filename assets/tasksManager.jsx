@@ -230,7 +230,7 @@ class tasksManager extends globalThis.React.Component {
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
-        if (rawItem["subitems"].length) {
+        /*if (rawItem["subitems"].length) {
           rawItem["subitems"].map((subItem, subItemIdx) => {
             const taskIds = {
               "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
@@ -242,7 +242,7 @@ class tasksManager extends globalThis.React.Component {
             });
             mondayTasksCols.push(taskIds);
           });
-        }
+        }*/
       }
     );
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
@@ -445,10 +445,11 @@ class tasksManager extends globalThis.React.Component {
           id: "mondayTableContainer",
           className: "first-flex-container-item table-container",
           style: {
-            paddingTop: "0.1em",
-            width: "fit-content",
+            margin: "auto",
+            maxHeight: `calc(440px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
             maxWidth: "calc(100% - 0.8em)",
-            maxHeight: `calc(440px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})` // 640
+            paddingTop: "0.1em",
+            width: "fit-content"
           }
         },
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?

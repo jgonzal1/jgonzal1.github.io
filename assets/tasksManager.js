@@ -44,7 +44,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
     ).toFixed(2);
     item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"]} ${item["subitems"]}`;
+    const notes = `${item["comments"]??""} ${item["subitems"]??""}`;
     item["notes"] = notes;
     return item;
   });
@@ -59,7 +59,8 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         "d_diff": t["d_diff"],
         "actions": t["notes"],
         "task_id": t["task_id"],
-        "gr": t["group"]
+        "gr": t["group"],
+        "type": t["type"]
       }
     }
   )

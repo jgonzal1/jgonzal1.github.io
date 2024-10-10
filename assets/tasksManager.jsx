@@ -221,7 +221,8 @@ class tasksManager extends globalThis.React.Component {
         const taskIds = {
           "task_id": rawItem["id"],
           "task_name": rawItem["name"],
-          "group": rawItem["group"]["title"]
+          "group": rawItem["group"]["title"],
+          "type": "item"
         };
         rawItemIdx = _rawItemIdx;
         mondayTasksCols.push(taskIds);
@@ -230,19 +231,20 @@ class tasksManager extends globalThis.React.Component {
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
-        /*if (rawItem["subitems"].length) {
+        if (rawItem["subitems"].length) {
           rawItem["subitems"].map((subItem, subItemIdx) => {
             const taskIds = {
               "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
               "task_name": `${rawItem["name"]}: ${subItem["name"]}`,
-              "group": rawItem["group"]["title"]
+              "group": rawItem["group"]["title"],
+              "type": "subitem"
             };
             subItem["column_values"].map((subItemCol, subItemColIdx) => {
               taskIds[subItemColNames[subItemColIdx]] = subItemCol.text;
             });
             mondayTasksCols.push(taskIds);
           });
-        }*/
+        }
       }
     );
     const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
@@ -493,7 +495,7 @@ class tasksManager extends globalThis.React.Component {
                     className: `${taskKey} - td`,
                     style: { height: "2em" }
                   },
-                  taskKey === "actions" ? React.createElement(
+                  (taskKey === "actions" && taskRow["type"] === "item") ? React.createElement(
                     "div",
                     {
                       style: {

@@ -480,15 +480,29 @@ th+th {
   padding-right: 2em;
 }
 
+.zoom-out-iframe {
+  -ms-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+
+  -ms-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
 #calendarIframe {
   border-width: 0;
   border: 1px solid #CCC;
   display: block;
-  height: 780;
+  height: 900;
   opacity: 0.8;
   position: absolute;
   top: 0;
-  width: 600;
+  width: 700;
 }
 
 #cvWrapper {

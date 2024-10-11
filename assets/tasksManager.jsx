@@ -500,11 +500,11 @@ class tasksManager extends globalThis.React.Component {
                 [
                   Object.keys(this.state.mondayTasksCols[0]).pop(),
                   ...Object.keys(this.state.mondayTasksCols[0])
-                ].map((taskKey, taskKeyIdx) => React.createElement(
+                ].map((taskKey, taskKeyIdx) => (taskKey !== "type") ? React.createElement(
                   "th",
                   { key: `${taskKey}${taskKeyIdx} Header` },
                   taskKey
-                ))
+                ) : "")
               )
             ),
             React.createElement(
@@ -521,7 +521,7 @@ class tasksManager extends globalThis.React.Component {
                 [
                   Object.keys(taskRow).pop(),
                   ...Object.keys(taskRow)
-                ].map((taskKey, taskKeyIdx) => React.createElement(
+                ].map((taskKey, taskKeyIdx) => (taskKey !== "type") ? React.createElement(
                   "td",
                   {
                     key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
@@ -587,12 +587,10 @@ class tasksManager extends globalThis.React.Component {
                       }
                     ) : "",
                     (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
-                  ) : //
-                    taskRow[taskKey ?? ""]
-                )
-                )))
-            )
-          ) : //
+                  ) : taskRow[taskKey ?? ""]
+                ) : "")
+              ))
+            )) : //
           React.createElement(
             "div",
             null,

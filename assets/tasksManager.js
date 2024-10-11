@@ -6,6 +6,7 @@ const categoryAggrDaysRange = 35; // 63 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
+const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";
 globalThis.headers = {
   'Access-Control-Allow-Origin': "*",
@@ -44,7 +45,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
     ).toFixed(2);
     item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"]??""} ${item["subitems"]??""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""}`;
     item["notes"] = notes;
     return item;
   });

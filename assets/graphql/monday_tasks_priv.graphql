@@ -1,0 +1,15 @@
+# [API playground](https://javigbe.monday.com/apps/playground)
+# [API reference](https://developer.monday.com/api-reference/docs)
+query {
+  boards (ids: 3478645467) {
+    items_count
+    items_page (limit: 500) {
+      items {
+        id name
+        group { title id }
+        column_values { text value column { id }  }
+        subitems { name id column_values { text } }
+      }
+    }
+  }
+}

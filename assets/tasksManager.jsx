@@ -199,7 +199,7 @@ class tasksManager extends globalThis.React.Component {
     const query = "boards (ids: " + boardId + ") { " +
       "items_page (limit: 500) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
-      "subitems { name column_values { text } } } } items_count }"
+      "subitems { id name column_values { text } } } } items_count }"
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       globalThis.mondayApiUrl,
@@ -233,7 +233,7 @@ class tasksManager extends globalThis.React.Component {
         if (rawItem["subitems"].length) {
           rawItem["subitems"].map((subItem, subItemIdx) => {
             let subTaskIds = {
-              "task_id": `${rawItem["id"]}${(100 + subItemIdx).toString().substring(1)}`,
+              "task_id": subItem["id"],
               "task_name": `${rawItem["name"]}: ${subItem["name"]}`,
               "group": rawItem["group"]["title"],
               "type": "subitem"

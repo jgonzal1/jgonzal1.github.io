@@ -432,16 +432,27 @@ class tasksManager extends globalThis.React.Component {
             padding: "0 0.3em"
           }
         },
-        `day(s) offset | Last refresh at`
+        `day(s) offset`
       ),
-      React.createElement(
+      (this.state.lastRefreshDateTime !== "undefined") && React.createElement(
+        "span",
+        {
+          id: "lastRefreshDateTime",
+          style: {
+            display: "inline-block",
+            paddingRight: "0.3em"
+          }
+        },
+        `| Last refresh at`
+      ),
+      (this.state.lastRefreshDateTime !== "undefined") && React.createElement(
         "span",
         {
           id: "lastRefreshDateTime",
           style: {
             display: "inline-block",
             fontStyle: "italic",
-            padding: "0 0.3em"
+            paddingRight: "0.3em"
           }
         },
         this.state.lastRefreshDateTime

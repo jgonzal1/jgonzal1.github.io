@@ -30,7 +30,7 @@ async function putMondayDateItem(
       }}*/}\\"}${""/*, \\\"numbers\\\": \\\"0.1\\\" ,${""
     }\\\"status\\\": \\\"Nice to do\\\" , \\\"freq__1\\\": \\\"180-Every 6 mo\\\" ,${""
     }\\\"cat__1\\\": \\\"2.💰\\\" , \\\"house__1\\\": \\\"none\\\" , \\\"notes\\\": \\\"\\\"${""
-    */}") { id }
+    */}") { name }
   }`;
   console.log(query);
   const body = JSON.stringify({ "query": query });

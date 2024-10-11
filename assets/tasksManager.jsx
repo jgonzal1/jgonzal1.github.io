@@ -265,15 +265,27 @@ class tasksManager extends globalThis.React.Component {
     return sortedMondayItemsJson;
   };
   putMondayDateItem = async (
-    mondayKey, boardId, itemId, dateTimeToSet
+    mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
     globalThis.headers["Authorization"] = mondayKey;
-    const query = `mutation { change_column_value ( ${""
-      }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
-      }\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
-      }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
-      }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
-      }}") { name } }`;
+    let query;
+    if (type === "item") {
+      query = `mutation { change_column_value ( ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
+        }\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
+        }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
+        }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
+        }}") { name } }`;
+    } else if (type === "subitem") {
+      query = `mutation {
+        change_multiple_column_values(
+            board_id: ${boardId}
+            item_id: ${itemId}
+            create_labels_if_missing: true
+            column_values: "{\\"date0\\": \\"${dateTimeToSet.replace("T", " ")}\\"}"
+        ) { name }
+      }`;
+    }
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       globalThis.mondayApiUrl,
@@ -287,7 +299,9 @@ class tasksManager extends globalThis.React.Component {
       }
     });
     const mondayPutResponse = await mondayPutResponsePremise;
-    const lastUpdatedItem = mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? false;
+    const lastUpdatedItem = type === "item" ?
+      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
+      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"] ?? "";
     if (lastUpdatedItem) {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
@@ -493,7 +507,7 @@ class tasksManager extends globalThis.React.Component {
                     className: `${taskKey} - td`,
                     style: { height: "2em" }
                   },
-                  (taskKey === "actions" && taskRow["type"] === "item") ? React.createElement(
+                  (taskKey === "actions") ? React.createElement(
                     "div",
                     {
                       style: {
@@ -512,9 +526,10 @@ class tasksManager extends globalThis.React.Component {
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.putMondayDateItem(
                           //@ts-ignore
-                          monday_key, boardId,
+                          monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                           taskRow["task_id"],
-                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec"),
+                          taskRow["type"]
                         )
                       }
                     ),
@@ -528,13 +543,14 @@ class tasksManager extends globalThis.React.Component {
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.putMondayDateItem(
                           //@ts-ignore
-                          monday_key, boardId,
+                          monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                           taskRow["task_id"],
-                          globalThis.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec")
+                          globalThis.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec"),
+                          taskRow["type"]
                         )
                       }
                     ),
-                    React.createElement(
+                    taskRow["type"] === "item" ? React.createElement(
                       "img",
                       {
                         src: "../public/archive.png",
@@ -548,7 +564,7 @@ class tasksManager extends globalThis.React.Component {
                           taskRow["task_id"]
                         )
                       }
-                    ),
+                    ) : "",
                     (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
                   ) : //
                     taskRow[taskKey ?? ""]

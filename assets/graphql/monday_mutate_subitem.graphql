@@ -4,5 +4,5 @@ mutation {
     item_id: 4904340759
     create_labels_if_missing: true
     column_values: "{\"date0\": \"2024-11-03 09:00:00\"}"
-  ) { id }
+  ) { name }
 }

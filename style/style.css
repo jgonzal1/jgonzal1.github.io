@@ -59,13 +59,13 @@ p {
   margin-bottom: 0.1em;
 }
 
-span {
-  /* color: #669; */
+/*span {
+  color: #669;
   font-style: italic;
   font-weight: bold;
-  /* text-decoration-line: underline; */
-  /* text-decoration-style: dotted; */
-}
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}*/
 
 table {
   margin-left: auto;

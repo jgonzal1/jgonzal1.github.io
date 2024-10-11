@@ -382,7 +382,6 @@ class tasksManager extends globalThis.React.Component {
           }),
           style: {
             backgroundColor: "#FFF6",
-            fontStyle: "italic",
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
@@ -408,14 +407,13 @@ class tasksManager extends globalThis.React.Component {
         "input",
         {
           id: "setDayOffset",
-          value: this.state.dayOffsetValue,
+          value: parseFloat(this.state.dayOffsetValue.toPrecision(5)),
           onChange: (e) => this.setState({
             minsOffsetValue: (parseFloat(e.target.value) * 60 * 24).toExponential(2),
             dayOffsetValue: e.target.value
           }),
           style: {
             backgroundColor: "#FFF6",
-            fontStyle: "italic",
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
@@ -434,7 +432,19 @@ class tasksManager extends globalThis.React.Component {
             padding: "0 0.3em"
           }
         },
-        `day(s) offset | Last refresh: ${this.state.lastRefreshDateTime} `
+        `day(s) offset | Last refresh at`
+      ),
+      React.createElement(
+        "span",
+        {
+          id: "lastRefreshDateTime",
+          style: {
+            display: "inline-block",
+            fontStyle: "italic",
+            padding: "0 0.3em"
+          }
+        },
+        this.state.lastRefreshDateTime
       ),
       // lastUpdatedItem
       React.createElement(

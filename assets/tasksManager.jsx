@@ -407,7 +407,9 @@ class tasksManager extends globalThis.React.Component {
         "input",
         {
           id: "setDayOffset",
-          value: parseFloat(this.state.dayOffsetValue.toPrecision(5)),
+          value: typeof (this.state.dayOffsetValue) === "number" ?
+            parseFloat(this.state.dayOffsetValue.toPrecision(5)) :
+            this.state.dayOffsetValue,
           onChange: (e) => this.setState({
             minsOffsetValue: (parseFloat(e.target.value) * 60 * 24).toExponential(2),
             dayOffsetValue: e.target.value
@@ -571,12 +573,12 @@ class tasksManager extends globalThis.React.Component {
                         )
                       }
                     ),
-                    taskRow["type"] === "item" ? React.createElement(
+                    React.createElement(
                       "img",
                       {
                         src: "../public/archive.png",
                         alt: "Archive",
-                        key: `${taskRow["task_id"]} ArchiveImg`,
+                        key: `${taskRow["task_id"]}ArchiveImg`,
                         className: "clickable-icon",
                         style: { paddingRight: "0.3em" },
                         onClick: () => this.archiveMondayItem(
@@ -585,7 +587,7 @@ class tasksManager extends globalThis.React.Component {
                           taskRow["task_id"]
                         )
                       }
-                    ) : "",
+                    ),
                     (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
                   ) : taskRow[taskKey ?? ""]
                 ) : "")

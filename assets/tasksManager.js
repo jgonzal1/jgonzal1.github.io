@@ -471,17 +471,15 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
   let dateStrOffset = new Date(
     dateValueOffset
   ).toISOString().substring(0,
-    precision === "day" ? 10 :
-      precision === "min" ? 16 :
-        19 // sec
+    precision === "day" ? 10 : 19 // sec
   );
-  if (precision !== "day") {
-    const timePrecision = dateStrOffset.substring(dateStrOffset.length - 2);
+  if (precision === "min") {
+    const timePrecision = dateStrOffset.substring(dateStrOffset.length - 5, dateStrOffset.length - 3);
     let roundedTimePrecision = (Math.floor(parseInt(timePrecision, 10) / 15) * 15).toString();
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }
-    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 2)}${roundedTimePrecision.toString()}`;
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`;
     console.log(dateStrOffset);
   }
   return dateStrOffset;

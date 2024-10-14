@@ -551,7 +551,7 @@ class tasksManager extends globalThis.React.Component {
                           //@ts-ignore
                           monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                           taskRow["task_id"],
-                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, taskRow["datetime"], "sec"),
+                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                           taskRow["type"]
                         )
                       }
@@ -568,7 +568,7 @@ class tasksManager extends globalThis.React.Component {
                           //@ts-ignore
                           monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                           taskRow["task_id"],
-                          globalThis.offsetNDay(this.state.dayOffsetValue, taskRow["datetime"], "sec"),
+                          globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                           taskRow["type"]
                         )
                       }

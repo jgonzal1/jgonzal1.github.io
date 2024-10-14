@@ -68,33 +68,31 @@ const skills = [
     { "sk": "vscode",                 "ct": "Microsoft / Azure",             "regex": /vscode|([Vv]isual [Ss]tudio [Cc]ode)/g },                 //!
 ];
 function markSkillsAsTBody(cvBody) {
-    let cvTbody = new DOMParser().parseFromString(`<table>${cvBody}</table>`, "text/html")
-        .body.firstChild //table
-        .tBodies[0]
-        ;
-    let matches = {}
-    Array.from(cvTbody.children).map((k,i)=>{
-        if(k.children.length<2) {
+    let cvTbody = new DOMParser().parseFromString(
+            `<table>${cvBody}</table>`, "text/html"
+        ).body.firstChild //table
+        .tBodies[0];
+    //let matches = {}
+    Array.from(cvTbody.children).map((k,i) => {
+        if(k.children.length<2) { // New section, no skills in here
             return;
         }
         let t = k.children[1].innerText;
-        skills.map(
-            skm => {
+        skills.map(skm => {
             const res = skm.regex.exec(t);
-            if(!res) {
+            if(!res) { // No matches, skip
                 return;
             }
             let tp = cvTbody.children[i].children[1].innerHTML;
             tp = tp.replaceAll(res[0],`<b>${res[0]}</b>`);
             cvTbody.children[i].children[1].innerHTML = tp;
-            if (skm.sk in matches) {
+            /*if (skm.sk in matches) {
                 matches[skm.sk] += 1;
             } else {
                 matches[skm.sk] = 1;
-            }
-            }
-        );
+            }*/
+        });
     });
-    console.log(matches);
+    // console.log(matches);
     return cvTbody;
 }

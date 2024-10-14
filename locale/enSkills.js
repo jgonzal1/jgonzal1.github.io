@@ -67,4 +67,34 @@ const enSkills = [
     { "sk": "user-experience-design", "ct": "Web developer",                 "regex": /(UI|user experience) design/g },                          //!
     { "sk": "vscode",                 "ct": "Microsoft / Azure",             "regex": /vscode|([Vv]isual [Ss]tudio [Cc]ode)/g },                 //!
 ];
-  
+function markEnSkillsAsTBody(cvBody) {
+    let cvTbody = new DOMParser().parseFromString(`<table>${cvBody}</table>`, "text/html")
+        .body.firstChild //table
+        .tBodies[0]
+        ;
+    let matches = {}
+    Array.from(cvTbody.children).map((k,i)=>{
+        if(k.children.length<2) {
+            return;
+        }
+        let t = k.children[1].innerText;
+        enSkills.map(
+            skm => {
+            const res = skm.regex.exec(t);
+            if(!res) {
+                return;
+            }
+            let tp = cvTbody.children[i].children[1].innerHTML;
+            tp = tp.replaceAll(res[0],`<b>${res[0]}</b>`);
+            cvTbody.children[i].children[1].innerHTML = tp;
+            if (skm.sk in matches) {
+                matches[skm.sk] += 1;
+            } else {
+                matches[skm.sk] = 1;
+            }
+            }
+        );
+    });
+    console.log(matches);
+    return cvTbody;
+}

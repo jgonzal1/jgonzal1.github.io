@@ -3,9 +3,10 @@
   <script src="../assets/skillsMarker.js"></script>
 </head>
 <body>
+  <div id="root"></div>
 </body>
 <script>
   const cvBody = getEnglishContents()[1];
-  const cvTbody = markSkillsAsTBody(cvBody)
-  document.body.appendChild(cvTbody);
+  const cvTBody = markSkillsAsTBody(cvBody);
+  document.getElementById("root").appendChild(cvTBody);
 </script>

@@ -17,6 +17,10 @@ if (lang === 'ES') {
     [cvHeader, cvBody, legend] = getEnglishContents();
 }
 document.getElementById("cvHeader").innerHTML = cvHeader;
+/*
+cvBody = markSkillsAsTBody(cvBody);
+document.getElementById("cvBody").appendChild(cvBody);
+*/
 document.getElementById("cvBody").innerHTML = cvBody;
 document.getElementById("legend").innerHTML = legend;
 

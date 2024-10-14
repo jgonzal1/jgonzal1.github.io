@@ -2,7 +2,7 @@
 const quartersOfHourWeekdays = 14; // 3.5 h
 const quartersOfHourWeekends = 20; // 5.0 h
 const nextViAsV = false;
-const categoryAggrDaysRange = 35; // 63 prev.
+const categoryAggrDaysRange = 28; // 63 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -467,15 +467,24 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
     new Date(dateToOffset).valueOf() :
     new Date().valueOf();
   const offsetMs = n * msPerD;
-  let dateValueOffset = dateToOffsetAsValue + offsetMs;
-  dateValueOffset = parseFloat((Math.round(dateValueOffset * 96) / 96).toFixed(4));
-  return new Date(
+  const dateValueOffset = dateToOffsetAsValue + offsetMs;
+  let dateStrOffset = new Date(
     dateValueOffset
   ).toISOString().substring(0,
     precision === "day" ? 10 :
       precision === "min" ? 16 :
         19 // sec
   );
+  if (precision !== "day") {
+    const timePrecision = dateStrOffset.substring(dateStrOffset.length - 2);
+    let roundedTimePrecision = (Math.floor(parseInt(timePrecision, 10) / 15) * 15).toString();
+    if (roundedTimePrecision === "0") {
+      roundedTimePrecision = "00";
+    }
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 2)}${roundedTimePrecision.toString()}`;
+    console.log(dateStrOffset);
+  }
+  return dateStrOffset;
 };
 globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextDay = new Date().getHours();

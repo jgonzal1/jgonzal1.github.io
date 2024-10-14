@@ -12,7 +12,7 @@
   <script src="../libs/d3.v7.js">
     globalThis.d3 = d3;
   </script>
-  <script src="private/credentials.js"></script>
+  <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
   <script>
     function hideMap() {
       console.log("Hiding map");

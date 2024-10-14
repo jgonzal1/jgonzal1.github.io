@@ -81,6 +81,20 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
       const newDateTimeStr = new Date(newDateTime).toISOString().substring(0, 16).replace("T", " ");
       parentItemDates[parentName] = newDateTimeStr;
       mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
+        if (n["datetime"] > l["datetime"]) {
+          return; // Parent task is already updated
+        }
+        const query = `mutation { change_column_value ( ${""
+          }board_id: ${boardId}, item_id: ${n["task_id"]}, column_id: "date", value: "{${""
+          }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
+          }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
+          }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
+          }}") { name } }`;
+        const body = JSON.stringify({ "query": query });
+        fetch(
+          globalThis.mondayApiUrl,
+          { method: "POST", headers: globalThis.headers, body: body }
+        );
         n["datetime"] = newDateTimeStr;
         n["d_diff"] = +(
           (new Date(newDateTimeStr).valueOf() - currentDate.valueOf()) / msPerH / 24

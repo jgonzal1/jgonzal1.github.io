@@ -1,12 +1,12 @@
 /**
  * @example
  * const strI = "EC2";
- * let arrO = enSkills[0].regex.exec(str);
+ * let arrO = skills[0].regex.exec(str);
  * @results ```js
  * arrO = [ 'EC2', undefined, index: 0, input: 'EC2', groups: undefined ];
  * ```
  */
-const enSkills = [
+const skills = [
     { "sk": "aws",                    "ct": "Amazon Web Services (AWS)",     "regex": /AWS|([Aa]mazon [Ww]eb [Ss]ervices)/g },
     { "sk": "amazon-ec2",             "ct": "Amazon Web Services (AWS)",     "regex": /([Aa]mazon )?EC2/g },
     { "sk": "amazon-glue",            "ct": "Amazon Web Services (AWS)",     "regex": /([Aa]mazon )?[Gg]lue]/g },
@@ -67,7 +67,7 @@ const enSkills = [
     { "sk": "user-experience-design", "ct": "Web developer",                 "regex": /(UI|user experience) design/g },                          //!
     { "sk": "vscode",                 "ct": "Microsoft / Azure",             "regex": /vscode|([Vv]isual [Ss]tudio [Cc]ode)/g },                 //!
 ];
-function markEnSkillsAsTBody(cvBody) {
+function markSkillsAsTBody(cvBody) {
     let cvTbody = new DOMParser().parseFromString(`<table>${cvBody}</table>`, "text/html")
         .body.firstChild //table
         .tBodies[0]
@@ -78,7 +78,7 @@ function markEnSkillsAsTBody(cvBody) {
             return;
         }
         let t = k.children[1].innerText;
-        enSkills.map(
+        skills.map(
             skm => {
             const res = skm.regex.exec(t);
             if(!res) {

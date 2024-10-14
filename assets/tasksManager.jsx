@@ -340,7 +340,7 @@ class tasksManager extends globalThis.React.Component {
       //@ts-ignore
       this.getDatedMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
     }
-    if (this.state.mondayTasksByCategory.length) { // Add Bubble Chart
+    if (this.state.mondayTasksByCategory.length) { // Add Donut Chart
       const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
       if (!tasksByCategoryPlaceholder) { return; }
       tasksByCategoryPlaceholder.innerHTML = "";
@@ -530,7 +530,7 @@ class tasksManager extends globalThis.React.Component {
                     className: `${taskKey} - td`,
                     style: { height: "2em" }
                   },
-                  (taskKey === "actions") ? React.createElement(
+                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ? React.createElement(
                     "div",
                     {
                       style: {

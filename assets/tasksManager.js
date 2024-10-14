@@ -49,7 +49,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
     item["notes"] = notes;
     return item;
   });
-  const mondayItemsJsonPayload = mondayTasksCols.map(
+  let mondayItemsJsonPayload = mondayTasksCols.map(
     (t) => {
       return {
         "cat": t["cat"] ?? "9.➕",
@@ -65,7 +65,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
       }
     }
   )
-  return mondayItemsJsonPayload.sort(
+  mondayItemsJsonPayload.sort(
     (a, b) => ("" + a["datetime"]).localeCompare(b["datetime"])
   ).map(
     (t, i) => {
@@ -73,6 +73,31 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
       return t;
     }
   );
+  let parentItemDates = {};
+  mondayItemsJsonPayload.filter(k => k["task_name"].search(":") !== -1).map(l => {
+    const parentName = l["task_name"].substring(0, l["task_name"].search(":"));
+    if (!Object.keys(parentItemDates).includes(parentName)) {
+      const newDateTime = offsetNDay(1 / 6 - 7e-4, l["datetime"], "min"); // take out 1/6 on summer time
+      const newDateTimeStr = new Date(newDateTime).toISOString().substring(0, 16).replace("T", " ");
+      parentItemDates[parentName] = newDateTimeStr;
+      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
+        n["datetime"] = newDateTimeStr;
+        n["d_diff"] = +(
+          (new Date(newDateTimeStr).valueOf() - currentDate.valueOf()) / msPerH / 24
+        ).toFixed(2);
+        n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
+      });
+    }
+  });
+  mondayItemsJsonPayload.sort(
+    (a, b) => ("" + a["datetime"]).localeCompare(b["datetime"])
+  ).map(
+    (t, i) => {
+      t["#"] = i + 1;
+      return t;
+    }
+  );
+  return mondayItemsJsonPayload;
 };
 globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const msPerH = 3.6e6;

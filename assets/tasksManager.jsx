@@ -483,9 +483,9 @@ class tasksManager extends globalThis.React.Component {
           className: "first-flex-container-item table-container",
           style: {
             margin: "auto",
-            maxHeight: `calc(440px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
+            maxHeight: `calc(390px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
             maxWidth: "calc(100% - 0.8em)",
-            paddingTop: "0.1em",
+            paddingTop: "0.5em",
             width: "fit-content"
           }
         },

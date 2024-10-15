@@ -606,7 +606,7 @@ class tasksManager extends globalThis.React.Component {
           id: "graphsPlaceholder",
           className: "flex-container-2",
           style: {
-            border: "1px solid #CCC",
+            border: "1px solid #666",
             gap: "0em",
             height: "315px",
             margin: "0.3em 0.3em 0 0.1em",

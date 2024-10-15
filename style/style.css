@@ -24,7 +24,7 @@ td {
 /*div,*/
 th,
 td {
-  border: 1px solid #CCC;
+  border: 1px solid #666;
   border-radius: 0.3em;
   padding: 0.3em;
 }
@@ -86,7 +86,7 @@ th+th {
 
 .A4 {
   background-color: #FFF;
-  border: 1px solid #11111111;
+  border: 1px solid #333;
   height: calc(29.7cm - 1em);
   /* Tested OK for 150 pages in Chrome */
   left: calc((100% - 21cm)/2);
@@ -306,7 +306,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .highlight-active {
@@ -319,7 +319,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .highlight-yellow {
@@ -327,7 +327,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .highlight-orange {
@@ -335,7 +335,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .highlight-red {
@@ -343,7 +343,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .highlight-gray {
@@ -351,7 +351,7 @@ th+th {
   color: #000000;
   padding: 0.1em;
   border-radius: 0.4em;
-  border: 0.1em solid #000000;
+  border: 0.1em solid #000;
 }
 
 .invisible {
@@ -496,7 +496,7 @@ th+th {
 
 #calendarIframe {
   border-width: 0;
-  border: 1px solid #CCC;
+  border: 1px solid #666;
   display: block;
   height: 900;
   opacity: 0.8;

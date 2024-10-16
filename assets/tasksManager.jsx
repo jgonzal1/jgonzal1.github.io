@@ -269,12 +269,13 @@ class tasksManager extends globalThis.React.Component {
   ) => {
     globalThis.headers["Authorization"] = mondayKey;
     let query;
+    const lastRefreshDateTime = new Date().toISOString().replace("T", " ").substring(0, 19);
     if (type === "item") {
       query = `mutation { change_column_value ( ${""
         }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
         }\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
         }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
-        }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
+        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
         }}") { name } }`;
     } else if (type === "subitem") {
       query = `mutation {
@@ -303,7 +304,10 @@ class tasksManager extends globalThis.React.Component {
       (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
       mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"] ?? "";
     if (lastUpdatedItem) {
-      this.setState({ lastUpdatedItem: lastUpdatedItem });
+      this.setState({
+        lastRefreshDateTime: lastRefreshDateTime,
+        lastUpdatedItem: lastUpdatedItem,
+      });
     }
   };
   archiveMondayItem = async (
@@ -466,14 +470,14 @@ class tasksManager extends globalThis.React.Component {
           id: "lastUpdatedItem",
           style: {
             display: "inline-block",
-            right: "10em",
+            fontSize: "0.88em",
             paddingLeft: "0.1em",
+            right: "10em",
             top: "0em",
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `Last upd.item: ${this.state.lastUpdatedItem
-        } `
+        this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem}`
       ),
       // mondayTableContainer
       React.createElement(

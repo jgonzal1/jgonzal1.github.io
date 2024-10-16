@@ -81,8 +81,8 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
       const newDateTimeStr = new Date(newDateTime).toISOString().substring(0, 16).replace("T", " ");
       parentItemDates[parentName] = newDateTimeStr;
       mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
-        if (n["datetime"] > l["datetime"]) {
-          return; // Parent task is already updated
+        if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
+          return; // Parent task is already updated today
         }
         const query = `mutation { change_column_value ( ${""
           }board_id: ${boardId}, item_id: ${n["task_id"]}, column_id: "date", value: "{${""
@@ -494,7 +494,6 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
       roundedTimePrecision = "00";
     }
     dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`;
-    console.log(dateStrOffset);
   }
   return dateStrOffset;
 };

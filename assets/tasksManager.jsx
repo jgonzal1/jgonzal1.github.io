@@ -387,7 +387,8 @@ class tasksManager extends globalThis.React.Component {
             dayOffsetValue: (parseFloat(e.target.value) / 24 / 60).toExponential(3)
           }),
           style: {
-            backgroundColor: "#FFF6",
+            backgroundColor: "#FFF9",
+            borderRadius: "0.3em",
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
@@ -421,7 +422,8 @@ class tasksManager extends globalThis.React.Component {
             dayOffsetValue: e.target.value
           }),
           style: {
-            backgroundColor: "#FFF6",
+            backgroundColor: "#FFF9",
+            borderRadius: "0.3em",
             fontWeight: "bold",
             marginLeft: "0.3em",
             paddingLeft: "0.3em",
@@ -479,7 +481,7 @@ class tasksManager extends globalThis.React.Component {
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `| Last upd. item is `,
+        this.state.lastUpdatedItem && `| Last upd. item is "`,
         React.createElement(
           "span",
           {
@@ -490,7 +492,7 @@ class tasksManager extends globalThis.React.Component {
               paddingLeft: "0.1em",
             }
           },
-          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem} to ${this.state.lastUpdatedDt.substring(5, 16)}`
+          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem}" to "${this.state.lastUpdatedDt.substring(5, 16)}"`
         ),
       ),
       // mondayTableContainer

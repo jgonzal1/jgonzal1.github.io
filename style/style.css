@@ -283,7 +283,6 @@ th+th {
   align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3em;
   height: calc(100% - 0.3em);
   justify-content: center;
   width: 100%;
@@ -433,7 +432,6 @@ th+th {
   border-right: 1px solid #6666;
   display: flex;
   height: min(calc(100% - 1em), 800px);
-  margin-right: 0.5em;
   writing-mode: vertical-rl;
 }
 

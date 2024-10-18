@@ -461,7 +461,7 @@ class tasksManager extends globalThis.React.Component {
           id: "lastRefreshDateTime",
           style: {
             display: "inline-block",
-            color: "#CCC",
+            color: "#999",
             paddingRight: "0.3em"
           }
         },
@@ -487,7 +487,7 @@ class tasksManager extends globalThis.React.Component {
           {
             id: "lastUpdatedItem",
             style: {
-              color: "#CCC",
+              color: "#999",
               fontSize: "1em",
               paddingLeft: "0.1em",
             }
@@ -510,7 +510,7 @@ class tasksManager extends globalThis.React.Component {
           {
             id: "lastUpdatedItem",
             style: {
-              color: "#CCC",
+              color: "#999",
               fontSize: "1em",
               paddingLeft: "0.1em",
             }

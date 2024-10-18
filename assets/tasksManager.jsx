@@ -482,7 +482,7 @@ class tasksManager extends globalThis.React.Component {
           }
         },
         this.state.lastUpdatedItem && `| Last upd. item is `,
-        React.createElement(
+        this.state.lastUpdatedItem && React.createElement(
           "span",
           {
             id: "lastUpdatedItem",
@@ -492,7 +492,30 @@ class tasksManager extends globalThis.React.Component {
               paddingLeft: "0.1em",
             }
           },
-          this.state.lastUpdatedItem && `'${this.state.lastUpdatedItem}' to '${this.state.lastUpdatedDt.substring(5, 16)}'`
+          this.state.lastUpdatedItem
+        ),
+        this.state.lastUpdatedItem && React.createElement(
+          "span",
+          {
+            id: "lastUpdatedItem",
+            style: {
+              fontSize: "1em",
+              paddingLeft: "0.1em",
+            }
+          },
+          " to "
+        ),
+        this.state.lastUpdatedItem && React.createElement(
+          "span",
+          {
+            id: "lastUpdatedItem",
+            style: {
+              color: "#CCC",
+              fontSize: "1em",
+              paddingLeft: "0.1em",
+            }
+          },
+          this.state.lastUpdatedDt.substring(5, 16)
         ),
       ),
       // mondayTableContainer

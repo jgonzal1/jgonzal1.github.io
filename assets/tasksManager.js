@@ -493,7 +493,7 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }
-    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`;
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`.replace("T", " ");
   }
   return dateStrOffset;
 };

@@ -20,6 +20,7 @@ class tasksManager extends globalThis.React.Component {
       getDatedMondayItemsToJson: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
+      lastUpdatedDt: "",
       minsOffsetValue: 60,
       mondayTasksByCategory: [],
       mondayTasksByCategoryAndDay: [],
@@ -283,7 +284,7 @@ class tasksManager extends globalThis.React.Component {
             board_id: ${boardId}
             item_id: ${itemId}
             create_labels_if_missing: true
-            column_values: "{\\"date0\\": \\"${dateTimeToSet.replace("T", " ")}\\"}"
+            column_values: "{\\"date0\\": \\"${dateTimeToSet}\\"}"
         ) { name }
       }`;
     }
@@ -307,6 +308,7 @@ class tasksManager extends globalThis.React.Component {
       this.setState({
         lastRefreshDateTime: lastRefreshDateTime,
         lastUpdatedItem: lastUpdatedItem,
+        lastUpdatedDt: dateTimeToSet
       });
     }
   };
@@ -457,11 +459,11 @@ class tasksManager extends globalThis.React.Component {
           id: "lastRefreshDateTime",
           style: {
             display: "inline-block",
-            fontStyle: "italic",
+            color: "#CCC",
             paddingRight: "0.3em"
           }
         },
-        this.state.lastRefreshDateTime
+        this.state.lastRefreshDateTime.substring(11) // time
       ),
       // lastUpdatedItem
       React.createElement(
@@ -470,14 +472,24 @@ class tasksManager extends globalThis.React.Component {
           id: "lastUpdatedItem",
           style: {
             display: "inline-block",
-            fontSize: "0.88em",
             paddingLeft: "0.1em",
             right: "10em",
             top: "0em",
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `| Last upd. item: ${this.state.lastUpdatedItem}`
+        this.state.lastUpdatedItem && `| Last upd. item: `,
+        React.createElement(
+          "span",
+          {
+            id: "lastUpdatedItem",
+            style: {
+              color: "#CCC",
+              paddingLeft: "0.1em",
+            }
+          },
+          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem} to ${this.state.lastUpdatedDt.substring(5, 15)}`
+        ),
       ),
       // mondayTableContainer
       React.createElement(

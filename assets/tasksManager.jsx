@@ -261,7 +261,7 @@ class tasksManager extends globalThis.React.Component {
       mondayTasksByCategory: [mondayTasksByCategory],
       mondayTasksByDay: mondayTasksByDay,
       getDatedMondayItemsToJson: false,
-      lastRefreshDateTime: new Date().toISOString().substring(2, 19).replace("T", " ")
+      lastRefreshDateTime: new Date().toISOString().replace("T", " ").substring(2, 19)
     });
     return sortedMondayItemsJson;
   };
@@ -270,7 +270,7 @@ class tasksManager extends globalThis.React.Component {
   ) => {
     globalThis.headers["Authorization"] = mondayKey;
     let query;
-    const lastRefreshDateTime = new Date().toISOString().replace("T", " ").substring(0, 19);
+    const lastRefreshDateTime = new Date().toISOString().replace("T", " ").substring(2, 19);
     if (type === "item") {
       query = `mutation { change_column_value ( ${""
         }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: "{${""
@@ -463,7 +463,7 @@ class tasksManager extends globalThis.React.Component {
             paddingRight: "0.3em"
           }
         },
-        this.state.lastRefreshDateTime.substring(11) // time
+        this.state.lastRefreshDateTime.substring(9) // time
       ),
       // lastUpdatedItem
       React.createElement(
@@ -472,23 +472,25 @@ class tasksManager extends globalThis.React.Component {
           id: "lastUpdatedItem",
           style: {
             display: "inline-block",
+            fontSize: "0.88em",
             paddingLeft: "0.1em",
             right: "10em",
             top: "0em",
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `| Last upd. item: `,
+        this.state.lastUpdatedItem && `| Last upd. item is `,
         React.createElement(
           "span",
           {
             id: "lastUpdatedItem",
             style: {
               color: "#CCC",
+              fontSize: "1em",
               paddingLeft: "0.1em",
             }
           },
-          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem} to ${this.state.lastUpdatedDt.substring(5, 15)}`
+          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem} to ${this.state.lastUpdatedDt.substring(5, 16)}`
         ),
       ),
       // mondayTableContainer

@@ -481,7 +481,7 @@ class tasksManager extends globalThis.React.Component {
             width: "fit-content"
           }
         },
-        this.state.lastUpdatedItem && `| Last upd. item is "`,
+        this.state.lastUpdatedItem && `| Last upd. item is `,
         React.createElement(
           "span",
           {
@@ -492,7 +492,7 @@ class tasksManager extends globalThis.React.Component {
               paddingLeft: "0.1em",
             }
           },
-          this.state.lastUpdatedItem && `${this.state.lastUpdatedItem}" to "${this.state.lastUpdatedDt.substring(5, 16)}"`
+          this.state.lastUpdatedItem && `'${this.state.lastUpdatedItem}' to '${this.state.lastUpdatedDt.substring(5, 16)}'`
         ),
       ),
       // mondayTableContainer

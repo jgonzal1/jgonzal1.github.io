@@ -129,12 +129,14 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
-      <p>(21-11 – Nowadays / Part-time)</p>
-      <p>Full-stack developer, data engineer, and AWS/JSM/Power BI/monday.com technical consultant.
+      <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
+      <p>21-11 – 24-11 / Part-time</p>
+      <p>Roles: Full-stack developer, data engineer, and AWS/JSM/Power BI/monday.com technical consultant.
       <br><br></p>
 
-      <p>24-03 - 24-07</p>
-      <p>Project: ETL SYS102 for UFST/VURDST</p>
+      <p>Client: UFST/VURDST @ Copenhagen, Denmark, EU</p>
+      <p>24-03 - 24-07 / B2B full-time</p>
+      <p>Project: ETL data engineer for architecture SYS102</p>
       <p>Role: AWS cloud software developer and data engineer</p>
       <p>Responsible for data pipeline development on AWS to gather all the data sources required for</p>
       <p>a Business Intelligence solution for the property tax agency VURDST in Denmark.</p><br>
@@ -142,16 +144,19 @@ function getEnglishContents() {
       <li>Develop lambda functions to get raw XML documents and transform them into JSON,
       un-flatten them to Parquet files, and save them in S3 to be usable in Athena.</li>
       <li>Replicate the logic in AWS Glue ETL visual jobs for scalability.</li>
-      <li>Make the foundational technical data flows on the solution for UFST's self-maintenance.</li>
+      <li>Make the foundational technical data flows on the solution for UFST's self-maintenance.<br></li>
       </ol>
 
+      <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
       <p>24-01 - 24-02</p>
-      <p>Project: Jira Ultimate Customizer</p>
+      <p>Project: Jira's Ultimate Customizer addon developer</p>
       <p>Role: Full-stack Developer</p>
       <p>Responsible for Jira's Ultimate Customizer and Issue Lock help desk resolutions.<br><br></p>
 
+      <p>Client: TDC NET @ Copenhagen, Denmark, EU</p>
       <p>23-09 - 23-12</p>
-      <p>Project: TDC's Smart Build solution, Role: Full-stack developer and UX implementation responsible.</p>
+      <p>Project: Smart Build solution</p>
+      <p>Role: Full-stack developer and UX implementation responsible.</p>
       <p>Full-stack developer for TDC NET geographical auctioning Phoenix solution at the AI & Digital team.</p>
       <p>Main tasks:</p><ol>
       <li>E2E representation of TAB geographical data on OpenLayers and Leaflet front-end environments</li>
@@ -161,9 +166,10 @@ function getEnglishContents() {
       <p>Technologies:</p><ol>
       <li>Python: fastapi, pandas, numpy, polars, requests</li>
       <li>Javascript/Typescript: React, Chakra, OpenLayers, LeafLet, atomic design</li>
-      <li>Database: SQL queries, Snowflake</li>
+      <li>Database: SQL queries, Snowflake<br></li>
       </ol><br>
 
+      <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
       <p>23-05 - 23-08</p>
       <p>Project: Jira Ultimate Customizer</p>
       <p>Role: Full-stack Developer</p>
@@ -175,9 +181,10 @@ function getEnglishContents() {
       <li>Improved back-end running for Dockerfile's and Makefile</li>
       <li>UX design improvement</li>
       <li>Automation of testing in long-term stable JSM versions 4.5, 4.13, 5.4, 5.8</li>
-      <li>automated usage of nvmrc</li>
+      <li>automated usage of nvmrc<br></li>
       </ol><br>
 
+      <p>Client: Dr. Oetker via partnership with AKQA Copenhagen, Denmark / Remote EU</p>
       <p>22-09 - 23-04</p>
       <p>Project: Data automation on Dr. Oetker Home, public webpages content creation.</p>
       <p>Role: <span class="arch">Full-stack</span> software developer, data engineer, and AWS technical consultant.</p><br>
@@ -191,17 +198,19 @@ function getEnglishContents() {
       <li>Configuration of SalesForce and Evalanche connections for newsletter subscriptions.</li>
       <li>Full live elasticsearch <span class="arch">database migration</span> from a provider to another one.</li>
       <li>Big <span class="arch">reduction of the technical debt</span> of the project's back-end.</li>
-      <li>Creation of a web-service for Dr. Oetker internal stakeholders for enabling them to modify nginx configuration for different Dr. Oetker websites.</li></ol><br>
+      <li>Creation of a web-service for Dr. Oetker internal stakeholders for enabling them to modify nginx configuration for different Dr. Oetker websites.<br></li></ol>
 
+      <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
       <p>22-03 - 22-09</p>
-      <p>Project:  Jira Ultimate Customizer,</p>
+      <p>Project:  Jira Ultimate Customizer</p>
       <p>Role: Full-stack Developer</p>
       <p>Responsible for enabling Jira's Ultimate Customizer with its correct UI/UX in signup, approvals, single portals, portals page, users login, profile page, create request, view
       request, requests page, and for fixing permissions error when editing login screen for the minor version 4.3.0 as well as for <span class="arch">resolving and communicating
       </span> on the resolution for <span class="arch">all the Service Desk incidences</span> for this App.<br><br></p>
 
+      <p>Client: CLEVER @ Copenhagen, Denmark, EU / Remote</p>
       <p>22-01 - 22-03</p>
-      <p>Project: Integration between monday.com and KortInfo,</p>
+      <p>Project: Integration between monday.com and KortInfo</p>
       <p>Role: Software Developer</p>
       <p>Responsible for developing an automatic real time synchronization solution for a client from monday.com to KortInfo (web map - GIS - provider).</p><br>
       <p>Project description:</p>
@@ -214,8 +223,9 @@ function getEnglishContents() {
       POST requests</span>.</li>
       <li>Monitoring these changes through some RSS connected to a business intelligence report to check if there could be potential issues after going live.</li>
       <li>Technologies used:</li>
-      <li>JavaScript, <span class="arch">API REST</span>, GraphQL, Zapier.</li></ol><br>
+      <li>JavaScript, <span class="arch">API REST</span>, GraphQL, Zapier.<br></li></ol>
 
+      <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
       <p>21-12 - 22-01</p>
       <p>Project: Business intelligence solution</p>
       <p>Role: Software Developer, Data engineer / Consultant.</p>
@@ -231,29 +241,33 @@ function getEnglishContents() {
       <li>Integration with, and querying of data via AWS Athena</li>
       <li>Presentation of data in Power BI</li>
       <li>Technologies used:</li>
-      <li>AWS Lambda, S3, Athena, Power BI, Python, <span class="arch">API REST</span>, SQL.</li></ol>
+      <li>AWS Lambda, S3, Athena, Power BI, Python, <span class="arch">API REST</span>, SQL.<br></li></ol>
     </td>
   </tr>
   <tr class="no-border">
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right t0"><br>T-Systems Iberia</td>
+    <td class="bold-right t0">T-Systems Iberia</td>
     <td class="w70">
+      <p>Client: T-Systems Iberia @ Spain, EU / Hybrid</p>
       <p>(19-11 - 21-11)</p>
-      <p>Full-stack developer, consultant, and Power BI technician.<br><br></p>
+      <p>Roles: Full-stack developer, consultant, and Power BI technician.<br><br></p>
 
+      <p>Client: Ferrovial @ Spain, EU / Remote</p>
       <p>21-05 - 21-10</p>
       <p><span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road
       trackings, and user management, all accesible within a React.JS webpage. <span class="cloud Kubernetes">Docker, Kubernetes, Python</span>, JavaScript, SQL, <span class=
       "arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.<br><br></p>
 
+      <p>Client: Deutsche Telekom @ EU / Remote</p>
       <p>21-05</p>
       <p><span class="bi">Power BI technical consultant</span><br>
       <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.<br><br></p>
 
+      <p>Client: Ayuntamiento de Valladolid @ Spain / Remote</p>
       <p>20-12 - 21-04</p>
-      <p><span class="bi">Data engineer and front-end consultant</span><br><br>
+      <p><span class="bi">Data engineer and front-end consultant</span><p>
       <p>Technical consultant for <span class='arch webdev'>full-stack development</span> on <span class='bi webdev cloud'>Pentaho CDE</span> reports for a Smart City.<br></p>
       <p>Technical consultant whose role was to <span class="arch">implement proofs of concept</span> for full-stack development of personalized reports on <span class="bi">Pentaho
       CDE</span> <span class='webdev'>c tools</span> and <span class='webdev'>D3.js</span> with <span class="bi">postgresql</span> data sources, such as CC charts, Sankey and
@@ -270,26 +284,32 @@ function getEnglishContents() {
       <p>Technologies used:</p>
       <p>Pentaho CDE, PostgreSQL, CC charts, JavaScript, SQL, Leaflet.JS maps, Sankey and network diagrams.<br><br></p>
 
+      <p>Client: T-Systems Iberia @ Spain, EU / Remote</p>
       <p>20-10 - 20-12</p>
       <p><span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track
       worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.<br><br></p>
 
+      <p>Client: GABJUR @ Spain, EU / Remote</p>
       <p>20-09 - 20-10</p>
       <p>Software developer and consultant.</p>
       <p><span class="arch">Software developer and consultant</span> for a multi-language automatic translator within a public sector autonomy.<br><br></p>
 
+      <p>Client: T-Systems Iberia @ Spain, EU / Remote</p>
       <p>20-06 - 20-09</p>
       <p><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log
       Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.<br><br></p>
 
+      <p>Client: GABJUR @ Spain, EU / Remote</p>
       <p>20-05 - 20-06</p>
       <span class="arch">Software Developer and Consultant</span><br>
       <p>Software developer and consultant for a multi-language automatic translator within a public sector autonomy.<br><br></p>
 
+      <p>Client: MAPFRE @ Madrid, Spain, EU / Hybrid</p>
       <p>20-03 - 20-04</p>
       <p><span class="bi">Big Data technician</span><br>Big Data technician for setting up the data scientist environment for the biggest insurance company in Spain, using <span
       class="arch bi cloud">Python, AWS Lambda, AWS Step Functions, AWS S3, AWS Athena</span>, AWS IAM and remote connections.<br><br></p>
 
+      <p>Client: Ayuntamiento de Valladolid @ Spain / Remote</p>
       <p>19-12 - 20-02</p>
       <p>Technical consultant of <span class="arch cloud">cloud architecture</span>, full-stack developer and big data engineer for a Smart City.<br></p>
       <p>Technical consultant whose role was to implement proofs of concept of <span class='webdev'>front-end developments</span>, <span class="cloud">python</span> backend
@@ -297,11 +317,13 @@ function getEnglishContents() {
       class='webdev'>Kibana</span>), <span class="bi">AWS Lambda functions</span>, connections and <span class=
       "cloud Kubernetes">setting up Docker containers for all the components in Docker containers on a Kubernetes cluster</span> for a big Smart City project.<br><br></p>
 
+      <p>Client: MAPFRE @ Spain, EU / Remote</p>
       <p>19-12 - 20-01</p>
       <p><span class='webdev'>Chatbot full-stack developer</span><br>Chatbot development from scratch of a fully <span class='webdev'>serverless web chat</span> using <span
       class='webdev'>AJAX</span> calls for Microsoft L.U.I.S.,
       <span class='webdev'> CSS3, HTML5 and JavaScript native development</span>.<br><br></p>
 
+      <p>Client: T-Systems Iberia @ Madrid, Spain, EU / Hybrid</p>
       <p>19-11 - 19-12</p>
       <p>Azure and Power BI technical consultant.</p>
       <p><span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in
@@ -321,7 +343,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right t0"><p>Informática El Corte Inglés</p></td>
+    <td class="bold-right t0"><p>Informática El Corte Inglés (now INETUM)</p></td>
     <td class="w70">
       <p>(17-07 - 19-10)</p>
       <p>Technical and consultant on Big Data and Analytics solutions. Artificial intelligence <span class='webdev'>software development, chat-bots</span> and <span class="bi">ETLs
@@ -331,6 +353,7 @@ function getEnglishContents() {
       <span class="cloud">Google Cloud</span> and SAS. <span class='webdev'>Programming with JavaScript, Node.JS</span>, <span class="bi"><span class="cloud">Python</span>, U-SQL
       </span> and R.<br><br></p>
 
+      <p>Client: Redexis Gas @ Madrid, Spain, EU, on-site</p>
       <p>19-06 – 19-10</p>
       <p>Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project.<br>
       Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
@@ -339,12 +362,14 @@ function getEnglishContents() {
       <span class="bi">Amazon Redshift tables which are taken by
       <span class='webdev'>Power BI for its data representation</span></span>.<br><br></p>
 
+      <p>Client: UOC @ Barcelona, Spain, EU, hybrid</p>
       <p>18-11 - 19-05</p>
       <p>Development and <span class="arch">architecture</span> in an <span class="bi">ETL project.<br>
       Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App
       Service within Azure Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'
       >data representation</span></span>.<br><br></p>
 
+      <p>Client: Linea Directa Aseguradora @ Madrid, Spain, EU, hybrid</p>
       <p>18-03 - 18-10</p>
       <p>Full-stack Developer for a chatbot for an insurance company.</p><br>
       <p>Project description:</p>
@@ -359,10 +384,12 @@ function getEnglishContents() {
       <li>IBM Watson, Oracle Intelligent Bots, Google Cloud, and SAS.</li>
       <li>Programming in Javascript, Node.js, Python, U-SQL, and R.</li></ol>
 
+      <p>Client: Informática El Corte Inglés (now INETUM) @ Madrid, Spain, EU, on-site</p>
       <p>17-12 – 18-02</p>
       <p>Full-stack developer.</p>
       <p><span class="webdev">Development of a geo-analytical BI web service built with R</span>.<br><br></p>
 
+      <p>Client: USA frontier control with Mexico @ EU, remote</p>
       <p>17-08 - 17-11</p>
       <p><span class="arch bi">Data mining technician</span> and machine learning.<br>
       Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.<br><br></p>
@@ -380,7 +407,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right"><p>PrimeX Artificial Intelligence</p></td>
+    <td class="bold-right"><p>Client: PrimeX Artificial Intelligence @ EU, remote</p></td>
     <td class="w70">
       <p>16-09 - 18-09</p><br>
       <p>Artificial Intelligence developer for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using <span class=
@@ -391,7 +418,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right"><p>BABEL Sistemas de Información</p></td>
+    <td class="bold-right"><p>Client: BABEL Sistemas de Información @ Madrid, Spain, EU, on-site</p></td>
     <td class="w70"><p>17-06 - 17-07</p><br>
     <p><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies.<br><br></p>
     </td>
@@ -400,7 +427,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr>
-    <td class="bold-right"><p>IBM</p></td>
+    <td class="bold-right"><p>Client: IBM @ Spain, Portugal, Greece and Israel. Hybrid</p></td>
     <td class="w70"><p>16-05 - 17-05</p><br>
     <p>Pre sales and technical consultant of <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases
     leveraging</span>, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the
@@ -411,7 +438,7 @@ function getEnglishContents() {
     <td colspan="3"><br></td>
   </tr>
   <tr style="display:none">
-    <td class="bold-right"><p>Unica Group S.C.A.</p></td>
+    <td class="bold-right"><p>Client: Unica Group S.C.A. @ Almería, Spain, EU, on-site</p></td>
     <td class="w70"><p>15-04 - 15-05</p><br><p>Quality control professional for foodstuff products in Cohorsan S.C.A</p>
     </td>
   </tr>

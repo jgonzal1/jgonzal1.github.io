@@ -2,6 +2,10 @@ a {
   color: #99F;
 }
 
+b {
+  color: #FFF;
+}
+
 body {
   background-color: #000;
   color: #ffe;
@@ -18,7 +22,7 @@ legend,
 span,
 table,
 td {
-  font-size: 1.02em;
+  font-size: 1.05em;
 }
 
 /*div,*/
@@ -402,8 +406,8 @@ th+th {
   border-color: #0000;
 }
 
-.space-children-01em>* {
-  margin: 0.1em 0;
+.opacity-06 {
+  color: #FFFC;
 }
 
 .page-number {
@@ -445,6 +449,10 @@ th+th {
 
 .sidebar img:hover {
   background-color: #CCCC;
+}
+
+.space-children-01em>* {
+  margin: 0.1em 0;
 }
 
 .summary-cell {
@@ -596,9 +604,18 @@ th+th {
     color: #002 !important;
   }
 
+  b {
+    color: #000;
+  }
+
   body {
     margin: 0 1em 0 2em;
   }
+
+  .opacity-06 {
+    color: #000C;
+  }
+
 
   .page-number {
     top: calc(100% - 1em) !important;

@@ -291,6 +291,14 @@ th+th {
   width: 100%;
 }
 
+.font-size-08-rem {
+  font-size: 0.8rem;
+}
+
+.font-size-1-rem {
+  font-size: 1rem;
+}
+
 .font-size-12-rem {
   font-size: 1.2rem;
 }
@@ -594,7 +602,14 @@ th+th {
 
 @media print {
   * {
+    border-color: #FFF;
     color: #000;
+  }
+
+  th,
+  td,
+  fieldset {
+    border-width: 0;
   }
 
   a {
@@ -611,10 +626,14 @@ th+th {
     margin: 0 1em 0 2em;
   }
 
+  .border-light-gray {
+    border-width: 1;
+    border-color: #ccc;
+  }
+
   .opacity-06 {
     color: #000C;
   }
-
 
   .page-number {
     top: calc(100% - 1em) !important;

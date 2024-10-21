@@ -1,23 +1,23 @@
 function getEnglishContents() {
   const skills = `
-  <fieldset class="font-size-12-rem"><legend class="category-td">Full-stack software developer</legend>
+  <fieldset class="font-size-1-rem border-light-gray"><legend class="category-td">Full-stack software developer</legend>
   API development, CI/CD, Django, Docker, Git,
   Microservices Architecture, NLP, Node.Js, Python, ReactJS, RegEx, REST,
   Serverless Architecture, Typescript, Web Services Integrations
   </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Data Engineering</legend>
+  <fieldset class="font-size-1-rem border-light-gray"><legend class="category-td">Data Engineering</legend>
   Business Intelligence, Database Migrations, Database Administrator,
   DAX, ElasticSearch, ETL, GIS, GraphQL, GSheets/Excel, MySQL, pandas,
   Pentaho Data Integration, PL/SQL, PostgreSQL, SQL, sqlite
   </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Web developer</legend>
+  <fieldset class="font-size-1-rem border-light-gray"><legend class="category-td">Web developer</legend>
   CSS, D3.JS, Figma User Experience Design, Front-end, Javascript, React Native
   </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Amazon Web Services (AWS)</legend>
+  <fieldset class="font-size-1-rem border-light-gray"><legend class="category-td">Amazon Web Services (AWS)</legend>
   Amazon DynamoDB, Amazon EC2, Amazon Redshift, Amazon S3,
   AWS Athena, AWS CLI, AWS Lambda, boto3, IAM
   </fieldset>
-  <fieldset class="font-size-12-rem"><legend class="category-td">Microsoft / Azure</legend>
+  <fieldset class="font-size-1-rem border-light-gray"><legend class="category-td">Microsoft / Azure</legend>
   Azure Data Factory, Azure DevOps, Azure Cloud Services,
   Microsoft LUIS, Power BI, VSCode
   </fieldset>
@@ -59,42 +59,30 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td style="border-width:0">
-      <fieldset style="">
-        <legend>🧔</legend>
-        Javier González Berenguel
-      </fieldset>
+    <td colspan="2" style="border-width:0">
+      <img src="public/javier.jpg" alt="Javier González" style="width: 4em; position: absolute;">
+      <div style="padding-left:5em">
+        <span>Javier González Berenguel</span>
+        <a href="mailto:javier.gonzalezberenguel@gmail.com" target="_blank">
+          javier.gonzalezberenguel@gmail.com
+        </a>
+        <p>📫 Copenhagen, DK. Available for EU reallocation</p>
+      </div>
+    </td>
+    <td style="border-width:0; min-width: 6.5em">
       <fieldset style="display:none;">
         <legend>📲 (please inform before calling)</legend>
         <span>(+34) 664383902</span>
       </fieldset>
-      <fieldset style="font-family:monospace;">
-        <legend>🗣</legend>
+      <div style="font-family:monospace;">
+        <!--<legend>🗣</legend>-->
         <span style="color:#F0C674">★★★★★</span> EN<br>
         <span style="color:#F0C674">★★★★★</span> ES<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DA<br>
         <span style="color:#F0C674">★★</span>☆☆☆ DE<br>
         <span style="color:#F0C674">★★</span>☆☆☆ FR<br>
-        <span style="color:#F0C674">★</span>☆☆☆☆ LT<br>
-      </fieldset>
-    </td>
-    <td style="border-width:0">
-      <fieldset>
-        <legend>📩</legend>
-        <a href="mailto:javier.gonzalezberenguel@gmail.com" target="_blank">
-          javier.gonzalezberenguel@gmail.com
-        </a>
-      </fieldset>
-      <fieldset>
-        <legend>📫</legend>
-        Copenhagen, Denmark, 🗺:<br>availability for international projects
-      </fieldset>
-    </td>
-    <td class="centered" style="border-width:0">
-      <fieldset style="height:16em">
-        <legend>📸</legend>
-        <img src="public/javier.jpg" alt="Javier González">
-      </fieldset>
+        <!--<span style="color:#F0C674">★</span>☆☆☆☆ LT<br>-->
+      </div>
     </td>
   </tr>
   <tr>
@@ -103,10 +91,10 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td class="bold-right">
+    <td class="bold-right" style="width: 7em">
       <h3>About me</h3>
     </td>
-    <td colspan="2" class="font-size-12-rem w70">
+    <td colspan="2" class="w70">
       I am a technical consultant expert in data engineering, full-stack software development,
       BI, and cloud architectures in AWS, Azure, GCP, monday.com and JSM.
     </td>
@@ -120,7 +108,7 @@ function getEnglishContents() {
     <td colspan="2" class="summary-cell w70">${skills}</td>
   </tr>
   <tr class="no-border">
-    <td colspan="3">
+    <td colspan="3"><br><br><br>
       <h2>Professional experience</h2>
     </td>
   </tr>
@@ -477,69 +465,48 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td class="bold-right"><p>Microsoft</p></td>
-    <td colspan="2">
+    <td colspan="3"><div class="font-size-08-rem" style="column-count: 3; column-gap: 2em">
+      <p>Microsoft</p>
       <p>21-02</p>
       <p><span class='cloud'>Microsoft AI-100</span>.
         Issued by Pearson VUE, Credential ID 990098386.<br><br>
       </p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Red.ES</p></td>
-    <td colspan="2">
+
+      <p>Red.ES</p>
       <p>20-12</p>
       <p><span class='webdev'>HTML5 and CSS3</span><br><br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>LinkedIn verified evaluation</p></td>
-    <td colspan="2"><p>20-06</p><p><span class='webdev'>Javascript</span><br></p>
-    <p>20-06</p><p>Git<br></p>
-    <p>20-06</p><p>Excel<br></p>
-    <p>20-06</p><p><span class="cloud">Python</span><br><br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Event</p></td>
-    <td colspan="2">
+
+      <p>LinkedIn verified evaluation</p>
+      <p>20-06 - <span class='webdev'>Javascript</span><br></p>
+      <p>20-06 - Git<br></p>
+      <p>20-06 - Excel<br></p>
+      <p>20-06 - <span class="cloud">Python</span><br><br></p>
+
+      <p>Amazon Web Services</p>
       <p>19-05</p>
-      <p>Amazon Web Services VIP assistant in AWS Summit 19 in Spain<br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Cognitive Class.AI</p></td>
-    <td colspan="2"><p>17-12</p><p><span class="cloud">Machine Learning with Python</span><br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Amazon Web Services</p></td>
-    <td colspan="2">
-    <p>22-07</p><p>AWS Certified Data Analytics – Specialty<br><p>
-    <p>22-03</p><p>AWS Certified Developer – Associate<br><p>
-    <p>17-10</p><p>AWS Technical Professional Online<br><br><p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>IBM</p></td>
-    <td colspan="2">16-05<p>IBM's Watson Academy Courses<br><br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Universidad de Alcalá</p></td>
-    <td colspan="2"><p>16-04</p><p>Probability & Statistics<br></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="bold-right"><p>Formación sin Barreras</p></td>
-    <td colspan="2">
-      <p>15-11</p>
-      <p><span class='webdev'>Knowledge management for companies</span><br></p>
-      <p>15-09</p><p>Financial accountability<br><br></p>
-    </td>
-  </tr>
-  <tr class="no-border">
-    <td colspan="3"><br></td>
+      <p>VIP assistant in AWS Summit 19 in Spain<br><br></p>
+
+      <p>Cognitive Class.AI</p></td>
+      <p>17-12</p>
+      <p><span class="cloud">Machine Learning with Python</span><br><br></p>
+
+      <p>Amazon Web Services</p>
+      <p>22-07 - AWS Certified Data Analytics – Specialty</p>
+      <p>22-03 - AWS Certified Developer – Associate</p>
+      <p>17-10 - AWS Technical Professional Online<br><br></p>
+
+      <p>IBM</p></td>
+      <p>16-05</p>
+      <p>IBM's Watson Academy Courses<br><br></p>
+
+      <p>Universidad de Alcalá</p>
+      <p>16-04</p>
+      <p>Probability & Statistics<br><br></p>
+
+      <p>Formación sin Barreras</p>
+      <p>15-11 - <span class='webdev'>Knowledge management for companies</span><br></p>
+      <p>15-09 - Financial accountability<br><br></p>
+    </div></td>
   </tr>
   `;
   const legend = `

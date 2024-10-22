@@ -1,7 +1,0 @@
-query {
-  boards(ids: " & BoardId & ") {
-    name columns { title id type } groups { title id } items {
-      name group { id } column_values { id value text }
-    }
-  }
-}

@@ -71,8 +71,8 @@ p {
 }*/
 
 table {
-  margin-left: auto;
-  margin-right: auto;
+  /*margin-left: auto;
+  margin-right: auto;*/
   border-spacing: 0px 1px;
 }
 
@@ -519,9 +519,9 @@ th+th {
 }
 
 #cvWrapper {
-  left: calc((100% - 52em) / 2);
+  margin: auto;
   position: relative;
-  width: 52em;
+  width: calc(100vw - 5em);
 }
 
 #flexContentWrapper {

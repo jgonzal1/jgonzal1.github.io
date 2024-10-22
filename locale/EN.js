@@ -114,20 +114,20 @@ function getEnglishContents() {
   </tr>
   `;
   const cvBody = `
-  <tr>
+<tr>
     <td class="bold-right t0"><br>AETY</td>
     <td class="w70">
       <p>Client: AETY Aps @ Copenhagen, Denmark, EU</p>
-      <p>21-11 – 24-11 / Part-time</p>
+      <p>21-11 - 24-11 / Part-time</p>
       <p>Roles: Full-stack developer, data engineer, and AWS/JSM/Power BI/monday.com technical consultant.
       <br><br></p>
 
-      <p>Client: UFST/VURDST @ Copenhagen, Denmark, EU</p>
+      <p>Client: UFST @ Copenhagen, Denmark, EU</p>
       <p>24-03 - 24-07 / B2B full-time</p>
-      <p>Project: ETL data engineer for architecture SYS102</p>
+      <p>Project: ETL data engineer for delivering architecture SYS102 to VURDST department</p>
       <p>Role: AWS cloud software developer and data engineer</p>
       <p>Responsible for data pipeline development on AWS to gather all the data sources required for</p>
-      <p>a Business Intelligence solution for the property tax agency VURDST in Denmark.</p><br>
+      <p>a Business Intelligence solution for the property tax agency UFST in Denmark.</p><br>
       <p>Main tasks:</p><ol>
       <li>Develop lambda functions to get raw XML documents and transform them into JSON,
       un-flatten them to Parquet files, and save them in S3 to be usable in Athena.</li>
@@ -245,7 +245,7 @@ function getEnglishContents() {
       <p>Client: Ferrovial @ Spain, EU / Remote</p>
       <p>21-05 - 21-10</p>
       <p><span class="arch">Full-stack developer</span> for Ferrovial's application to handle view, monitor and send real-time traffic alerts, automation of the creation of new road
-      trackings, and user management, all accesible within a React.JS webpage. <span class="cloud Kubernetes">Docker, Kubernetes, Python</span>, JavaScript, SQL, <span class=
+      trackings, and user management, all accessible within a React.JS webpage. <span class="cloud Kubernetes">Docker, Kubernetes, Python</span>, JavaScript, SQL, <span class=
       "arch cloud">APIs REST</span>, <span class="arch cloud">GCP's Directions API</span>, Django, React and UX specialist.<br><br></p>
 
       <p>Client: Deutsche Telekom @ EU / Remote</p>
@@ -342,7 +342,7 @@ function getEnglishContents() {
       </span> and R.<br><br></p>
 
       <p>Client: Redexis Gas @ Madrid, Spain, EU, on-site</p>
-      <p>19-06 – 19-10</p>
+      <p>19-06 - 19-10</p>
       <p>Development, <a href="https://github.com/jgonzal1/d3js-graph-analytics">analysis</a> and <span class="arch">architecture</span> for an ETL and BI project.<br>
       Involving <span class="bi">extraction of data files from different <span class="cloud">cloud sources</span>
       (SAP, Salesforce, Excel documents)</span> to Amazon S3 buckets, transformation of data with
@@ -357,7 +357,7 @@ function getEnglishContents() {
       Service within Azure Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'
       >data representation</span></span>.<br><br></p>
 
-      <p>Client: Linea Directa Aseguradora @ Madrid, Spain, EU, hybrid</p>
+      <p>Client: Línea Directa Aseguradora @ Madrid, Spain, EU, hybrid</p>
       <p>18-03 - 18-10</p>
       <p>Full-stack Developer for a chatbot for an insurance company.</p><br>
       <p>Project description:</p>
@@ -373,7 +373,7 @@ function getEnglishContents() {
       <li>Programming in Javascript, Node.js, Python, U-SQL, and R.</li></ol>
 
       <p>Client: Informática El Corte Inglés (now INETUM) @ Madrid, Spain, EU, on-site</p>
-      <p>17-12 – 18-02</p>
+      <p>17-12 - 18-02</p>
       <p>Full-stack developer.</p>
       <p><span class="webdev">Development of a geo-analytical BI web service built with R</span>.<br><br></p>
 
@@ -408,7 +408,7 @@ function getEnglishContents() {
   <tr>
     <td class="bold-right"><p>Client: BABEL Sistemas de Información @ Madrid, Spain, EU, on-site</p></td>
     <td class="w70"><p>17-06 - 17-07</p><br>
-    <p><span class='webdev'>Software development in C# to build chatbots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies.<br><br></p>
+    <p><span class='webdev'>Software development in C# to build chat-bots</span>. Enabling connections with IBM Watson and Microsoft LUIS technologies.<br><br></p>
     </td>
   </tr>
   <tr class="no-border">
@@ -439,19 +439,19 @@ function getEnglishContents() {
     </td>
   </tr>
   <tr>
-    <td class="bold-right"><p>BSc @ Universidad de Granada</p></td>
+    <td class="bold-right"><p>BSc @ University of Granada</p></td>
     <td colspan="2"><p>2010 - 2014</p>
     <p>Biochemistry with Biotechnology specialization bachelor degree.<br><br></p>
     </td>
   </tr>
   <tr>
-    <td class="bold-right"><p>MSc @ Universidad de Granada</p></td>
+    <td class="bold-right"><p>MSc @ University of Granada</p></td>
     <td colspan="2"><p>2014 - 2015</p>
     <p>Master of Science in Foodstuffs quality and technology.<br><br></p>
     </td>
   </tr>
   <tr>
-    <td class="bold-right"><p>MD @ Universidad de Alcalá</p></td>
+    <td class="bold-right"><p>MD @ University of Alcalá</p></td>
     <td colspan="2"><p>2016 - 2017</p>
     <p>Master in Professional Development 4.0<br><br></p>
     </td>
@@ -491,15 +491,15 @@ function getEnglishContents() {
       <p><span class="cloud">Machine Learning with Python</span><br><br></p>
 
       <p>Amazon Web Services</p>
-      <p>22-07 - AWS Certified Data Analytics – Specialty</p>
-      <p>22-03 - AWS Certified Developer – Associate</p>
+      <p>22-07 - AWS Certified Data Analytics - Specialty</p>
+      <p>22-03 - AWS Certified Developer - Associate</p>
       <p>17-10 - AWS Technical Professional Online<br><br></p>
 
       <p>IBM</p></td>
       <p>16-05</p>
       <p>IBM's Watson Academy Courses<br><br></p>
 
-      <p>Universidad de Alcalá</p>
+      <p>University of Alcalá</p>
       <p>16-04</p>
       <p>Probability & Statistics<br><br></p>
 

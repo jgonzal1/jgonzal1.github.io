@@ -486,7 +486,7 @@ function getEnglishContents() {
       <p>19-05</p>
       <p>VIP assistant in AWS Summit 19 in Spain<br><br></p>
 
-      <p>Cognitive Class.AI</p></td>
+      <p>Cognitive Class.AI</p>
       <p>17-12</p>
       <p><span class="cloud">Machine Learning with Python</span><br><br></p>
 
@@ -495,7 +495,7 @@ function getEnglishContents() {
       <p>22-03 - AWS Certified Developer - Associate</p>
       <p>17-10 - AWS Technical Professional Online<br><br></p>
 
-      <p>IBM</p></td>
+      <p>IBM</p>
       <p>16-05</p>
       <p>IBM's Watson Academy Courses<br><br></p>
 

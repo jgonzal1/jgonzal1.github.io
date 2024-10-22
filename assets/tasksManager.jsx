@@ -197,7 +197,7 @@ class tasksManager extends globalThis.React.Component {
       "datetime", "dur", "status", "freq", "cat", "house", "notes"
     ];
     globalThis.headers["Authorization"] = mondayKey;
-    const query = "boards (ids: " + boardId + ") { " +
+    const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 500) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
       "subitems { id name column_values { text } } } } items_count }"

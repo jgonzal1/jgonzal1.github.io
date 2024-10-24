@@ -18,10 +18,10 @@
       <tr>
         <td class="invisible">----------------------------------------</td>
         <td>
-          Get an updated PDF version of this CV by visiting<br>
-          http://jgonzal1.github.io and selecting "Print..."<br>
-          → "Save as PDF".<br>
-          The page would be adapted to be PDF-friendly.
+          This version dates at <span id="currentDate"></span><br>
+          Should it be now some months in the future, get an updated PDF version<br>
+          of this CV by visiting http://jgonzal1.github.io and selecting "Print..."<br>
+          → "Save as PDF". The page would be adapted to be PDF-friendly.
         </td>
         <td class="invisible">---------------------------------------</td>
       </tr>
@@ -137,6 +137,9 @@
   </div>
   <script src="assets/skillsMarker.js"></script>
   <script src="assets/hrefHandler.js"></script>
+  <script>
+    document.getElementById("currentDate").innerText = new Date().toISOString().substring(0, 10)
+  </script>
 </body>
 
 </html>

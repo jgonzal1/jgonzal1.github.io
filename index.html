@@ -8,6 +8,14 @@
   <script src="locale/DA.js"></script>
   <script src="locale/ES.js"></script>
   <title>Javier González Berenguel</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XYTFX1B31"></script>
+  <script>
+    const currentDate = new Date();
+    window.dataLayer = window.dataLayer || [];
+    gtag = () => dataLayer.push(arguments);
+    gtag('js', currentDate);
+    gtag('config', 'G-9XYTFX1B31');
+  </script>
 </head>
 
 <body>
@@ -138,7 +146,7 @@
   <script src="assets/skillsMarker.js"></script>
   <script src="assets/hrefHandler.js"></script>
   <script>
-    document.getElementById("currentDate").innerText = new Date().toISOString().substring(0, 10)
+    document.getElementById("currentDate").innerText = currentDate.toISOString().substring(0, 10);
   </script>
 </body>
 

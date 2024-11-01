@@ -18,6 +18,7 @@ class tasksManager extends globalThis.React.Component {
       },
       dayOffsetValue: Number(1 / 24),
       getDatedMondayItemsToJson: true,
+      hide0DurTasks: true,
       lastRefreshDateTime: "undefined",
       lastUpdatedItem: false,
       lastUpdatedDt: "",
@@ -571,83 +572,87 @@ class tasksManager extends globalThis.React.Component {
                 [
                   Object.keys(taskRow).pop(),
                   ...Object.keys(taskRow)
-                ].map((taskKey, taskKeyIdx) => (taskKey !== "type") ? React.createElement(
-                  "td",
-                  {
-                    key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
-                    className: `${taskKey} - td`,
-                    style: { height: "2em" }
-                  },
-                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ? React.createElement(
-                    "div",
+                ].map((taskKey, taskKeyIdx) => (
+                  ((taskKey !== "type") && (this.state.hide0DurTasks ? (taskRow["dur"] > 0) : true))
+                  ? React.createElement(
+                    "td",
                     {
-                      style: {
-                        width: "16em",
-                        height: "100%",
-                        overflowY: "auto"
-                      }
+                      key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
+                      className: `${taskKey} - td`,
+                      style: { height: "2em" }
                     },
-                    React.createElement(
-                      "img",
+                    ((taskKey === "actions") && (taskRow["dur"] > 0)) ? React.createElement(
+                      "div",
                       {
-                        src: "../public/prioritize.png",
-                        alt: "Prioritize",
-                        key: `${taskRow["task_id"]} PrioritizeImg`,
-                        className: "clickable-icon",
-                        style: { paddingRight: "0.3em" },
-                        onClick: () => this.putMondayDateItem(
-                          //@ts-ignore
-                          monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                          taskRow["task_id"],
-                          globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                          taskRow["type"]
-                        )
-                      }
-                    ),
-                    React.createElement(
-                      "img",
-                      {
-                        src: "../public/snooze.png",
-                        alt: "Snooze",
-                        key: `${taskRow["task_id"]} SnoozeImg`,
-                        className: "clickable-icon",
-                        style: { paddingRight: "0.3em" },
-                        onClick: () => this.putMondayDateItem(
-                          //@ts-ignore
-                          monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                          taskRow["task_id"],
-                          globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                          taskRow["type"]
-                        )
-                      }
-                    ),
-                    React.createElement(
-                      "img",
-                      {
-                        src: "../public/archive.png",
-                        alt: "Archive",
-                        key: `${taskRow["task_id"]}ArchiveImg`,
-                        className: "clickable-icon",
-                        style: { paddingRight: "0.3em" },
-                        onClick: () => this.archiveMondayItem(
-                          //@ts-ignore
-                          monday_key, boardId,
-                          taskRow["task_id"]
-                        )
-                      }
-                    ),
-                    (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
-                  ) : taskRow[taskKey ?? ""]
-                ) : "")
+                        style: {
+                          width: "16em",
+                          height: "100%",
+                          overflowY: "auto"
+                        }
+                      },
+                      React.createElement(
+                        "img",
+                        {
+                          src: "../public/prioritize.png",
+                          alt: "Prioritize",
+                          key: `${taskRow["task_id"]} PrioritizeImg`,
+                          className: "clickable-icon",
+                          style: { paddingRight: "0.3em" },
+                          onClick: () => this.putMondayDateItem(
+                            //@ts-ignore
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            taskRow["task_id"],
+                            globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            taskRow["type"]
+                          )
+                        }
+                      ),
+                      React.createElement(
+                        "img",
+                        {
+                          src: "../public/snooze.png",
+                          alt: "Snooze",
+                          key: `${taskRow["task_id"]} SnoozeImg`,
+                          className: "clickable-icon",
+                          style: { paddingRight: "0.3em" },
+                          onClick: () => this.putMondayDateItem(
+                            //@ts-ignore
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            taskRow["task_id"],
+                            globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            taskRow["type"]
+                          )
+                        }
+                      ),
+                      React.createElement(
+                        "img",
+                        {
+                          src: "../public/archive.png",
+                          alt: "Archive",
+                          key: `${taskRow["task_id"]}ArchiveImg`,
+                          className: "clickable-icon",
+                          style: { paddingRight: "0.3em" },
+                          onClick: () => this.archiveMondayItem(
+                            //@ts-ignore
+                            monday_key, boardId,
+                            taskRow["task_id"]
+                          )
+                        }
+                      ),
+                      (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
+                    ) : taskRow[taskKey ?? ""]
+                  ) : "")
               ))
-            )) : //
+              )
+            )
+           ) : //
           React.createElement(
             "div",
             null,
             "Loading tasks summary table"
           )
       ),
-      // durs list & cat bubbles
+      // durations list & cat bubbles
       React.createElement(
         "div",
         {

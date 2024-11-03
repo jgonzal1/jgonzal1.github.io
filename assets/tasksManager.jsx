@@ -639,7 +639,16 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
-                      (taskRow[taskKey] !== " null" ? taskRow[taskKey] : "")
+                      (
+                        taskRow[taskKey] !== " null"
+                        ? (/(https:\/\/[^ ]+)/.exec(taskRow[taskKey])
+                          ? React.createElement(
+                            "a",
+                            { href: /(https:\/\/[^ ]+)/.exec(taskRow[taskKey])[1]},
+                            taskRow[taskKey]
+                          ) : taskRow[taskKey])
+                        : ""
+                      )
                     ) : taskRow[taskKey ?? ""]
                   ) : "")
               ))

@@ -139,7 +139,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
       / msPerDay
     ) + 1) % 2) && (offsetNDay(n) > nextClimbingDay.substring(0, 10))
   ).map((n) => {
-    return { "x": offsetNDay(n), "name": "3.🍏", "value": 120 }
+    return { "x": offsetNDay(n), "name": "1.🍏", "value": 120 }
   });
   let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
     t => {
@@ -174,7 +174,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const days = renamedSortedMondayItemsJson.map(t => t["x"])
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🏠", "2.💰", "3.🍏", "4.🚩🇩🇰", "5.🔬", "6.📺", "7.🎮", "8.🌐", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🔬", "6.🌐", "7.📺", "8.🎮", "9.➕"
   ];
   days.map(d =>
     categories.map(c => {
@@ -379,14 +379,14 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85).attr("height", 190)
     .attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
-    ["1.🏠", "#59a14f"],
-    ["2.💰", "#9c755f"],
-    ["3.🍏", "#edc949"],
+    ["1.🍏", "#edc949"],
+    ["2.🏠", "#59a14f"],
+    ["3.💰", "#9c755f"],
     ["4.🚩🇩🇰", "#f28e2c"],
     ["5.🔬", "#ff9da7"],
-    ["6.📺", "#af7aa1"],
-    ["7.🎮", "#4e79a7"],
-    ["8.🌐", "#76b7b2"],
+    ["6.🌐", "#76b7b2"],
+    ["7.📺", "#af7aa1"],
+    ["8.🎮", "#4e79a7"],
     ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
     svg.append("circle").attr("cx", xOffset + 15).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])

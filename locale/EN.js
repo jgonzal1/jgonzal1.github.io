@@ -141,6 +141,18 @@ function getEnglishContents() {
       <p>Role: Full-stack Developer</p>
       <p>Responsible for Jira's Ultimate Customizer and Issue Lock help desk resolutions.<br><br></p>
 
+      <p>Client: TBD, pre-sales work @ EU / Remote</p>
+      <p>23-11 - 24-07</p>
+      <p>Full-stack developer for a browser game<br></p>
+      <p>Added and fine-tuned procedural world map generation with Perlin noise
+      and water/land ratios corrections based on noise seeds.</p>
+      <p>Added city markers and basic lore.</p>
+      <p>Added consistent seed-scoped spawns based on zoom level and coordinates.</p>
+      <p>Added grids and move slots.</p>
+      <p>Added minimap.</p>
+      <p>Added tilesets.</p>
+      <p>Implemented move restrictions based on map elevation values.<br><br></p>
+
       <p>Client: TDC NET @ Copenhagen, Denmark, EU</p>
       <p>23-09 - 23-12</p>
       <p>Project: Smart Build solution</p>
@@ -171,6 +183,15 @@ function getEnglishContents() {
       <li>Automation of testing in long-term stable JSM versions 4.5, 4.13, 5.4, 5.8</li>
       <li>automated usage of nvmrc<br></li>
       </ol><br>
+
+      <p>Client: TBD, pre-sales work @ EU / Remote</p>
+      <p>23-01 - 23-04</p>
+      <p>Full-stack developer for a browser game<br></p>
+      <p>Added menu modal handlers.</p>
+      <p>Bug fixes on both back-end and front-end.</p>
+      <p>Cesium mock.</p>
+      <p>React states synchronization.</p>
+      <p>Update on event queueing logic.<br><br></p>
 
       <p>Client: Dr. Oetker via partnership with AKQA Copenhagen, Denmark / Remote EU</p>
       <p>22-09 - 23-04</p>
@@ -252,6 +273,15 @@ function getEnglishContents() {
       <p>21-05</p>
       <p><span class="bi">Power BI technical consultant</span><br>
       <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.<br><br></p>
+
+      <p>Client: TBD, pre-sales work @ EU / Remote</p>
+      <p>21-01 - 21-07</p>
+      <p>Full-stack developer for a browser game<br></p>
+      <p>Added level up animations.</p>
+      <p>Added MIDI soundtrack.</p>
+      <p>Added pixelart backgrounds on game modals.</p>
+      <p>Bug fixes on both back-end and front-end.</p>
+      <p>Session storage handling for the game.<br><br></p>
 
       <p>Client: Ayuntamiento de Valladolid @ Spain / Remote</p>
       <p>20-12 - 21-04</p>

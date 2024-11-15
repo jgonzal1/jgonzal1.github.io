@@ -1,6 +1,7 @@
 "use strict";
-const quartersOfHourWeekdays = 16; // 14 3.5 h
-const quartersOfHourWeekends = 16; // 20 5.0 h
+// 14 3.5h, 16 4h, 20 5h, 24 6h
+const quartersOfHourWeekdays = 16;
+const quartersOfHourWeekends = 16;
 const nextViAsV = false;
 const categoryAggrDaysRange = 28; // 63 prev.
 const msPerH = 3600000;

@@ -185,8 +185,9 @@ class tasksManager extends globalThis.React.Component {
     donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").text(() =>
       `2🐢${mondayDursByGroup["2.🐢"]}h/${(parseFloat(mondayDursByGroup["2.🐢"]) / 20).toFixed(1)}w`
     );
+    const SUM = (parseFloat(mondayDursByGroup["1.🐇"])+parseFloat(mondayDursByGroup["2.🐢"])).toFixed(1);
     donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "15").text(() =>
-      `3🔚${mondayDursByGroup["3.🔚"]}h/${(parseFloat(mondayDursByGroup["3.🔚"]) / 20).toFixed(1)}w`
+      `SUM: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
     );
 
     return Object.assign(donutChartSvg.node());

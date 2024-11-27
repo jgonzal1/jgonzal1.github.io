@@ -35,12 +35,18 @@ const columnRenames = {
 };
 globalThis.addMondayMeta = (mondayTasksCols) => {
   const currentDate = new Date();
+  const penultimateDay = new Date(offsetNDay(categoryAggrDaysRange - 1))
+    .toISOString().substring(0, 16).replace("T", " ");
   const lastRangeDay = new Date(offsetNDay(categoryAggrDaysRange))
     .toISOString().substring(0, 16).replace("T", " ");
   mondayTasksCols = mondayTasksCols.map(item => {
     if (!item["datetime"]) {
-      item["datetime"] = lastRangeDay
-    };
+      if (item["group"] === "1.🐇") {
+        item["datetime"] = penultimateDay;
+      } else { // if (item["group"] === "2.🐢") {
+        item["datetime"] = lastRangeDay;
+      }
+    }
     item["d_diff"] = +(
       (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
     ).toFixed(2);

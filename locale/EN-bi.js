@@ -127,6 +127,7 @@ function getEnglishContents() {
       <p>Responsible for data pipeline development on AWS to gather all the data sources required for.</p>
       <p>a Business Intelligence solution in Power BI for the property tax agency UFST in Denmark.</p><br>
       <p>Main tasks:</p><ol>
+      <li>Apply Regex to filter appropriate data fields.</li>
       <li>Develop lambda functions to get raw XML documents and transform them into JSON,
       un-flatten them to Parquet files, and save them in S3 to be usable in Athena.</li>
       <li>Replicate the logic in AWS Glue ETL visual jobs for scalability.</li>
@@ -173,6 +174,7 @@ function getEnglishContents() {
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.</p>
       <p>Main tasks:</p><ol>
+      <li>Apply Regex to filter appropriate data fields.</li>
       <li>Creation of data model/dimensions for the BI report</li>
       <li>Extraction of data from <span class="arch">REST APIs</span> using AWS Lambda</li>
       <li>Storage of raw data in S3</li>
@@ -196,6 +198,7 @@ function getEnglishContents() {
       <p>21-05</p>
       <p><span class="bi">Power BI technical consultant</span><br>
       <span class='arch bi'>Power BI teacher</span> for T-Systems, and all other Deutsche Telekom companies.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
@@ -210,6 +213,7 @@ function getEnglishContents() {
       <p>20-10 - 20-12</p>
       <p><span class="bi">Power BI</span> <span class="arch">consultant and technician</span><br><span class='webdev'>Setting up corporate reports</span> for T-Systems to track
       worker's project dedications, plans, assignments, etc. Using <span class="bi cloud">Azure Data Factory</span> and DataFlows.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
@@ -218,6 +222,7 @@ function getEnglishContents() {
       <p>20-06 - 20-09</p>
       <p><span class="bi">Power BI consultant and technician</span><br><span class='webdev'>Setting up multi-client reports</span> for T-Systems based on <span class="cloud">Azure Log
       Analytics</span> Exports. Design of the Power Query data sources and of all the tab reports.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
@@ -226,6 +231,7 @@ function getEnglishContents() {
       <p>19-11 - 19-12</p>
       <p>Azure and Power BI technical consultant.</p>
       <p><span class="bi">Power BI, ETL and <span class='arch webdev'>report designer</span></span> for an <span class="cloud">Azure Log Analytics</span> tracking environment in real-state.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
@@ -243,6 +249,7 @@ function getEnglishContents() {
       <span class="bi">Amazon Glue (boto3 and pyspark libraries)</span>, and load in
       <span class="bi">Amazon Redshift tables which are taken by
       <span class='webdev'>Power BI for its data representation</span></span>.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
@@ -253,9 +260,47 @@ function getEnglishContents() {
       Involving data extraction from both an Oracle database and Google Sheets</span> spreadsheets, transformation of data with <span class="bi">Data Lake Analytics and Azure App
       Service within Azure Data Factory</span>, and load of data in <span class="bi">Data Lake Storage CSVs which are taken by Power BI for its <span class='webdev'
       >data representation</span></span>.</p>
+      <p>Apply Regex to filter appropriate data fields.</p>
       <p>SQL queries and DAX aggregations in Power BI.</p>
       <p>PowerApps & wider Power Platform ecosystem.</p>
       <p>Data Visualization best practices.<br><br></p>
+
+      <p>Client: PAS @ Madrid, Spain, EU, remote.</p>
+      <p>17-08 - 17-11</p>
+      <p>Data analyst for training a random forest AI to scan vehicles in a frontier.<br>
+      Development of an artificial vision software in <span class="cloud">Python</span> to classify vehicles.<br><br></p>
+      <p>Tasks:</p><ol>
+      <li>Create a Python artificial intelligence able to process laser vehicle profiles.</li>
+      <li>Train the model with thousands of vehicles.</li>
+      <li>Enhance profiling detection of the vehicles.</li></ol>
+      <p>Technologies used:</p>
+      <p>Regex.</p>
+      <p>RHEL bash scripting.</p>
+      <p>WinSCP.</p>
+      <p>Python (libraries: sci-kit-learn, pickle, matplotlib).<br><br></p>
+  </tr>
+    <tr class="no-border">
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"><p>Client: PrimeX Artificial Intelligence @ EU, remote</p></td>
+    <td class="w70">
+      <p>16-09 - 18-09</p><br>
+      <p>Data analyst for a <span class='webdev'>chatbot</span><br>Java programming, <span class="bi">data mining</span>, and AI training using RegEx, <span class=
+      "arch cloud">different APIs from IBM Watson Cloud, Amazon Lex</span>, and Instagram, among others.<br><br></p>
+    </td>
+  </tr>
+    </tr>
+    <tr class="no-border">
+    <td colspan="3"><br></td>
+  </tr>
+  <tr>
+    <td class="bold-right"><p>Client: IBM @ Spain, Portugal, Greece and Israel. Hybrid</p></td>
+    <td class="w70"><p>16-05 - 17-05</p><br>
+    <p>Data analyst and pre-sales technician for <span class="cloud">IBM Watson</span> for Drug Discovery for Spain, Portugal, Greece and Israel.<br><span class="arch">Use cases
+    leveraging</span>, RegEx data extraction, <span class="bi">data mining</span>, <span class='arch webdev'>business analyst</span>, and <span class='arch webdev'>social media manager</span> for the
+    marketing campaign.<br><br></p>
+    </td>
   </tr>
   <tr class="no-border">
     <td colspan="3"><br></td>

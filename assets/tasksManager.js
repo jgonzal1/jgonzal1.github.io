@@ -139,7 +139,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     ).map(t => t.datetime)[0]
   );
   const arrNextClimbingDays = Array.from(
-    { length: categoryAggrDaysRange }, (_, n) => n
+    { length: categoryAggrDaysRange-2 }, (_, n) => n
   ).filter(
     n => (((
       (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))

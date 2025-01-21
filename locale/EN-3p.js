@@ -56,56 +56,56 @@ function getEnglishContents() {
 
       <h2>Professional Experience</h2>
 
-      <p>AETY Aps @Copenhagen, Denmark (21 - 11 – 24 - 11):</p>
+      <p>AETY Aps @Copenhagen, Denmark (21-11 - 24-11):</p>
       <p>Roles: Full - stack developer, data engineer, and technical consultant for AWS / JSM / Power BI / monday.com.</p>
       <p>Employment Type: Part - time<br><br></p>
 
-      <p>UFST / VURDST @Copenhagen, Denmark (24-03 – 24-07):</p>
+      <p>UFST / VURDST @Copenhagen, Denmark (24-03 - 24-07):</p>
       <p>Role: AWS cloud software developer and data engineer.</p>
       <p>Project: ETL Data Engineer for SYS102 architecture, focused on Business Intelligence for Denmark's property tax agency.</p>
       <p>Main tasks: Lambda functions, JSON / XML transformation, AWS Glue ETL.<br><br></p>
 
-      <p>TDC NET @Copenhagen, Denmark (23 -09 – 23 - 12):</p>
+      <p>TDC NET @Copenhagen, Denmark (23-09 - 23-12):</p>
       <p>Role: Full - stack developer.</p>
       <p>Project: Smart Build solution, front - end & back - end development for geographical auctioning and AI model API.</p>
       <p>Tech stack: Python, React, Chakra, OpenLayers, Leaflet, Snowflake.<br><br></p>
 
-      <p>Dr.Oetker via AKQA @Copenhagen, Denmark (22 -09 – 23-04):</p>
+      <p>Dr.Oetker via AKQA @Copenhagen, Denmark (22-09 - 23-04):</p>
       <p>Role: Full - stack software developer, data engineer, AWS technical consultant.</p>
       <p>Project: Data automation for public webpage content and governance.<br><br></p>
 
-      <p>Ferrovial @ Spain / Remote (21-05 – 21-10):</p>
+      <p>Ferrovial @ Spain / Remote (21-05 - 21-10):</p>
       <p>Role: Full-stack developer.</p>
       <p>Project: Developed an application to monitor and send real-time traffic alerts and manage users.</p>
       <p>Technologies: Docker, Kubernetes, Python, JavaScript, SQL, Django, React, GCP Directions API.<br><br></p>
 
-      <p>Ayuntamiento de Valladolid @ Spain / Remote (20-12 – 21-04):</p>
+      <p>Ayuntamiento de Valladolid @ Spain / Remote (20-12 - 21-04):</p>
       <p>Role: Data engineer and front-end consultant.</p>
       <p>Project: Full-stack development of personalized reports for a Smart City using Pentaho CDE, PostgreSQL, D3.js, and data filtering for KPIs.</p>
       <p>Main tasks: Technical consulting, front-end development, and KPI reporting for a Smart City initiative.<br><br></p>
 
-      <p>T-Systems Iberia @ Spain / Remote (19-11 – 21-11):</p>
+      <p>T-Systems Iberia @ Spain / Remote (19-11 - 21-11):</p>
       <p>Role: Full-stack developer, consultant, and Power BI technician.</p>
       <p>Responsibilities: Full-stack development of BI solutions using Docker, Power BI, Python, SQL, and APIs for real-time data management.<br><br></p>
 
-      <p>Redexis Gas @ Madrid, Spain / On-site (19-06 – 19-10):</p>
+      <p>Redexis Gas @ Madrid, Spain / On-site (19-06 - 19-10):</p>
       <p>Role: Full-stack developer.</p>
       <p>Project: Developed ETL and BI solutions involving data extraction from SAP, Salesforce, and Excel to Amazon S3 using AWS Glue and Redshift for Power BI data visualization.<br><br></p>
 
-      <p>UOC @ Barcelona, Spain / Hybrid (18-11 – 19-05):</p>
+      <p>UOC @ Barcelona, Spain / Hybrid (18-11 - 19-05):</p>
       <p>Role: Full-stack developer.</p>
       <p>Project: ETL development using Azure Data Factory, data extraction from Oracle and Google Sheets, and Power BI data representation.<br><br></p>
 
-      <p>Linea Directa Aseguradora @ Madrid, Spain / Hybrid (18-03 – 18-10):</p>
+      <p>Linea Directa Aseguradora @ Madrid, Spain / Hybrid (18-03 - 18-10):</p>
       <p>Role: Full-stack developer.</p>
       <p>Project: Developed a customizable chatbot for an insurance company using JavaScript, Node.js, Python, SQL, and R for real-time communication with customers.<br><br></p>
 
-      <p>USA Frontier Control with Mexico @ EU / Remote (17-08 – 17-11):</p>
+      <p>USA Frontier Control with Mexico @ EU / Remote (17-08 - 17-11):</p>
       <p>Role: Data mining technician and machine learning engineer.</p>
       <p>Project: Developed artificial vision software using Python to classify vehicles at the USA-Mexico border.</p>
       <p>Technologies: Python (sci-kit-learn, matplotlib), RHEL bash scripting, WinSCP.<br><br></p>
 
-      <p>IBM @ Spain, Portugal, Greece, Israel / Hybrid (16-05 – 17-05):</p>
+      <p>IBM @ Spain, Portugal, Greece, Israel / Hybrid (16-05 - 17-05):</p>
       <p>Role: Pre-sales and technical consultant for IBM Watson.</p>
       <p>Project: Provided technical consulting for IBM Watson's Drug Discovery program across multiple countries.</p>
       <p>Responsibilities: Data mining, business analysis, and campaign management for AI-driven drug discovery solutions.<br><br></p>

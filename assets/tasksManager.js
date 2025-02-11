@@ -3,7 +3,7 @@
 const quartersOfHourWeekdays = 16;
 const quartersOfHourWeekends = 16;
 const nextViAsV = false;
-const categoryAggrDaysRange = 28; // 63 prev.
+const categoryAggrDaysRange = 14; // 63 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -139,7 +139,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
     ).map(t => t.datetime)[0]
   );
   const arrNextClimbingDays = Array.from(
-    { length: categoryAggrDaysRange-2 }, (_, n) => n
+    { length: categoryAggrDaysRange - 2 }, (_, n) => n
   ).filter(
     n => (((
       (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))

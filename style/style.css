@@ -185,40 +185,62 @@ th+th {
   background-image: url("../public/clients/ufst.svg");
 }
 
-.aidatasci_c {
-  background-color: #DE935F;
-  /*background-image: repeating-linear-gradient(90deg, #DE935FAA, #DE935F 2px, #DE935F calc(100% - 2px), #DE935FAA);*/
-}
-
-.arch_c {
-  background-color: #B294BB;
-  /*background-image: repeating-linear-gradient(90deg, #B294BBAA, #B294BB 2px, #B294BB calc(100% - 2px), #B294BBAA);*/
-}
-
 .bigdataeng_c {
   background-color: #A54242;
-  /*background-image: repeating-linear-gradient(90deg, #A54242AA, #A54242 2px, #A54242 calc(100% - 2px), #A54242AA);*/
 }
 
-.dataanalistpbi_c {
-  background-color: #F0C674;
-  /*background-image: repeating-linear-gradient(90deg, #F0C674AA, #F0C674 2px, #F0C674 calc(100% - 2px), #F0C674AA);*/
+.bigdataeng_indev {
+  background-image: repeating-linear-gradient(90deg, #A54242, #A54242CC calc(50% - 2px), #A5424233 calc(100% - 2px), #A5424200);
 }
 
 .softwaredev_c {
   background-color: #CC6666;
-  /*background-image: repeating-linear-gradient(90deg, #CC6666AA, #CC6666 2px, #CC6666 calc(100% - 2px), #CC6666AA);*/
 }
 
-.techcons_c {
-  background-color: #81A2BE;
-  /*background-image: repeating-linear-gradient(90deg, #81A2BEAA, #81A2BE 2px, #81A2BE calc(100% - 2px), #81A2BEAA);*/
+.softwaredev_indev {
+  background-image: repeating-linear-gradient(90deg, #CC6666, #CC6666CC calc(50% - 2px), #CC666633 calc(100% - 2px), #CC666600);
+}
+
+.aidatasci_c {
+  background-color: #DE935F;
+}
+
+.aidatasci_indev {
+  background-image: repeating-linear-gradient(90deg, #DE935F, #DE935FCC calc(50% - 2px), #DE935F33 calc(100% - 2px), #DE935F00);
+}
+
+.dataanalistpbi_c {
+  background-color: #F0C674;
+}
+
+.dataanalistpbi_indev {
+  background-image: repeating-linear-gradient(90deg, #F0C674, #F0C674CC calc(50% - 2px), #F0C67433 calc(100% - 2px), #F0C67400);
 }
 
 .webdev_c {
   background-color: #B5BD68;
-  /*background-image: repeating-linear-gradient(90deg, #B5BD68AA, #B5BD68 2px, #B5BD68 calc(100% - 2px), #B5BD68AA);*/
 }
+
+.webdev_indev {
+  background-image: repeating-linear-gradient(90deg, #B5BD68, #B5BD68CC calc(50% - 2px), #B5BD6833 calc(100% - 2px), #B5BD6800);
+}
+
+.techcons_c {
+  background-color: #81A2BE;
+}
+
+.techcons_indev {
+  background-image: repeating-linear-gradient(90deg, #81A2BE, #81A2BECC calc(50% - 2px), #81A2BE33 calc(100% - 2px), #81A2BE00);
+}
+
+.arch_c {
+  background-color: #B294BB;
+}
+
+.arch_indev {
+  background-image: repeating-linear-gradient(90deg, #B294BB, #B294BBCC calc(50% - 2px), #B294BB33 calc(100% - 2px), #B294BB00);
+}
+
 
 .bob {
   /*blue outset border*/

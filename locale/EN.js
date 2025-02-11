@@ -569,6 +569,10 @@ function getEnglishContents() {
     <td></td><td colspan="7" style="background-color:#81A2BE">
       Technical consultant
     </td>
+  </tr><tr>
+    <td></td><td colspan="7" style="background-color:#B294BB">
+      Solutions architect
+    </td>
   </tr>
   `;
   return [cvHeader, cvBody, legend];

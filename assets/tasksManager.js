@@ -50,7 +50,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
     item["d_diff"] = +(
       (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
     ).toFixed(2);
-    item["dur"] = +(parseFloat(item["dur"]).toFixed(1));
+    item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
     const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
     item["notes"] = notes;

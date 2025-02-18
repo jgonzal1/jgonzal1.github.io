@@ -598,7 +598,10 @@ class tasksManager extends globalThis.React.Component {
                             alt: "Prioritize",
                             key: `${taskRow["task_id"]} PrioritizeImg`,
                             className: "clickable-icon",
-                            style: { paddingRight: "0.3em" },
+                            style: {
+                              paddingRight: "0.3em",
+                              userSelect: "none"
+                            },
                             onClick: () => this.putMondayDateItem(
                               //@ts-ignore
                               monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
@@ -615,7 +618,10 @@ class tasksManager extends globalThis.React.Component {
                             alt: "Snooze",
                             key: `${taskRow["task_id"]} SnoozeImg`,
                             className: "clickable-icon",
-                            style: { paddingRight: "0.3em" },
+                            style: {
+                              paddingRight: "0.3em",
+                              userSelect: "none"
+                            },
                             onClick: () => this.putMondayDateItem(
                               //@ts-ignore
                               monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
@@ -632,7 +638,10 @@ class tasksManager extends globalThis.React.Component {
                             alt: "Archive",
                             key: `${taskRow["task_id"]}ArchiveImg`,
                             className: "clickable-icon",
-                            style: { paddingRight: "0.3em" },
+                            style: {
+                              paddingRight: "0.3em",
+                              userSelect: "none"
+                            },
                             onClick: () => this.archiveMondayItem(
                               //@ts-ignore
                               monday_key, boardId,

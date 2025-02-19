@@ -35,6 +35,13 @@ class tasksManager extends globalThis.React.Component {
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
     let mondayDursByGroup = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
+        if (item["frequency"] !== "999-Once") {
+          if (!accumulator["rest"]) {
+            accumulator["rest"] = 0;
+          }
+          accumulator["rest"] += item["dur"];
+          return accumulator;
+        }
         if (!accumulator[item["gr"]]) {
           accumulator[item["gr"]] = 0;
         }
@@ -179,15 +186,20 @@ class tasksManager extends globalThis.React.Component {
       })
       .style('fill', () => '#FFF');
 
-    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "-15").text(() =>
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "-18").text(() =>
       `1🐇${mondayDursByGroup["1.🐇"]}h/${(parseFloat(mondayDursByGroup["1.🐇"]) / 20).toFixed(1)}w`
     );
-    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").text(() =>
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "-3").text(() =>
       `2🐢${mondayDursByGroup["2.🐢"]}h/${(parseFloat(mondayDursByGroup["2.🐢"]) / 20).toFixed(1)}w`
     );
-    const SUM = (parseFloat(mondayDursByGroup["1.🐇"]) + parseFloat(mondayDursByGroup["2.🐢"])).toFixed(1);
-    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "15").text(() =>
-      `SUM: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "12").text(() =>
+      `3➕${mondayDursByGroup["rest"]}h/${(parseFloat(mondayDursByGroup["rest"]) / 20).toFixed(1)}w`
+    );
+    const SUM = (
+      parseFloat(mondayDursByGroup["1.🐇"]) + parseFloat(mondayDursByGroup["2.🐢"]) + parseFloat(mondayDursByGroup["rest"])
+    ).toFixed(1);
+    donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "27").text(() =>
+      `∑: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
     );
 
     return Object.assign(donutChartSvg.node());

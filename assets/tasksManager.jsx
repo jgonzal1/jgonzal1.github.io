@@ -35,7 +35,7 @@ class tasksManager extends globalThis.React.Component {
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
     let mondayDursByGroup = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
-        if (item["frequency"] !== "999-Once") {
+        if (item["freq"] !== "999-Once") {
           if (!accumulator["rest"]) {
             accumulator["rest"] = 0;
           }
@@ -271,7 +271,6 @@ class tasksManager extends globalThis.React.Component {
     tasksByCategoryAndDayPlaceholder.appendChild(
       globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson)
     );
-    console.log(sortedMondayItemsJson);
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],

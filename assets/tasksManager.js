@@ -68,7 +68,8 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         "task_id": t["task_id"],
         "gr": t["group"],
         "type": t["type"],
-        "frequency": t["freq"]
+        "freq": t["freq"],
+        "status": t["status"]
       }
     }
   )

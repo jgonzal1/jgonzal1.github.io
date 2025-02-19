@@ -46,9 +46,9 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         item["datetime"] = lastRangeDay;
       }
     }
-    item["d_diff"] = +(
+    item["Δd"] = +((
       (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
-    ).toFixed(2);
+    ).toPrecision(2));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
     const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
@@ -63,7 +63,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         "datetime": t["datetime"],
         "wd": weekday[new Date(t["date"]).getDay()],
         "dur": isNaN(t["dur"]) ? 0.5 : parseFloat(t["dur"]),
-        "d_diff": t["d_diff"],
+        "Δd": t["Δd"],
         "actions": t["notes"],
         "task_id": t["task_id"],
         "gr": t["group"],
@@ -103,9 +103,9 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
           { method: "POST", headers: globalThis.headers, body: body }
         );
         n["datetime"] = newDateTimeStr;
-        n["d_diff"] = +(
+        n["Δd"] = +((
           (new Date(newDateTimeStr).valueOf() - currentDate.valueOf()) / msPerH / 24
-        ).toFixed(2);
+        ).toPrecision(2));
         n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
       });
     }
@@ -478,7 +478,7 @@ globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
         "wd": wd,
         "dur_offs": durOffs,
         "dur_str": durStr,
-        "d_diff": dDiff
+        "Δd": dDiff
       }
     }
   );

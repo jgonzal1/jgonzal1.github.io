@@ -581,7 +581,8 @@ class tasksManager extends globalThis.React.Component {
                 {
                   key: `TaskRow${idxRow} `,
                   style: {
-                    backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"])
+                    backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["Δd"]),
+                    textAlign: "center"
                   }
                 },
                 [
@@ -713,62 +714,7 @@ class tasksManager extends globalThis.React.Component {
             }
           },
           "Loading tasks by category and day"
-        )
-        ,
-        /*React.createElement(
-          "div",
-          {
-            id: "mondayTasksByDayTableContainer",
-            className: "table-container",
-            style: {
-              flexGrow: 1,
-              height: "305px",
-              margin: "0.1em",
-              width: "fit-content"
-            }
-          },
-          (Object.keys(this.state.mondayTasksByDay).length && !this.state.getDatedMondayItemsToJson) ?
-            React.createElement(
-              "table",
-              { style: { width: "100%" } },
-              React.createElement(
-                "thead",
-                null,
-                React.createElement(
-                  "tr",
-                  null,
-                  Object.keys(this.state.mondayTasksByDay[0]).map(taskKey =>
-                    React.createElement(
-                      "th",
-                      { key: `${ taskKey } HeaderByDay` },
-                      taskKey
-                    )
-                  )
-                )
-              ),
-              React.createElement(
-                "tbody",
-                null,
-                this.state.mondayTasksByDay.map((taskRow, idxRow) => React.createElement(
-                  "tr",
-                  {
-                    key: `TaskRow${ idxRow } ByDay`,
-                    style: { backgroundColor: globalThis.setBgBasedOnDDiff(taskRow["d_diff"]) }
-                  },
-                  Object.keys(this.state.mondayTasksByDay[0]).map(taskKey => React.createElement(
-                    "td",
-                    { key: `${ taskKey }${ idxRow } TdByDay` },
-                    taskRow[taskKey]
-                  ))
-                ))
-              )
-            ) :
-            React.createElement(
-              "div",
-              null,
-              "Loading tasks by day table"
-            )
-        ),*/
+        ),
         React.createElement(
           "div",
           {

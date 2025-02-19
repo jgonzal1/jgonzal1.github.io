@@ -25,7 +25,6 @@ const weekday = [
 const columnRenames = {
   "date": "datetime",
   "estado": "status",
-  "label": "frequency",
   "label9": "house",
   "numbers": "dur",
   "people": "assigned",
@@ -68,7 +67,8 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
         "actions": t["notes"],
         "task_id": t["task_id"],
         "gr": t["group"],
-        "type": t["type"]
+        "type": t["type"],
+        "frequency": t["freq"]
       }
     }
   )

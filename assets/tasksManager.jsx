@@ -207,9 +207,10 @@ class tasksManager extends globalThis.React.Component {
     const mondayItemsRawJsonPremise = await fetch(
       globalThis.mondayApiUrl,
       { method: "POST", headers: globalThis.headers, body: body }
-    ).then((response) => {
+    ).then(async (response) => {
       try {
-        return response.json();
+        const respJson = await response.json();
+        return respJson;
       } catch (e) {
         console.error(e);
         return [response];
@@ -258,6 +259,7 @@ class tasksManager extends globalThis.React.Component {
     tasksByCategoryAndDayPlaceholder.appendChild(
       globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson)
     );
+    console.log(sortedMondayItemsJson);
     this.setState({
       mondayTasksCols: sortedMondayItemsJson,
       mondayTasksByCategory: [mondayTasksByCategory],
@@ -586,7 +588,7 @@ class tasksManager extends globalThis.React.Component {
                         "div",
                         {
                           style: {
-                            width: "16em",
+                            width: "10em",
                             height: "100%",
                             overflowY: "auto"
                           }

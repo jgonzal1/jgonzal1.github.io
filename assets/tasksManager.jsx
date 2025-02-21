@@ -594,23 +594,17 @@ class tasksManager extends globalThis.React.Component {
                   {
                     key: `${taskKey}${taskKeyIdx} Header`,
                     onClick: () => this.sortTableByColumn("#mondayTasksByDayTable", taskKeyIdx),
+                    className: "hoverable",
                     style: { cursor: "pointer" }
                   },
+                  taskKey,
                   React.createElement(
                     "div",
                     {
-                      key: `${taskKey}${taskKeyIdx} HeaderText`,
-                      class: "hoverable"
+                      key: `${taskKey}${taskKeyIdx} HeaderOnHover`,
+                      className: "hover-text",
                     },
-                    taskKey,
-                    React.createElement(
-                      "div",
-                      {
-                        key: `${taskKey}${taskKeyIdx} HeaderOnHover`,
-                        className: "hover-text",
-                      },
-                      "Sort columns by this header"
-                    )
+                    "Sort columns by this header"
                   )
                 ) : "")
               )

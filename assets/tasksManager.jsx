@@ -159,9 +159,9 @@ class tasksManager extends globalThis.React.Component {
         /*
         const posC = outerArc.centroid(d); // Label position = almost the same as posB
         We need the angle to see if the X position will be at the extreme right or extreme left
-        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2
         const toLeft = 0.8 // 0.95 [-1,1] to put it on the right or on the left
-        posC[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
+        posC[0] = radius * toLeft * (midAngle < Math.PI ? 1 : -1);
         */
         return [posA, posB]//, posC]
       });
@@ -174,15 +174,15 @@ class tasksManager extends globalThis.React.Component {
       .attr('transform', function (d) {
         const pos = fullArc.centroid(d);
         /*
-        const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         const toLeft = 0.85; // 0.99
-        pos[0] = radius * toLeft * (midangle < Math.PI ? 1 : -1);
+        pos[0] = radius * toLeft * (midAngle < Math.PI ? 1 : -1);
         */
         return `translate(${pos})`;
       })
       .style('text-anchor', (d) => {
-        //const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-        return "middle"; //(midangle < Math.PI ? 'start' : 'end');
+        //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+        return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
 

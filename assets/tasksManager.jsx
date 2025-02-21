@@ -73,6 +73,7 @@ class tasksManager extends globalThis.React.Component {
       },
       {}
     );
+    // @ts-ignore
     const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {
         const duration = +(mondayTasksByCatDict[k]);
@@ -115,6 +116,7 @@ class tasksManager extends globalThis.React.Component {
       .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
       .attr("text-anchor", "middle");
 
+    // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr("transform", "translate(" + tasksByCategoryWidth / 2 + "," + tasksByCategoryHeight / 2 + ")");
 
@@ -180,6 +182,7 @@ class tasksManager extends globalThis.React.Component {
         */
         return `translate(${pos})`;
       })
+      // @ts-ignore
       .style('text-anchor', (d) => {
         //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
@@ -203,6 +206,31 @@ class tasksManager extends globalThis.React.Component {
     );
 
     return Object.assign(donutChartSvg.node());
+  };
+  filterTasks = () => {
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("filterTasks");
+    // @ts-ignore
+    filter = input.value.toUpperCase();
+    table = document.getElementById("mondayTasksByDayTable");
+    // @ts-ignore
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td");
+      tr[i].style.display = "none";
+      for (j = 0; j < td.length; j++) {
+        if (td[j]) {
+          txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
+          console.log(txtValue, filter);
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "inline";
+            continue
+          }
+        }
+      }
+    }
   };
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
@@ -231,8 +259,10 @@ class tasksManager extends globalThis.React.Component {
     const mondayItemsRawJson = await mondayItemsRawJsonPremise;
     /** @type {any} */
     let mondayTasksCols = [];
+    // @ts-ignore
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
+      // @ts-ignore
       (rawItem, rawItemIdx) => {
         let taskIds = {
           "task_id": rawItem["id"],
@@ -247,6 +277,7 @@ class tasksManager extends globalThis.React.Component {
         });
         mondayTasksCols.push(taskIds);
         if (rawItem["subitems"].length) {
+          // @ts-ignore
           rawItem["subitems"].map((subItem, subItemIdx) => {
             let subTaskIds = {
               "task_id": subItem["id"],
@@ -328,6 +359,7 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   archiveMondayItem = async (
+    // @ts-ignore
     mondayKey, boardId, itemId
   ) => {
     globalThis.headers["Authorization"] = mondayKey;
@@ -509,6 +541,23 @@ class tasksManager extends globalThis.React.Component {
             }
           },
           this.state.lastRefreshDateTime.substring(9) // time
+        ),
+        //filter
+        React.createElement(
+          "input",
+          {
+            type: "text",
+            id: "filterTasks",
+            onKeyUp: () => this.filterTasks(),
+            placeholder: "Search for tasks..",
+            style: {
+              backgroundColor: "#FFF9",
+              borderRadius: "0.3em",
+              fontWeight: "bold",
+              marginLeft: "0.3em",
+              paddingLeft: "0.3em",
+            }
+          },
         ),
         // lastUpdatedItem
         React.createElement(

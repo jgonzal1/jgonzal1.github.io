@@ -1,3 +1,4 @@
+/* #region Attributes*/
 a {
   color: #99F;
 }
@@ -86,7 +87,9 @@ th+th {
   border-left: 1px dotted #333333;
 }
 
+/* #endregion*/
 
+/* #region Classes */
 .A4 {
   background-color: #FFF;
   border: 1px solid #333;
@@ -553,6 +556,9 @@ th+th {
   transform-origin: 0 0;
 }
 
+/* #endregion */
+
+/* #region IDs */
 #calendarIframe {
   border-width: 0;
   border: 1px solid #666;
@@ -600,6 +606,12 @@ th+th {
   font-size: 0.82rem;
 }
 
+/* #endregion */
+
+/* #region Pseudo-selectors */
+::placeholder {
+  color: #000;
+}
 
 ::-webkit-scrollbar {
   width: 0.6em;
@@ -620,7 +632,9 @@ th+th {
   opacity: 0;
 }
 
+/* #endregion */
 
+/* #region Media queries */
 @media (min-height:901px) and (min-width:600) and (max-width:1199) {
 
   .flex-container-2,
@@ -694,3 +708,5 @@ th+th {
     display: none !important;
   }
 }
+
+/* #endregion */

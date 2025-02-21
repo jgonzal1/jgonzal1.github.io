@@ -354,6 +354,30 @@ class tasksManager extends globalThis.React.Component {
   setDayOffsetValue = (k) => {
     this.setState({ dayOffsetValue: k })
   };
+  sortTableByColumn = (jQuerySelector, columnIndex) => {
+    const table = document.querySelector(jQuerySelector);
+    const tbody = table.tBodies[0];
+    const rows = Array.from(tbody.rows);
+    const header = table.tHead.rows[0].cells[columnIndex];
+
+    // Determine sort order and toggle header styles
+    let ascending = !header.classList.contains("sorted-asc");
+    Array.from(header.parentNode.cells).forEach(cell => cell.classList.remove("sorted-asc", "sorted-desc"));
+    header.classList.add(ascending ? "sorted-asc" : "sorted-desc");
+
+    // Sort rows based on the column's text content
+    rows.sort((rowA, rowB) => {
+      const cellA = rowA.cells[columnIndex]?.textContent ?? "";
+      const cellB = rowB.cells[columnIndex]?.textContent ?? "";
+
+      const compare = isNaN(cellA) || isNaN(cellB)
+        ? cellA.localeCompare(cellB) // Alphabetical sort
+        : parseFloat(cellA) - parseFloat(cellB); // Numerical sort
+
+      return ascending ? compare : -compare;
+    });
+    rows.map(row => tbody.appendChild(row));
+  };
   //#endregion
   render() {
     //#region State listeners
@@ -555,7 +579,7 @@ class tasksManager extends globalThis.React.Component {
         (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?
           React.createElement(
             "table",
-            null,
+            { id: "mondayTasksByDayTable" },
             React.createElement(
               "thead",
               null,
@@ -567,8 +591,27 @@ class tasksManager extends globalThis.React.Component {
                   ...Object.keys(this.state.mondayTasksCols[0])
                 ].map((taskKey, taskKeyIdx) => (taskKey !== "type") ? React.createElement(
                   "th",
-                  { key: `${taskKey}${taskKeyIdx} Header` },
-                  taskKey
+                  {
+                    key: `${taskKey}${taskKeyIdx} Header`,
+                    onClick: () => this.sortTableByColumn("#mondayTasksByDayTable", taskKeyIdx),
+                    style: { cursor: "pointer" }
+                  },
+                  React.createElement(
+                    "div",
+                    {
+                      key: `${taskKey}${taskKeyIdx} HeaderText`,
+                      class: "hoverable"
+                    },
+                    taskKey,
+                    React.createElement(
+                      "div",
+                      {
+                        key: `${taskKey}${taskKeyIdx} HeaderOnHover`,
+                        className: "hover-text",
+                      },
+                      "Sort columns by this header"
+                    )
+                  )
                 ) : "")
               )
             ),

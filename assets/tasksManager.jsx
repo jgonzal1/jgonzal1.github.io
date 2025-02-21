@@ -216,16 +216,17 @@ class tasksManager extends globalThis.React.Component {
     // @ts-ignore
     tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
+    // Loop through all tbody rows, and hide those who don't match the search query (exclude 1st - thead)
+    for (i = 1; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td");
-      tr[i].style.display = "none";
+      tr[i].style.visibility = "hidden";
+      tr[i].style.position = "absolute";
       for (j = 0; j < td.length; j++) {
         if (td[j]) {
           txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
-          console.log(txtValue, filter);
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "inline";
+            tr[i].style.visibility = "visible";
+            tr[i].style.position = "relative";
             continue
           }
         }

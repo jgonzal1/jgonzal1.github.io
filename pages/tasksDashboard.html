@@ -12,8 +12,14 @@
   <script src="../libs/d3.v7.js">
     globalThis.d3 = d3;
   </script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.js">
+    globalThis.$ = $;
+  </script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
   <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
   <script>
+    $(() => { $(".resizable").resizable() });
     function hideMap() {
       console.log("Hiding map");
       document.getElementById("map").style.display = "none";
@@ -49,7 +55,6 @@
     handleCredentials();
   </script>
   <!--
-  <script src="../libs/jquery.min.js">globalThis.$ = $;</script>
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.103/Build/Cesium/Cesium.js"></script>
   <link href="../style/cesium-widgets-1.103.css" rel="stylesheet">
   -->

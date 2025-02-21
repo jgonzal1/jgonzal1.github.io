@@ -532,6 +532,11 @@ th.sorted-desc::after {
   vertical-align: top;
 }
 
+/*Overwrite jQuery UI */
+.ui-widget-content {
+  background-color: #000 !important;
+}
+
 .w20vw {
   width: 21%;
 }

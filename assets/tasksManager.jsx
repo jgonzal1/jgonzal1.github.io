@@ -617,11 +617,11 @@ class tasksManager extends globalThis.React.Component {
         "div",
         {
           id: "mondayTableContainer",
-          className: "first-flex-container-item table-container",
+          className: "first-flex-container-item table-container resizable ui-widget-content",
           style: {
             isolation: "isolate",
             margin: "auto",
-            maxHeight: `calc(390px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
+            //maxHeight: `calc(390px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
             maxWidth: "calc(100% - 0.8em)",
             marginTop: "0.5em",
             width: "fit-content"

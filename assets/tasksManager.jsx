@@ -619,6 +619,7 @@ class tasksManager extends globalThis.React.Component {
           id: "mondayTableContainer",
           className: "first-flex-container-item table-container",
           style: {
+            isolation: "isolate",
             margin: "auto",
             maxHeight: `calc(390px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`, // 640
             maxWidth: "calc(100% - 0.8em)",
@@ -635,7 +636,7 @@ class tasksManager extends globalThis.React.Component {
               null,
               React.createElement(
                 "tr",
-                null,
+                { zIndex: 1 },
                 [
                   Object.keys(this.state.mondayTasksCols[0]).pop(),
                   ...Object.keys(this.state.mondayTasksCols[0])

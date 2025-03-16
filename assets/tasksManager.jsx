@@ -636,7 +636,7 @@ class tasksManager extends globalThis.React.Component {
               null,
               React.createElement(
                 "tr",
-                { zIndex: 1 },
+                { zindex: 1 },
                 [
                   Object.keys(this.state.mondayTasksCols[0]).pop(),
                   ...Object.keys(this.state.mondayTasksCols[0])

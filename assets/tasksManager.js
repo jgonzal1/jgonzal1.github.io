@@ -253,6 +253,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   tasksDurationByDayCategory.sort((a, b) => {
     return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
   });
+  //console.log(tasksDurationByDayCategory);
   const popUpDiv = document.getElementById("popUpDiv") ?? document.createElement("div");
 
   // Determine the series that need to be stacked.

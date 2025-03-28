@@ -309,7 +309,7 @@ class tasksManager extends globalThis.React.Component {
     tasksByCategoryAndDayPlaceholder.appendChild(
       globalThis.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
     );
-    console.log(mondayTasksSortedJson);
+    //console.log(mondayTasksSortedJson);
     this.setState({
       mondayTasksJson: mondayTasksSortedJson,
       mondayTasksByCategorySvg: [mondayTasksByCategorySvg],

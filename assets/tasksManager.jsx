@@ -23,10 +23,10 @@ class tasksManager extends globalThis.React.Component {
       lastUpdatedItem: false,
       lastUpdatedDt: "",
       minsOffsetValue: 60,
-      mondayTasksByCategory: [],
+      mondayTasksByCategorySvg: [],
       mondayTasksByCategoryAndDay: [],
       mondayTasksByDay: {},
-      mondayTasksCols: {},
+      mondayTasksJson: {},
       nextClimbingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
@@ -34,8 +34,8 @@ class tasksManager extends globalThis.React.Component {
   };
   //#endregion
   //#region aggrTasksByCategoryDonutChart
-  aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
-    let mondayDursByGroup = sortedMondayItemsJson.reduce(
+  aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
+    let mondayDursByGroup = mondayTasksSortedJson.reduce(
       (accumulator, item) => {
         if (item["freq"] !== "999-Once") {
           if (!accumulator["rest"]) {
@@ -54,7 +54,7 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayDursByGroup).map(
       k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
     );
-    let mondayTasksByCatDict = sortedMondayItemsJson.reduce(
+    let mondayTasksByCatDict = mondayTasksSortedJson.reduce(
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
           accumulator[item["cat"]] = 0;
@@ -238,8 +238,8 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region getDatedMondayTasksToMultipleJson  
-  getDatedMondayTasksToMultipleJson = async (
+  //#region getMondayTasksToMultipleJson  
+  getMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
     const subItemColNames = [
@@ -265,7 +265,7 @@ class tasksManager extends globalThis.React.Component {
     });
     const mondayItemsRawJson = await mondayItemsRawJsonPremise;
     /** @type {any} */
-    let mondayTasksCols = [];
+    let mondayTasksJson = [];
     // @ts-ignore
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
@@ -282,7 +282,7 @@ class tasksManager extends globalThis.React.Component {
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
-        mondayTasksCols.push(taskIds);
+        mondayTasksJson.push(taskIds);
         if (rawItem["subitems"].length) {
           // @ts-ignore
           rawItem["subitems"].map((subItem, subItemIdx) => {
@@ -295,28 +295,29 @@ class tasksManager extends globalThis.React.Component {
             subItem["column_values"].map((subItemCol, subItemColIdx) => {
               subTaskIds[subItemColNames[subItemColIdx]] = subItemCol.text;
             });
-            mondayTasksCols.push(subTaskIds);
+            mondayTasksJson.push(subTaskIds);
           });
         }
       }
     );
-    const sortedMondayItemsJson = globalThis.addMondayMeta(mondayTasksCols);
-    const mondayTasksByDay = globalThis.aggrTasksByDay(sortedMondayItemsJson);
-    const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(sortedMondayItemsJson);
+    const mondayTasksSortedJson = globalThis.addMondayMeta(mondayTasksJson);
+    const mondayTasksByDay = globalThis.aggrTasksByDay(mondayTasksSortedJson);
+    const mondayTasksByCategorySvg = this.aggrTasksByCategoryDonutChart(mondayTasksSortedJson);
     const tasksByCategoryAndDayPlaceholder = document.querySelector("#tasksByCategoryAndDay");
     if (!tasksByCategoryAndDayPlaceholder) { return; }
     tasksByCategoryAndDayPlaceholder.innerHTML = "";
     tasksByCategoryAndDayPlaceholder.appendChild(
-      globalThis.aggrTasksByCategoryAndDay(sortedMondayItemsJson)
+      globalThis.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
     );
+    console.log(mondayTasksSortedJson);
     this.setState({
-      mondayTasksCols: sortedMondayItemsJson,
-      mondayTasksByCategory: [mondayTasksByCategory],
+      mondayTasksJson: mondayTasksSortedJson,
+      mondayTasksByCategorySvg: [mondayTasksByCategorySvg],
       mondayTasksByDay: mondayTasksByDay,
       getDatedMondayItemsToJson: false,
       lastRefreshDateTime: new Date().toISOString().replace("T", " ").substring(2, 19)
     });
-    return sortedMondayItemsJson;
+    return mondayTasksSortedJson;
   };
   //#endregion
   //#region putMondayDateItem  
@@ -430,13 +431,13 @@ class tasksManager extends globalThis.React.Component {
     //#region State listeners
     if (this.state.getDatedMondayItemsToJson) {
       //@ts-ignore
-      this.getDatedMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
+      this.getMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
     }
-    if (this.state.mondayTasksByCategory.length) { // Add Donut Chart
+    if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
       const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
       if (!tasksByCategoryPlaceholder) { return; }
       tasksByCategoryPlaceholder.innerHTML = "";
-      tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
+      tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategorySvg[0]);
       const treesPlantedDom = document.createElement("span");
       treesPlantedDom.innerHTML = "0/400 🌳";
       Object.assign(treesPlantedDom.style, {
@@ -647,7 +648,7 @@ class tasksManager extends globalThis.React.Component {
             width: "fit-content"
           }
         },
-        (Object.keys(this.state.mondayTasksCols).length && !this.state.getDatedMondayItemsToJson) ?
+        (Object.keys(this.state.mondayTasksJson).length && !this.state.getDatedMondayItemsToJson) ?
           React.createElement(
             "table",
             { id: "mondayTasksByDayTable" },
@@ -658,8 +659,8 @@ class tasksManager extends globalThis.React.Component {
                 "tr",
                 { zindex: 1 },
                 [
-                  Object.keys(this.state.mondayTasksCols[0]).pop(),
-                  ...Object.keys(this.state.mondayTasksCols[0])
+                  Object.keys(this.state.mondayTasksJson[0]).pop(),
+                  ...Object.keys(this.state.mondayTasksJson[0])
                 ].map((taskKey, taskKeyIdx) => (taskKey !== "type") ? React.createElement(
                   "th",
                   {
@@ -683,7 +684,7 @@ class tasksManager extends globalThis.React.Component {
             React.createElement(
               "tbody",
               null,
-              this.state.mondayTasksCols.map((taskRow, idxRow) => React.createElement(
+              this.state.mondayTasksJson.map((taskRow, idxRow) => React.createElement(
                 "tr",
                 {
                   key: `TaskRow${idxRow} `,

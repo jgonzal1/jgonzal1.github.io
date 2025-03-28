@@ -169,32 +169,32 @@
 
     //  return Object.assign(donutChartSvg.node(), { scales: { color } });
     //}
-    //const mondayTasksByCategory = aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
+    //const mondayTasksByCategorySvg = aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
     //console.log(donutChartSvg.node())
-    const mondayTasksByCategory = Object.assign(donutChartSvg.node(), { scales: { color } });
+    const mondayTasksByCategorySvg = Object.assign(donutChartSvg.node(), { scales: { color } });
     const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
-    tasksByCategoryPlaceholder.appendChild(mondayTasksByCategory);//[0]);
+    tasksByCategoryPlaceholder.appendChild(mondayTasksByCategorySvg);//[0]);
 
     /*class pieChartManager extends globalThis.React.Component {
       //#region Constructor and functions
       constructor(props) {
         super(props);
         this.state = {
-          mondayTasksByCategory: [],
+          mondayTasksByCategorySvg: [],
         };
       };
 
 
       render() {
-        const mondayTasksByCategory = this.aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
+        const mondayTasksByCategorySvg = this.aggrTasksByCategoryDonutChart(mondayTasksByCatDict);
         this.setState({
-          mondayTasksByCategory: [mondayTasksByCategory]
+          mondayTasksByCategorySvg: [mondayTasksByCategorySvg]
         });
-        if (this.state.mondayTasksByCategory.length) { // Add Bubble Chart
+        if (this.state.mondayTasksByCategorySvg.length) { // Add Bubble Chart
           const tasksByCategoryPlaceholder = document.querySelector("#tasksByCategory");
           if (!tasksByCategoryPlaceholder) { return; }
           tasksByCategoryPlaceholder.innerHTML = "";
-          tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategory[0]);
+          tasksByCategoryPlaceholder.appendChild(this.state.mondayTasksByCategorySvg[0]);
         }
       }
     }

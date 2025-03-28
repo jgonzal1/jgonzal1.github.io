@@ -35,13 +35,13 @@ const columnRenames = {
 };
 //#endregion
 //#region addMondayMeta
-globalThis.addMondayMeta = (mondayTasksCols) => {
+globalThis.addMondayMeta = (mondayTasksJson) => {
   const currentDate = new Date();
   const penultimateDay = new Date(offsetNDay(categoryAggrDaysRange - 1))
     .toISOString().substring(0, 16).replace("T", " ");
   const lastRangeDay = new Date(offsetNDay(categoryAggrDaysRange))
     .toISOString().substring(0, 16).replace("T", " ");
-  mondayTasksCols = mondayTasksCols.map(item => {
+  mondayTasksJson = mondayTasksJson.map(item => {
     if (!item["datetime"]) {
       if (item["group"] === "1.🐇") {
         item["datetime"] = penultimateDay;
@@ -58,7 +58,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
     item["notes"] = notes;
     return item;
   });
-  let mondayItemsJsonPayload = mondayTasksCols.map(
+  let mondayItemsJsonPayload = mondayTasksJson.map(
     (t) => {
       return {
         "cat": t["cat"] ?? "9.➕",
@@ -126,7 +126,7 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
 };
 //#endregion
 //#region aggrTasksByCategoryAndDay
-globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
+globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
   const daysRangeStart = new Date().getTime();
@@ -140,7 +140,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   ] = [
     "Climb", "(v_i)", "(v_f)"
   ].map(
-    (tn) => sortedMondayItemsJson.filter(
+    (tn) => mondayTasksSortedJson.filter(
       t => t["task_name"] === tn
     ).map(t => t.datetime)[0]
   );
@@ -154,7 +154,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   ).map((n) => {
     return { "x": offsetNDay(n), "name": "1.🍏", "value": 120 }
   });
-  let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
+  let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
     t => {
       return {
         "date": t["datetime"].substring(0, 10),
@@ -174,7 +174,7 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   Object.keys(mondayTasksByDayDict).map(
     k => mondayTasksByDayDict[k] = mondayTasksByDayDict[k].toPrecision(3)
   );
-  let renamedSortedMondayItemsJson = sortedMondayItemsJson.map(t => {
+  let renamedSortedMondayItemsJson = mondayTasksSortedJson.map(t => {
     return {
       "x": //Math.floor(new Date(
         t["datetime"].substring(0, 10),
@@ -414,8 +414,8 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   return mondayTasksByCategoryAndDay;
 };
 //#endregion
-//#region aggrTasksByDay
-globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
+//#region aggrTasksByDay @deprecated?
+globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
   const currentDate = new Date(
     new Date().toISOString().substring(0, 10)
   ); // Gets current day at 00.00
@@ -425,11 +425,11 @@ globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
   ] = [
     "Climb", "(v_i)", "(v_f)"
   ].map(
-    (tn) => sortedMondayItemsJson.filter(
+    (tn) => mondayTasksSortedJson.filter(
       t => t["task_name"] === tn
     ).map(t => t.datetime)[0]
   );
-  let sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJson.map(
+  let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
     t => {
       return {
         "date": t["datetime"].substring(0, 10),

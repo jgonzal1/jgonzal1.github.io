@@ -1,6 +1,6 @@
 "use strict";
 class tasksManager extends globalThis.React.Component {
-  //#region Constructor and functions
+  //#region Constructor
   constructor(props) {
     super(props);
     this.state = {
@@ -32,6 +32,8 @@ class tasksManager extends globalThis.React.Component {
       nextVI: "undefined",
     };
   };
+  //#endregion
+  //#region aggrTasksByCategoryDonutChart
   aggrTasksByCategoryDonutChart = (sortedMondayItemsJson) => {
     let mondayDursByGroup = sortedMondayItemsJson.reduce(
       (accumulator, item) => {
@@ -207,6 +209,8 @@ class tasksManager extends globalThis.React.Component {
 
     return Object.assign(donutChartSvg.node());
   };
+  //#endregion
+  //#region filterTasks  
   filterTasks = () => {
     var input, filter, table, tr, td, i, j, txtValue;
     input = document.getElementById("filterTasks");
@@ -233,6 +237,8 @@ class tasksManager extends globalThis.React.Component {
       }
     }
   };
+  //#endregion
+  //#region getDatedMondayTasksToMultipleJson  
   getDatedMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
@@ -312,6 +318,8 @@ class tasksManager extends globalThis.React.Component {
     });
     return sortedMondayItemsJson;
   };
+  //#endregion
+  //#region putMondayDateItem  
   putMondayDateItem = async (
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
@@ -359,6 +367,8 @@ class tasksManager extends globalThis.React.Component {
       });
     }
   };
+  //#endregion
+  //#region archiveMondayItem  
   archiveMondayItem = async (
     // @ts-ignore
     mondayKey, boardId, itemId
@@ -383,10 +393,14 @@ class tasksManager extends globalThis.React.Component {
     if (lastUpdatedItem) {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
-  }
+  };
+  //#endregion
+  //#region setDayOffsetValue
   setDayOffsetValue = (k) => {
     this.setState({ dayOffsetValue: k })
   };
+  //#endregion
+  //#region sortTableByColumn  
   sortTableByColumn = (jQuerySelector, columnIndex) => {
     const table = document.querySelector(jQuerySelector);
     const tbody = table.tBodies[0];
@@ -434,7 +448,6 @@ class tasksManager extends globalThis.React.Component {
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
     //#endregion
-    // taskManagerWrapper
     return React.createElement(
       "div",
       {
@@ -444,7 +457,7 @@ class tasksManager extends globalThis.React.Component {
       React.createElement(
         "div",
         { id: "taskManagerTopBar", style: { paddingTop: "0.3em" } },
-        // refreshTasksButton
+        //#region refreshTasksButton
         React.createElement(
           "button", {
           id: "refreshTasksButton",
@@ -452,7 +465,8 @@ class tasksManager extends globalThis.React.Component {
             () => this.setState({ getDatedMondayItemsToJson: true })
         }, "Refresh tasks"
         ),
-        // setMinsOffset
+        //#endregion
+        //#region setMinsOffset
         React.createElement(
           "input",
           {
@@ -473,7 +487,8 @@ class tasksManager extends globalThis.React.Component {
           },
           null
         ),
-        // lastRefreshDateTime
+        //#endregion
+        //#region lastRefreshDateTime
         React.createElement(
           "span",
           {
@@ -485,7 +500,8 @@ class tasksManager extends globalThis.React.Component {
           },
           `min(s) offset | `
         ),
-        // setDayOffset
+        //#endregion
+        //#region setDayOffset
         React.createElement(
           "input",
           {
@@ -508,7 +524,8 @@ class tasksManager extends globalThis.React.Component {
           },
           null
         ),
-        // lastRefreshDateTime
+        //#endregion
+        //#region lastRefreshDateTime
         React.createElement(
           "span",
           {
@@ -543,7 +560,8 @@ class tasksManager extends globalThis.React.Component {
           },
           this.state.lastRefreshDateTime.substring(9) // time
         ),
-        //filter
+        //#endregion
+        //#region filter
         React.createElement(
           "input",
           {
@@ -560,7 +578,8 @@ class tasksManager extends globalThis.React.Component {
             }
           },
         ),
-        // lastUpdatedItem
+        //#endregion
+        //#region lastUpdatedItem
         React.createElement(
           "div",
           {
@@ -612,7 +631,8 @@ class tasksManager extends globalThis.React.Component {
           ),
         )
       ),
-      // mondayTableContainer
+      //#endregion
+      //#region mondayTableContainer
       React.createElement(
         "div",
         {
@@ -773,7 +793,8 @@ class tasksManager extends globalThis.React.Component {
             "Loading tasks summary table"
           )
       ),
-      // durations list & cat bubbles
+      //#endregion
+      //#region durations list & cat bubbles
       React.createElement(
         "div",
         {
@@ -819,7 +840,9 @@ class tasksManager extends globalThis.React.Component {
           ""
         )
       )
+      //#endregion
     )
+
   }
 }
 const domContainer = document.querySelector("#taskManager");

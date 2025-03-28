@@ -1,4 +1,5 @@
 "use strict";
+//#region Variables
 // 12 3h, 14 3.5h, 16 4h, 20 5h, 24 6h
 const quartersOfHourWeekdays = 12;
 const quartersOfHourWeekends = 16;
@@ -32,6 +33,8 @@ const columnRenames = {
   "subitems": "subitems",
   "text": "comments"
 };
+//#endregion
+//#region addMondayMeta
 globalThis.addMondayMeta = (mondayTasksCols) => {
   const currentDate = new Date();
   const penultimateDay = new Date(offsetNDay(categoryAggrDaysRange - 1))
@@ -121,6 +124,8 @@ globalThis.addMondayMeta = (mondayTasksCols) => {
   );
   return mondayItemsJsonPayload;
 };
+//#endregion
+//#region aggrTasksByCategoryAndDay
 globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
@@ -408,6 +413,8 @@ globalThis.aggrTasksByCategoryAndDay = (sortedMondayItemsJson) => {
   mondayTasksByCategoryAndDay.style.top = 0;
   return mondayTasksByCategoryAndDay;
 };
+//#endregion
+//#region aggrTasksByDay
 globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
   const currentDate = new Date(
     new Date().toISOString().substring(0, 10)
@@ -484,6 +491,8 @@ globalThis.aggrTasksByDay = (sortedMondayItemsJson) => {
     }
   );
 };
+//#endregion
+//#region offsetNDay
 globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
   const dateToOffsetAsValue = dateToOffset ?
     new Date(dateToOffset).valueOf() :
@@ -505,6 +514,8 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
   }
   return dateStrOffset;
 };
+//#endregion
+//#region setBgBasedOnDDiff
 globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextDay = new Date().getHours();
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
@@ -530,3 +541,4 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   });
   return bgColor;
 };
+//#endregion

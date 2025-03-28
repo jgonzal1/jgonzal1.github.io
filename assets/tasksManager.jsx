@@ -37,7 +37,9 @@ class tasksManager extends globalThis.React.Component {
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
       (accumulator, item) => {
-        if (item["freq"] !== "999-Once") {
+        if (
+          !["360-Yearly","400->1y","999-Once"].includes(item["freq"])
+        ) {
           if (!accumulator["rest"]) {
             accumulator["rest"] = 0;
           }
@@ -198,7 +200,7 @@ class tasksManager extends globalThis.React.Component {
       `2🐢${mondayDursByGroup["2.🐢"]}h/${(parseFloat(mondayDursByGroup["2.🐢"]) / 20).toFixed(1)}w`
     );
     donutChartSvg.append("text").style("fill", "#FFF").style("font-size", "10px").attr("y", "12").text(() =>
-      `3➕${mondayDursByGroup["rest"]}h/${(parseFloat(mondayDursByGroup["rest"]) / 20).toFixed(1)}w`
+      `3♻️${mondayDursByGroup["rest"]}h/${(parseFloat(mondayDursByGroup["rest"]) / 20).toFixed(1)}w`
     );
     const SUM = (
       parseFloat(mondayDursByGroup["1.🐇"]) + parseFloat(mondayDursByGroup["2.🐢"]) + parseFloat(mondayDursByGroup["rest"])

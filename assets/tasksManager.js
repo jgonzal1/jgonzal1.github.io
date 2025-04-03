@@ -3,6 +3,10 @@
 // 12 3h, 14 3.5h, 16 4h, 20 5h, 24 6h
 const quartersOfHourWeekdays = 12;
 const quartersOfHourWeekends = 16;
+globalThis.totalHPerWeek = Math.floor(
+  quartersOfHourWeekdays*5/4 + quartersOfHourWeekends/2 - 5
+); // >1dClimbingOffset
+console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const categoryAggrDaysRange = 14; // 63 prev.
 const msPerH = 3600000;
@@ -16,7 +20,8 @@ globalThis.headers = {
   'Referer': '',
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-platform': '"Windows"',
-  'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+  'sec-ch-ua':
+    '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
   'User-Agent':
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 };
@@ -49,12 +54,13 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
         item["datetime"] = lastRangeDay;
       }
     }
-    item["Δd"] = +((
-      (new Date(item["datetime"]).valueOf() - currentDate.valueOf()) / msPerH / 24
-    ).toPrecision(2));
+    item["Δd"] = +(((
+      new Date(item["datetime"]).valueOf() - currentDate.valueOf()
+    ) / msPerH / 24).toPrecision(2));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
+      item["notes"] ?? ""}`;
     item["notes"] = notes;
     return item;
   });
@@ -85,31 +91,37 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
     }
   );
   let parentItemDates = {};
-  mondayItemsJsonPayload.filter(k => k["task_name"].search(":") !== -1).map(l => {
+  mondayItemsJsonPayload.filter(
+    k => k["task_name"].search(":") !== -1
+  ).map(l => {
     const parentName = l["task_name"].substring(0, l["task_name"].search(":"));
     if (!Object.keys(parentItemDates).includes(parentName)) {
-      const newDateTime = offsetNDay(1 / 6 - 7e-4, l["datetime"], "min"); // take out 1/6 on summer time
-      const newDateTimeStr = new Date(newDateTime).toISOString().substring(0, 16).replace("T", " ");
+      const newDateTime = offsetNDay(1 / 6 - 7e-4, l["datetime"], "min");
+      // take out 1/6 on summer time
+      const newDateTimeStr = new Date(newDateTime).toISOString()
+        .substring(0, 16).replace("T", " ");
       parentItemDates[parentName] = newDateTimeStr;
-      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
+      mondayItemsJsonPayload.filter(m => m["task_name"]===parentName).map(n => {
         if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
           return; // Parent task is already updated today
         }
         const query = `mutation { change_column_value ( ${""
-          }board_id: ${boardId}, item_id: ${n["task_id"]}, column_id: "date", value: "{${""
+          }board_id: ${boardId}, item_id: ${n["task_id"]
+          }, column_id: "date", value: "{${""
           }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
           }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
-          }\\"changed_at\\":\\"${new Date().toISOString().substring(0, 19)}\\"${""
-          }}") { name } }`;
+          }\\"changed_at\\":\\"${
+            new Date().toISOString().substring(0, 19)
+          }\\"}") { name } }`;
         const body = JSON.stringify({ "query": query });
         fetch(
           globalThis.mondayApiUrl,
           { method: "POST", headers: globalThis.headers, body: body }
         );
         n["datetime"] = newDateTimeStr;
-        n["Δd"] = +((
-          (new Date(newDateTimeStr).valueOf() - currentDate.valueOf()) / msPerH / 24
-        ).toPrecision(2));
+        n["Δd"] = +(((
+          new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
+        ) / msPerH / 24).toPrecision(2));
         n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
       });
     }
@@ -183,7 +195,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "value": Math.round(t["dur"] * 60)
     };
   });
-  renamedSortedMondayItemsJson = renamedSortedMondayItemsJson.concat(arrNextClimbingDays);
+  renamedSortedMondayItemsJson = renamedSortedMondayItemsJson.concat(
+    arrNextClimbingDays
+  );
   const days = renamedSortedMondayItemsJson.map(t => t["x"])
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
@@ -254,14 +268,19 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
   });
   //console.log(tasksDurationByDayCategory);
-  const popUpDiv = document.getElementById("popUpDiv") ?? document.createElement("div");
+  const popUpDiv = document.getElementById("popUpDiv")
+    ?? document.createElement("div");
 
   // Determine the series that need to be stacked.
   const series = globalThis.d3.stack()
-    //@ts-ignore .offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) For StreamGraph
-    .keys(d3.union(tasksDurationByDayCategory.map(d => d.name))) // distinct series keys, in input order
-    .value(([, D], key) => D.get(key)?.value ?? 0) //@ts-ignore get value for each series key and stack
-    (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name)); // group by stack then series key
+    //.offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) to StreamGraph
+    //@ts-ignore
+    .keys(d3.union(tasksDurationByDayCategory.map(d => d.name)))
+    // distinct series keys, in input order
+    .value(([, D], key) => D.get(key)?.value ?? 0)
+    //@ts-ignore get value for each series key and stack
+    (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name));
+    // group by stack then series key
 
   const customColors = [
     //"#e15759",
@@ -306,7 +325,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .x(d => x(d.data[0]))
     .y0(d => y(d[0]))
     .y1(d => y(d[1]))
-    .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 mostly curved, 1 no curve
+    .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
 
   //@ts-ignore Create the SVG container
   const svg = globalThis.d3.create("svg")
@@ -343,7 +362,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
-    .call(d3.axisBottom(x).tickSizeOuter(0).ticks(categoryAggrDaysRange / 2, "%y-%m-%d") // %a for weekday
+    .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
+      categoryAggrDaysRange / 2, "%y-%m-%d"
+    ) // %a for weekday
       .tickFormat((d) => `${(
         100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)
       ).toFixed(0).slice(1, 3)
@@ -390,8 +411,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   // Legend
   const yOffset = 50;
   const xOffset = 400;
-  svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85).attr("height", 190)
-    .attr("rx", 10).attr("ry", 10).style("fill", "#6666");
+  svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85)
+    .attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
     ["1.🍏", "#edc949"],
     ["2.🏠", "#59a14f"],
@@ -403,12 +424,18 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ["8.🎮", "#4e79a7"],
     ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
-    svg.append("circle").attr("cx", xOffset + 15).attr("cy", 20 * idx + yOffset + 15).attr("r", 6).style("fill", colorPair[1])
-    svg.append("text").attr("x", xOffset + 25).attr("y", 20 * idx + yOffset + 15).text(colorPair[0]).style("font-size", "15px")
-      .attr("alignment-baseline", "middle").attr("fill", "#FFF")
+    svg.append("circle").attr("cx", xOffset + 15)
+      .attr("cy", 20 * idx + yOffset + 15).attr("r", 6)
+      .style("fill", colorPair[1])
+    svg.append("text").attr("x", xOffset + 25)
+      .attr("y", 20 * idx + yOffset + 15).text(colorPair[0])
+      .style("font-size", "15px").attr("alignment-baseline", "middle")
+      .attr("fill", "#FFF")
   });
 
-  const mondayTasksByCategoryAndDay = Object.assign(svg.node(), { scales: { color } });
+  const mondayTasksByCategoryAndDay = Object.assign(
+    svg.node(), { scales: { color } }
+  );
   mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay";
   mondayTasksByCategoryAndDay.style.position = "absolute";
   mondayTasksByCategoryAndDay.style.top = 0;
@@ -466,7 +493,8 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       ));
       const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
       const durOffs = isOddDayDiff ? duration + 2 : duration;
-      const totV = ["Sat", "Sun"].includes(wd) ? quartersOfHourWeekends : quartersOfHourWeekdays;
+      const totV = ["Sat", "Sun"].includes(wd) ? quartersOfHourWeekends
+        : quartersOfHourWeekdays;
       const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
       const unUsedTime = Math.max(totV - usedTime, 0);
       let nextViD = nextVI;
@@ -506,12 +534,17 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
     precision === "day" ? 10 : 19 // sec
   );
   if (precision === "min") {
-    const timePrecision = dateStrOffset.substring(dateStrOffset.length - 5, dateStrOffset.length - 3);
-    let roundedTimePrecision = (Math.floor(parseInt(timePrecision, 10) / 30) * 30).toString();
+    const timePrecision = dateStrOffset.substring(
+      dateStrOffset.length - 5, dateStrOffset.length - 3
+    );
+    let roundedTimePrecision = (
+      Math.floor(parseInt(timePrecision, 10) / 30) * 30
+    ).toString();
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }
-    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`.replace("T", " ");
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${
+      roundedTimePrecision.toString()}:00`.replace("T", " ");
   }
   return dateStrOffset;
 };
@@ -522,21 +555,23 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
-    { "bgRange": -9e3, /*                                          */ "bgColor": "#CC6666DD" }, // passed
-    { "bgRange": 0, /*                                             */ "bgColor": "#CC666699" }, // now
-    { "bgRange": (24 - hToNextDay) / 24, /*                        */ "bgColor": "#CC766677" }, // today
-    { "bgRange": (48 - hToNextDay) / 24, /*                        */ "bgColor": "#CC866655" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24, /*                        */ "bgColor": "#CC986655" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24, /*                        */ "bgColor": "#CCA96655" }, // in_3d
-    { "bgRange": (Math.max(96 - hToNextDay, hToNextWeek)) / 24, /* */ "bgColor": "#CCB06655" }, // this_week
-    { "bgRange": (168 + hToNextWeek) / 24, /*                      */ "bgColor": "#CCCC6633" }, // next_week
-    { "bgRange": (720 - hToNextDay) / 24, /*                       */ "bgColor": "#CCEE6622" }, // this_month
-    { "bgRange": 365, /*                                           */ "bgColor": "#99FF6622" }, // this_year
-    { "bgRange": 3e4, /*                                           */ "bgColor": "#BBFF6606" } // next_year
+    { "bgRange": -9e3,  "bgColor": "#CC6666DD" }, // passed
+    { "bgRange": 0,  "bgColor": "#CC666699" }, // now
+    { "bgRange": (24 - hToNextDay) / 24,  "bgColor": "#CC766677" }, // today
+    { "bgRange": (48 - hToNextDay) / 24,  "bgColor": "#CC866655" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24,  "bgColor": "#CC986655" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24,  "bgColor": "#CCA96655" }, // in_3d
+    { "bgRange": (
+      Math.max(96 - hToNextDay, hToNextWeek)
+    ) / 24,  "bgColor": "#CCB06655" }, // this_week
+    { "bgRange": (168 + hToNextWeek) / 24,  "bgColor": "#CCCC6633" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24,  "bgColor": "#CCEE6622" }, // this_mo
+    { "bgRange": 365,  "bgColor": "#99FF6622" }, // this_year
+    { "bgRange": 3e4,  "bgColor": "#BBFF6606" } // next_year
   ];
   let bgColor = "#0000";
-  bgRanges.filter(
-    (bgPair, idx) => dDiff > bgPair.bgRange && dDiff <= bgRanges[idx + 1].bgRange
+  bgRanges.filter((bgPair, idx) =>
+    dDiff > bgPair.bgRange && dDiff <= bgRanges[idx + 1].bgRange
   ).map(bgPair => {
     bgColor = bgPair.bgColor;
   });

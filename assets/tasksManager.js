@@ -507,7 +507,7 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
   );
   if (precision === "min") {
     const timePrecision = dateStrOffset.substring(dateStrOffset.length - 5, dateStrOffset.length - 3);
-    let roundedTimePrecision = (Math.floor(parseInt(timePrecision, 10) / 15) * 15).toString();
+    let roundedTimePrecision = (Math.floor(parseInt(timePrecision, 10) / 30) * 30).toString();
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }

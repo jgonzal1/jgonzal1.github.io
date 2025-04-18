@@ -38,7 +38,7 @@ class tasksManager extends globalThis.React.Component {
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
       (accumulator, item) => {
         if (
-          !["360-Yearly","400->1y","999-Once"].includes(item["freq"])
+          !["360-Yearly", "400->1y", "999-Once"].includes(item["freq"])
         ) {
           if (!accumulator["rest"]) {
             accumulator["rest"] = 0;
@@ -221,7 +221,7 @@ class tasksManager extends globalThis.React.Component {
         `2🐢${mondayDursByGroup["2.🐢"]}h/${(
           parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
-    );
+      );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "10px").attr("y", "12").text(() =>
         `3♻️${mondayDursByGroup["rest"]}h/${(
@@ -241,7 +241,7 @@ class tasksManager extends globalThis.React.Component {
     return Object.assign(donutChartSvg.node());
   };
   //#endregion
-  //#region filterTasks  
+  //#region filterTasks
   filterTasks = () => {
     var input, filter, table, tr, td, i, j, txtValue;
     input = document.getElementById("filterTasks");
@@ -269,7 +269,7 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region getMondayTasksToMultipleJson  
+  //#region getMondayTasksToMultipleJson
   getMondayTasksToMultipleJson = async (
     mondayKey, boardId, columnRenames
   ) => {
@@ -356,7 +356,7 @@ class tasksManager extends globalThis.React.Component {
     return mondayTasksSortedJson;
   };
   //#endregion
-  //#region putMondayDateItem  
+  //#region putMondayDateItem
   putMondayDateItem = async (
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
@@ -366,8 +366,7 @@ class tasksManager extends globalThis.React.Component {
       .substring(2, 19);
     if (type === "item") {
       query = `mutation { change_column_value ( ${""
-        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${
-        ""}"{\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""}"{\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
         }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
         }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
         }}") { name } }`;
@@ -407,7 +406,61 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region archiveMondayItem  
+  //#region mondayItemToBacklog
+  mondayItemToBacklog = async (
+    mondayKey, boardId, itemId, dateTimeToSet, type
+  ) => {
+    globalThis.headers["Authorization"] = mondayKey;
+    let query;
+    const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
+      .substring(2, 19);
+    if (type === "item") {
+      query = `mutation {
+        change_column_value (
+          board_id: ${boardId},
+          item_id: ${itemId},
+          column_id: "date",
+          value: "{\\"date\\":\\"\", \\"time\\":\\"\", ${""
+        }  \\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
+        }}"
+        ) { name } }`;
+    } else if (type === "subitem") {
+      query = `mutation {
+        change_multiple_column_values(
+          board_id: ${boardId},
+          item_id: ${itemId},
+          create_labels_if_missing: true,
+          column_values: "{\\"date0\\": \\"\\"}"
+        ) { name }
+      }`;
+    }
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      globalThis.mondayApiUrl,
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
+      }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = type === "item" ?
+      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
+      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"]
+      ?? "";
+    if (lastUpdatedItem) {
+      this.setState({
+        lastRefreshDateTime: lastRefreshDateTime,
+        lastUpdatedItem: lastUpdatedItem,
+        lastUpdatedDt: dateTimeToSet
+      });
+    }
+  };
+  //#endregion
+  //#region archiveMondayItem
   archiveMondayItem = async (
     // @ts-ignore
     mondayKey, boardId, itemId
@@ -429,7 +482,7 @@ class tasksManager extends globalThis.React.Component {
     });
     const mondayPutResponse = await mondayPutResponsePremise;
     const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.
-      ["name"] ?? false;
+    ["name"] ?? false;
     if (lastUpdatedItem) {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
@@ -440,7 +493,7 @@ class tasksManager extends globalThis.React.Component {
     this.setState({ dayOffsetValue: k })
   };
   //#endregion
-  //#region sortTableByColumn  
+  //#region sortTableByColumn
   sortTableByColumn = (jQuerySelector, columnIndex) => {
     const table = document.querySelector(jQuerySelector);
     const tbody = table.tBodies[0];
@@ -489,7 +542,7 @@ class tasksManager extends globalThis.React.Component {
         right: 0,
         top: 0,
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-          ["values"][1]["value"] ?? 305
+        ["values"][1]["value"] ?? 305
       });
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
@@ -702,20 +755,20 @@ class tasksManager extends globalThis.React.Component {
           Object.keys(this.state.mondayTasksJson).length &&
           !this.state.getDatedMondayItemsToJson
         ) ? React.createElement(
-            "table",
-            { id: "mondayTasksByDayTable" },
+          "table",
+          { id: "mondayTasksByDayTable" },
+          React.createElement(
+            "thead",
+            null,
             React.createElement(
-              "thead",
-              null,
-              React.createElement(
-                "tr",
-                { zindex: 1 },
-                [
-                  Object.keys(this.state.mondayTasksJson[0]).pop(),
-                  ...Object.keys(this.state.mondayTasksJson[0])
-                ].map(
-                  (taskKey, taskKeyIdx) => (taskKey !== "type") ?
-                    React.createElement(
+              "tr",
+              { zindex: 1 },
+              [
+                Object.keys(this.state.mondayTasksJson[0]).pop(),
+                ...Object.keys(this.state.mondayTasksJson[0])
+              ].map(
+                (taskKey, taskKeyIdx) => (taskKey !== "type") ?
+                  React.createElement(
                     "th",
                     {
                       key: `${taskKey}${taskKeyIdx} Header`,
@@ -735,125 +788,143 @@ class tasksManager extends globalThis.React.Component {
                       "Sort columns by this header"
                     )
                   ) : "")
-              )
-            ),
-            React.createElement(
-              "tbody",
-              null,
-              this.state.mondayTasksJson.map(
-                (taskRow, idxRow) => React.createElement(
-                  "tr",
+            )
+          ),
+          React.createElement(
+            "tbody",
+            null,
+            this.state.mondayTasksJson.map(
+              (taskRow, idxRow) => React.createElement(
+                "tr",
+                {
+                  key: `TaskRow${idxRow} `,
+                  style: {
+                    backgroundColor: globalThis.setBgBasedOnDDiff(
+                      taskRow["Δd"]
+                    ),
+                    textAlign: "center"
+                  }
+                },
+                [
+                  Object.keys(taskRow).pop(),
+                  ...Object.keys(taskRow)
+                ].map((taskKey, taskKeyIdx) => ((
+                  (taskKey !== "type") &&
+                  (this.state.hide0DurTasks ? (taskRow["dur"] > 0) : true)
+                ) ? React.createElement(
+                  "td",
                   {
-                    key: `TaskRow${idxRow} `,
-                    style: {
-                      backgroundColor: globalThis.setBgBasedOnDDiff(
-                        taskRow["Δd"]
-                      ),
-                      textAlign: "center"
-                    }
+                    key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
+                    className: `${taskKey} - td`,
+                    style: { height: "2em" }
                   },
-                  [
-                    Object.keys(taskRow).pop(),
-                    ...Object.keys(taskRow)
-                  ].map((taskKey, taskKeyIdx) => ((
-                    (taskKey !== "type") &&
-                    (this.state.hide0DurTasks ? (taskRow["dur"] > 0) : true)
-                  ) ? React.createElement(
-                        "td",
+                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                    React.createElement(
+                      "div",
+                      {
+                        style: {
+                          width: "10em",
+                          height: "100%",
+                          overflowY: "auto"
+                        }
+                      },
+                      React.createElement(
+                        "img",
                         {
-                          key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
-                          className: `${taskKey} - td`,
-                          style: { height: "2em" }
-                        },
-                        ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
-                        React.createElement(
-                          "div",
-                          {
-                            style: {
-                              width: "10em",
-                              height: "100%",
-                              overflowY: "auto"
-                            }
+                          src: "../public/prioritize.png",
+                          alt: "Prioritize",
+                          key: `${taskRow["task_id"]} PrioritizeImg`,
+                          className: "clickable-icon",
+                          style: {
+                            paddingRight: "0.3em",
+                            userSelect: "none"
                           },
-                          React.createElement(
-                            "img",
-                            {
-                              src: "../public/prioritize.png",
-                              alt: "Prioritize",
-                              key: `${taskRow["task_id"]} PrioritizeImg`,
-                              className: "clickable-icon",
-                              style: {
-                                paddingRight: "0.3em",
-                                userSelect: "none"
-                              },
-                              onClick: () => this.putMondayDateItem(
-                                //@ts-ignore
-                                monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                                taskRow["task_id"],
-                                globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                                taskRow["type"]
-                              )
-                            }
-                          ),
-                          React.createElement(
-                            "img",
-                            {
-                              src: "../public/snooze.png",
-                              alt: "Snooze",
-                              key: `${taskRow["task_id"]} SnoozeImg`,
-                              className: "clickable-icon",
-                              style: {
-                                paddingRight: "0.3em",
-                                userSelect: "none"
-                              },
-                              onClick: () => this.putMondayDateItem(
-                                //@ts-ignore
-                                monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                                taskRow["task_id"],
-                                globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                                taskRow["type"]
-                              )
-                            }
-                          ),
-                          React.createElement(
-                            "img",
-                            {
-                              src: "../public/archive.png",
-                              alt: "Archive",
-                              key: `${taskRow["task_id"]}ArchiveImg`,
-                              className: "clickable-icon",
-                              style: {
-                                paddingRight: "0.3em",
-                                userSelect: "none"
-                              },
-                              onClick: () => this.archiveMondayItem(
-                                //@ts-ignore
-                                monday_key, boardId,
-                                taskRow["task_id"]
-                              )
-                            }
-                          ),
-                          (
-                            taskRow[taskKey] !== " null"
-                              ? (/(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])
-                                ? React.createElement(
-                                  "a",
-                                  { href: /(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])?.[1] ?? "" },
-                                  taskRow[taskKey]
-                                ) : taskRow[taskKey])
-                              : ""
+                          onClick: () => this.putMondayDateItem(
+                            //@ts-ignore
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            taskRow["task_id"],
+                            globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            taskRow["type"]
                           )
-                        ) : taskRow[taskKey ?? ""]
-                  ) : ""))
-                )
+                        }
+                      ),
+                      React.createElement(
+                        "img",
+                        {
+                          src: "../public/snooze.png",
+                          alt: "Snooze",
+                          key: `${taskRow["task_id"]} SnoozeImg`,
+                          className: "clickable-icon",
+                          style: {
+                            paddingRight: "0.3em",
+                            userSelect: "none"
+                          },
+                          onClick: () => this.putMondayDateItem(
+                            //@ts-ignore
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            taskRow["task_id"],
+                            globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            taskRow["type"]
+                          )
+                        }
+                      ),
+                      /*React.createElement(
+                        "img",
+                        {
+                          src: "../public/backlog.png",
+                          alt: "Archive",
+                          key: `${taskRow["task_id"]}BacklogImg`,
+                          className: "clickable-icon",
+                          style: {
+                            paddingRight: "0.3em",
+                            userSelect: "none"
+                          },
+                          onClick: () => this.mondayItemToBacklog(
+                            //@ts-ignore
+                            monday_key, boardId,
+                            taskRow["task_id"]
+                          )
+                        }
+                      ),*/
+                      React.createElement(
+                        "img",
+                        {
+                          src: "../public/archive.png",
+                          alt: "Archive",
+                          key: `${taskRow["task_id"]}ArchiveImg`,
+                          className: "clickable-icon",
+                          style: {
+                            paddingRight: "0.3em",
+                            userSelect: "none"
+                          },
+                          onClick: () => this.archiveMondayItem(
+                            //@ts-ignore
+                            monday_key, boardId,
+                            taskRow["task_id"]
+                          )
+                        }
+                      ),
+                      (
+                        taskRow[taskKey] !== " null"
+                          ? (/(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])
+                            ? React.createElement(
+                              "a",
+                              { href: /(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])?.[1] ?? "" },
+                              taskRow[taskKey]
+                            ) : taskRow[taskKey])
+                          : ""
+                      )
+                    ) : taskRow[taskKey ?? ""]
+                ) : ""))
               )
             )
+          )
         ) : // Loading ↓
-        React.createElement(
-          "div",
-          null,
-          "Loading tasks summary table"
-        )
+          React.createElement(
+            "div",
+            null,
+            "Loading tasks summary table"
+          )
       ),
       //#endregion
       //#region durations list & cat bubbles

@@ -563,8 +563,8 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
     { "bgRange": (96 - hToNextDay) / 24,  "bgColor": "#CCA96670" }, // in_3d
     { "bgRange": (
       Math.max(120 - hToNextDay, hToNextWeek)
-    ) / 24,  "bgColor": "#CCB06670" }, // this_week
-    { "bgRange": (120 + hToNextWeek) / 24,  "bgColor": "#CCCC665F" }, // next_w
+    ) / 24,  "bgColor": "#CCB06650" }, // this_week
+    { "bgRange": (120 + hToNextWeek) / 24,  "bgColor": "#CCCC664D" }, // next_w
     { "bgRange": (720 - hToNextDay) / 24,  "bgColor": "#CCEE663D" }, // this_mo
     { "bgRange": 365,  "bgColor": "#99FF662D" }, // this_year
     { "bgRange": 3e4,  "bgColor": "#BBFF6606" } // next_year

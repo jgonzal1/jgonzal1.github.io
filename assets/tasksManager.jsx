@@ -37,15 +37,25 @@ class tasksManager extends globalThis.React.Component {
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
       (accumulator, item) => {
+        // Separate routines to its section
         if (
           !["360-Yearly", "400->1y", "999-Once"].includes(item["freq"])
         ) {
-          if (!accumulator["rest"]) {
-            accumulator["rest"] = 0;
+          if (!accumulator["3.♻️"]) {
+            accumulator["3.♻️"] = 0;
           }
-          accumulator["rest"] += item["dur"];
+          accumulator["3.♻️"] += item["dur"];
           return accumulator;
         }
+        // Replace fast-line tasks outside sprint to slow-line 
+        if(
+          item["Δd"] >= globalThis.categoryAggrDaysRange
+          && item["gr"] === "1.🐇"
+        ) {
+          accumulator["2.🐢"] += item["dur"];
+          return accumulator;
+        }
+        // Fall-back for slow-line, fast-line or new additions
         if (!accumulator[item["gr"]]) {
           accumulator[item["gr"]] = 0;
         }
@@ -212,26 +222,26 @@ class tasksManager extends globalThis.React.Component {
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "10px").attr("y", "-18").text(() =>
-        `1🐇${mondayDursByGroup["1.🐇"]}h/${(
+        `1.🐇${mondayDursByGroup["1.🐇"]}h/${(
           parseFloat(mondayDursByGroup["1.🐇"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "10px").attr("y", "-3").text(() =>
-        `2🐢${mondayDursByGroup["2.🐢"]}h/${(
+        `2.🐢${mondayDursByGroup["2.🐢"]}h/${(
           parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "10px").attr("y", "12").text(() =>
-        `3♻️${mondayDursByGroup["rest"]}h/${(
-          parseFloat(mondayDursByGroup["rest"]) / globalThis.totalHPerWeek
+        `3.♻️${mondayDursByGroup["3.♻️"]}h/${(
+          parseFloat(mondayDursByGroup["3.♻️"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     const SUM = (
       parseFloat(mondayDursByGroup["1.🐇"])
       + parseFloat(mondayDursByGroup["2.🐢"])
-      + parseFloat(mondayDursByGroup["rest"])
+      + parseFloat(mondayDursByGroup["3.♻️"])
     ).toFixed(1);
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "10px").attr("y", "27").text(() =>

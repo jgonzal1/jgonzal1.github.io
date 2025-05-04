@@ -8,7 +8,7 @@ globalThis.totalHPerWeek = Math.floor(
 ); // >1dClimbingOffset
 console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
-const categoryAggrDaysRange = 14; // 63 prev.
+globalThis.categoryAggrDaysRange = 14; // 63 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
@@ -42,9 +42,9 @@ const columnRenames = {
 //#region addMondayMeta
 globalThis.addMondayMeta = (mondayTasksJson) => {
   const currentDate = new Date();
-  const penultimateDay = new Date(offsetNDay(categoryAggrDaysRange - 1))
+  const penultimateDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange - 1))
     .toISOString().substring(0, 16).replace("T", " ");
-  const lastRangeDay = new Date(offsetNDay(categoryAggrDaysRange))
+  const lastRangeDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange))
     .toISOString().substring(0, 16).replace("T", " ");
   mondayTasksJson = mondayTasksJson.map(item => {
     if (!item["datetime"]) {
@@ -142,7 +142,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
   const daysRangeStart = new Date().getTime();
-  const daysRangeEnd = daysRangeStart + (categoryAggrDaysRange * msPerDay);
+  const daysRangeEnd = daysRangeStart + (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
   const currentDate = new Date(
     new Date().toISOString().substring(0, 10)
@@ -157,7 +157,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ).map(t => t.datetime)[0]
   );
   const arrNextClimbingDays = Array.from(
-    { length: categoryAggrDaysRange - 2 }, (_, n) => n
+    { length: globalThis.categoryAggrDaysRange - 2 }, (_, n) => n
   ).filter(
     n => (((
       (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))
@@ -237,7 +237,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  Array.from({ length: categoryAggrDaysRange }, (_, i) => {
+  Array.from({ length: globalThis.categoryAggrDaysRange }, (_, i) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["S", "U"].includes(wd)
@@ -354,7 +354,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 
   /** x-axis
   const xTicks = globalThis.d3.axisBottom(x).tickSizeOuter(0)
-    .ticks(categoryAggrDaysRange / 2, "%y-%m-%d");
+    .ticks(globalThis.categoryAggrDaysRange / 2, "%y-%m-%d");
   const xScale = globalThis.d3.scaleTime()
     .domain(globalThis.d3.extent(tasksDurationByDayCategory, d => d.x))
     .range([marginLeft, width - marginRight]);
@@ -363,7 +363,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
-      categoryAggrDaysRange / 2, "%y-%m-%d"
+      globalThis.categoryAggrDaysRange / 2, "%y-%m-%d"
     ) // %a for weekday
       .tickFormat((d) => `${(
         100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)

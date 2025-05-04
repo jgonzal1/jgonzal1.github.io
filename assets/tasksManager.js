@@ -556,17 +556,17 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
     { "bgRange": -9e3,  "bgColor": "#CC6666DD" }, // passed
-    { "bgRange": 0,  "bgColor": "#CC666699" }, // now
-    { "bgRange": (24 - hToNextDay) / 24,  "bgColor": "#CC766677" }, // today
-    { "bgRange": (48 - hToNextDay) / 24,  "bgColor": "#CC866655" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24,  "bgColor": "#CC986655" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24,  "bgColor": "#CCA96655" }, // in_3d
+    { "bgRange": 0,  "bgColor": "#CC6666AA" }, // now
+    { "bgRange": (24 - hToNextDay) / 24,  "bgColor": "#CC766699" }, // today
+    { "bgRange": (48 - hToNextDay) / 24,  "bgColor": "#CC866677" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24,  "bgColor": "#CC986677" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24,  "bgColor": "#CCA96670" }, // in_3d
     { "bgRange": (
-      Math.max(96 - hToNextDay, hToNextWeek)
-    ) / 24,  "bgColor": "#CCB06655" }, // this_week
-    { "bgRange": (168 + hToNextWeek) / 24,  "bgColor": "#CCCC6633" }, // next_w
-    { "bgRange": (720 - hToNextDay) / 24,  "bgColor": "#CCEE6622" }, // this_mo
-    { "bgRange": 365,  "bgColor": "#99FF6622" }, // this_year
+      Math.max(120 - hToNextDay, hToNextWeek)
+    ) / 24,  "bgColor": "#CCB06670" }, // this_week
+    { "bgRange": (120 + hToNextWeek) / 24,  "bgColor": "#CCCC665F" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24,  "bgColor": "#CCEE663D" }, // this_mo
+    { "bgRange": 365,  "bgColor": "#99FF662D" }, // this_year
     { "bgRange": 3e4,  "bgColor": "#BBFF6606" } // next_year
   ];
   let bgColor = "#0000";

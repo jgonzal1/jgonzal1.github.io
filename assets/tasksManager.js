@@ -56,7 +56,7 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
     }
     item["Δd"] = +(((
       new Date(item["datetime"]).valueOf() - currentDate.valueOf()
-    ) / msPerH / 24).toPrecision(2));
+    ) / msPerH / 24).toPrecision(3));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
     const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
@@ -121,7 +121,7 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
         n["datetime"] = newDateTimeStr;
         n["Δd"] = +(((
           new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
-        ) / msPerH / 24).toPrecision(2));
+        ) / msPerH / 24).toPrecision(3));
         n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
       });
     }

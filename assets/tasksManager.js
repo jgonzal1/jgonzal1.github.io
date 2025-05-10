@@ -2,7 +2,7 @@
 //#region Variables
 // 12 3h, 14 3.5h, 16 4h, 20 5h, 24 6h
 const quartersOfHourWeekdays = 12;
-const quartersOfHourWeekends = 16;
+const quartersOfHourWeekends = 20;
 globalThis.totalHPerWeek = Math.floor(
   quartersOfHourWeekdays*5/4 + quartersOfHourWeekends/2 - 5
 ); // >1dClimbingOffset

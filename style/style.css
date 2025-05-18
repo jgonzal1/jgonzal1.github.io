@@ -132,7 +132,8 @@ th.sorted-desc::after {
 .client-uc,
 .client-oetker,
 .client-tdc,
-.client-ufst {
+.client-ufst,
+.client-dsv {
   background-size: auto 2em;
   background-repeat: no-repeat;
   background-position: center;
@@ -194,6 +195,10 @@ th.sorted-desc::after {
 
 .client-ufst {
   background-image: url("../public/clients/ufst.svg");
+}
+
+.client-dsv {
+  background-image: url("../public/clients/dsv.png")
 }
 
 .bigdataeng_c {

@@ -47,8 +47,8 @@ class tasksManager extends globalThis.React.Component {
           accumulator["3.♻️"] += item["dur"];
           return accumulator;
         }
-        // Replace fast-line tasks outside sprint to slow-line 
-        if(
+        // Replace fast-line tasks outside sprint to slow-line
+        if (
           item["Δd"] >= globalThis.categoryAggrDaysRange
           && item["gr"] === "1.🐇"
         ) {
@@ -376,7 +376,8 @@ class tasksManager extends globalThis.React.Component {
       .substring(2, 19);
     if (type === "item") {
       query = `mutation { change_column_value ( ${""
-        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""}"{\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
+        }"{\\"date\\":\\"${dateTimeToSet.substring(0, 10)}\\", ${""
         }\\"time\\":\\"${dateTimeToSet.substring(11)}\\", ${""
         }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
         }}") { name } }`;
@@ -557,16 +558,19 @@ class tasksManager extends globalThis.React.Component {
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
     //#endregion
+    // @ts-ignore
     return React.createElement(
       "div",
       {
         id: "taskManagerWrapper",
         style: { paddingLeft: "0.5em", width: "calc(100% - 0.8em)" },
       },
+      // @ts-ignore
       React.createElement(
         "div",
         { id: "taskManagerTopBar", style: { paddingTop: "0.3em" } },
         //#region refreshTasksButton
+        // @ts-ignore
         React.createElement(
           "button", {
           id: "refreshTasksButton",
@@ -576,6 +580,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region setMinsOffset
+        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -599,6 +604,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastRefreshDateTime
+        // @ts-ignore
         React.createElement(
           "span",
           {
@@ -612,6 +618,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region setDayOffset
+        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -637,6 +644,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastRefreshDateTime
+        // @ts-ignore
         React.createElement(
           "span",
           {
@@ -648,6 +656,7 @@ class tasksManager extends globalThis.React.Component {
           },
           `day(s) offset`
         ),
+        // @ts-ignore
         (this.state.lastRefreshDateTime !== "undefined") && React.createElement(
           "span",
           {
@@ -659,6 +668,7 @@ class tasksManager extends globalThis.React.Component {
           },
           `| Last refresh at`
         ),
+        // @ts-ignore
         (this.state.lastRefreshDateTime !== "undefined") && React.createElement(
           "span",
           {
@@ -673,6 +683,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region filter
+        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -691,6 +702,7 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastUpdatedItem
+        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -705,6 +717,7 @@ class tasksManager extends globalThis.React.Component {
             }
           },
           this.state.lastUpdatedItem && `| Last upd. item is `,
+          // @ts-ignore
           this.state.lastUpdatedItem && React.createElement(
             "span",
             {
@@ -717,6 +730,7 @@ class tasksManager extends globalThis.React.Component {
             },
             this.state.lastUpdatedItem
           ),
+          // @ts-ignore
           this.state.lastUpdatedItem && React.createElement(
             "span",
             {
@@ -728,6 +742,7 @@ class tasksManager extends globalThis.React.Component {
             },
             " to "
           ),
+          // @ts-ignore
           this.state.lastUpdatedItem && React.createElement(
             "span",
             {
@@ -744,6 +759,7 @@ class tasksManager extends globalThis.React.Component {
       ),
       //#endregion
       //#region mondayTableContainer
+      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -764,12 +780,15 @@ class tasksManager extends globalThis.React.Component {
         (
           Object.keys(this.state.mondayTasksJson).length &&
           !this.state.getDatedMondayItemsToJson
+          // @ts-ignore
         ) ? React.createElement(
           "table",
           { id: "mondayTasksByDayTable" },
+          // @ts-ignore
           React.createElement(
             "thead",
             null,
+            // @ts-ignore
             React.createElement(
               "tr",
               { zindex: 1 },
@@ -778,6 +797,7 @@ class tasksManager extends globalThis.React.Component {
                 ...Object.keys(this.state.mondayTasksJson[0])
               ].map(
                 (taskKey, taskKeyIdx) => (taskKey !== "type") ?
+                  // @ts-ignore
                   React.createElement(
                     "th",
                     {
@@ -789,6 +809,7 @@ class tasksManager extends globalThis.React.Component {
                       style: { cursor: "pointer" }
                     },
                     taskKey,
+                    // @ts-ignore
                     React.createElement(
                       "div",
                       {
@@ -800,10 +821,12 @@ class tasksManager extends globalThis.React.Component {
                   ) : "")
             )
           ),
+          // @ts-ignore
           React.createElement(
             "tbody",
             null,
             this.state.mondayTasksJson.map(
+              // @ts-ignore
               (taskRow, idxRow) => React.createElement(
                 "tr",
                 {
@@ -821,6 +844,7 @@ class tasksManager extends globalThis.React.Component {
                 ].map((taskKey, taskKeyIdx) => ((
                   (taskKey !== "type") &&
                   (this.state.hide0DurTasks ? (taskRow["dur"] > 0) : true)
+                  // @ts-ignore
                 ) ? React.createElement(
                   "td",
                   {
@@ -829,6 +853,7 @@ class tasksManager extends globalThis.React.Component {
                     style: { height: "2em" }
                   },
                   ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                    // @ts-ignore
                     React.createElement(
                       "div",
                       {
@@ -838,6 +863,7 @@ class tasksManager extends globalThis.React.Component {
                           overflowY: "auto"
                         }
                       },
+                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -858,6 +884,7 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
+                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -896,6 +923,7 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),*/
+                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -917,6 +945,7 @@ class tasksManager extends globalThis.React.Component {
                       (
                         taskRow[taskKey] !== " null"
                           ? (/(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])
+                            // @ts-ignore
                             ? React.createElement(
                               "a",
                               { href: /(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])?.[1] ?? "" },
@@ -930,6 +959,7 @@ class tasksManager extends globalThis.React.Component {
             )
           )
         ) : // Loading ↓
+          // @ts-ignore
           React.createElement(
             "div",
             null,
@@ -938,6 +968,7 @@ class tasksManager extends globalThis.React.Component {
       ),
       //#endregion
       //#region durations list & cat bubbles
+      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -953,6 +984,7 @@ class tasksManager extends globalThis.React.Component {
             width: "calc(100% - 1em)"
           }
         },
+        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -966,6 +998,7 @@ class tasksManager extends globalThis.React.Component {
           },
           "Loading tasks by category and day"
         ),
+        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -990,4 +1023,5 @@ class tasksManager extends globalThis.React.Component {
 }
 const domContainer = document.querySelector("#taskManager");
 const root = globalThis.ReactDOM.createRoot(domContainer);
+// @ts-ignore
 root.render(React.createElement(tasksManager));

@@ -4,7 +4,7 @@
 const quartersOfHourWeekdays = 12;
 const quartersOfHourWeekends = 20;
 globalThis.totalHPerWeek = Math.floor(
-  quartersOfHourWeekdays*5/4 + quartersOfHourWeekends/2 - 5
+  quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - 5
 ); // >1dClimbingOffset
 console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
@@ -59,8 +59,7 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
     ) / msPerH / 24).toPrecision(3));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
-      item["notes"] ?? ""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
     item["notes"] = notes;
     return item;
   });
@@ -101,11 +100,11 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
       const newDateTimeStr = new Date(newDateTime).toISOString()
         .substring(0, 16).replace("T", " ");
       parentItemDates[parentName] = newDateTimeStr;
-      mondayItemsJsonPayload.filter(m => m["task_name"]===parentName).map(n => {
+      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
         if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
           return; // Parent task is already updated today
         }
-        const query = `mutation { change_column_value ( ${""
+        /*const query = `mutation { change_column_value ( ${""
           }board_id: ${boardId}, item_id: ${n["task_id"]
           }, column_id: "date", value: "{${""
           }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
@@ -117,7 +116,7 @@ globalThis.addMondayMeta = (mondayTasksJson) => {
         fetch(
           globalThis.mondayApiUrl,
           { method: "POST", headers: globalThis.headers, body: body }
-        );
+        );*/
         n["datetime"] = newDateTimeStr;
         n["Δd"] = +(((
           new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
@@ -280,7 +279,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .value(([, D], key) => D.get(key)?.value ?? 0)
     //@ts-ignore get value for each series key and stack
     (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name));
-    // group by stack then series key
+  // group by stack then series key
 
   const customColors = [
     //"#e15759",
@@ -543,8 +542,7 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }
-    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${
-      roundedTimePrecision.toString()}:00`.replace("T", " ");
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`.replace("T", " ");
   }
   return dateStrOffset;
 };
@@ -555,19 +553,21 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
-    { "bgRange": -9e3,  "bgColor": "#CC6666DD" }, // passed
-    { "bgRange": 0,  "bgColor": "#CC6666AA" }, // now
-    { "bgRange": (24 - hToNextDay) / 24,  "bgColor": "#CC766699" }, // today
-    { "bgRange": (48 - hToNextDay) / 24,  "bgColor": "#CC866677" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24,  "bgColor": "#CC986677" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24,  "bgColor": "#CCA96670" }, // in_3d
-    { "bgRange": (
-      Math.max(120 - hToNextDay, hToNextWeek)
-    ) / 24,  "bgColor": "#CCB06650" }, // this_week
-    { "bgRange": (120 + hToNextWeek) / 24,  "bgColor": "#CCCC664D" }, // next_w
-    { "bgRange": (720 - hToNextDay) / 24,  "bgColor": "#CCEE663D" }, // this_mo
-    { "bgRange": 365,  "bgColor": "#99FF662D" }, // this_year
-    { "bgRange": 3e4,  "bgColor": "#BBFF6606" } // next_year
+    { "bgRange": -9e3, "bgColor": "#CC6666DD" }, // passed
+    { "bgRange": 0, "bgColor": "#CC6666AA" }, // now
+    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766699" }, // today
+    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866677" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986677" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96670" }, // in_3d
+    {
+      "bgRange": (
+        Math.max(120 - hToNextDay, hToNextWeek)
+      ) / 24, "bgColor": "#CCB06650"
+    }, // this_week
+    { "bgRange": (120 + hToNextWeek) / 24, "bgColor": "#CCCC664D" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24, "bgColor": "#CCEE663D" }, // this_mo
+    { "bgRange": 365, "bgColor": "#99FF662D" }, // this_year
+    { "bgRange": 3e4, "bgColor": "#BBFF6606" } // next_year
   ];
   let bgColor = "#0000";
   bgRanges.filter((bgPair, idx) =>

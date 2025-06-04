@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navezgane</title>
+    <title>HumanitZ map</title>
     <script src="../libs/leaflet.js"></script>
-    <script src="../data/js/7d2dCoords.js"></script>
+    <script src="../data/js/humanitzCoords.js"></script>
     <link rel="stylesheet" href="../style.css">
     <style>
         .leaflet-overlay-pane svg {
@@ -30,12 +30,12 @@
     <div class="navbar">
         <a class="w20vw oob" href="../index.html">My CV</a>
         <a class="w20vw bob" href="./music.html">Music map</a>
-        <a class="w20vw bob active" href="./navezgane.html">7D2D bookmarks map sample</a>
+        <a class="w20vw bob active" href="./humanitz-island.html">HumanitZ bookmarks map sample</a>
         <a class="w20vw bob" href="./theThreeSeas.html">Fantasy game map sample</a>
     </div>
     <script>
-        const lat = 170;
-        const long = 1170;
+        const long = -1735;
+        const lat = 1115;
 
         function createImgMap(img, bounds) {
             map = L.map(
@@ -46,8 +46,8 @@
                 tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
                 wheelPxPerZoomLevel: 50,
                 scrollWheelZoom: true,
-                minZoom: -3, //4
-                maxZoom: 1 //7
+                minZoom: -1, //4
+                maxZoom: 1.5 //7
             }
             );
             map.zoomControl.setPosition("bottomright");
@@ -59,7 +59,8 @@
             map.setView([long, lat], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, _bounds).addTo(map);
         }
-        createImgMap("../public/maps/navezgane.jpg");
+        createImgMap("../public/maps/HZ_The_Island_29_Compressed.svg");
+        //navezgane.jpg");
 
         function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
             size = rel_size * 16;
@@ -90,13 +91,11 @@
             }
             ).addTo(map);
         }
-        const greenIcon = L.icon(createIcon("../public/world_map_markers/green_circle.png", "Village", rel_size = 0.8));
-        const orangeIcon = L.icon(createIcon("../public/world_map_markers/orange_circle.png", "Town", rel_size = 1));
-        const redIcon = L.icon(createIcon("../public/world_map_markers/red_circle.png", "City", rel_size = 1.2));
+        const setIcon = (name, size) => L.icon(createIcon(`../public/world_map_markers/${name}.png`, name, rel_size = size));
 
-        cities.map(function (city) {
+        waypoints.map(function (waypoint) {
             spawnMarker(
-                city["ct"], orangeIcon, city["coords"][0], city["coords"][1]
+                waypoint["name"], setIcon(waypoint["icon"], waypoint["size"]), waypoint["coords"][0], waypoint["coords"][1]
             );
         });
         // spawnMarker("Spawn", greenIcon, long, lat);

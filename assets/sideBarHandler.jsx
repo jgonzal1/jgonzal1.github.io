@@ -7,7 +7,7 @@ sideBarRoot.render(
     <a href="#" onClick={() => document.location = urlPrefix + '/index.html'}>cv</a>
     <a href="#" onClick={() => document.location = urlPrefix + '/pages/books.html'}>books</a>
     <a href="#" onClick={() => document.location = urlPrefix + '/pages/music.html'}>music</a>
-    <a href="#" onClick={() => document.location = urlPrefix + '/pages/navezgane.html'}>navezgane</a>
+    <a href="#" onClick={() => document.location = urlPrefix + '/pages/humanitz-Island.html'}>humanitz-Island</a>
     <a href="#" onClick={() => document.location = urlPrefix + '/pages/tasksDashboard.html'}>tasksDashboard</a>
     <a href="#" onClick={() => document.location = urlPrefix + '/pages/theThreeSeas.html'}>theThreeSeas</a>
   </div >

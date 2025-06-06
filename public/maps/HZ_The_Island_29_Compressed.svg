@@ -2926,12 +2926,19 @@
      x="-4.0560846"
      y="1349.5927" />
   <rect
-     style="fill:#000000;fill-opacity:1;stroke-width:0.385014"
+     style="fill:#000000;fill-opacity:1;stroke-width:0.365881"
      id="rect7207-7"
-     width="577"
+     width="521.0777"
      height="1440"
      x="0"
      y="0" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke-width:0.13036"
+     id="rect7207-7-8"
+     width="412.72818"
+     height="230.78542"
+     x="183.34465"
+     y="1121.8359" />
   <rect
      style="fill:#000000;fill-opacity:1;stroke-width:1.00532"
      id="rect7207-2"
@@ -2940,10 +2947,17 @@
      x="911.21698"
      y="0" />
   <rect
-     style="fill:#000000;fill-opacity:1;stroke-width:0.269286"
+     style="fill:#000000;fill-opacity:1;stroke-width:0.251484"
      id="rect7207-5"
-     width="360.56967"
-     height="1127.2563"
-     x="574.95148"
+     width="416.492"
+     height="851.13983"
+     x="519.02917"
      y="1.7475728" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke-width:0.225938"
+     id="rect7207-5-2"
+     width="336.17279"
+     height="851.13983"
+     x="730.31921"
+     y="273.36017" />
 </svg>

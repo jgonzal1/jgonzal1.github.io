@@ -34,8 +34,8 @@
         <a class="w20vw bob" href="./theThreeSeas.html">Fantasy game map sample</a>
     </div>
     <script>
-        const long = -1735;
-        const lat = 1115;
+        const long = 298; // -1735;
+        const lat = -1030; // 1115;
 
         function createImgMap(img, bounds) {
             map = L.map(
@@ -44,7 +44,7 @@
                 inertia: true,
                 inertiaMaxSpeed: 1000,
                 tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
-                wheelPxPerZoomLevel: 50,
+                wheelPxPerZoomLevel: 25,
                 scrollWheelZoom: true,
                 minZoom: -1, //4
                 maxZoom: 1.5 //7
@@ -53,8 +53,8 @@
             map.zoomControl.setPosition("bottomright");
             const zoom = 2;
             const _bounds = (bounds || [
-                [-2096, -2168],
-                [2096, 2168]
+                [-2096, -2168], //[-2096,  720]
+                [2096, 2168]    //[-1080, 2168]
             ]);
             map.setView([long, lat], zoom).setMaxBounds(_bounds);
             L.imageOverlay(img, _bounds).addTo(map);
@@ -83,21 +83,25 @@
          * @param {string} name
          * @param {L.icon} _icon
          */
-        function spawnMarker(name, _icon, _lat, _long) {
-            return L.marker(
-                [_lat, _long], {
-                title: name,
-                icon: _icon
-            }
-            ).addTo(map);
+        function spawnMarker(name, _icon, _lat, _long, f=()=>{}) {
+            const marker = L.marker(
+                [_lat, _long], {title: name, icon: _icon}
+            ).addTo(map)
+            //.bindPopup( '<color="green"><b>Objetivo</b></color>')
+            ;
+            marker.on('click', f);
+            return marker;
         }
-        const setIcon = (name, size) => L.icon(createIcon(`../public/world_map_markers/${name}.png`, name, rel_size = size));
+        const setIcon = (name, size) => L.icon(createIcon(
+            `../public/world_map_markers/${name}.png`, name, rel_size = size
+        ));
 
-        waypoints.map(function (waypoint) {
-            spawnMarker(
-                waypoint["name"], setIcon(waypoint["icon"], waypoint["size"]), waypoint["coords"][0], waypoint["coords"][1]
-            );
-        });
+        waypoints.map((waypoint) => { spawnMarker(
+                waypoint["name"],
+                setIcon(waypoint["icon"], waypoint["size"]),
+                waypoint["coords"][0],
+                waypoint["coords"][1]
+        )});
         // spawnMarker("Spawn", greenIcon, long, lat);
 
         let coordsArr = [];

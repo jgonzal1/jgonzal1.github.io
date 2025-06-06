@@ -34,8 +34,8 @@
         <a class="w20vw bob" href="./theThreeSeas.html">Fantasy game map sample</a>
     </div>
     <script>
-        const long = 298; // -1735;
-        const lat = -1030; // 1115;
+        const long = -1735; //  298;  // 
+        const lat  =  1115; // -1030; // 
 
         function createImgMap(img, bounds) {
             map = L.map(
@@ -46,7 +46,7 @@
                 tilt: true, // moves w/ mobiles giroscope(deviceOrientation)
                 wheelPxPerZoomLevel: 25,
                 scrollWheelZoom: true,
-                minZoom: -1, //4
+                minZoom: -2, //4
                 maxZoom: 1.5 //7
             }
             );

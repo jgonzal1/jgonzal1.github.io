@@ -62,7 +62,6 @@
         }
         createImgMap("../public/maps/HZ_The_Island_29_Compressed.svg");
         //navezgane.jpg");
-
         function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
             size = rel_size * 16;
             let _className;
@@ -79,7 +78,6 @@
                 className: _className
             };
         }
-
         /**
          * @param {string} name
          * @param {L.icon} _icon
@@ -96,7 +94,6 @@
         const setIcon = (name, size) => L.icon(createIcon(
             `../public/world_map_markers/${name}.png`, name, rel_size = size
         ));
-
         waypoints.map((waypoint) => { spawnMarker(
                 waypoint["name"],
                 setIcon(waypoint["icon"], waypoint["size"]),

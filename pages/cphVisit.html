@@ -1,0 +1,148 @@
+<html>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+    <script src="private/credentials.js">
+        globalThis.stadia_maps_api_key = stadia_maps_api_key;
+    </script>
+    <script src="../data/js/cphCoords.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .colored-legend * {
+            border-radius: 0.3em;
+            font-weight: bold;
+            margin: 1px;
+            padding: 2px;
+        }
+        .flex-container-2 {
+            align-content: stretch;
+            align-items: stretch;
+            display: flex;
+            flex-wrap: wrap;
+            height: calc(100% - 0.3em);
+            justify-content: center;
+            width: 100%;
+        }
+
+        .leaflet-tooltip-left:before {
+            border-left-color: #000 !important;
+        }
+        .leaflet-tooltip>* {
+            text-align: right !important;
+        }
+        .leaflet-tooltip-right:before {
+            border-right-color: #000 !important;
+        }
+        .leaflet-tooltip {
+            background-color: #0000;
+            border: unset;
+            box-shadow: 0 0 0 #0000;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        #map { height: calc(100vh - 2.4em); }
+    </style>
+    <body>
+        <div id="map"></div>
+        <div class="flex-container-2">
+            <div class="colored-legend">
+                <span style="color:#360;background-color:#6F7">F27,15h-</span>
+                <span style="color:#460;background-color:#CF7">S28</span>
+                <span style="color:#660;background-color:#FF7">D29</span>
+                <span style="color:#640;background-color:#FC7">L30</span>
+                <span style="color:#630;background-color:#FA7">M01</span>
+                <span style="color:#620;background-color:#F67">X02</span>
+                <span style="color:#610;background-color:#F37">J03,-20h</span>
+            </div>
+            <div id="logs"></div>
+        </div>
+    </body>
+    <script>
+        // Old [55.7, 12.5], 12
+        var map = L.map('map').setView([55.8, 12.65], 10.25).setMaxBounds(
+            [ [54.2, 8.5], [57.8, 13.6] ]
+        );
+
+        L.tileLayer(
+            'https://tiles.stadiamaps.com/tiles/stamen_watercolor/'+
+            '{z}/{x}/{y}.jpg'
+            , {
+                minZoom: 8,
+                maxZoom: 16,
+                zoomSnap: 0.25,
+                attribution: '&copy; <a href="https://stadiamaps.com/" '+
+                    'target="_blank">Stadia Maps</a> &copy; '+
+                    '<a href="https://stamen.com/" target="_blank">'+
+                    'Stamen Design</a> &copy; <a href='+
+                    '"https://www.openstreetmap.org/copyright" '+
+                    'target="_blank">OpenStreetMap</a>', 
+            }
+        ).addTo(map);
+
+        function createIcon(path, filter, rel_size = 1, stretch_height = 1) {
+            size = rel_size * 16;
+            let _className;
+            if (filter) {
+                _className = "leaflet-marker-icon-" + filter
+            } else {
+                _className = "leaflet-marker-icon";
+            }
+            return {
+                iconUrl: path,
+                iconSize: [size, size * stretch_height],
+                iconAnchor: [Math.floor(size / 2), size],
+                popupAnchor: [10, -35],
+                className: _className
+            };
+        }
+        /** @param {string} name @param {L.icon} _icon */
+        function spawnMarker(name, _icon, _lat, _long, f=()=>{}) {
+            const marker = L.marker(
+                [_lat, _long], {title: name, icon: _icon}
+            ).addTo(map)
+            //.bindPopup( '<color="green"><b>Objetivo</b></color>')
+            ;
+            marker.on('click', f);
+            return marker;
+        }
+        const setIcon = (name, size) => L.icon(createIcon(
+            `../public/world_map_markers/${name}.png`, name, rel_size = size
+        ));
+        waypoints.filter(waypoint=>!!waypoint["icon"]).map((waypoint) => {
+            spawnMarker(
+                waypoint["name"],
+                setIcon(waypoint["icon"], waypoint["size"]),
+                waypoint["coords"][0],
+                waypoint["coords"][1]
+            )
+        });
+        waypoints.filter(waypoint=>!waypoint["icon"]).map((waypoint) => {
+            L.tooltip({permanent:true})
+            .setLatLng([waypoint["coords"][0],
+                waypoint["coords"][1]])
+            .setContent(`<div style="color:${waypoint["colors"][1]}">${waypoint["name"]}</div>`)
+            .addTo(map);
+        })
+
+        let coordsArr = [];
+        function onMapClick(e) {
+            clickedCoords = [
+                Math.round(e.latlng.lat * 1000) / 1000,
+                Math.round(e.latlng.lng * 1000) / 1000
+            ];
+            coordsArr.push("[" + clickedCoords + "]");
+            document.getElementById("logs").innerText =
+                clickedCoords.toString().replace(",", ", ");
+        }
+        map.on('click', onMapClick);
+    </script>
+</html>

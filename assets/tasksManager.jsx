@@ -796,9 +796,8 @@ class tasksManager extends globalThis.React.Component {
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
                 ...Object.keys(this.state.mondayTasksJson[0])
               ].map(
-                (taskKey, taskKeyIdx) => (taskKey !== "type") ?
-                  // @ts-ignore
-                  React.createElement(
+                 // @ts-ignore
+                (taskKey, taskKeyIdx) => React.createElement(
                     "th",
                     {
                       key: `${taskKey}${taskKeyIdx} Header`,
@@ -818,7 +817,8 @@ class tasksManager extends globalThis.React.Component {
                       },
                       "Sort columns by this header"
                     )
-                  ) : "")
+                )
+              )
             )
           ),
           // @ts-ignore

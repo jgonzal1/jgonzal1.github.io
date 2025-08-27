@@ -8,7 +8,7 @@ globalThis.totalHPerWeek = Math.floor(
 ); // >1dClimbingOffset
 console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
-globalThis.categoryAggrDaysRange = 9; // 14 prev.
+globalThis.categoryAggrDaysRange = 11; // 14 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";

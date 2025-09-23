@@ -105,35 +105,20 @@ class tasksManager extends globalThis.React.Component {
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");
-    globalThis.tasksByCategoryWidth = 500;
-    globalThis.tasksByCategoryHeight = 400;
-    if (tasksByCatPlaceholder) {
-      globalThis.tasksByCategoryWidth =
-        Math.min(
-          parseInt(window.getComputedStyle(
-            tasksByCatPlaceholder
-          )["width"], 10)
-          , globalThis.tasksByCategoryWidth
-        );
-      globalThis.tasksByCategoryHeight =
-        Math.min(
-          parseInt(window.getComputedStyle(
-            tasksByCatPlaceholder
-          )["height"], 10)
-          , globalThis.tasksByCategoryHeight
-        );
-    }
-    const margin = 40;
+    const [tasksByCategoryWidth, tasksByCategoryHeight] = [500, 400];
+    globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
+    globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
+    const margin = 10;
     const radius = Math.min(
-      globalThis.tasksByCategoryWidth, globalThis.tasksByCategoryHeight
-    ) / 2 - margin;
+      tasksByCategoryWidth, tasksByCategoryHeight
+    ) - margin;
 
     const donutChartSvg = globalThis.d3.create("svg")
-      .attr("width", globalThis.tasksByCategoryWidth)
-      .attr("height", globalThis.tasksByCategoryHeight)
+      .attr("width", tasksByCategoryWidth)
+      .attr("height", tasksByCategoryHeight)
       .attr("viewBox", [
-        -globalThis.tasksByCategoryWidth / 2, -globalThis.tasksByCategoryHeight / 2,
-        globalThis.tasksByCategoryWidth, globalThis.tasksByCategoryHeight
+        -0.6 * tasksByCategoryWidth, - tasksByCategoryHeight,
+        1.2 * tasksByCategoryWidth, 2.4 * tasksByCategoryHeight
       ])
       .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
       .attr("text-anchor", "middle");
@@ -141,8 +126,8 @@ class tasksManager extends globalThis.React.Component {
     // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(
-        "transform", "translate(" + globalThis.tasksByCategoryWidth / 2 + ","
-        + globalThis.tasksByCategoryHeight / 2 + ")"
+        "transform", "translate(" + tasksByCategoryWidth + ","
+        + tasksByCategoryHeight + ")"
       );
 
     const donutChartStartAngle = 45;
@@ -210,6 +195,7 @@ class tasksManager extends globalThis.React.Component {
         */
         return `translate(${pos})`;
       })
+      .style("font-size", "2em")
       // @ts-ignore
       .style('text-anchor', (d) => {
         //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
@@ -218,23 +204,23 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
 
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "10px").attr("y", "-33").text(() =>
+      .style("font-size", "2em").attr("y", "-60").text(() =>
         `${globalThis.totalHPerWeek}h/w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "10px").attr("y", "-18").text(() =>
+      .style("font-size", "2em").attr("y", "-30").text(() =>
         `1.🐇${mondayDursByGroup["1.🐇"]}h/${(
           parseFloat(mondayDursByGroup["1.🐇"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "10px").attr("y", "-3").text(() =>
+      .style("font-size", "2em").attr("y", "0").text(() =>
         `2.🐢${mondayDursByGroup["2.🐢"]}h/${(
           parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "10px").attr("y", "12").text(() =>
+      .style("font-size", "2em").attr("y", "30").text(() =>
         `3.♻️${mondayDursByGroup["3.♻️"]}h/${(
           parseFloat(mondayDursByGroup["3.♻️"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
@@ -245,7 +231,7 @@ class tasksManager extends globalThis.React.Component {
       + parseFloat(mondayDursByGroup["3.♻️"])
     ).toFixed(1);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "10px").attr("y", "27").text(() =>
+      .style("font-size", "2em").attr("y", "60").text(() =>
         `∑: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
       );
 
@@ -1010,11 +996,11 @@ class tasksManager extends globalThis.React.Component {
             style: {
               // backgroundColor: "#FFF3", only like this for treeMap
               color: "#FFF",
-              height: `${globalThis.tasksByCategoryHeight}px`,
+              height: `${globalThis.tasksByCategoryWidth}px`,
               margin: "0.1em",
               overflow: "hidden",
               textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
-              width: `min(50%, ${globalThis.tasksByCategoryHeight}px)`,
+              width: `${globalThis.tasksByCategoryWidth}px`,
             }
           },
           ""

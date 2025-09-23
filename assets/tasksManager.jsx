@@ -783,7 +783,9 @@ class tasksManager extends globalThis.React.Component {
           // @ts-ignore
         ) ? React.createElement(
           "table",
-          { id: "mondayTasksByDayTable" },
+          {
+            id: "mondayTasksByDayTable"
+          },
           // @ts-ignore
           React.createElement(
             "thead",
@@ -796,27 +798,28 @@ class tasksManager extends globalThis.React.Component {
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
                 ...Object.keys(this.state.mondayTasksJson[0])
               ].map(
-                 // @ts-ignore
+                // @ts-ignore
                 (taskKey, taskKeyIdx) => React.createElement(
-                    "th",
+                  "th",
+                  {
+                    key: `${taskKey}${taskKeyIdx} Header`,
+                    id: `${taskKey}${taskKeyIdx}Header`,
+                    onClick: () => this.sortTableByColumn(
+                      "#mondayTasksByDayTable", taskKeyIdx
+                    ),
+                    className: "hoverable",
+                    style: { cursor: "pointer" }
+                  },
+                  taskKey,
+                  // @ts-ignore
+                  React.createElement(
+                    "div",
                     {
-                      key: `${taskKey}${taskKeyIdx} Header`,
-                      onClick: () => this.sortTableByColumn(
-                        "#mondayTasksByDayTable", taskKeyIdx
-                      ),
-                      className: "hoverable",
-                      style: { cursor: "pointer" }
+                      key: `${taskKey}${taskKeyIdx} HeaderOnHover`,
+                      className: "hover-text",
                     },
-                    taskKey,
-                    // @ts-ignore
-                    React.createElement(
-                      "div",
-                      {
-                        key: `${taskKey}${taskKeyIdx} HeaderOnHover`,
-                        className: "hover-text",
-                      },
-                      "Sort columns by this header"
-                    )
+                    "Sort columns by this header"
+                  )
                 )
               )
             )
@@ -849,8 +852,8 @@ class tasksManager extends globalThis.React.Component {
                   "td",
                   {
                     key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
-                    className: `${taskKey} - td`,
-                    style: { height: "2em" }
+                    className: `${taskKey}-td`,
+                    style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "30em" }
                   },
                   ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
                     // @ts-ignore

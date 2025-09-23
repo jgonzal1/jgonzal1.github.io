@@ -25,17 +25,21 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js">
     globalThis.$ = $;
   </script>
-  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js">
+    $(() => { $(".resizable").resizable() });
+  </script>
   <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
   <script>
-    $(() => { $(".resizable").resizable() });
     function hideMap() {
       console.log("Hiding map");
       document.getElementById("map").style.display = "none";
     }
     function assignHrefVarName(href, varName) {
-      const varTmp = href.substring(href.search(`${varName}=`) === -1 ? 0 : (href.search(`${varName}=`) + varName.length + 1));
-      const varNameResult = varTmp === href ? href : varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length : varTmp.search("&"));
+      const varTmp = href.substring(href.search(`${varName}=`) === -1 ? 0 :
+        (href.search(`${varName}=`) + varName.length + 1));
+      const varNameResult = varTmp === href ? href :
+        varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length :
+          varTmp.search("&"));
       if (!varNameResult.length) {
         console.error(`At least ${varName} was missing via href`);
       }

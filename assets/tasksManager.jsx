@@ -554,7 +554,7 @@ class tasksManager extends globalThis.React.Component {
         right: 0,
         top: 0,
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-        ["values"][1]["value"] ?? globalThis.tasksByCategoryHeight
+        ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
@@ -997,7 +997,7 @@ class tasksManager extends globalThis.React.Component {
               flexGrow: 1,
               height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
-              width: "fit-content"
+              width: `${globalThis.tasksByCategoryWidth}px`,
             }
           },
           "Loading tasks by category and day"

@@ -105,34 +105,35 @@ class tasksManager extends globalThis.React.Component {
 
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");
-    let tasksByCategoryWidth = 350, tasksByCategoryHeight = 305;
+    globalThis.tasksByCategoryWidth = 500;
+    globalThis.tasksByCategoryHeight = 400;
     if (tasksByCatPlaceholder) {
-      tasksByCategoryWidth =
+      globalThis.tasksByCategoryWidth =
         Math.min(
           parseInt(window.getComputedStyle(
             tasksByCatPlaceholder
           )["width"], 10)
-          , tasksByCategoryWidth
+          , globalThis.tasksByCategoryWidth
         );
-      tasksByCategoryHeight =
+      globalThis.tasksByCategoryHeight =
         Math.min(
           parseInt(window.getComputedStyle(
             tasksByCatPlaceholder
           )["height"], 10)
-          , tasksByCategoryHeight
+          , globalThis.tasksByCategoryHeight
         );
     }
     const margin = 40;
     const radius = Math.min(
-      tasksByCategoryWidth, tasksByCategoryHeight
+      globalThis.tasksByCategoryWidth, globalThis.tasksByCategoryHeight
     ) / 2 - margin;
 
     const donutChartSvg = globalThis.d3.create("svg")
-      .attr("width", tasksByCategoryWidth)
-      .attr("height", tasksByCategoryHeight)
+      .attr("width", globalThis.tasksByCategoryWidth)
+      .attr("height", globalThis.tasksByCategoryHeight)
       .attr("viewBox", [
-        -tasksByCategoryWidth / 2, -tasksByCategoryHeight / 2,
-        tasksByCategoryWidth, tasksByCategoryHeight
+        -globalThis.tasksByCategoryWidth / 2, -globalThis.tasksByCategoryHeight / 2,
+        globalThis.tasksByCategoryWidth, globalThis.tasksByCategoryHeight
       ])
       .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
       .attr("text-anchor", "middle");
@@ -140,8 +141,8 @@ class tasksManager extends globalThis.React.Component {
     // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(
-        "transform", "translate(" + tasksByCategoryWidth / 2 + ","
-        + tasksByCategoryHeight / 2 + ")"
+        "transform", "translate(" + globalThis.tasksByCategoryWidth / 2 + ","
+        + globalThis.tasksByCategoryHeight / 2 + ")"
       );
 
     const donutChartStartAngle = 45;
@@ -553,7 +554,7 @@ class tasksManager extends globalThis.React.Component {
         right: 0,
         top: 0,
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-        ["values"][1]["value"] ?? 305
+        ["values"][1]["value"] ?? globalThis.tasksByCategoryHeight
       });
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
     }
@@ -994,7 +995,7 @@ class tasksManager extends globalThis.React.Component {
             id: "tasksByCategoryAndDay",
             style: {
               flexGrow: 1,
-              height: "305px",
+              height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
               width: "fit-content"
             }
@@ -1009,11 +1010,11 @@ class tasksManager extends globalThis.React.Component {
             style: {
               // backgroundColor: "#FFF3", only like this for treeMap
               color: "#FFF",
-              height: "305px",
+              height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
               overflow: "hidden",
               textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
-              width: "min(50%, 305px)",
+              width: `min(50%, ${globalThis.tasksByCategoryHeight}px)`,
             }
           },
           ""

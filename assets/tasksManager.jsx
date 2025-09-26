@@ -757,10 +757,9 @@ class tasksManager extends globalThis.React.Component {
           style: {
             isolation: "isolate",
             margin: "auto",
-            /*maxHeight:
-              `calc(390px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
-              // 640
-            */
+            maxHeight:
+              `calc(500px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
+            // 640
             maxWidth: "calc(100% - 0.8em)",
             marginTop: "0.5em",
             width: "fit-content"

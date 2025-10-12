@@ -23,7 +23,8 @@ globalThis.headers = {
   'sec-ch-ua':
     '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
   'User-Agent':
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
+    'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 };
 const weekday = [
   "U", "M", "T", "W", "R", "F", "S"

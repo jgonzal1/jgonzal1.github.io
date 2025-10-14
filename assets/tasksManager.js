@@ -8,9 +8,13 @@ globalThis.totalHPerWeek = Math.floor(
 ); // >1dClimbingOffset
 console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
-globalThis.categoryAggrDaysRange = 9; // 14 prev.
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
+const loadTasksUntilDate = "2025-11-01"; // inclusive
+// Number of days from today until loadTasksUntilDate
+globalThis.categoryAggrDaysRange = Math.ceil(
+  (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
+); // 9 prev.
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";

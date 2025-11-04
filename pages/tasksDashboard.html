@@ -11,25 +11,40 @@
         NODE_ENV: 'development'
       }
     }
-  </script>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
-    globalThis.React = React;
-  </script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
-    globalThis.ReactDOM = ReactDOM;
-  </script>
-  <script src="../libs/d3.v7.js">
-    globalThis.d3 = d3;
-  </script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.js">
-    globalThis.$ = $;
-  </script>
-  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js">
-    $(() => { $(".resizable").resizable() });
-  </script>
-  <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
-  <script>
+    console.log("Starting credentials handling");
+    function handleCredentials() {
+      const credentials_list = [
+        "cesium_api_key", "idealista_api_key", "idealista_api_secret",
+        "monday_key"
+      ];
+      console.log("Credentials to load:", credentials_list);
+      const url = window.location.href;
+      const href = url.substring(url.indexOf("#") + 1);
+      credentials_list.map(
+        credential => globalThis[credential] = assignHrefVarName(href, credential)
+      );
+      console.log(
+        "Credentials done loading via href",
+        credentials_list.map(credential =>
+          `${credential}: ${globalThis[credential] ? "loaded" : "missing"}`
+        )
+      );
+      const loaded_credentials = credentials_list.map(credential => {
+        console.log(
+          credential, globalThis[credential]
+        );
+        if (!credential in globalThis) {
+          console.error(`At least ${credential} was missing via private folder`);
+          return false;
+        }
+        return true;
+      });
+      if (!loaded_credentials.filter(credential => !credential).length) {
+        console.log("Credentials loaded via private folder!");
+        return false;
+      }
+    }
+    handleCredentials();
     function hideMap() {
       console.log("Hiding map");
       document.getElementById("map").style.display = "none";
@@ -43,30 +58,32 @@
       if (!varNameResult.length) {
         console.error(`At least ${varName} was missing via href`);
       }
+      console.log(href, varName)
       return varNameResult;
     }
-    function handleCredentials() {
-      const credentials_list = [
-        "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
-      ];
-      const loaded_credentials = credentials_list.map(credential => {
-        console.log("Evaluating credential in window:", credential, credential in window);
-        if (!credential in window) {
-          console.error(`At least ${credential} was missing via private folder`);
-          return false;
-        }
-        return true;
-      });
-      if (!loaded_credentials.filter(credential => !credential).length) {
-        console.log("Credentials loaded via private folder");
-        return;
-      }
-      const url = window.location.href;
-      const href = url.substring(url.indexOf("#") + 1);
-      credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
-      console.log("Credentials done loading via href", credentials_list.map(credential => `${credential}: ${window[credential] ? "loaded" : "missing"}`));
-    }
-    handleCredentials();
+  </script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
+    globalThis.React = React;
+  </script>
+  <script crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  >
+    globalThis.ReactDOM = ReactDOM;
+  </script>
+  <script src="../libs/d3.v7.js">
+    globalThis.d3 = d3;
+  </script>
+  <link rel="stylesheet"
+    href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"
+  >
+  <script src="https://code.jquery.com/jquery-3.7.1.js">
+    globalThis.$ = $;
+  </script>
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js">
+    $(() => { $(".resizable").resizable() });
+  </script>
+  <script src="private/credentials.js">
+    globalThis.mondayKey = mondayKey;
   </script>
   <!--
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.103/Build/Cesium/Cesium.js"></script>

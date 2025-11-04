@@ -50,6 +50,7 @@
         "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
       ];
       const loaded_credentials = credentials_list.map(credential => {
+        console.log("Evaluating credential in window:", credential, credential in window);
         if (!credential in window) {
           console.error(`At least ${credential} was missing via private folder`);
           return false;
@@ -63,7 +64,7 @@
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
       credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
-      console.log("Credentials done loading via href");
+      console.log("Credentials done loading via href", credentials_list.map(credential => `${credential}: ${window[credential] ? "loaded" : "missing"}`));
     }
     handleCredentials();
   </script>

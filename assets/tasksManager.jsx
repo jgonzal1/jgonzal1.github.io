@@ -7,7 +7,7 @@ class tasksManager extends globalThis.React.Component {
       colors: {
         "0.➕": /*  */ "#e15759",
         "1.🍏": /*  */ "#edc949",
-        "2.🏠": /*  */ "#59a14f",
+        "2.🏠": /*  */ "#b5bd68",
         "3.💰": /*  */ "#9c755f",
         "4.🚩🇩🇰": /**/ "#f28e2c",
         "5.🔬": /*  */ "#ff9da7",

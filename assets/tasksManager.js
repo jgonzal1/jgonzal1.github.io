@@ -205,7 +205,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const days = renamedSortedMondayItemsJson.map(t => t["x"])
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🔬", "5.🌿", "6.🌐", "7.📺", "8.🎮", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🌿", "5.🔬", "6.🌐", "7.📺", "8.🎮", "9.➕"
   ];
   days.map(d =>
     categories.map(c => {
@@ -289,9 +289,10 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const customColors = [
     //"#e15759",
     "#edc949", // 🍏
-    "#59a14f", // 🏠
+    "#b5bd68", // 🏠
     "#9c755f", // 💰
     "#f28e2c", // 🚩🇩🇰
+    "#59a14f", // 🌿
     "#ff9da7", // 🔬
     "#76b7b2", // 🌐
     "#af7aa1", // 📺
@@ -419,7 +420,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
     ["1.🍏", "#edc949"],
-    ["2.🏠", "#59a14f"],
+    ["2.🏠", "#b5bd68"],
     ["3.💰", "#9c755f"],
     ["4.🚩🇩🇰", "#f28e2c"],
     ["5.🔬", "#ff9da7"],

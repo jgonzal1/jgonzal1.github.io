@@ -85,8 +85,9 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayTasksByCatDict).map(
       k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
     );
+    // sort by key, uncomment for value
     mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort(
-      (a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
+      //(a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
     ).reduce(
       (obj, key) => {
         // @ts-ignore
@@ -95,7 +96,6 @@ class tasksManager extends globalThis.React.Component {
       },
       {}
     );
-    // @ts-ignore
     // @ts-ignore
     const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {

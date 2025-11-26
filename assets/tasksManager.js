@@ -3,14 +3,15 @@
 // 12 3h, 14 3.5h, 16 4h, 20 5h, 24 6h
 const quartersOfHourWeekdays = 14;
 const quartersOfHourWeekends = 20;
+const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
-  quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - 5
-); // >1dClimbingOffset
+  quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
+);
 console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
-const loadTasksUntilDate = "2025-12-15"; // inclusive
+const loadTasksUntilDate = "2025-12-16"; // inclusive
 // Number of days from today until loadTasksUntilDate
 globalThis.categoryAggrDaysRange = Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
@@ -157,9 +158,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   ); // Gets current day at 00.00
   const [
     // @ts-ignore
-    nextClimbingDay, nextVI, nextVF
+    nextExercisingDay, nextVI, nextVF
   ] = [
-    "Climb", "(v_i)", "(v_f)"
+    "Gym", "(v_i)", "(v_f)"
   ].map(
     (tn) => mondayTasksSortedJson.filter(
       // @ts-ignore
@@ -167,15 +168,37 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     ).map(t => t.datetime)[0]
   );
-  const arrNextClimbingDays = Array.from(
+
+  /**
+   * Check if date falls under range of weekdays (Monday to Thursday).
+   *
+   * Range: Monday (1) to Thursday (4). @param {Date} date <br>
+   *
+   * Example:
+   * ```js
+   * const currentDate = new Date();
+   * console.log(isWeekdayInRange(currentDate));
+   * ```
+   * */
+  function isWeekdayInRange(date) {
+      const dayOfWeekN = date.getDay();
+      return dayOfWeekN >= 1 && dayOfWeekN <= 4;
+  }
+
+  /* Exercise days evenly filter
+  const nextExercisingDateNum = +new Date(nextExercisingDay.substring(0, 10));
+  (((
+    (+new Date(offsetNDay(n)) - nextExercisingDateNum)
+    / msPerDay
+  ) + 1) % 2) */
+  const exerciseMinDuration = 30;
+  const arrNextExercisingDays = Array.from(
     { length: globalThis.categoryAggrDaysRange - 2 }, (_, n) => n
   ).filter(
-    n => (((
-      (+new Date(offsetNDay(n)) - +new Date(nextClimbingDay.substring(0, 10)))
-      / msPerDay
-    ) + 1) % 2) && (offsetNDay(n) > nextClimbingDay.substring(0, 10))
+    n => isWeekdayInRange(new Date(offsetNDay(n))) &&
+      (offsetNDay(n) > nextExercisingDay.substring(0, 10))
   ).map((n) => {
-    return { "x": offsetNDay(n), "name": "1.🍏", "value": 120 }
+    return { "x": offsetNDay(n), "name": "1.🍏", "value": exerciseMinDuration }
   });
   let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
     // @ts-ignore
@@ -210,7 +233,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     };
   });
   renamedSortedMondayItemsJson = renamedSortedMondayItemsJson.concat(
-    arrNextClimbingDays
+    arrNextExercisingDays
   );
   // @ts-ignore
   const days = renamedSortedMondayItemsJson.map(t => t["x"])
@@ -493,9 +516,9 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
   ); // Gets current day at 00.00
   const msPerH = 3.6e6;
   const [
-    nextClimbingDay, nextVI, nextVF
+    nextExercisingDay, nextVI, nextVF
   ] = [
-    "Climb", "(v_i)", "(v_f)"
+    "Gym", "(v_i)", "(v_f)"
   ].map(
     (tn) => mondayTasksSortedJson.filter(
       // @ts-ignore
@@ -537,7 +560,7 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       const dayDiff = (Math.floor(
         (
           new Date(k).valueOf() -
-          new Date(nextClimbingDay).valueOf()
+          new Date(nextExercisingDay).valueOf()
         ) / msPerD
       ));
       const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);

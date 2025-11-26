@@ -30,7 +30,7 @@ class tasksManager extends globalThis.React.Component {
       mondayTasksByCategoryAndDay: [],
       mondayTasksByDay: {},
       mondayTasksJson: {},
-      nextClimbingDay: "undefined",
+      nextExercisingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
     };

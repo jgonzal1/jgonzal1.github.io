@@ -11,11 +11,11 @@ console.log("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
-const loadTasksUntilDate = "2025-12-18"; // inclusive
+// const loadTasksUntilDate = "2025-12-18"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = Math.ceil(
+globalThis.categoryAggrDaysRange = 10; /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
-); // 10; */
+); */
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";

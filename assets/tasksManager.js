@@ -477,7 +477,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const yOffset = 50;
   const xOffset = 400;
   svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85)
-    .attr("height", 190).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
+    .attr("height", 210).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
     ["1.🍏", "#edc949"],
     ["2.🏠", "#b5bd68"],

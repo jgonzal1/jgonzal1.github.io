@@ -1,13 +1,15 @@
 "use strict";
+// @ts-ignore
 class tasksManager extends globalThis.React.Component {
   //#region Constructor
+  // @ts-ignore
   constructor(props) {
     super(props);
     this.state = {
       colors: {
         "0.➕": /*  */ "#e15759",
         "1.🍏": /*  */ "#edc949",
-        "2.🏠": /*  */ "#59a14f",
+        "2.🏠": /*  */ "#b5bd68",
         "3.💰": /*  */ "#9c755f",
         "4.🚩🇩🇰": /**/ "#f28e2c",
         "5.🔬": /*  */ "#ff9da7",
@@ -28,15 +30,17 @@ class tasksManager extends globalThis.React.Component {
       mondayTasksByCategoryAndDay: [],
       mondayTasksByDay: {},
       mondayTasksJson: {},
-      nextClimbingDay: "undefined",
+      nextExercisingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
     };
   };
   //#endregion
   //#region aggrTasksByCategoryDonutChart
+  // @ts-ignore
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
+      // @ts-ignore
       (accumulator, item) => {
         // Separate routines to its section
         if (
@@ -50,6 +54,7 @@ class tasksManager extends globalThis.React.Component {
         }
         // Replace fast-line tasks outside sprint to slow-line
         if (
+          // @ts-ignore
           item["Δd"] >= globalThis.categoryAggrDaysRange
           && item["gr"] === "1.🐇"
         ) {
@@ -68,6 +73,7 @@ class tasksManager extends globalThis.React.Component {
       k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
     );
     let mondayTasksByCatDict = mondayTasksSortedJson.reduce(
+      // @ts-ignore
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
           accumulator[item["cat"]] = 0;
@@ -79,10 +85,12 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayTasksByCatDict).map(
       k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
     );
+    // sort by key, uncomment for value
     mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort(
-      (a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
+      //(a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
     ).reduce(
       (obj, key) => {
+        // @ts-ignore
         obj[key] = mondayTasksByCatDict[key];
         return obj;
       },
@@ -95,6 +103,7 @@ class tasksManager extends globalThis.React.Component {
         return {
           "name": k,
           "value": duration,
+          // @ts-ignore
           "color": this.state.colors[k]
         }
       }
@@ -104,16 +113,20 @@ class tasksManager extends globalThis.React.Component {
       (accumulator, currentValue) => accumulator + currentValue, 0
     ) - mondayDursByGroup["3.🔚"]).toFixed(1);*/
 
+    // @ts-ignore
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");
     const [tasksByCategoryWidth, tasksByCategoryHeight] = [500, 400];
+    // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
+    // @ts-ignore
     globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
     const margin = 10;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
 
+    // @ts-ignore
     const donutChartSvg = globalThis.d3.create("svg")
       .attr("width", tasksByCategoryWidth)
       .attr("height", tasksByCategoryHeight)
@@ -125,6 +138,7 @@ class tasksManager extends globalThis.React.Component {
       .attr("text-anchor", "middle");
 
     // @ts-ignore
+    // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(
         "transform", "translate(" + tasksByCategoryWidth + ","
@@ -132,19 +146,24 @@ class tasksManager extends globalThis.React.Component {
       );
 
     const donutChartStartAngle = 45;
+    // @ts-ignore
     var pie = globalThis.d3.pie().startAngle(donutChartStartAngle)
       // Usually accepts d3.descending but no here. Prevent labels cramming.
+      // @ts-ignore
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
 
+    // @ts-ignore
     const arc = globalThis.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
 
+    // @ts-ignore
     const outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
+    // @ts-ignore
     const fullArc = globalThis.d3.arc()
       .innerRadius(radius)
       .outerRadius(radius);
@@ -154,6 +173,7 @@ class tasksManager extends globalThis.React.Component {
       .data(data_ready)
       .join('path')
       .attr('d', arc)
+      // @ts-ignore
       .attr('fill', d => this.state.colors[d.data[0]])
       .attr("stroke", "white")
       .style("stroke-width", "2px")
@@ -166,6 +186,7 @@ class tasksManager extends globalThis.React.Component {
       .attr("stroke", "white")
       .style("fill", "none")
       .attr("stroke-width", 2)
+      // @ts-ignore
       .attr('points', (d) => {
         const posA = arc.centroid(d) // line insertion in the slice
         const posB = outerArc.centroid(d) // line break: we use the other arc
@@ -186,7 +207,9 @@ class tasksManager extends globalThis.React.Component {
       .selectAll('allLabels')
       .data(data_ready)
       .join('text')
+      // @ts-ignore
       .text(d => `${d.data[0]} ${d.data[1]}`)
+      // @ts-ignore
       .attr('transform', function (d) {
         const pos = fullArc.centroid(d);
         /*
@@ -198,6 +221,7 @@ class tasksManager extends globalThis.React.Component {
       })
       .style("font-size", "3.5em")
       // @ts-ignore
+      // @ts-ignore
       .style('text-anchor', (d) => {
         //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
@@ -206,23 +230,27 @@ class tasksManager extends globalThis.React.Component {
 
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "2.75em").attr("y", "-80").text(() =>
+        // @ts-ignore
         `${globalThis.totalHPerWeek}h/w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "2.75em").attr("y", "-40").text(() =>
         `1.🐇${mondayDursByGroup["1.🐇"]}h/${(
+          // @ts-ignore
           parseFloat(mondayDursByGroup["1.🐇"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "2.75em").attr("y", "0").text(() =>
         `2.🐢${mondayDursByGroup["2.🐢"]}h/${(
+          // @ts-ignore
           parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "2.75em").attr("y", "40").text(() =>
         `3.♻️${mondayDursByGroup["3.♻️"]}h/${(
+          // @ts-ignore
           parseFloat(mondayDursByGroup["3.♻️"]) / globalThis.totalHPerWeek
         ).toFixed(1)}w`
       );
@@ -269,11 +297,13 @@ class tasksManager extends globalThis.React.Component {
   //#endregion
   //#region getMondayTasksToMultipleJson
   getMondayTasksToMultipleJson = async (
+    // @ts-ignore
     mondayKey, boardId, columnRenames
   ) => {
     const subItemColNames = [
       "datetime", "dur", "status", "freq", "cat", "house", "notes"
     ];
+    // @ts-ignore
     globalThis.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
@@ -281,7 +311,9 @@ class tasksManager extends globalThis.React.Component {
       "subitems { id name column_values { text } } } } items_count }"
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
+      // @ts-ignore
       globalThis.mondayApiUrl,
+      // @ts-ignore
       { method: "POST", headers: globalThis.headers, body: body }
     ).then(async (response) => {
       try {
@@ -296,8 +328,10 @@ class tasksManager extends globalThis.React.Component {
     /** @type {any} */
     let mondayTasksJson = [];
     // @ts-ignore
+    // @ts-ignore
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
+      // @ts-ignore
       // @ts-ignore
       (rawItem, rawItemIdx) => {
         let taskIds = {
@@ -306,13 +340,16 @@ class tasksManager extends globalThis.React.Component {
           "group": rawItem["group"]["title"],
           "type": "item"
         };
+        // @ts-ignore
         rawItem.column_values.map((itemCol) => {
+          // @ts-ignore
           taskIds[
             columnRenames[itemCol.column.id]
           ] = itemCol.text;
         });
         mondayTasksJson.push(taskIds);
         if (rawItem["subitems"].length) {
+          // @ts-ignore
           // @ts-ignore
           rawItem["subitems"].map((subItem, subItemIdx) => {
             let subTaskIds = {
@@ -321,7 +358,9 @@ class tasksManager extends globalThis.React.Component {
               "group": rawItem["group"]["title"],
               "type": "subitem"
             };
+            // @ts-ignore
             subItem["column_values"].map((subItemCol, subItemColIdx) => {
+              // @ts-ignore
               subTaskIds[subItemColNames[subItemColIdx]] = subItemCol.text;
             });
             mondayTasksJson.push(subTaskIds);
@@ -329,7 +368,9 @@ class tasksManager extends globalThis.React.Component {
         }
       }
     );
+    // @ts-ignore
     const mondayTasksSortedJson = globalThis.addMondayMeta(mondayTasksJson);
+    // @ts-ignore
     const mondayTasksByDay = globalThis.aggrTasksByDay(mondayTasksSortedJson);
     const mondayTasksByCategorySvg = this.aggrTasksByCategoryDonutChart(
       mondayTasksSortedJson
@@ -340,6 +381,7 @@ class tasksManager extends globalThis.React.Component {
     if (!tasksByCategoryAndDayPlaceholder) { return; }
     tasksByCategoryAndDayPlaceholder.innerHTML = "";
     tasksByCategoryAndDayPlaceholder.appendChild(
+      // @ts-ignore
       globalThis.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
     );
     //console.log(mondayTasksSortedJson);
@@ -356,8 +398,10 @@ class tasksManager extends globalThis.React.Component {
   //#endregion
   //#region putMondayDateItem
   putMondayDateItem = async (
+    // @ts-ignore
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
+    // @ts-ignore
     globalThis.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
@@ -381,7 +425,9 @@ class tasksManager extends globalThis.React.Component {
     }
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
       globalThis.mondayApiUrl,
+      // @ts-ignore
       { method: "POST", headers: globalThis.headers, body: body }
     ).then((response) => {
       try {
@@ -407,8 +453,10 @@ class tasksManager extends globalThis.React.Component {
   //#endregion
   //#region mondayItemToBacklog
   mondayItemToBacklog = async (
+    // @ts-ignore
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
+    // @ts-ignore
     globalThis.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
@@ -435,7 +483,9 @@ class tasksManager extends globalThis.React.Component {
     }
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
       globalThis.mondayApiUrl,
+      // @ts-ignore
       { method: "POST", headers: globalThis.headers, body: body }
     ).then((response) => {
       try {
@@ -462,14 +512,18 @@ class tasksManager extends globalThis.React.Component {
   //#region archiveMondayItem
   archiveMondayItem = async (
     // @ts-ignore
+    // @ts-ignore
     mondayKey, boardId, itemId
   ) => {
+    // @ts-ignore
     globalThis.headers["Authorization"] = mondayKey;
     const query = `mutation { archive_item ( ${""
       }item_id: ${itemId}) { name } }`;
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
       globalThis.mondayApiUrl,
+      // @ts-ignore
       { method: "POST", headers: globalThis.headers, body: body }
     ).then((response) => {
       try {
@@ -488,11 +542,13 @@ class tasksManager extends globalThis.React.Component {
   };
   //#endregion
   //#region setDayOffsetValue
+  // @ts-ignore
   setDayOffsetValue = (k) => {
     this.setState({ dayOffsetValue: k })
   };
   //#endregion
   //#region sortTableByColumn
+  // @ts-ignore
   sortTableByColumn = (jQuerySelector, columnIndex) => {
     const table = document.querySelector(jQuerySelector);
     const tbody = table.tBodies[0];
@@ -542,7 +598,9 @@ class tasksManager extends globalThis.React.Component {
         top: 0,
         fontSize: "1.4em",
         fontWeight: "bold",
+        // @ts-ignore
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
+        // @ts-ignore
         ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
@@ -576,6 +634,7 @@ class tasksManager extends globalThis.React.Component {
           {
             id: "setMinsOffset",
             value: this.state.minsOffsetValue,
+            // @ts-ignore
             onChange: (e) => this.setState({
               minsOffsetValue: e.target.value,
               dayOffsetValue: (parseFloat(e.target.value) / 24 / 60)
@@ -616,6 +675,7 @@ class tasksManager extends globalThis.React.Component {
             value: typeof (this.state.dayOffsetValue) === "number" ?
               parseFloat(this.state.dayOffsetValue.toPrecision(5)) :
               this.state.dayOffsetValue,
+            // @ts-ignore
             onChange: (e) => this.setState({
               minsOffsetValue: (parseFloat(e.target.value) * 60 * 24)
                 .toExponential(2),
@@ -756,6 +816,7 @@ class tasksManager extends globalThis.React.Component {
           id: "mondayTableContainer",
           className: "first-flex-container-item table-container resizable ui-widget-content",
           style: {
+            borderColor: "#6666",
             isolation: "isolate",
             margin: "auto",
             maxHeight:
@@ -784,7 +845,9 @@ class tasksManager extends globalThis.React.Component {
               "tr",
               { zindex: 1 },
               [
+                // @ts-ignore
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
+                // @ts-ignore
                 ...Object.keys(this.state.mondayTasksJson[0])
               ].map(
                 // @ts-ignore
@@ -817,6 +880,7 @@ class tasksManager extends globalThis.React.Component {
           React.createElement(
             "tbody",
             null,
+            // @ts-ignore
             this.state.mondayTasksJson.map(
               // @ts-ignore
               (taskRow, idxRow) => React.createElement(
@@ -824,6 +888,7 @@ class tasksManager extends globalThis.React.Component {
                 {
                   key: `TaskRow${idxRow} `,
                   style: {
+                    // @ts-ignore
                     backgroundColor: globalThis.setBgBasedOnDDiff(
                       taskRow["Δd"]
                     ),
@@ -871,6 +936,7 @@ class tasksManager extends globalThis.React.Component {
                             //@ts-ignore
                             globalThis.monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
+                            // @ts-ignore
                             globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
@@ -892,6 +958,7 @@ class tasksManager extends globalThis.React.Component {
                             //@ts-ignore
                             globalThis.monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
+                            // @ts-ignore
                             globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
@@ -983,8 +1050,10 @@ class tasksManager extends globalThis.React.Component {
             id: "tasksByCategoryAndDay",
             style: {
               flexGrow: 1,
+              // @ts-ignore
               height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
+              // @ts-ignore
               width: `${globalThis.tasksByCategoryWidth}px`,
             }
           },
@@ -998,10 +1067,12 @@ class tasksManager extends globalThis.React.Component {
             style: {
               // backgroundColor: "#FFF3", only like this for treeMap
               color: "#FFF",
+              // @ts-ignore
               height: `${globalThis.tasksByCategoryWidth}px`,
               margin: "0.1em",
               overflow: "hidden",
               textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
+              // @ts-ignore
               width: `${globalThis.tasksByCategoryWidth}px`,
             }
           },
@@ -1014,6 +1085,7 @@ class tasksManager extends globalThis.React.Component {
   }
 }
 const domContainer = document.querySelector("#taskManager");
+// @ts-ignore
 const root = globalThis.ReactDOM.createRoot(domContainer);
 // @ts-ignore
 root.render(React.createElement(tasksManager));

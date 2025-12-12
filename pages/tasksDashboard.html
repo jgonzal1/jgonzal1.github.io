@@ -50,8 +50,10 @@
         "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
       ];
       const loaded_credentials = credentials_list.map(credential => {
-        if (!credential in window) {
-          console.error(`At least ${credential} was missing via private folder`);
+        if (!window[credential] || !window[credential].length) {
+          /*console.error(
+            `At least ${credential} was missing via private folder`
+          );*/
           return false;
         }
         return true;
@@ -127,7 +129,10 @@
 				&showCalendars=0&showPrint=0&showTabs=0&showTitle=0&showTz=0
 				&src=MW9vMWliZ2RmbWtuYzBkMWVobWhkZTg3cnNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
 				&wkst=${(new Date().getDay() + 1).toString()}`;
-    const calendarDom = document.getElementById("calendarIframe").src = calendarSrc;
+    const calendarIframe = document.getElementById("calendarIframe");
+    if (calendarIframe) {
+      calendarIframe.src = calendarSrc;
+    }
     /*setTimeout(() => {
       // Hide calendar hours before 6 AM
       console.log("yAxis", document.getElementsByClassName("tg-times-pri")[0]);

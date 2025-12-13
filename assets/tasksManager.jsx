@@ -579,7 +579,7 @@ class tasksManager extends globalThis.React.Component {
     //#region State listeners
     if (this.state.getDatedMondayItemsToJson) {
       //@ts-ignore
-      this.getMondayTasksToMultipleJson(globalThis.monday_key, boardId, columnRenames);
+      this.getMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
     }
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
       const tasksByCategoryPlaceholder = document.querySelector(
@@ -934,7 +934,7 @@ class tasksManager extends globalThis.React.Component {
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
-                            globalThis.monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
                             globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
@@ -956,7 +956,7 @@ class tasksManager extends globalThis.React.Component {
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
-                            globalThis.monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
                             globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
@@ -977,7 +977,7 @@ class tasksManager extends globalThis.React.Component {
                           },
                           onClick: () => this.mondayItemToBacklog(
                             //@ts-ignore
-                            globalThis.monday_key, boardId,
+                            monday_key, boardId,
                             taskRow["task_id"]
                           )
                         }
@@ -996,7 +996,7 @@ class tasksManager extends globalThis.React.Component {
                           },
                           onClick: () => this.archiveMondayItem(
                             //@ts-ignore
-                            globalThis.monday_key, boardId,
+                            monday_key, boardId,
                             taskRow["task_id"]
                           )
                         }

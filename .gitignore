@@ -3,7 +3,6 @@
 *.tsv
 *.xcf
 **/.DS_Store
-d3.v*.js
 data/**/*.csv
 desktop.ini
 games/

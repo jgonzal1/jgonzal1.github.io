@@ -454,7 +454,7 @@ class tasksManager extends globalThis.React.Component {
   //#region mondayItemToBacklog
   mondayItemToBacklog = async (
     // @ts-ignore
-    mondayKey, boardId, itemId, dateTimeToSet, type
+    mondayKey, boardId, itemId, type
   ) => {
     // @ts-ignore
     globalThis.headers["Authorization"] = mondayKey;
@@ -462,22 +462,19 @@ class tasksManager extends globalThis.React.Component {
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
       .substring(2, 19);
     if (type === "item") {
-      query = `mutation {
-        change_column_value (
-          board_id: ${boardId},
-          item_id: ${itemId},
-          column_id: "date",
-          value: "{\\"date\\":\\"\", \\"time\\":\\"\", ${""
-        }  \\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
-        }}"
-        ) { name } }`;
+      query = `mutation { change_column_value ( ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
+        }"{\\"date\\":\\"\", ${""
+        }\\"time\\":\\"\", ${""
+        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
+        }}") { name } }`;
     } else if (type === "subitem") {
       query = `mutation {
         change_multiple_column_values(
-          board_id: ${boardId},
-          item_id: ${itemId},
-          create_labels_if_missing: true,
-          column_values: "{\\"date0\\": \\"\\"}"
+          board_id: ${boardId}
+          item_id: ${itemId}
+          create_labels_if_missing: true
+          column_values: "{\\"date0\\": \\"\\", \\"numbers\\": \\"0.02\\"}"
         ) { name }
       }`;
     }
@@ -503,15 +500,13 @@ class tasksManager extends globalThis.React.Component {
     if (lastUpdatedItem) {
       this.setState({
         lastRefreshDateTime: lastRefreshDateTime,
-        lastUpdatedItem: lastUpdatedItem,
-        lastUpdatedDt: dateTimeToSet
+        lastUpdatedItem: lastUpdatedItem
       });
     }
   };
   //#endregion
   //#region archiveMondayItem
   archiveMondayItem = async (
-    // @ts-ignore
     // @ts-ignore
     mondayKey, boardId, itemId
   ) => {
@@ -781,7 +776,8 @@ class tasksManager extends globalThis.React.Component {
             this.state.lastUpdatedItem
           ),
           // @ts-ignore
-          this.state.lastUpdatedItem && React.createElement(
+          this.state.lastUpdatedItem && this.state.lastUpdatedDt &&
+          React.createElement(
             "span",
             {
               id: "lastUpdatedItem",
@@ -964,7 +960,7 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
-                      /*React.createElement(
+                      React.createElement(
                         "img",
                         {
                           src: "../public/backlog.png",
@@ -977,11 +973,12 @@ class tasksManager extends globalThis.React.Component {
                           },
                           onClick: () => this.mondayItemToBacklog(
                             //@ts-ignore
-                            monday_key, boardId,
-                            taskRow["task_id"]
+                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                            taskRow["task_id"],
+                            taskRow["type"]
                           )
                         }
-                      ),*/
+                      ),
                       // @ts-ignore
                       React.createElement(
                         "img",

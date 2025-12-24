@@ -589,7 +589,7 @@ class tasksManager extends globalThis.React.Component {
       treesPlantedDom.innerHTML = "0/400 🌳";
       Object.assign(treesPlantedDom.style, {
         position: "absolute",
-        right: 0,
+        left: "40vw",
         top: 0,
         fontSize: "1.4em",
         fontWeight: "bold",

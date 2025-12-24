@@ -775,8 +775,8 @@ class tasksManager extends globalThis.React.Component {
             },
             this.state.lastUpdatedItem
           ),
-          // @ts-ignore
           this.state.lastUpdatedItem && this.state.lastUpdatedDt &&
+          // @ts-ignore
           React.createElement(
             "span",
             {
@@ -813,14 +813,13 @@ class tasksManager extends globalThis.React.Component {
           className: "first-flex-container-item table-container resizable ui-widget-content",
           style: {
             borderColor: "#6666",
+            fontSize: "0.924em",
             isolation: "isolate",
             margin: "auto",
             maxHeight:
               `calc(500px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
-            // 640
-            maxWidth: "calc(100% - 0.8em)",
+            maxWidth: "calc(100% - 1em)",
             marginTop: "0.5em",
-            width: "fit-content"
           }
         },
         (
@@ -960,6 +959,7 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
+                      // @ts-ignore
                       React.createElement(
                         "img",
                         {

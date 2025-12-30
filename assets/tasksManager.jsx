@@ -1018,7 +1018,7 @@ class tasksManager extends globalThis.React.Component {
           // @ts-ignore
           React.createElement(
             "div",
-            null,
+            { style: { color: "#fff" }},
             "Loading tasks summary table"
           )
       ),

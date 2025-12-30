@@ -13,9 +13,9 @@ const msPerH = 3600000;
 const msPerD = msPerH * 24;
 const loadTasksUntilDate = "2026-01-08"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = Math.ceil(
+globalThis.categoryAggrDaysRange = 9; /* Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
-); // 12; */
+); // */
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";
@@ -281,7 +281,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  Array.from({ length: globalThis.categoryAggrDaysRange }, (_, i) => {
+  Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["S", "U"].includes(wd)

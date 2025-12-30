@@ -72,7 +72,17 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayDursByGroup).map(
       k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
     );
-    let mondayTasksByCatDict = mondayTasksSortedJson.reduce(
+    let mondayTasksByCatDict = mondayTasksSortedJson.filter(
+      /**
+       * @param {any} t
+       * @returns {boolean}
+       */
+      (t) => (new Date(t["datetime"]) <
+        new Date(new Date().getTime() +
+        // @ts-ignore
+        globalThis.categoryAggrDaysRange * 24 * 3.6e6
+      ))
+    ).reduce(
       // @ts-ignore
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {

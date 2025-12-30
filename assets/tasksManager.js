@@ -240,7 +240,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🌿", "5.🔬", "6.🌐", "7.📺", "8.🎮", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮", "9.➕"
   ];
   // @ts-ignore
   days.map(d =>
@@ -337,9 +337,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     "#f28e2c", // 🚩🇩🇰
     "#59a14f", // 🌿
     "#ff9da7", // 🔬
-    "#76b7b2", // 🌐
     "#af7aa1", // 📺
     "#4e79a7", // 🎮
+    "#76b7b2", // 🌐
     "#bab0ab66", // ➕
     ""
   ];
@@ -485,9 +485,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ["4.🚩🇩🇰", "#f28e2c"],
     ["5.🔬", "#ff9da7"],
     ["5.🌿", "#59a14f"],
-    ["6.🌐", "#76b7b2"],
-    ["7.📺", "#af7aa1"],
-    ["8.🎮", "#4e79a7"],
+    ["6.📺", "#af7aa1"],
+    ["7.🎮", "#4e79a7"],
+    ["8.🌐", "#76b7b2"],
     ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
     svg.append("circle").attr("cx", xOffset + 15)

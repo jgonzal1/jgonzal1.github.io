@@ -489,9 +489,12 @@ th.sorted-desc::after {
 }
 
 .r {
+  text-align: right;
+}
+
+.r:not(td) {
   position: relative;
   top: -1em;
-  text-align: right;
 }
 
 .sidebar {

@@ -595,20 +595,28 @@ class tasksManager extends globalThis.React.Component {
       tasksByCategoryPlaceholder.appendChild(
         this.state.mondayTasksByCategorySvg[0]
       );
-      const treesPlantedDom = document.createElement("span");
-      treesPlantedDom.innerHTML = "0/400 🌳";
-      Object.assign(treesPlantedDom.style, {
+      const goalsDom = document.createElement("span");
+      goalsDom.innerHTML = `<table>
+        <tr><th>Category</th>     <th>H/W</th>   <th>🎯Goals</th></tr>
+        <tr><td>🍏/Health</td>   <td class="r">5</td>      <td></td></tr>
+        <tr><td>🏠💰/FIRE</td>   <td class="r">&lt;5</td> <td>1750 € pas/mo</td></tr>
+        <tr><td>🚩/Rels</td>     <td class="r">~2</td>     <td></td></tr>
+        <tr><td>🔬🌿/Motivs</td> <td class="r">1</td>      <td>400 🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>   <td class="r">&lt;2</td>  <td></td></tr>
+      </table>`;
+      Object.assign(goalsDom.style, {
         position: "absolute",
         left: "40vw",
         top: 0,
-        fontSize: "1.4em",
+        fontSize: "1 em",
         fontWeight: "bold",
+        fontFamily: "monospace",
         // @ts-ignore
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
         // @ts-ignore
         ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
-      tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
+      tasksByCategoryPlaceholder.appendChild(goalsDom);
     }
     //#endregion
     // @ts-ignore

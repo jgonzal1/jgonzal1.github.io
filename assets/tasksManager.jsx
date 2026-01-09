@@ -597,12 +597,12 @@ class tasksManager extends globalThis.React.Component {
       );
       const goalsDom = document.createElement("span");
       goalsDom.innerHTML = `<table>
-        <tr><th>Category</th>     <th>H/W</th>   <th>🎯Goals</th></tr>
-        <tr><td>🍏/Health</td>   <td class="r">5</td>      <td></td></tr>
-        <tr><td>🏠💰/FIRE</td>   <td class="r">&lt;5</td> <td>1750 € pas/mo</td></tr>
-        <tr><td>🚩/Rels</td>     <td class="r">~2</td>     <td></td></tr>
-        <tr><td>🔬🌿/Motivs</td> <td class="r">1</td>      <td>400 🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>   <td class="r">&lt;2</td>  <td></td></tr>
+        <tr><th>Category</th>     <th>H/W</th>              <th>🎯YGoals</th></tr>
+        <tr><td>🍏/Health</td>    <td class="r">5</td>      <td>🩺checks,🪁🏄ks</td></tr>
+        <tr><td>🏠💰/FIRE</td>    <td class="r">&lt;5</td>  <td>1875€p/mo🔚DSV,<br>🏠♴💼</td></tr>
+        <tr><td>🚩/Rels</td>      <td class="r">~2</td>     <td>🚩🇸🇪🏠&💼</td></tr>
+        <tr><td>🔬🌿/Motivs</td>  <td class="r">1</td>      <td>h/XR or 400🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>     <td class="r">&lt;2</td>  <td></td></tr>
       </table>`;
       Object.assign(goalsDom.style, {
         position: "absolute",

@@ -240,7 +240,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮", "9.➕"
   ];
   // @ts-ignore
   days.map(d =>
@@ -334,7 +334,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     "#edc949", // 🍏
     "#b5bd68", // 🏠
     "#9c755f", // 💰
-    "#f28e2c", // 🚩🇩🇰
+    "#f28e2c", // 🚩
     "#59a14f", // 🌿
     "#ff9da7", // 🔬
     "#af7aa1", // 📺
@@ -482,7 +482,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ["1.🍏", "#edc949"],
     ["2.🏠", "#b5bd68"],
     ["3.💰", "#9c755f"],
-    ["4.🚩🇩🇰", "#f28e2c"],
+    ["4.🚩", "#f28e2c"],
     ["5.🔬", "#ff9da7"],
     ["5.🌿", "#59a14f"],
     ["6.📺", "#af7aa1"],

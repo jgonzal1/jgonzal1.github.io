@@ -62,7 +62,12 @@
       }
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
-      credentials_list.filter(credential => !!assignHrefVarName(href, credential)).map(credential => window[credential] = assignHrefVarName(href, credential));
+      credentials_list.filter(
+          credential => !!assignHrefVarName(href, credential)
+        ).map(
+          credential =>
+            window[credential] = assignHrefVarName(href, credential)
+        );
       console.log("Credentials done loading via href");
     }
     handleCredentials();
@@ -100,10 +105,10 @@
     <div id="taskManager" class="hw-800-1080 pt-05em"></div>
     <div id="monto" class="grid-container-2">
       <div>
-        <div class="bordered">Assets:<br>
+        <div class="bordered">Assets<span id="dailyGrowth"></span>:<br>
           <span id="amountEur">___.___,__ €</span>&nbsp;<br>
           <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
-          Passive:<br>
+          Passive<span id="weeklyPassGrowth"></span>:<br>
           &nbsp;&nbsp;<span id="amountEurPas">_.___,_____ €</span>&nbsp;<br>
           <div style="height:0.3em"></div>
         </div>
@@ -217,8 +222,12 @@
     const passiveFactor = 0.0673;
     const interval = 200;
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
-    console.log(amountEurDomObj)
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
+    const dailyGrowthDom = document.getElementById("dailyGrowth");
+    dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
+    const weeklyPassGrowthDom = document.getElementById("weeklyPassGrowth");
+    const weeklyPassGrowth = 7 * (daily_growth * passiveFactor / 12);
+    weeklyPassGrowthDom.innerText = ` (${weeklyPassGrowth.toPrecision(3)}p€/w)`;
     let exec = false;
     setInterval(
       () => {

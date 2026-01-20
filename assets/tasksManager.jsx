@@ -677,10 +677,6 @@ class tasksManager extends globalThis.React.Component {
         //  ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(goalsDom);
-      const amntEurMsDomObj = document.getElementById("amntEurMs");
-      // @ts-ignore
-      const amountEurMsInput = amntEurMsDomObj?.value;
-      this.handleMilestoneAmount(amountEurMsInput);
     }
     //#endregion
     // @ts-ignore

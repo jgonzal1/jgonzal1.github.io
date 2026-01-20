@@ -229,6 +229,9 @@
     const monthlyPassGrowth = 30 * daily_growth * (passiveFactor / 12);
     monthlyPassGrowthDom.innerText = ` (${monthlyPassGrowth.toPrecision(3)}p€/m)`;
     let exec = false;
+    /*const amountEurMsDom = document.getElementById("amntEurMs");
+    const amountEurMsInput = amountEurMsDom?.value;
+    handleMilestoneAmount(amountEurMsInput);*/
     setInterval(
       () => {
         if(!exec) {

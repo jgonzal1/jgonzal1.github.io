@@ -22,7 +22,7 @@
   <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js">
     $(() => { $(".resizable").resizable() });
   </script>
-  <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
+  <script src="private/credentials.js"></script>
   <script>
     function hideMap() {
       console.log("Hiding map");
@@ -34,8 +34,9 @@
       const varNameResult = varTmp === href ? href :
         varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length :
           varTmp.search("&"));
-      if (!varNameResult.length) {
+      if (!varNameResult.length || varNameResult.substring(0,8) === "file:///") {
         console.error(`At least ${varName} was missing via href`);
+        return false;
       }
       return varNameResult;
     }
@@ -61,7 +62,7 @@
       }
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
-      credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
+      credentials_list.filter(credential => !!assignHrefVarName(href, credential)).map(credential => window[credential] = assignHrefVarName(href, credential));
       console.log("Credentials done loading via href");
     }
     handleCredentials();
@@ -98,27 +99,27 @@
   <div class="flex-container-2 b-1-s-grey" style="width: calc(100% - 3em);">
     <div id="taskManager" class="hw-800-1080 pt-05em"></div>
     <div id="monto" class="grid-container-2">
-    <div>
-      <div class="bordered">Assets:<br>
-        <span id="amountEur">___.___,__ €</span>&nbsp;<br>
-        <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
-        Passive:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">_.___,_____ €</span>&nbsp;<br>
-        <div style="height:0.3em"></div>
+      <div>
+        <div class="bordered">Assets:<br>
+          <span id="amountEur">___.___,__ €</span>&nbsp;<br>
+          <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
+          Passive:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">_.___,_____ €</span>&nbsp;<br>
+          <div style="height:0.3em"></div>
+        </div>
+        <div class="bordered" style="display:none">Started at:<br>
+          <span id="startRegr"></span>
+        </div>
       </div>
-      <div class="bordered">Started at:<br>
-        <span id="startRegr"></span>
+      <div class="bordered" style="display:none">
+        Next milestone:<br>
+        &nbsp;<small>&nbsp;</small><input id="amntEurMs" type="number" value="1750" style="width:6em"
+          onchange="handleMilestoneAmount(this.value)" class="bordered"></input><br>
+        <span class="after-input"><span id="dateEurMs"></span><br>
+          in <span id="yearsMs"></span> y, at <span id="yearsSelfMs"></span> yo,<br>
+          equals <span id="adjustedAmount"></span>&nbsp;</span>
       </div>
     </div>
-    <div class="bordered">
-      Next milestone:<br>
-      &nbsp;<small>&nbsp;</small><input id="amntEurMs" type="number" value="1750" style="width:6em"
-        onchange="handleMilestoneAmount(this.value)" class="bordered"></input><br>
-      <span class="after-input"><span id="dateEurMs"></span><br>
-        in <span id="yearsMs"></span> y, at <span id="yearsSelfMs"></span> yo,<br>
-        equals <span id="adjustedAmount"></span>&nbsp;</span>
-    </div>
-  </div>
     <!-- tasks by category and day unneeded placeholder and calendar
     <div id="tasksByCategoryAndDay"></div>
     <div id="calendar" style="width:min(99vw, 648px); height:min(calc(100% - 1.5em), 800px); position:relative;">
@@ -218,13 +219,18 @@
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     console.log(amountEurDomObj)
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
-    console.log(amountEurPasDom)
-    console.log(daily_growth, offset_at_1900);
+    let exec = false;
     setInterval(
       () => {
+        if(!exec) {
+          const montoDom = document.getElementById("monto");
+          const fireGoal = document.getElementById("fireGoal");
+          fireGoal.appendChild(montoDom);
+          exec = true;
+        }
         const currentAmount = (daily_growth * (
           ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970
-        ) - offset_at_1900);
+        ) + offset_at_1900);
         const currentAmountEur = new Intl.NumberFormat(
           'es-ES', numberFormat
         ).format(currentAmount);

@@ -108,7 +108,7 @@
         <div class="bordered">Assets<span id="dailyGrowth"></span>:<br>
           <span id="amountEur">___.___,__ €</span>&nbsp;<br>
           <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
-          Passive<span id="weeklyPassGrowth"></span>:<br>
+          Passive<span id="monthlyPassGrowth"></span>:<br>
           &nbsp;&nbsp;<span id="amountEurPas">_.___,_____ €</span>&nbsp;<br>
           <div style="height:0.3em"></div>
         </div>
@@ -225,9 +225,9 @@
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
     dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
-    const weeklyPassGrowthDom = document.getElementById("weeklyPassGrowth");
-    const weeklyPassGrowth = 7 * (daily_growth * passiveFactor / 12);
-    weeklyPassGrowthDom.innerText = ` (${weeklyPassGrowth.toPrecision(3)}p€/w)`;
+    const monthlyPassGrowthDom = document.getElementById("monthlyPassGrowth");
+    const monthlyPassGrowth = 30 * (daily_growth * passiveFactor / 12);
+    monthlyPassGrowthDom.innerText = ` (${monthlyPassGrowth.toPrecision(3)}p€/m)`;
     let exec = false;
     setInterval(
       () => {

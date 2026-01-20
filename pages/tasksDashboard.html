@@ -226,7 +226,7 @@
     const dailyGrowthDom = document.getElementById("dailyGrowth");
     dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
     const monthlyPassGrowthDom = document.getElementById("monthlyPassGrowth");
-    const monthlyPassGrowth = 30 * (daily_growth * passiveFactor / 12);
+    const monthlyPassGrowth = 30 * daily_growth * (passiveFactor / 12);
     monthlyPassGrowthDom.innerText = ` (${monthlyPassGrowth.toPrecision(3)}p€/m)`;
     let exec = false;
     setInterval(

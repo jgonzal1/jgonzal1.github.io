@@ -2,16 +2,10 @@
 
 <head>
   <title>Tasks Manager Dashboard</title>
-  <script src="../libs/babel.min.js">
-    // https://unpkg.com/@babel/standalone/babel.min.js
+  <script src="../libs/babel.min.js"> //URL
+    /* https://unpkg.com/@babel/standalone/babel.min.js */
   </script>
-  <script>
-    window.process = {
-      env: {
-        NODE_ENV: 'development'
-      }
-    }
-  </script>
+  <script> window.process = { env: { NODE_ENV: 'development' } }</script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
     globalThis.React = React;
   </script>
@@ -47,7 +41,10 @@
     }
     function handleCredentials() {
       const credentials_list = [
-        "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
+        "birthday",
+        "daily_growth",
+        "monday_key",
+        "offset_at_1900"
       ];
       const loaded_credentials = credentials_list.map(credential => {
         if (!window[credential] || !window[credential].length) {
@@ -76,49 +73,60 @@
   <link href="../style/style.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="../public/real-estate-investing-management.ico">
   <style>
-    a,
-    b,
-    body,
-    fieldset,
-    legend,
-    span,
-    table,
-    td {
-      font-size: 0.88em;
+    a, b, body, fieldset, legend, span, table, td { font-size: 0.88em; }
+    /*
+    path.slice { stroke-width: 2px; }
+    polyline { fill: none; opacity: 0.3; stroke-width: 2px; stroke: #000; }
+    */
+    svg { font-weight: bold !important; /*width: 100%; height: 100%;*/ }
+    .b-1-s-grey { border: 1px solid #6666; }
+    .hw-100p-2em {
+      height: calc(100% - 2em);
+      width: calc(100% - 2em);
     }
-
-    /*path.slice {
-      stroke-width: 2px;
+    .hw-800-1080 {
+      width: min(calc(100% - 0.5em), 1080px);
+      height: min(calc(100% - 1.5em), 800px);
     }
-
-    polyline {
-      opacity: 0.3;
-      stroke: #000;
-      stroke-width: 2px;
-      fill: none;
-    }*/
-
-    svg {
-      /*width: 100%;
-      height: 100%;*/
-      font-weight: bold !important;
-    }
+    .pa { position: absolute; }
+    .pt-05em { padding-top: 0.5em; }
   </style>
 </head>
 
-<body class="flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 2em); padding-top: 0.5em">
+<body class="flex-container-2 hw-100p-2em pt-05em">
   <div class="sidebar">Sidebar</div>
-  <div class="flex-container-2" style="width: calc(100% - 3em); border: 1px solid #6666">
-    <div id="taskManager" style="width:min(99vw, 1080px); height:min(calc(100% - 1.5em), 800px); padding-top: 0.5em;">
+  <div class="flex-container-2 b-1-s-grey" style="width: calc(100% - 3em);">
+    <div id="taskManager" class="hw-800-1080 pt-05em"></div>
+    <div id="monto" class="grid-container-2">
+    <div>
+      <div class="bordered">Assets:<br>
+        <span id="amountEur">___.___,__ €</span>&nbsp;<br>
+        <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
+        Passive:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">_.___,_____ €</span>&nbsp;<br>
+        <div style="height:0.3em"></div>
+      </div>
+      <div class="bordered">Started at:<br>
+        <span id="startRegr"></span>
+      </div>
     </div>
-    <!--
+    <div class="bordered">
+      Next milestone:<br>
+      &nbsp;<small>&nbsp;</small><input id="amntEurMs" type="number" value="1750" style="width:6em"
+        onchange="handleMilestoneAmount(this.value)" class="bordered"></input><br>
+      <span class="after-input"><span id="dateEurMs"></span><br>
+        in <span id="yearsMs"></span> y, at <span id="yearsSelfMs"></span> yo,<br>
+        equals <span id="adjustedAmount"></span>&nbsp;</span>
+    </div>
+  </div>
+    <!-- tasks by category and day unneeded placeholder and calendar
     <div id="tasksByCategoryAndDay"></div>
     <div id="calendar" style="width:min(99vw, 648px); height:min(calc(100% - 1.5em), 800px); position:relative;">
       <iframe id="calendarIframe" class="zoom-out-iframe" style="margin-top: 1em"></iframe>
     </div>-->
   </div>
-  <div id="popUpDiv" style="width: 2.6em; height: 1.2em; position: absolute; right: 5em; top: 0.8em;"></div>
-  <script>
+  <div id="popUpDiv" class="pa" style="width: 2.6em; height: 1.2em; right: 5em; top: 0.8em;"></div>
+  <script> // Calendar iframe
     const calendarSrc = `https://calendar.google.com/calendar/embed?
 				bgcolor=%23000000
 				&color=%23000000
@@ -144,7 +152,7 @@
   </script>
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/tasksManager.jsx"></script>
-  <script type="text/babel">
+  <script type="text/babel"> // SideBar
     const urlPrefixPos = location.href.search("/pages/");
     const urlPrefix = location.href.substring(0, urlPrefixPos);
     const sideBarDom = document.getElementsByClassName('sidebar')[0];
@@ -187,7 +195,7 @@
       </div>
     )
   </script>
-  <!--
+  <!-- SideBar handler and Cesium map
   <script type="text/babel" src="../assets/sideBarHandler.jsx"></script>
   <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
     <button class="close-button" onClick='hideMap()'>
@@ -196,6 +204,38 @@
   </div>
   <script src="../assets/cesiumInit.js"></script>
   -->
+  <script>
+    const milliSecondsPerDay = 24 * 60 * 60 * 1000;
+    const daysBetween1900and1970 = 25569;
+    const numberFormat = {
+      currency: "EUR",
+      maximumSignificantDigits: 9,
+      style: "currency",
+      useGrouping: true
+    };
+    const passiveFactor = 0.0673;
+    const interval = 200;
+    const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
+    console.log(amountEurDomObj)
+    const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
+    console.log(amountEurPasDom)
+    console.log(daily_growth, offset_at_1900);
+    setInterval(
+      () => {
+        const currentAmount = (daily_growth * (
+          ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970
+        ) - offset_at_1900);
+        const currentAmountEur = new Intl.NumberFormat(
+          'es-ES', numberFormat
+        ).format(currentAmount);
+        const amountEurPas = currentAmount * passiveFactor / 12;
+        amountEurDomObj.innerText = currentAmountEur;
+        amountEurPasDom.innerText = new Intl.NumberFormat(
+          'es-ES', numberFormat
+        ).format(amountEurPas);
+      }, interval
+    );
+  </script>
 </body>
 
 </html>

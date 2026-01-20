@@ -20,19 +20,30 @@ class tasksManager extends globalThis.React.Component {
         "9.➕": /*  */ "#bab0ab66"
       },
       dayOffsetValue: Number(1 / 24),
+      daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression
       getDatedMondayItemsToJson: true,
       hide0DurTasks: true,
+      inflacion: 1.04,
+      interval: 200,
       lastRefreshDateTime: "undefined",
-      lastUpdatedItem: false,
       lastUpdatedDt: "",
+      lastUpdatedItem: false,
+      milliSecondsPerDay: 24 * 60 * 60 * 1000,
       minsOffsetValue: 60,
-      mondayTasksByCategorySvg: [],
       mondayTasksByCategoryAndDay: [],
+      mondayTasksByCategorySvg: [],
       mondayTasksByDay: {},
       mondayTasksJson: {},
       nextExercisingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
+      numberFormat: {
+        currency: "EUR",
+        maximumSignificantDigits: 9,
+        style: "currency",
+        useGrouping: true
+      },
+      passiveFactor: 0.0673
     };
   };
   //#endregion
@@ -277,6 +288,37 @@ class tasksManager extends globalThis.React.Component {
     return Object.assign(donutChartSvg.node());
   };
   //#endregion
+  //#region archiveMondayItem
+  archiveMondayItem = async (
+    // @ts-ignore
+    mondayKey, boardId, itemId
+  ) => {
+    // @ts-ignore
+    globalThis.headers["Authorization"] = mondayKey;
+    const query = `mutation { archive_item ( ${""
+      }item_id: ${itemId}) { name } }`;
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
+      globalThis.mondayApiUrl,
+      // @ts-ignore
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
+      }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.
+    ["name"] ?? false;
+    if (lastUpdatedItem) {
+      this.setState({ lastUpdatedItem: lastUpdatedItem });
+    }
+  };
+  //#endregion
   //#region filterTasks
   filterTasks = () => {
     var input, filter, table, tr, td, i, j, txtValue;
@@ -406,6 +448,110 @@ class tasksManager extends globalThis.React.Component {
     return mondayTasksSortedJson;
   };
   //#endregion
+  //#region handleMilestoneAmount
+  //@ts-ignore
+  handleMilestoneAmount = (passiveAmountEurMs) => {
+    const amntEurMsDomObj = document.getElementById("amntEurMs"); // as HTMLInputElement;
+    const dayStartRegr = (offset_at_1900 / daily_growth -
+      this.state.daysBetween1900and1970);
+    const startRegr = new Date(
+      dayStartRegr * this.state.milliSecondsPerDay
+    ).toISOString().replace("T", " ").substring(0, 16);
+    const startRegrDomObj = document.getElementById("startRegr"); // as HTMLSpanElement;
+    // @ts-ignore
+    startRegrDomObj.innerText = startRegr;
+    const afterInput = document.getElementsByClassName("after-input")[0]; // as HTMLSpanElement;
+    // @ts-ignore
+    afterInput.style.display = "inline";
+    const numericAmount = typeof passiveAmountEurMs === 'string' ?
+      parseFloat(passiveAmountEurMs) : Number(passiveAmountEurMs);
+    // @ts-ignore
+    amntEurMsDomObj.innerText = new Intl.NumberFormat(
+      // @ts-ignore
+      'es-ES', numberFormat
+    ).format(numericAmount);
+    const amountEurMs = numericAmount*12/this.state.passiveFactor;
+    const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
+    const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
+      .substring(0, 16);
+    const dateEurMsDomObj = document.getElementById("dateEurMs"); // as HTMLSpanElement;
+    if (dateEurMsDomObj) {
+      dateEurMsDomObj.innerText = dateEurMs;
+    }
+    const yearsMsInt = (
+      (dayEurMs - Date.now()) / this.state.milliSecondsPerDay / 365
+    );
+    const yearsMsDomObj = document.getElementById("yearsMs"); // as HTMLSpanElement;
+    // @ts-ignore
+    yearsMsDomObj.innerText = yearsMsInt.toFixed(2);
+    const calcInflacion = this.state.inflacion ** yearsMsInt;
+    const yearsSelfMs = (
+      (dayEurMs - new Date(birthday).getTime()) / this.state.milliSecondsPerDay / 365
+    ).toFixed(2);
+    const yearsSelfMsDomObj = document.getElementById("yearsSelfMs"); // as HTMLSpanElement;
+    // @ts-ignore
+    yearsSelfMsDomObj.innerText = yearsSelfMs;
+    const adjustedAmountDom = document.getElementById("adjustedAmount"); // as HTMLSpanElement;
+    // @ts-ignore
+    adjustedAmountDom.innerText = new Intl.NumberFormat(
+      // @ts-ignore
+      'es-ES', numberFormat
+    ).format(amountEurMs * this.state.passiveFactor / 12 / calcInflacion);
+  };
+  //#region mondayItemToBacklog
+  mondayItemToBacklog = async (
+    // @ts-ignore
+    mondayKey, boardId, itemId, type
+  ) => {
+    // @ts-ignore
+    globalThis.headers["Authorization"] = mondayKey;
+    let query;
+    const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
+      .substring(2, 19);
+    if (type === "item") {
+      query = `mutation { change_column_value ( ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
+        }"{\\"date\\":\\"\", ${""
+        }\\"time\\":\\"\", ${""
+        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
+        }}") { name } }`;
+    } else if (type === "subitem") {
+      query = `mutation {
+        change_multiple_column_values(
+          board_id: ${boardId}
+          item_id: ${itemId}
+          create_labels_if_missing: true
+          column_values: "{\\"date0\\": \\"\\", \\"numbers\\": \\"0.02\\"}"
+        ) { name }
+      }`;
+    }
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
+      globalThis.mondayApiUrl,
+      // @ts-ignore
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
+      }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = type === "item" ?
+      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
+      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"]
+      ?? "";
+    if (lastUpdatedItem) {
+      this.setState({
+        lastRefreshDateTime: lastRefreshDateTime,
+        lastUpdatedItem: lastUpdatedItem
+      });
+    }
+  };
+  //#endregion
   //#region putMondayDateItem
   putMondayDateItem = async (
     // @ts-ignore
@@ -461,91 +607,6 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region mondayItemToBacklog
-  mondayItemToBacklog = async (
-    // @ts-ignore
-    mondayKey, boardId, itemId, type
-  ) => {
-    // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
-    let query;
-    const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
-      .substring(2, 19);
-    if (type === "item") {
-      query = `mutation { change_column_value ( ${""
-        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
-        }"{\\"date\\":\\"\", ${""
-        }\\"time\\":\\"\", ${""
-        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
-        }}") { name } }`;
-    } else if (type === "subitem") {
-      query = `mutation {
-        change_multiple_column_values(
-          board_id: ${boardId}
-          item_id: ${itemId}
-          create_labels_if_missing: true
-          column_values: "{\\"date0\\": \\"\\", \\"numbers\\": \\"0.02\\"}"
-        ) { name }
-      }`;
-    }
-    const body = JSON.stringify({ "query": query });
-    const mondayPutResponsePremise = await fetch(
-      // @ts-ignore
-      globalThis.mondayApiUrl,
-      // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
-    ).then((response) => {
-      try {
-        return response.json();
-      } catch (e) {
-        console.error(e);
-        return [response];
-      }
-    });
-    const mondayPutResponse = await mondayPutResponsePremise;
-    const lastUpdatedItem = type === "item" ?
-      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
-      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"]
-      ?? "";
-    if (lastUpdatedItem) {
-      this.setState({
-        lastRefreshDateTime: lastRefreshDateTime,
-        lastUpdatedItem: lastUpdatedItem
-      });
-    }
-  };
-  //#endregion
-  //#region archiveMondayItem
-  archiveMondayItem = async (
-    // @ts-ignore
-    mondayKey, boardId, itemId
-  ) => {
-    // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
-    const query = `mutation { archive_item ( ${""
-      }item_id: ${itemId}) { name } }`;
-    const body = JSON.stringify({ "query": query });
-    const mondayPutResponsePremise = await fetch(
-      // @ts-ignore
-      globalThis.mondayApiUrl,
-      // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
-    ).then((response) => {
-      try {
-        return response.json();
-      } catch (e) {
-        console.error(e);
-        return [response];
-      }
-    });
-    const mondayPutResponse = await mondayPutResponsePremise;
-    const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.
-    ["name"] ?? false;
-    if (lastUpdatedItem) {
-      this.setState({ lastUpdatedItem: lastUpdatedItem });
-    }
-  };
-  //#endregion
   //#region setDayOffsetValue
   // @ts-ignore
   setDayOffsetValue = (k) => {
@@ -596,6 +657,7 @@ class tasksManager extends globalThis.React.Component {
         this.state.mondayTasksByCategorySvg[0]
       );
       const goalsDom = document.createElement("span");
+      goalsDom.id = "goalsSpan";
       goalsDom.innerHTML = `<table>
         <tr><th>Category</th>     <th>H/W</th>              <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>    <td class="r">5</td>      <td>🩺checks,🪁🏄ks</td></tr>
@@ -611,12 +673,14 @@ class tasksManager extends globalThis.React.Component {
         fontSize: "1 em",
         fontWeight: "bold",
         fontFamily: "monospace",
-        // @ts-ignore
-        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-        // @ts-ignore
-        ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+        // width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
+        //  ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(goalsDom);
+      const amntEurMsDomObj = document.getElementById("amntEurMs");
+      // @ts-ignore
+      const amountEurMsInput = amntEurMsDomObj?.value;
+      this.handleMilestoneAmount(amountEurMsInput);
     }
     //#endregion
     // @ts-ignore

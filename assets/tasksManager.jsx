@@ -137,7 +137,7 @@ class tasksManager extends globalThis.React.Component {
     // @ts-ignore
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");
-    const [tasksByCategoryWidth, tasksByCategoryHeight] = [500, 400];
+    const [tasksByCategoryWidth, tasksByCategoryHeight] = [400, 350];
     // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
@@ -656,8 +656,7 @@ class tasksManager extends globalThis.React.Component {
       tasksByCategoryPlaceholder.appendChild(
         this.state.mondayTasksByCategorySvg[0]
       );
-      const goalsDom = document.createElement("span");
-      goalsDom.id = "goalsSpan";
+      const goalsDom = document.getElementById("goals");
       goalsDom.innerHTML = `<table>
         <tr><th>Category</th>     <th>H/W</th>              <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>    <td class="r">5</td>      <td>🩺checks,🪁🏄ks</td></tr>
@@ -667,16 +666,11 @@ class tasksManager extends globalThis.React.Component {
         <tr><td>📺🎮🌐➕</td>     <td class="r">&lt;2</td>  <td></td></tr>
       </table>`;
       Object.assign(goalsDom.style, {
-        position: "absolute",
-        left: "40vw",
-        top: 0,
-        fontSize: "1 em",
-        fontWeight: "bold",
-        fontFamily: "monospace",
+
         // width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
         //  ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
       });
-      tasksByCategoryPlaceholder.appendChild(goalsDom);
+      //tasksByCategoryPlaceholder.appendChild(goalsDom);
     }
     //#endregion
     // @ts-ignore
@@ -686,12 +680,10 @@ class tasksManager extends globalThis.React.Component {
         id: "taskManagerWrapper",
         style: { paddingLeft: "0.5em", width: "calc(100% - 0.8em)" },
       },
-      // @ts-ignore
       React.createElement(
         "div",
         { id: "taskManagerTopBar", style: { paddingTop: "0.3em" } },
         //#region refreshTasksButton
-        // @ts-ignore
         React.createElement(
           "button", {
           id: "refreshTasksButton",
@@ -701,7 +693,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region setMinsOffset
-        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -726,7 +717,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastRefreshDateTime
-        // @ts-ignore
         React.createElement(
           "span",
           {
@@ -740,7 +730,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region setDayOffset
-        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -767,7 +756,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastRefreshDateTime
-        // @ts-ignore
         React.createElement(
           "span",
           {
@@ -806,7 +794,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region filter
-        // @ts-ignore
         React.createElement(
           "input",
           {
@@ -825,7 +812,6 @@ class tasksManager extends globalThis.React.Component {
         ),
         //#endregion
         //#region lastUpdatedItem
-        // @ts-ignore
         React.createElement(
           "div",
           {
@@ -854,7 +840,6 @@ class tasksManager extends globalThis.React.Component {
             this.state.lastUpdatedItem
           ),
           this.state.lastUpdatedItem && this.state.lastUpdatedDt &&
-          // @ts-ignore
           React.createElement(
             "span",
             {
@@ -883,7 +868,6 @@ class tasksManager extends globalThis.React.Component {
       ),
       //#endregion
       //#region mondayTableContainer
-      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -909,11 +893,9 @@ class tasksManager extends globalThis.React.Component {
           {
             id: "mondayTasksByDayTable"
           },
-          // @ts-ignore
           React.createElement(
             "thead",
             null,
-            // @ts-ignore
             React.createElement(
               "tr",
               { zindex: 1 },
@@ -936,7 +918,6 @@ class tasksManager extends globalThis.React.Component {
                     style: { cursor: "pointer" }
                   },
                   taskKey,
-                  // @ts-ignore
                   React.createElement(
                     "div",
                     {
@@ -949,7 +930,6 @@ class tasksManager extends globalThis.React.Component {
               )
             )
           ),
-          // @ts-ignore
           React.createElement(
             "tbody",
             null,
@@ -983,7 +963,6 @@ class tasksManager extends globalThis.React.Component {
                     style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "30em" }
                   },
                   ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
-                    // @ts-ignore
                     React.createElement(
                       "div",
                       {
@@ -993,7 +972,6 @@ class tasksManager extends globalThis.React.Component {
                           overflowY: "auto"
                         }
                       },
-                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -1015,7 +993,6 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
-                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -1037,7 +1014,6 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
-                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -1057,7 +1033,6 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
-                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -1093,7 +1068,6 @@ class tasksManager extends globalThis.React.Component {
             )
           )
         ) : // Loading ↓
-          // @ts-ignore
           React.createElement(
             "div",
             { style: { color: "#fff" }},
@@ -1102,7 +1076,6 @@ class tasksManager extends globalThis.React.Component {
       ),
       //#endregion
       //#region durations list & cat bubbles
-      // @ts-ignore
       React.createElement(
         "div",
         {
@@ -1118,13 +1091,11 @@ class tasksManager extends globalThis.React.Component {
             width: "calc(100% - 1em)"
           }
         },
-        // @ts-ignore
         React.createElement(
           "div",
           {
             id: "tasksByCategoryAndDay",
             style: {
-              flexGrow: 1,
               // @ts-ignore
               height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
@@ -1134,7 +1105,19 @@ class tasksManager extends globalThis.React.Component {
           },
           "Loading tasks by category and day"
         ),
-        // @ts-ignore
+        React.createElement(
+          "div",
+          {
+            id: "goals",
+            style: {
+              flexGrow: 1,
+              fontSize: "1.3em",
+              fontWeight: "bold",
+              fontFamily: "monospace",
+            }
+          },
+          ""
+        ),
         React.createElement(
           "div",
           {

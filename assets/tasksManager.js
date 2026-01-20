@@ -349,8 +349,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .domain(series.map(d => d.key).sort())
     .range(customColors);
 
-  const width = 500;
-  const height = 320;
+  const width = 400;
+  const height = 300;
   const marginTop = 10;
   const marginRight = 10;
   const marginBottom = 45;

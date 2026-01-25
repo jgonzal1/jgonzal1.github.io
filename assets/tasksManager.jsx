@@ -58,6 +58,7 @@ class tasksManager extends globalThis.React.Component {
       minsOffsetValue: 60,
       mondayTasksByCategoryAndDay: [],
       mondayTasksByCategorySvg: [],
+      mondayTasksByCatDict: {},
       mondayTasksByDay: {},
       mondayTasksJson: {},
       nextExercisingDay: "undefined",
@@ -144,7 +145,7 @@ class tasksManager extends globalThis.React.Component {
       obj[key] = mondayTasksByCatDict[key];
       return obj;
     }, {});
-    console.log(mondayTasksByCatDict);
+    this.state.mondayTasksByCatDict = mondayTasksByCatDict;
     //#endregion
     //#region Donut Chart
     /*const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
@@ -671,19 +672,41 @@ class tasksManager extends globalThis.React.Component {
       );
       const goalsDom = document.getElementById("goals");
       goalsDom.innerHTML = `<table>
-        <tr><th>Category</th>     <th>H/W</th>              <th>🎯YGoals</th></tr>
-        <tr><td>🍏/Health</td>    <td class="r">5</td>      <td>🩺checks,🪁🏄ks</td></tr>
-        <tr><td>🏠💰/FIRE</td>    <td class="r">&lt;5</td>  <td id="fireGoal">1375€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
-        <tr><td>🚩/Rels</td>      <td class="r">~3</td>     <td>🚩🇸🇪🏠&💼</td></tr>
-        <tr><td>🔬🌿/Motivs</td>  <td class="r">1</td>      <td>h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>     <td class="r">&lt;2</td>  <td></td></tr>
+        <tr><th>Category</th>     <th>H/W</th>                                      <th>🎯YGoals</th></tr>
+        <tr><td>🍏/Health</td>    <td id="healthCount" class="bold-right">5</td>    <td>🩺checks,🪁🏄ks</td></tr>
+        <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3</td>      <td id="fireGoal">1375€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
+        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2</td>      <td>🚩🇸🇪🏠&💼</td></tr>
+        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.5</td>  <td>h/XR or 400🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1</td>      <td></td></tr>
       </table>`;
-      Object.assign(goalsDom.style, {
-
-        // width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-        //  ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+      [
+        {"d":"healthCount", "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relsCount",   "v":0, "s":["4.🚩"],               },
+        {"d":"motivsCount", "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"restCount",   "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+      ].map((k)=>{
+        k["s"].map(l=>k["v"]+=parseFloat(
+          this.state.mondayTasksByCatDict[l] || 0
+        ));
+        const domObj = document.getElementById(k["d"]);
+        if (domObj) {
+          const prevV = domObj.innerText;
+          const kv = (k["v"]).toPrecision(2)??0;
+          console.log(`${k["d"]}: ${prevV} -> ${kv}`);
+          domObj.style.color =
+            ((parseFloat(kv)-1) > parseFloat(prevV)) ? "#ca8b4c" :
+            ((parseFloat(kv)+1) < parseFloat(prevV)) ? "#e15759" :
+            "#b5bd68";
+          domObj.innerText = kv;
+        }
       });
-      //tasksByCategoryPlaceholder.appendChild(goalsDom);
+      /*Object.assign(goalsDom.style, {
+        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
+          ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+      });
+      tasksByCategoryPlaceholder.appendChild(goalsDom);
+      */
     }
     //#endregion
     // @ts-ignore

@@ -35,7 +35,7 @@ class tasksManager extends globalThis.React.Component {
         "180-Every 6 mo": "#78d76ccc",
         "090-Every 3 mo": "#c6d15d",
         "030-Monthly":    "#edc949",
-        "014-BiWeekly":   "#dfb82e",
+        "014-BiWeekly":   "#caa04c",
         "004-times":      "#ca8b4c",
         "003-/week":      "#f28e2c",
         "001-Daily":      "#e15759"
@@ -76,6 +76,7 @@ class tasksManager extends globalThis.React.Component {
   //#region aggrTasksByCategoryDonutChart
   // @ts-ignore
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
+    //#region 1🐇2🐢3♻️ Aggregator
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
       // @ts-ignore
       (accumulator, item) => {
@@ -109,6 +110,8 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayDursByGroup).map(
       k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
     );
+    //#endregion
+    //#region 1🍏2🏠3💰4🚩5🌿5🔬6📺7🎮8🌐 Aggregator
     let mondayTasksByCatDict = mondayTasksSortedJson.filter(
       /**
        * @param {any} t
@@ -132,47 +135,41 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayTasksByCatDict).map(
       k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
     );
-    // sort by key, uncomment for value
-    mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort(
-      //(a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
-    ).reduce(
-      (obj, key) => {
-        // @ts-ignore
-        obj[key] = mondayTasksByCatDict[key];
-        return obj;
-      },
-      {}
-    );
-    // @ts-ignore
-    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
+    /**
+     * sort() by key, by value;
+     * .sort((a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a])
+     */
+    mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort()
+    .reduce((obj, key) => { // @ts-ignore
+      obj[key] = mondayTasksByCatDict[key];
+      return obj;
+    }, {});
+    console.log(mondayTasksByCatDict);
+    //#endregion
+    //#region Donut Chart
+    /*const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {
         const duration = +(mondayTasksByCatDict[k]);
         return {
           "name": k,
           "value": duration,
-          // @ts-ignore
           "color": this.state.colors[k]
         }
       }
     );
-    /*let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value)
+    let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value)
     .filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ) - mondayDursByGroup["3.🔚"]).toFixed(1);*/
-
-    // @ts-ignore
+    ) - mondayDursByGroup["3.🔚"]).toFixed(1);
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
-      ?? document.createElement("div");
+      ?? document.createElement("div");*/
     const [tasksByCategoryWidth, tasksByCategoryHeight] = [400, 350];
-    // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
-    // @ts-ignore
     globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
     const margin = 10;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
-
     // @ts-ignore
     const donutChartSvg = globalThis.d3.create("svg")
       .attr("width", tasksByCategoryWidth)
@@ -183,15 +180,12 @@ class tasksManager extends globalThis.React.Component {
       ])
       .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
       .attr("text-anchor", "middle");
-
-    // @ts-ignore
     // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(
         "transform", "translate(" + tasksByCategoryWidth + ","
         + tasksByCategoryHeight + ")"
       );
-
     const donutChartStartAngle = 45;
     // @ts-ignore
     var pie = globalThis.d3.pie().startAngle(donutChartStartAngle)
@@ -199,22 +193,18 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
-
     // @ts-ignore
     const arc = globalThis.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
-
     // @ts-ignore
     const outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
-
     // @ts-ignore
     const fullArc = globalThis.d3.arc()
       .innerRadius(radius)
       .outerRadius(radius);
-
     donutChartSvg
       .selectAll('allSlices')
       .data(data_ready)
@@ -225,7 +215,6 @@ class tasksManager extends globalThis.React.Component {
       .attr("stroke", "white")
       .style("stroke-width", "2px")
       .style("opacity", 0.7);
-
     donutChartSvg
       .selectAll('allPolylines')
       .data(data_ready)
@@ -249,7 +238,6 @@ class tasksManager extends globalThis.React.Component {
         */
         return [posA, posB]//, posC]
       });
-
     donutChartSvg
       .selectAll('allLabels')
       .data(data_ready)
@@ -268,13 +256,11 @@ class tasksManager extends globalThis.React.Component {
       })
       .style("font-size", "3.5em")
       // @ts-ignore
-      // @ts-ignore
       .style('text-anchor', (d) => {
         //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
-
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", "2.75em").attr("y", "-80").text(() =>
         // @ts-ignore
@@ -310,7 +296,7 @@ class tasksManager extends globalThis.React.Component {
       .style("font-size", "2.75em").attr("y", "80").text(() =>
         `∑: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
       );
-
+    //#endregion
     return Object.assign(donutChartSvg.node());
   };
   //#endregion
@@ -524,6 +510,7 @@ class tasksManager extends globalThis.React.Component {
       'es-ES', numberFormat
     ).format(amountEurMs * this.state.passiveFactor / 12 / calcInflacion);
   };
+  //#endregion
   //#region mondayItemToBacklog
   mondayItemToBacklog = async (
     // @ts-ignore
@@ -1149,7 +1136,7 @@ class tasksManager extends globalThis.React.Component {
                       {
                         style: {
                           backgroundColor: this.state.freqColors[
-                            taskRow[taskKey]
+                            taskRow[taskKey] ?? "999-Once"
                           ],
                           borderRadius: "0.8em",
                           fontSize: "0.8em",
@@ -1157,7 +1144,7 @@ class tasksManager extends globalThis.React.Component {
                           padding: "0.3em 0.6em"
                         }
                       },
-                      taskRow[taskKey]
+                      taskRow[taskKey] ?? "999-Once"
                       )
                   ) :
                   ((taskKey === "status") && (taskRow["dur"] > 0)) ?

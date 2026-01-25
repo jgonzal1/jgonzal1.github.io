@@ -7,7 +7,7 @@ const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
   quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
 );
-console.log("totalHPerWeek", globalThis.totalHPerWeek);
+console.info("totalHPerWeek", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;

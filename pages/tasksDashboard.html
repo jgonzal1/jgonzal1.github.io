@@ -35,7 +35,7 @@
         varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length :
           varTmp.search("&"));
       if (!varNameResult.length || varNameResult.substring(0,8) === "file:///") {
-        console.error(`At least ${varName} was missing via href`);
+        console.info(`At least ${varName} was missing via href`);
         return false;
       }
       return varNameResult;
@@ -68,7 +68,7 @@
           credential =>
             window[credential] = assignHrefVarName(href, credential)
         );
-      console.log("Credentials done loading via href");
+      console.info("Credentials done loading via href");
     }
     handleCredentials();
   </script>
@@ -239,8 +239,12 @@
         if(!exec) {
           const montoDom = document.getElementById("monto");
           const fireGoal = document.getElementById("fireGoal");
-          fireGoal.appendChild(montoDom);
-          exec = true;
+          try {
+            fireGoal.appendChild(montoDom);
+            exec = true;
+          } catch (e) {
+            console.info("fireGoal still not in DOM");
+          }
         }
         const currentAmount = (daily_growth * (
           ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970

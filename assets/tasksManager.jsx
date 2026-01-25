@@ -29,16 +29,16 @@ class tasksManager extends globalThis.React.Component {
         "2": "#e15759",
       },
       freqColors: {
-        "999-Once": "#bab0ab",
-        "400->1y": "#754588",
-        "360-Yearly": "#af7aa1",
-        "180-Every 6 mo": "#4e79a7",
-        "090-Every 3 mo": "#76b7b2",
-        "030-Monthly": "#59a14f",
-        "014-BiWeekly": "#b5bd68",
-        "004-times": "#c2a026",
-        "003-/week": "#edc949",
-        "001-Daily": "#ca8b4c"
+        "999-Once":       "#bab0ab",
+        "400->1y":        "#5891ce66",
+        "360-Yearly":     "#6fdda699",
+        "180-Every 6 mo": "#78d76ccc",
+        "090-Every 3 mo": "#c6d15d",
+        "030-Monthly":    "#edc949",
+        "014-BiWeekly":   "#dfb82e",
+        "004-times":      "#ca8b4c",
+        "003-/week":      "#f28e2c",
+        "001-Daily":      "#e15759"
       },
       statusColors: {
         "Pending": "#e15759",

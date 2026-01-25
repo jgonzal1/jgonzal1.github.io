@@ -687,7 +687,7 @@ class tasksManager extends globalThis.React.Component {
         <tr><th>Category</th>     <th>H/W</th>              <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>    <td class="r">5</td>      <td>🩺checks,🪁🏄ks</td></tr>
         <tr><td>🏠💰/FIRE</td>    <td class="r">&lt;5</td>  <td id="fireGoal">1375€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
-        <tr><td>🚩/Rels</td>      <td class="r">~2</td>     <td>🚩🇸🇪🏠&💼</td></tr>
+        <tr><td>🚩/Rels</td>      <td class="r">~3</td>     <td>🚩🇸🇪🏠&💼</td></tr>
         <tr><td>🔬🌿/Motivs</td>  <td class="r">1</td>      <td>h/XR or 400🌳</td></tr>
         <tr><td>📺🎮🌐➕</td>     <td class="r">&lt;2</td>  <td></td></tr>
       </table>`;
@@ -991,7 +991,22 @@ class tasksManager extends globalThis.React.Component {
                   {
                     key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
                     className: `${taskKey}-td`,
-                    style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "30em" }
+                    style: {
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: "30em",
+                      cursor: "pointer"
+                    },
+                    onClick: () => {
+                      const filterTaskDom = document.getElementById("filterTasks");
+                      if(filterTaskDom.value != taskRow[taskKey]) {
+                        filterTaskDom.value = taskRow[taskKey];
+                      } else {
+                        filterTaskDom.value = "";
+                      }
+                      this.filterTasks();
+                    }
                   },
                   ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
                   React.createElement(
@@ -1012,7 +1027,7 @@ class tasksManager extends globalThis.React.Component {
                           borderRadius: "0.8em",
                           fontSize: "0.8em",
                           fontWeight: "bold",
-                          padding: "0.3em",
+                          padding: "0.3em 0.6em",
                         }
                       },
                       taskRow[taskKey]
@@ -1139,7 +1154,7 @@ class tasksManager extends globalThis.React.Component {
                           borderRadius: "0.8em",
                           fontSize: "0.8em",
                           fontWeight: "bold",
-                          padding: "0.3em",
+                          padding: "0.3em 0.6em"
                         }
                       },
                       taskRow[taskKey]
@@ -1165,7 +1180,7 @@ class tasksManager extends globalThis.React.Component {
                           borderRadius: "0.8em",
                           fontSize: "0.8em",
                           fontWeight: "bold",
-                          padding: "0.3em",
+                          padding: "0.3em 0.6em",
                         }
                       },
                       taskRow[taskKey]

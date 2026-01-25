@@ -190,7 +190,7 @@
       <div className="space-children-01em">
         {
           sideBarPages.map(p => (
-            <a key={`${p.img}A`} href={`#${p.name}`}
+            <a key={`${p.img}A`} href={`${urlPrefix}/${p.location}.html`}
               onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
             >
               <img key={`${p.img}Img`}

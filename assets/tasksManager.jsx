@@ -1244,7 +1244,7 @@ class tasksManager extends globalThis.React.Component {
             id: "goals",
             style: {
               flexGrow: 1,
-              fontSize: "1.3em",
+              fontSize: "1.2em",
               fontWeight: "bold",
               fontFamily: "monospace",
             }

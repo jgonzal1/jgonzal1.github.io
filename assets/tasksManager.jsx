@@ -7,26 +7,26 @@ class tasksManager extends globalThis.React.Component {
     super(props);
     this.state = {
       colors: {
-        "0.➕": /*  */ "#c2b0b0",
-        "1.🍏": /*  */ "#edc949",
-        "2.🏠": /*  */ "#b5bd68",
-        "3.💰": /*  */ "#9c755f",
-        "4.🚩": /**/ "#f28e2c",
-        "5.🔬": /*  */ "#ff9da7",
-        "5.🌿": /*  */ "#59a14f",
-        "6.📺": /*  */ "#af7aa1",
-        "7.🎮": /*  */ "#4e79a7",
-        "8.🌐": /*  */ "#76b7b2",
-        "9.➕": /*  */ "#bab0ab66"
+        "0.➕": "#c2b0b0",
+        "1.🍏": "#edc949",
+        "2.🏠": "#b5bd68",
+        "3.💰": "#9c755f",
+        "4.🚩": "#f28e2c",
+        "5.🔬": "#ff9da7",
+        "5.🌿": "#59a14f",
+        "6.📺": "#af7aa1",
+        "7.🎮": "#4e79a7",
+        "8.🌐": "#76b7b2",
+        "9.➕": "#bab0ab66"
       },
       durColors: {
         "0.02": "#bab0ab",
-        "0.1": "#59a14f",
-        "0.2": "#b5bd68",
-        "0.5": "#edc949",
-        "1": "#c2a026",
-        "1.5": "#ca8b4c",
-        "2": "#e15759",
+        "0.1":  "#59a14f",
+        "0.2":  "#b5bd68",
+        "0.5":  "#edc949",
+        "1":    "#c2a026",
+        "1.5":  "#ca8b4c",
+        "2":    "#e15759"
       },
       freqColors: {
         "999-Once":       "#bab0ab",
@@ -41,9 +41,9 @@ class tasksManager extends globalThis.React.Component {
         "001-Daily":      "#e15759"
       },
       statusColors: {
-        "Pending": "#e15759",
+        "Pending":        "#e15759",
         "Date sensitive": "#f28e2c",
-        "Nice to do": "#bab0ab",
+        "Nice to do":     "#bab0ab"
       },
       dayOffsetValue: Number(1 / 24),
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression

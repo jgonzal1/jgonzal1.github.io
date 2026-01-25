@@ -891,7 +891,12 @@ class tasksManager extends globalThis.React.Component {
         ) ? React.createElement(
           "table",
           {
-            id: "mondayTasksByDayTable"
+            id: "mondayTasksByDayTable",
+            style: {
+              position: "relative",
+              left: "3em",
+              width: "calc(100% - 6.5em)",
+            }
           },
           React.createElement(
             "thead",

@@ -81,7 +81,6 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
         "actions": t["notes"],
         "task_id": t["task_id"],
         "gr": t["group"],
-        "type": t["type"],
         "freq": t["freq"],
         "status": t["status"]
       }

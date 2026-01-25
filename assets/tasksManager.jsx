@@ -7,7 +7,7 @@ class tasksManager extends globalThis.React.Component {
     super(props);
     this.state = {
       colors: {
-        "0.➕": /*  */ "#e15759",
+        "0.➕": /*  */ "#c2b0b0",
         "1.🍏": /*  */ "#edc949",
         "2.🏠": /*  */ "#b5bd68",
         "3.💰": /*  */ "#9c755f",
@@ -18,6 +18,32 @@ class tasksManager extends globalThis.React.Component {
         "7.🎮": /*  */ "#4e79a7",
         "8.🌐": /*  */ "#76b7b2",
         "9.➕": /*  */ "#bab0ab66"
+      },
+      durColors: {
+        "0.02": "#bab0ab",
+        "0.1": "#59a14f",
+        "0.2": "#b5bd68",
+        "0.5": "#edc949",
+        "1": "#c2a026",
+        "1.5": "#ca8b4c",
+        "2": "#e15759",
+      },
+      freqColors: {
+        "999-Once": "#bab0ab",
+        "400->1y": "#754588",
+        "360-Yearly": "#af7aa1",
+        "180-Every 6 mo": "#4e79a7",
+        "090-Every 3 mo": "#76b7b2",
+        "030-Monthly": "#59a14f",
+        "014-BiWeekly": "#b5bd68",
+        "004-times": "#c2a026",
+        "003-/week": "#edc949",
+        "001-Daily": "#ca8b4c"
+      },
+      statusColors: {
+        "Pending": "#e15759",
+        "Date sensitive": "#f28e2c",
+        "Nice to do": "#bab0ab",
       },
       dayOffsetValue: Number(1 / 24),
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression
@@ -967,8 +993,33 @@ class tasksManager extends globalThis.React.Component {
                     className: `${taskKey}-td`,
                     style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "30em" }
                   },
-                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                  ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
                     React.createElement(
+                      "span",
+                      {
+                        style: {
+                          backgroundColor: this.state.durColors[
+                            taskRow[taskKey]
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em",
+                        }
+                      },
+                      taskRow[taskKey]
+                      )
+                  ) :
+                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                  React.createElement(
                       "div",
                       {
                         style: {
@@ -1067,7 +1118,59 @@ class tasksManager extends globalThis.React.Component {
                             ) : taskRow[taskKey])
                           : ""
                       )
-                    ) : taskRow[taskKey ?? ""]
+                  ) :
+                  ((taskKey === "freq") && (taskRow["dur"] > 0)) ?
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        width: "8em",
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
+                    React.createElement(
+                      "span",
+                      {
+                        style: {
+                          backgroundColor: this.state.freqColors[
+                            taskRow[taskKey]
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em",
+                        }
+                      },
+                      taskRow[taskKey]
+                      )
+                  ) :
+                  ((taskKey === "status") && (taskRow["dur"] > 0)) ?
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        width: "8em",
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
+                    React.createElement(
+                      "span",
+                      {
+                        style: {
+                          backgroundColor: this.state.statusColors[
+                            taskRow[taskKey]
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em",
+                        }
+                      },
+                      taskRow[taskKey]
+                    )
+                  ) : taskRow[taskKey ?? ""]
                 ) : ""))
               )
             )

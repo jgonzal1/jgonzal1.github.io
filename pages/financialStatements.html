@@ -22,13 +22,11 @@
     >Sign Out</button>
     <pre id="content" style="white-space: pre-wrap;"></pre>
     <script src="../assets/gsheetHandler.js" type="text/javascript"></script>
-    <script async defer
+    <script async defer onload="gapiLoaded()"
       src="https://apis.google.com/js/api.js"
-      onload="gapiLoaded()"
     ></script>
-    <script async defer
+    <script async defer onload="gisLoaded()"
       src="https://accounts.google.com/gsi/client"
-      onload="gisLoaded()"
     ></script>
     <script>
       populateSheetDataIfLS();

@@ -127,20 +127,61 @@ async function returnSheetsData() {
   }
 }
 
+function sortTableByColumn(domSelector, columnIndex) {
+  const tHeader = document.getElementById(`${domSelector}-header`);
+  const tBody = document.getElementById(`${domSelector}-body`);
+  const rows = Array.from(tBody.children); // Exclude header row
+  const allHeaders = Array.from(tHeader.children)[0]
+  const header = Array.from(allHeaders.children)[columnIndex];
+  // Determine sort order and toggle header styles
+  let ascending = !header.classList.contains("sorted-asc");
+  Array.from(header.parentNode.cells).forEach(cell =>
+    cell.classList.remove("sorted-asc", "sorted-desc"));
+  header.classList.add(ascending ? "sorted-asc" : "sorted-desc");
+  // Sort rows based on the column's text content
+  rows.sort((rowA, rowB) => {
+    const cellA = rowA.cells[columnIndex]?.textContent ?? "";
+    const cellB = rowB.cells[columnIndex]?.textContent ?? "";
+    const compare = isNaN(cellA) || isNaN(cellB)
+      ? cellA.localeCompare(cellB) // Alphabetical sort
+      : parseFloat(cellA) - parseFloat(cellB); // Numerical sort
+    return ascending ? compare : -compare;
+  });
+  rows.map(row => tBody.appendChild(row));
+}
+
 function populateSheetDataIfLS() {
   const sd = localStorage.getItem('sheetData');
   if (!sd) { return; }
   const sdj = JSON.parse(sd);
   const table = document.createElement('table');
-  sdj.forEach((row) => {
-    const tr = document.createElement('tr');
-    row.forEach((cell) => {
-      const td = document.createElement('td');
-      td.innerText = cell;
-      tr.appendChild(td);
-    });
-    table.appendChild(tr);
+  const domSelector = "financial-data-table";
+  table.id=domSelector;
+  const tHeader = document.createElement('thead');
+  tHeader.id=`${domSelector}-header`;
+  const tBody = document.createElement('tbody');
+  tBody.id=`${domSelector}-body`;
+  sdj.forEach((row,i) => {
+    let tr = document.createElement('tr');
+    if(!i){
+      row.forEach((cell,j) => {
+        const td = document.createElement('th');
+        td.onclick = () => sortTableByColumn("financial-data-table",j);
+        td.innerText = cell;
+        tr.appendChild(td);
+      });
+      tHeader.appendChild(tr);
+      table.appendChild(tHeader);
+    } else {
+      row.forEach((cell) => {
+        const td = document.createElement('td');
+        td.innerText = cell;
+        tr.appendChild(td);
+      });
+      tBody.appendChild(tr);
+    }
   });
+  table.appendChild(tBody);
   const content = document.getElementById('content');
   content.innerHTML = '';
   content.appendChild(table);

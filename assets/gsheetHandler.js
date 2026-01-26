@@ -126,3 +126,22 @@ async function returnSheetsData() {
     document.getElementById('content').innerText = range.values;
   }
 }
+
+function populateSheetDataIfLS() {
+  const sd = localStorage.getItem('sheetData');
+  if (!sd) { return; }
+  const sdj = JSON.parse(sd);
+  const table = document.createElement('table');
+  sdj.forEach((row) => {
+    const tr = document.createElement('tr');
+    row.forEach((cell) => {
+      const td = document.createElement('td');
+      td.innerText = cell;
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  content.appendChild(table);
+}

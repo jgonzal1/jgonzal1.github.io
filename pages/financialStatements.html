@@ -31,10 +31,7 @@
       onload="gisLoaded()"
     ></script>
     <script>
-      if(localStorage.getItem('sheetData')) {
-        document.getElementById('content').textContent =
-          localStorage.getItem('sheetData');
-      }
+      populateSheetDataIfLS();
     </script>
   </body>
 </html>

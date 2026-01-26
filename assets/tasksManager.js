@@ -7,7 +7,7 @@ const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
   quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
 );
-console.info("totalHPerWeek", globalThis.totalHPerWeek);
+console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
@@ -82,7 +82,8 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
         "task_id": t["task_id"],
         "gr": t["group"],
         "freq": t["freq"],
-        "status": t["status"]
+        "status": t["status"],
+        "type": t["type"]
       }
     }
   )

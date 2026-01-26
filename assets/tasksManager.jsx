@@ -676,7 +676,6 @@ class tasksManager extends globalThis.React.Component {
         if (domObj) {
           const prevV = domObj.innerText;
           const kv = (k["v"]).toPrecision(2)??0;
-          console.log(`${k["d"]}: ${prevV} -> ${kv}`);
           domObj.style.color =
             ((parseFloat(kv)-1) > parseFloat(prevV)) ? "#ca8b4c" :
             ((parseFloat(kv)+1) < parseFloat(prevV)) ? "#e15759" :
@@ -1176,7 +1175,9 @@ class tasksManager extends globalThis.React.Component {
                       },
                       taskRow[taskKey]
                     )
-                  ) : taskRow[taskKey ?? ""]
+                  ) :
+                  ((taskKey === "type") && (taskRow["dur"] > 0)) ?
+                  "" : taskRow[taskKey ?? ""]
                 ) : ""))
               )
             )

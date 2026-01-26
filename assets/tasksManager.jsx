@@ -927,7 +927,7 @@ class tasksManager extends globalThis.React.Component {
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
                 // @ts-ignore
                 ...Object.keys(this.state.mondayTasksJson[0])
-              ].map(
+              ].filter(tk=>tk!=="type").map(
                 // @ts-ignore
                 (taskKey, taskKeyIdx) => React.createElement(
                   "th",

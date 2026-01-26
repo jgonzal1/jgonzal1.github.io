@@ -168,6 +168,8 @@ function populateSheetDataIfLS() {
         const td = document.createElement('th');
         td.onclick = () => sortTableByColumn("financial-data-table",j);
         td.innerText = cell;
+        td.style.textOrientation = "sideways";
+        td.style.writingMode = "sideways-lr";
         tr.appendChild(td);
       });
       tHeader.appendChild(tr);

@@ -4,23 +4,29 @@
     <title>Financial Statements</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <link rel="shortcut icon" type="image/x-icon"
+      href="../public/real-estate-investing-management.ico">
     <script src="private/credentials.js"></script>
     <script src="../assets/gsheetHandler.js"></script>
   </head>
   <body>
     <h2>Financial Statements</h2>
-    <!--Add buttons to initiate auth sequence and sign out-->
+    <!--Add buttons to initiate auth sequence and sign out style="visibility:hidden"-->
     <button
       id="authorize_button"
-      style="visibility:hidden"
       onclick="handleAuthClick()"
-    >Authorize</button>
+    >Authorize/Refresh</button>
     <button
       id="signout_button"
-      style="visibility:hidden"
+      disabled
       onclick="handleSignoutClick()"
     >Sign Out</button>
-    <pre id="content" style="white-space: pre-wrap;"></pre>
+    <div class="flex-container-2">
+      <div id="content"
+        class="font-size-08-rem half-screen pt-05em resizable table-container"
+      ></div>
+      <div id="graph" class="bordered half-screen"></div>
+    </div>
     <script src="../assets/gsheetHandler.js" type="text/javascript"></script>
     <script async defer onload="gapiLoaded()"
       src="https://apis.google.com/js/api.js"

@@ -276,6 +276,13 @@ th.sorted-desc::after {
   font-weight: bold;
 }
 
+.bordered {
+  border: 1px solid #666;
+  border-radius: 0.2em;
+  margin: 0.1em;
+  padding: 0.1em;
+}
+
 .category-td {
   font-size: 1rem;
 }
@@ -344,6 +351,11 @@ th.sorted-desc::after {
 .grid-container-3 {
   display: grid;
   grid-template-columns: auto auto auto;
+}
+
+.half-screen {
+  height: calc(80% - 1em);
+  width: calc(50% - 1em);
 }
 
 .hidden {

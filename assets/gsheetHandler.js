@@ -16,6 +16,10 @@ let gisInited = false;
  * Callback after api.js is loaded.
  */
 function gapiLoaded() {
+  if(localStorage.getItem('sheetData')) {
+    console.log('Sheet data already in localStorage.');
+    return;
+  }
   gapi.load('client', initializeGapiClient);
 }
 /**
@@ -28,9 +32,14 @@ async function initializeGapiClient() {
   maybeEnableButtons();
 }
 /**
- * Callback after Google Identity Services are loaded.
+ * Callback after Google Identity Services
+ * (Google Sign In) are loaded.
  */
 function gisLoaded() {
+  if(localStorage.getItem('sheetData')) {
+    console.log('Sheet data already in localStorage.');
+    return;
+  }
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: globalThis.googleClientId,
     scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
@@ -103,11 +112,17 @@ async function returnSheetsData() {
     return;
   }
   /** @typeof {[[h1,h2],[v11,v12],[v21,v22]]} */
-  const rv = range.values;
-  console.table(range.values);
-  // Flatten to string to display
-  //const output = range.values.reduce(
-  //    (str, row) => `${str}${row[0]}, ${row[1]}\n`,
-  //    'col1, col2:\n');
-  document.getElementById('content').innerText = range.values;
+  if (localStorage.getItem('sheetData')) {
+    console.log('Sheet data stored in localStorage.');
+  } else {
+    localStorage.setItem('sheetData', JSON.stringify(range.values));
+    const rv = range.values;
+    console.table(rv);
+    /** Flatten to string to display
+    const output = range.values.reduce(
+      (str, row) => `${str}${row[0]}, ${row[1]}\n`,
+      'col1, col2:\n'
+    );*/
+    document.getElementById('content').innerText = range.values;
+  }
 }

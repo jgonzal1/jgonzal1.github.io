@@ -152,13 +152,10 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const daysRangeStart = new Date().getTime();
   const daysRangeEnd = daysRangeStart + (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
-  const currentDate = new Date(
-    new Date().toISOString().substring(0, 10)
-  ); // Gets current day at 00.00
-  const [
-    // @ts-ignore
-    nextExercisingDay, nextVI, nextVF
-  ] = [
+  /** Get current day at 00.00 */
+  const currentDate = new Date(new Date().toISOString().substring(0, 10));
+  // @ts-ignore
+  const [nextExercisingDay, nextVI, nextVF] = [
     "Gym", "(v_i)", "(v_f)"
   ].map(
     (tn) => mondayTasksSortedJson.filter(
@@ -455,6 +452,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .attr("fill", d => color(d.key))
     .attr("d", area)
+    .style("cursor", "pointer")
     // @ts-ignore
     .on("mouseover", (d) => {
       popUpDiv.innerHTML = d.target.textContent;
@@ -467,6 +465,15 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
         textShadow: "#000 0 0 1px",
         top: (d.y - 30) + "px"
       })
+    })
+    .on("click", (d) => {
+      const filterTaskDom = document.getElementById("filterTasks");
+      if(filterTaskDom.value != d.target.textContent) {
+        filterTaskDom.value = d.target.textContent;
+      } else {
+        filterTaskDom.value = "";
+      }
+      globalThis.filterTasks();
     })
     .append("title")
     // @ts-ignore
@@ -590,6 +597,31 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       }
     }
   );
+};
+//#endregion
+//#region filterTasks
+globalThis.filterTasks = () => {
+  var input, filter, table, tr, td, i, j, txtValue;
+  input = document.getElementById("filterTasks");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("mondayTasksByDayTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop tbody rows (not <1: thead), and hide those not matching search query
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td");
+    tr[i].style.visibility = "hidden";
+    tr[i].style.position = "absolute";
+    for (j = 0; j < td.length; j++) {
+      if (td[j]) {
+        txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.visibility = "visible";
+          tr[i].style.position = "relative";
+          continue
+        }
+      }
+    }
+  }
 };
 //#endregion
 //#region offsetNDay

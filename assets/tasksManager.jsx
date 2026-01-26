@@ -215,7 +215,18 @@ class tasksManager extends globalThis.React.Component {
       .attr('fill', d => this.state.colors[d.data[0]])
       .attr("stroke", "white")
       .style("stroke-width", "2px")
-      .style("opacity", 0.7);
+      .style("opacity", 0.7)
+      .style("cursor", "pointer")
+      .on("click", (d) => {
+        const categoryToFilter = d?.target?.__data__?.data?.[0]??"" ;
+        const filterTaskDom = document.getElementById("filterTasks");
+        if(filterTaskDom.value != categoryToFilter) {
+          filterTaskDom.value = categoryToFilter;
+        } else {
+          filterTaskDom.value = "";
+        }
+        globalThis.filterTasks();
+      });
     donutChartSvg
       .selectAll('allPolylines')
       .data(data_ready)
@@ -329,34 +340,6 @@ class tasksManager extends globalThis.React.Component {
     ["name"] ?? false;
     if (lastUpdatedItem) {
       this.setState({ lastUpdatedItem: lastUpdatedItem });
-    }
-  };
-  //#endregion
-  //#region filterTasks
-  filterTasks = () => {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("filterTasks");
-    // @ts-ignore
-    filter = input.value.toUpperCase();
-    table = document.getElementById("mondayTasksByDayTable");
-    // @ts-ignore
-    tr = table.getElementsByTagName("tr");
-
-    // Loop tbody rows (not <1: thead), and hide those not matching search query
-    for (i = 1; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td");
-      tr[i].style.visibility = "hidden";
-      tr[i].style.position = "absolute";
-      for (j = 0; j < td.length; j++) {
-        if (td[j]) {
-          txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.visibility = "visible";
-            tr[i].style.position = "relative";
-            continue
-          }
-        }
-      }
     }
   };
   //#endregion
@@ -835,7 +818,7 @@ class tasksManager extends globalThis.React.Component {
           {
             type: "text",
             id: "filterTasks",
-            onKeyUp: () => this.filterTasks(),
+            onKeyUp: () => globalThis.filterTasks(),
             placeholder: "Search for tasks..",
             style: {
               backgroundColor: "#FFF9",
@@ -901,8 +884,8 @@ class tasksManager extends globalThis.React.Component {
             this.state.lastUpdatedDt.substring(5, 16)
           ),
         )
+        //#endregion
       ),
-      //#endregion
       //#region mondayTableContainer
       React.createElement(
         "div",
@@ -1015,7 +998,7 @@ class tasksManager extends globalThis.React.Component {
                       } else {
                         filterTaskDom.value = "";
                       }
-                      this.filterTasks();
+                      globalThis.filterTasks();
                     }
                   },
                   ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
@@ -1149,7 +1132,6 @@ class tasksManager extends globalThis.React.Component {
                     "div",
                     {
                       style: {
-                        width: "8em",
                         height: "100%",
                         overflowY: "none"
                       }
@@ -1175,7 +1157,6 @@ class tasksManager extends globalThis.React.Component {
                     "div",
                     {
                       style: {
-                        width: "8em",
                         height: "100%",
                         overflowY: "none"
                       }

@@ -35,7 +35,15 @@
       src="https://accounts.google.com/gsi/client"
     ></script>
     <script>
-      populateSheetDataIfLS();
+      (() => {
+        const sd = localStorage.getItem('sheetData');
+        if (!sd) { return; }
+        const sdj = JSON.parse(sd);
+        console.table(sdj);
+        populateSheetTable(sdj);
+        const normalizedData = normalizeSheetDataJson(sdj);
+        console.table(normalizedData);
+      })()
     </script>
   </body>
 </html>

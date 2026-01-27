@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
     <link rel="shortcut icon" type="image/x-icon"
       href="../public/real-estate-investing-management.ico">
+    <script src="../libs/d3.v7.js">globalThis.d3 = d3;</script>
     <script src="private/credentials.js"></script>
     <script src="../assets/gsheetHandler.js"></script>
   </head>
@@ -39,10 +40,12 @@
         const sd = localStorage.getItem('sheetData');
         if (!sd) { return; }
         const sdj = JSON.parse(sd);
-        console.table(sdj);
         populateSheetTable(sdj);
         const normalizedData = normalizeSheetDataJson(sdj);
-        console.table(normalizedData);
+        const graphDom = document.getElementById("graph");
+        if (!graphDom) { return; }
+        graphDom.innerHTML = "";
+        graphDom.appendChild(createStackedAreaChart(normalizedData));
       })()
     </script>
   </body>

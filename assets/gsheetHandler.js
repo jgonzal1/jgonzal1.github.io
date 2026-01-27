@@ -192,44 +192,25 @@ function normalizeSheetDataJson(sheetDataJson) {
   sheetDataJson.map((row, vi) => {
     if(vi===0) { return; } // skip headers
     Array.from({length: 21},(_,i)=>i+2).map((i) => {
+      let numVal = parseFloat((row[i]).replace(".","").replace(",","."));
+      if(isNaN(numVal) || numVal<0) {
+        numVal = 0;
+      }
       normalizedData.push({
         "x": `20${row[1]}-01`,
         "name": headers[i],
-        "value": row[i] || null
+        "value": numVal
       });
     });
   });
   return normalizedData;
 }
 
-function createStackedAreaChart = (mondayTasksSortedJson) => {
-  const msPerH = 3.6e6;
-  const msPerDay = (24 * msPerH);
-  const daysRangeStart = new Date(mondayTasksSortedJson[0]["x"]).getTime();
-  const daysRangeEnd = new Date(mondayTasksSortedJson[-1]["x"]).getTime();
-  const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
-  /** Get current day at 00.00 */
-  const currentDate = new Date(new Date().toISOString().substring(0, 10));
-
-
-  Object.keys(mondayTasksByDayDict).map(
-    k => mondayTasksByDayDict[k] = mondayTasksByDayDict[k].toPrecision(3)
-  );
-
-  // @ts-ignore
-  const days = renamedSortedMondayItemsJson.map(t => t["x"])
-    // @ts-ignore
-    .filter((val, idx, arr) => arr.indexOf(val) === idx);
-  const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮", "9.➕"
-  ];
-  // @ts-ignore
-  days.map(d =>
-    categories.map(c => {
-      renamedSortedMondayItemsJson.push({ "x": d, "name": c, "value": 0 })
-    })
-  );
-  const tasksDurationByDayCategoryPk = renamedSortedMondayItemsJson.reduce(
+function createStackedAreaChart(sheetDataJson) {
+  const msPerD = 3.6e6 * 24;
+  const daysRangeStart = sheetDataJson[0]["x"]; // 18 // new Date("2024-03-01"); 
+  const daysRangeEnd = new Date(); // sheetDataJson[sheetDataJson.length-1]["x"]; // new Date("2024-11-01"); // new Date("2030-06-01"); // 
+  const sheetDataJsonPk = sheetDataJson.reduce(
     // @ts-ignore
     (accumulator, item) => {
       const pk = `${item["x"]}|${item["name"]}`;
@@ -240,89 +221,38 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  const tasksDurationByDayCategory = Object.keys(
-    tasksDurationByDayCategoryPk
-  ).map(tDCD => {
-    const [x, name] = tDCD.split("|");
+  const sheetDataJsonFiltered = Object.keys(
+    sheetDataJsonPk
+  ).map(pk => {
+    const [x, name] = pk.split("|");
     return {
       "x": x,
       "name": name,
-      "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
+      "value": sheetDataJsonPk[pk] ?? 0
     };
-  }).filter(k => (new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)));
-  let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
-    (accumulator, item) => {
-      // @ts-ignore
-      if (!accumulator[item["x"]]) {
-        // @ts-ignore
-        accumulator[item["x"]] = 0;
-      }
-      // @ts-ignore
-      accumulator[item["x"]] += item["value"]
-      return accumulator
-    }, {}
-  );
-  Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
-    const d = daysRangeStart + (i * msPerDay);
-    const wd = weekday[new Date(d).getDay()];
-    const maxForDay = ["S", "U"].includes(wd)
-      ? (quartersOfHourWeekends * 15)
-      : (quartersOfHourWeekdays * 15);
-    const date = new Date(d).toISOString().substring(0, 10);
-    let matched = false;
-    tasksDurationByDayCategory.filter(
-      taskToFilter => (
-        taskToFilter["x"] === date
-        && taskToFilter["name"] === "9.➕"
-      )
-    ).map(filteredTask => {
-      matched = true;
-      // @ts-ignore
-      const remaining = maxForDay - (remainingTasksDurationsByDay[date] ?? 0);
-      filteredTask["value"] += Math.max(0, remaining);
-      return filteredTask;
-    });
-    if (!matched) {
-      tasksDurationByDayCategory.push({
-        "x": date,
-        "name": "9.➕",
-        "value": maxForDay
-      })
-    }
-  });
-  tasksDurationByDayCategory.sort((a, b) => {
+  }).filter((k) => (
+    (new Date(k["x"]) > new Date(daysRangeStart)) &&
+    (new Date(k["x"]) < new Date(daysRangeEnd))
+  )).sort((a, b) => {
     return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
   });
-  //console.log(tasksDurationByDayCategory);
   const popUpDiv = document.getElementById("popUpDiv")
     ?? document.createElement("div");
-
   // Determine the series that need to be stacked.
-  // @ts-ignore
   const series = globalThis.d3.stack()
     //.offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) to StreamGraph
     //@ts-ignore
-    .keys(d3.union(tasksDurationByDayCategory.map(d => d.name)))
-    // distinct series keys, in input order
-    // @ts-ignore
+    .keys(d3.union(sheetDataJsonFiltered.map(d => d.name)))
+    // @ts-ignore distinct series keys, in input order
     .value(([, D], key) => D.get(key)?.value ?? 0)
     //@ts-ignore get value for each series key and stack
-    (d3.index(tasksDurationByDayCategory, d => new Date(d.x), d => d.name));
+    (d3.index(sheetDataJsonFiltered, d => new Date(d.x), d => d.name));
   // group by stack then series key
 
   const customColors = [
-    //"#e15759",
-    "#edc949", // 🍏
-    "#b5bd68", // 🏠
-    "#9c755f", // 💰
-    "#f28e2c", // 🚩
-    "#59a14f", // 🌿
-    "#ff9da7", // 🔬
-    "#af7aa1", // 📺
-    "#4e79a7", // 🎮
-    "#76b7b2", // 🌐
-    "#bab0ab66", // ➕
-    ""
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949"
   ];
   //@ts-ignore
   const color = globalThis.d3.scaleOrdinal()
@@ -330,20 +260,19 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
     .domain(series.map(d => d.key).sort())
     .range(customColors);
 
-  const width = 400;
-  const height = 300;
+  const width = 800;
+  const height = 800;
   const marginTop = 10;
   const marginRight = 10;
   const marginBottom = 45;
   const marginLeft = 55;
 
-  // Prepare the scales for positional and color encodings.
-  // @ts-ignore
+  // Prepare the scales for positional and color encodings. @ts-ignore
   const x = globalThis.d3.scaleUtc() //
     // @ts-ignore
     .domain(globalThis.d3.extent(
       // @ts-ignore
-      tasksDurationByDayCategory, d => new Date(d.x)
+      sheetDataJsonFiltered, d => new Date(d.x)
     ))
     .range([marginLeft, width - marginRight]);
   //@ts-ignore
@@ -357,11 +286,7 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
   //@ts-ignore Construct an area shape
   const area = globalThis.d3.area()
     // @ts-ignore
-    .x(d => x(d.data[0]))
-    // @ts-ignore
-    .y0(d => y(d[0]))
-    // @ts-ignore
-    .y1(d => y(d[1]))
+    .x(d => x(d.data[0])).y0(d => y(d[0])).y1(d => y(d[1]))
     // @ts-ignore
     .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
 
@@ -376,7 +301,7 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
   svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
     //@ts-ignore
-    .call(d3.axisLeft(y).ticks(height / 80).tickFormat(
+    .call(globalThis.d3.axisLeft(y).ticks(height / 80).tickFormat(
       // @ts-ignore
       (d) => Math.abs(d).toLocaleString("en-US")
     ))
@@ -394,40 +319,18 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
       .attr("text-anchor", "start")
       .text("↑ minutes"));
 
-  /** x-axis
-  const xTicks = globalThis.d3.axisBottom(x).tickSizeOuter(0)
-    .ticks(globalThis.categoryAggrDaysRange / 2, "%y-%m-%d");
-  const xScale = globalThis.d3.scaleTime()
-    .domain(globalThis.d3.extent(tasksDurationByDayCategory, d => d.x))
-    .range([marginLeft, width - marginRight]);
-  */
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
-      globalThis.categoryAggrDaysRange / 2, "%y-%m-%d"
-    ) // %a for weekday
-      // @ts-ignore
-      .tickFormat((d) => `${(
-        100 + ((new Date(d).valueOf() - currentDate.valueOf()) / msPerH / 24)
-      ).toFixed(0).slice(1, 3)
-        } ${new Date(d).toISOString().slice(5, 10)
-        } ${weekday[new Date(d).getDay()]
-        }`))
+      20, "%y-%m-%d"
+    ))
     .selectAll("text")
     .style("font-family", "courier")
     .style("text-anchor", "end")
     .attr("dx", "-0.5em")
     .attr("dy", "0.1em")
     .attr("transform", () => "rotate(-30)")
-  /* ↓ optional
-  .call(g => g
-    .attr('class', 'grid-lines').selectAll('line')
-    .data(xScale.ticks()).join('line')
-    .attr('x1', d => xScale(d)).attr('x2', d => xScale(d))
-    .attr('y1', marginTop).attr('y2', height - marginBottom))
-  .call(g => g.select(".domain").remove())
-  */
 
   // Filling path to graph each series
   svg.append("g")
@@ -437,7 +340,7 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
     // @ts-ignore
     .attr("fill", d => color(d.key))
     .attr("d", area)
-    .style("cursor", "pointer")
+    /*.style("cursor", "pointer")
     // @ts-ignore
     .on("mouseover", (d) => {
       popUpDiv.innerHTML = d.target.textContent;
@@ -459,27 +362,36 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
         filterTaskDom.value = "";
       }
       globalThis.filterTasks();
-    })
+    })*/
     .append("title")
     // @ts-ignore
     .text(d => d.key);
 
   // Legend
-  const yOffset = 50;
-  const xOffset = 400;
-  svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 85)
-    .attr("height", 210).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
+  const yOffset = 90;
+  const xOffset = 60;
+  svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 160)
+    .attr("height", 390).attr("rx", 10).attr("ry", 10).style("fill", "#6666");
   [
-    ["1.🍏", "#edc949"],
-    ["2.🏠", "#b5bd68"],
-    ["3.💰", "#9c755f"],
-    ["4.🚩", "#f28e2c"],
-    ["5.🔬", "#ff9da7"],
-    ["5.🌿", "#59a14f"],
-    ["6.📺", "#af7aa1"],
-    ["7.🎮", "#4e79a7"],
-    ["8.🌐", "#76b7b2"],
-    ["9.➕", "#bab0ab66"]
+    ["cuc88_e", "#e15759"],
+    ["pr52_e", "#4e79a7"],
+    ["cbm3_e", "#edc949"],
+    ["myinv_msciw_fid", "#e15759"],
+    ["myinv_man", "#f28e2c"],
+    ["myinv_vg_em_rv", "#ff9da7"],
+    ["cat_occ_mtfds", "#b5bd68"],
+    ["fwu_pias_largo", "#76b7b2"],
+    ["axa_primactiva", "#4e79a7"],
+    ["cat_oc_ah_cr", "#76b7b2"],
+    ["deposito_alquiler", "#ff9da7"],
+    ["lunar", "#edc949"],
+    ["wise", "#edc949"],
+    ["ing", "#b5bd68"],
+    ["revolut", "#b5bd68"],
+    ["rev_flex_funds", "#76b7b2"],
+    ["Breeah_Bitget_liq", "#af7aa1"],
+    ["deuda_Sonata", "#af7aa1"],
+    ["deuda_mama", "#4e79a7"]
   ].map((colorPair, idx) => {
     svg.append("circle").attr("cx", xOffset + 15)
       .attr("cy", 20 * idx + yOffset + 15).attr("r", 6)
@@ -490,11 +402,11 @@ function createStackedAreaChart = (mondayTasksSortedJson) => {
       .attr("fill", "#FFF")
   });
 
-  const mondayTasksByCategoryAndDay = Object.assign(
+  const graphPlaceholder = Object.assign(
     svg.node(), { scales: { color } }
   );
-  mondayTasksByCategoryAndDay.id = "mondayTasksByCategoryAndDay";
-  mondayTasksByCategoryAndDay.style.position = "absolute";
-  mondayTasksByCategoryAndDay.style.top = 0;
-  return mondayTasksByCategoryAndDay;
-};
+  graphPlaceholder.id = "graph";
+  graphPlaceholder.style.position = "absolute";
+  graphPlaceholder.style.top = 0;
+  return graphPlaceholder;
+}

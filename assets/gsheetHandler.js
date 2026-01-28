@@ -193,7 +193,7 @@ function normalizeSheetDataJson(sheetDataJson) {
     if(vi===0) { return; } // skip headers
     Array.from({length: 21},(_,i)=>i+2).map((i) => {
       let numVal = parseFloat((row[i]).replace(".","").replace(",","."));
-      if(isNaN(numVal) || numVal<0) {
+      if(isNaN(numVal)) { //|| numVal<0
         numVal = 0;
       }
       normalizedData.push({
@@ -208,8 +208,8 @@ function normalizeSheetDataJson(sheetDataJson) {
 
 function createStackedAreaChart(sheetDataJson) {
   const msPerD = 3.6e6 * 24;
-  const daysRangeStart = sheetDataJson[0]["x"]; // 18 // new Date("2024-03-01"); 
-  const daysRangeEnd = new Date(); // sheetDataJson[sheetDataJson.length-1]["x"]; // new Date("2024-11-01"); // new Date("2030-06-01"); // 
+  const daysRangeStart = sheetDataJson[0]["x"]; // 18 // new Date("2024-03-01");
+  const daysRangeEnd = new Date(); // sheetDataJson[sheetDataJson.length-1]["x"]; // new Date("2024-11-01"); // new Date("2030-06-01"); //
   const sheetDataJsonPk = sheetDataJson.reduce(
     // @ts-ignore
     (accumulator, item) => {

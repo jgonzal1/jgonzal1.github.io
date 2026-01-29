@@ -207,9 +207,15 @@ function normalizeSheetDataJson(sheetDataJson) {
 }
 
 function createStackedAreaChart(sheetDataJson) {
-  const msPerD = 3.6e6 * 24;
+  //#region Variables
   const daysRangeStart = sheetDataJson[0]["x"]; // 18 // new Date("2024-03-01");
   const daysRangeEnd = new Date(); // sheetDataJson[sheetDataJson.length-1]["x"]; // new Date("2024-11-01"); // new Date("2030-06-01"); //
+  const width = 800;
+  const height = 800;
+  const marginTop = 50;
+  const marginRight = 10;
+  const marginBottom = 45;
+  const marginLeft = 55;
   const sheetDataJsonPk = sheetDataJson.reduce(
     // @ts-ignore
     (accumulator, item) => {
@@ -236,8 +242,16 @@ function createStackedAreaChart(sheetDataJson) {
   )).sort((a, b) => {
     return b.x < a.x ? -1 : b.x > a.x ? 1 : 0
   });
+  const customColors = [
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
+    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949"
+  ];
   const popUpDiv = document.getElementById("popUpDiv")
     ?? document.createElement("div");
+  //#endregion
+
+  //#region D3 Vars and Fxs
   // Determine the series that need to be stacked.
   const series = globalThis.d3.stack()
     //.offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) to StreamGraph
@@ -247,26 +261,12 @@ function createStackedAreaChart(sheetDataJson) {
     .value(([, D], key) => D.get(key)?.value ?? 0)
     //@ts-ignore get value for each series key and stack
     (d3.index(sheetDataJsonFiltered, d => new Date(d.x), d => d.name));
-  // group by stack then series key
-
-  const customColors = [
-    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
-    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
-    "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949"
-  ];
   //@ts-ignore
   const color = globalThis.d3.scaleOrdinal()
     // @ts-ignore
     .domain(series.map(d => d.key).sort())
     .range(customColors);
-
-  const width = 800;
-  const height = 800;
-  const marginTop = 10;
-  const marginRight = 10;
-  const marginBottom = 45;
-  const marginLeft = 55;
-
+  // group by stack then series key
   // Prepare the scales for positional and color encodings. @ts-ignore
   const x = globalThis.d3.scaleUtc() //
     // @ts-ignore
@@ -282,29 +282,51 @@ function createStackedAreaChart(sheetDataJson) {
       0, globalThis.d3.max(series, d => globalThis.d3.max(d, d => d[1]))
     ]) // globalThis.d3.extent(series.flat(2)) for StreamGraph
     .rangeRound([height - marginBottom, marginTop]);
-
   //@ts-ignore Construct an area shape
   const area = globalThis.d3.area()
     // @ts-ignore
     .x(d => x(d.data[0])).y0(d => y(d[0])).y1(d => y(d[1]))
     // @ts-ignore
     .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
+  const xGrid = d3.axisBottom(x)
+    .ticks(80)               // Once per quarter for now
+    .tickSizeInner(-height)  // Vertical lines across full height
+    .tickSizeOuter(0)        // No end caps
+    .tickFormat("");         // Hide tick labels
+  const zoomed = ({transform}) => {
+    transform.rescaleX(x).interpolate(d3.interpolateRound);
+    transform.rescaleY(y).interpolate(d3.interpolateRound);
+    svg.attr("transform", transform).attr("stroke-width", 5 / transform.k);
+  }
+  const zoom = globalThis.d3.zoom()
+      .scaleExtent([0.5, 32])
+      .on("zoom", zoomed);
+  //#endregion
 
+  //#region SVG Fxs
   //@ts-ignore Create the SVG container
   const svg = globalThis.d3.create("svg")
-    .attr("viewBox", [0, 0, width, height])
+    .attr("viewBox", [0, 0, width, height]) //.attr("viewBox", [marginLeft, -marginTop, width, height + focusHeight])
     .attr("width", width)
     .attr("height", height)
-    .attr("style", "max-width: 100%; height: auto;");
+    .attr("style", "max-width: 100%; display: block;");
+
+  svg.append("g")
+    .attr("class", "x grid")
+    .attr("transform", `translate(0,${height})`)
+    .call(xGrid);
 
   // y-axis without domain line, grid lines and y-label
   svg.append("g")
     .attr("transform", `translate(${marginLeft},0)`)
     //@ts-ignore
-    .call(globalThis.d3.axisLeft(y).ticks(height / 80).tickFormat(
+    .call(
+      // 40: every 5k ~ 200k
+      globalThis.d3.axisLeft(y).ticks(40).tickFormat(
       // @ts-ignore
-      (d) => Math.abs(d).toLocaleString("en-US")
-    ))
+        (d) => Math.abs(d).toLocaleString("en-US")
+      )
+    )
     // @ts-ignore
     .call(g => g.select(".domain").remove())
     // @ts-ignore
@@ -317,7 +339,7 @@ function createStackedAreaChart(sheetDataJson) {
       .attr("y", 30)
       .attr("fill", "currentColor")
       .attr("text-anchor", "start")
-      .text("↑ minutes"));
+      .text("↑ €"));
 
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
@@ -340,21 +362,28 @@ function createStackedAreaChart(sheetDataJson) {
     // @ts-ignore
     .attr("fill", d => color(d.key))
     .attr("d", area)
-    /*.style("cursor", "pointer")
+    //#region Cursor and pop-up interactivity
+    .style("cursor", "pointer")
     // @ts-ignore
     .on("mouseover", (d) => {
-      popUpDiv.innerHTML = d.target.textContent;
+      const horizontalValues = d.target.childNodes[0].__data__[0].data[1];
+      const currentValue = horizontalValues.get(d.target.textContent);
+      popUpDiv.innerHTML = `asset: ${d.target.textContent
+        },<br>x: ${currentValue["x"]
+        },<br>y: ${currentValue["value"]
+        }`;
       Object.assign(popUpDiv.style, {
+        position: "absolute",
         backgroundColor: color(d.target.textContent),
         border: "1px solid #666",
         borderRadius: "0.3em",
         left: (d.x) + "px",
-        padding: "0.1em 0 0.3em 0.3em",
+        padding: "0.3em",
         textShadow: "#000 0 0 1px",
         top: (d.y - 30) + "px"
       })
     })
-    .on("click", (d) => {
+    /*.on("click", (d) => {
       const filterTaskDom = document.getElementById("filterTasks");
       if(filterTaskDom.value != d.target.textContent) {
         filterTaskDom.value = d.target.textContent;
@@ -362,12 +391,16 @@ function createStackedAreaChart(sheetDataJson) {
         filterTaskDom.value = "";
       }
       globalThis.filterTasks();
-    })*/
+    */
+   //#endregion
     .append("title")
     // @ts-ignore
     .text(d => d.key);
 
-  // Legend
+  svg.call(zoom).call(zoom.transform, d3.zoomIdentity);
+  //#endregion
+
+  //#region Legend
   const yOffset = 90;
   const xOffset = 60;
   svg.append("rect").attr("x", xOffset).attr("y", yOffset).attr("width", 160)
@@ -401,12 +434,19 @@ function createStackedAreaChart(sheetDataJson) {
       .style("font-size", "15px").attr("alignment-baseline", "middle")
       .attr("fill", "#FFF")
   });
+  //#endregion
 
-  const graphPlaceholder = Object.assign(
-    svg.node(), { scales: { color } }
-  );
+  //#region Placeholder export
+  const graphPlaceholder = Object.assign(svg.node(), {
+    reset() {
+      svg.transition()
+          .duration(750)
+          .call(zoom.transform, d3.zoomIdentity);
+    }
+  }, { scales: { color } });
   graphPlaceholder.id = "graph";
   graphPlaceholder.style.position = "absolute";
   graphPlaceholder.style.top = 0;
   return graphPlaceholder;
+  //#endregion
 }

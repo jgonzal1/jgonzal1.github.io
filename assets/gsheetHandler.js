@@ -247,6 +247,8 @@ function createStackedAreaChart(sheetDataJson) {
     "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949", "#f28e2c", "#e15759", "#ff9da7",
     "#af7aa1", "#4e79a7", "#76b7b2", "#b5bd68", "#edc949"
   ];
+  const popUpDiv = document.getElementById("popUpDiv")
+    ?? document.createElement("div");
   //#endregion
 
   //#region D3 Vars and Fxs
@@ -361,29 +363,34 @@ function createStackedAreaChart(sheetDataJson) {
     .attr("fill", d => color(d.key))
     .attr("d", area)
     //#region Cursor and pop-up interactivity
-    /*.style("cursor", "pointer")
-      // @ts-ignore
-      .on("mouseover", (d) => {
-        popUpDiv.innerHTML = d.target.textContent;
-        Object.assign(popUpDiv.style, {
-          backgroundColor: color(d.target.textContent),
-          border: "1px solid #666",
-          borderRadius: "0.3em",
-          left: (d.x) + "px",
-          padding: "0.1em 0 0.3em 0.3em",
-          textShadow: "#000 0 0 1px",
-          top: (d.y - 30) + "px"
-        })
+    .style("cursor", "pointer")
+    // @ts-ignore
+    .on("mouseover", (d) => {
+      const horizontalValues = d.target.childNodes[0].__data__[0].data[1];
+      const currentValue = horizontalValues.get(d.target.textContent);
+      popUpDiv.innerHTML = `asset: ${d.target.textContent
+        },<br>x: ${currentValue["x"]
+        },<br>y: ${currentValue["value"]
+        }`;
+      Object.assign(popUpDiv.style, {
+        position: "absolute",
+        backgroundColor: color(d.target.textContent),
+        border: "1px solid #666",
+        borderRadius: "0.3em",
+        left: (d.x) + "px",
+        padding: "0.3em",
+        textShadow: "#000 0 0 1px",
+        top: (d.y - 30) + "px"
       })
-      .on("click", (d) => {
-        const filterTaskDom = document.getElementById("filterTasks");
-        if(filterTaskDom.value != d.target.textContent) {
-          filterTaskDom.value = d.target.textContent;
-        } else {
-          filterTaskDom.value = "";
-        }
-        globalThis.filterTasks();
-      })
+    })
+    /*.on("click", (d) => {
+      const filterTaskDom = document.getElementById("filterTasks");
+      if(filterTaskDom.value != d.target.textContent) {
+        filterTaskDom.value = d.target.textContent;
+      } else {
+        filterTaskDom.value = "";
+      }
+      globalThis.filterTasks();
     */
    //#endregion
     .append("title")

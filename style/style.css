@@ -356,6 +356,8 @@ th.sorted-desc::after {
 .half-screen {
   height: calc(80% - 1em);
   width: calc(50% - 1em);
+  overflow: hidden;
+  position: relative;
 }
 
 .hidden {
@@ -572,6 +574,14 @@ th.sorted-desc::after {
 .w70 {
   width: 80%;
   padding-right: 2em;
+}
+
+.x.grid path,
+.x.grid line {
+  stroke: #CCC;
+  stroke-width: 1;
+  stroke-opacity: 0.3;
+  shape-rendering: crispEdges;
 }
 
 .zoom-out-iframe {

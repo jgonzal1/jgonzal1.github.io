@@ -262,7 +262,7 @@ function createStackedAreaChart(sheetDataJson) {
 
   const width = 800;
   const height = 800;
-  const marginTop = 10;
+  const marginTop = 50;
   const marginRight = 10;
   const marginBottom = 45;
   const marginLeft = 55;
@@ -290,12 +290,27 @@ function createStackedAreaChart(sheetDataJson) {
     // @ts-ignore
     .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
 
+  const xGrid = d3.axisBottom(x)
+    .ticks(48)               // Twice per year for now
+    .tickSizeInner(-height)  // Vertical lines across full height
+    .tickSizeOuter(0)        // No end caps
+    .tickFormat("");         // Hide tick labels
+
+  const zoom = globalThis.d3.zoom()
+      .scaleExtent([0.5, 32])
+      .on("zoom", zoomed);
+
   //@ts-ignore Create the SVG container
   const svg = globalThis.d3.create("svg")
-    .attr("viewBox", [0, 0, width, height])
+    .attr("viewBox", [0, 0, width, height]) //.attr("viewBox", [marginLeft, -marginTop, width, height + focusHeight])
     .attr("width", width)
     .attr("height", height)
-    .attr("style", "max-width: 100%; height: auto;");
+    .attr("style", "max-width: 100%; display: block;");
+
+  svg.append("g")
+    .attr("class", "x grid")
+    .attr("transform", `translate(0,${height})`)
+    .call(xGrid);
 
   // y-axis without domain line, grid lines and y-label
   svg.append("g")
@@ -340,32 +355,42 @@ function createStackedAreaChart(sheetDataJson) {
     // @ts-ignore
     .attr("fill", d => color(d.key))
     .attr("d", area)
+    //#region Cursor and pop-up interactivity
     /*.style("cursor", "pointer")
-    // @ts-ignore
-    .on("mouseover", (d) => {
-      popUpDiv.innerHTML = d.target.textContent;
-      Object.assign(popUpDiv.style, {
-        backgroundColor: color(d.target.textContent),
-        border: "1px solid #666",
-        borderRadius: "0.3em",
-        left: (d.x) + "px",
-        padding: "0.1em 0 0.3em 0.3em",
-        textShadow: "#000 0 0 1px",
-        top: (d.y - 30) + "px"
+      // @ts-ignore
+      .on("mouseover", (d) => {
+        popUpDiv.innerHTML = d.target.textContent;
+        Object.assign(popUpDiv.style, {
+          backgroundColor: color(d.target.textContent),
+          border: "1px solid #666",
+          borderRadius: "0.3em",
+          left: (d.x) + "px",
+          padding: "0.1em 0 0.3em 0.3em",
+          textShadow: "#000 0 0 1px",
+          top: (d.y - 30) + "px"
+        })
       })
-    })
-    .on("click", (d) => {
-      const filterTaskDom = document.getElementById("filterTasks");
-      if(filterTaskDom.value != d.target.textContent) {
-        filterTaskDom.value = d.target.textContent;
-      } else {
-        filterTaskDom.value = "";
-      }
-      globalThis.filterTasks();
-    })*/
+      .on("click", (d) => {
+        const filterTaskDom = document.getElementById("filterTasks");
+        if(filterTaskDom.value != d.target.textContent) {
+          filterTaskDom.value = d.target.textContent;
+        } else {
+          filterTaskDom.value = "";
+        }
+        globalThis.filterTasks();
+      })
+    */
+   //#endregion
     .append("title")
     // @ts-ignore
     .text(d => d.key);
+
+  svg.call(zoom).call(zoom.transform, d3.zoomIdentity);
+  function zoomed({transform}) {
+    transform.rescaleX(x).interpolate(d3.interpolateRound);
+    transform.rescaleY(y).interpolate(d3.interpolateRound);
+    svg.attr("transform", transform).attr("stroke-width", 5 / transform.k);
+  }
 
   // Legend
   const yOffset = 90;
@@ -402,9 +427,13 @@ function createStackedAreaChart(sheetDataJson) {
       .attr("fill", "#FFF")
   });
 
-  const graphPlaceholder = Object.assign(
-    svg.node(), { scales: { color } }
-  );
+  const graphPlaceholder = Object.assign(svg.node(), {
+    reset() {
+      svg.transition()
+          .duration(750)
+          .call(zoom.transform, d3.zoomIdentity);
+    }
+  }, { scales: { color } });
   graphPlaceholder.id = "graph";
   graphPlaceholder.style.position = "absolute";
   graphPlaceholder.style.top = 0;

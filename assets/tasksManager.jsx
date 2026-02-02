@@ -1016,6 +1016,9 @@ class tasksManager extends globalThis.React.Component {
                       cursor: "pointer"
                     },
                     onClick: () => {
+                      if (taskKey === "actions") {
+                        return;
+                      }
                       const filterTaskDom = document.getElementById("filterTasks");
                       // @ts-ignore
                       if(filterTaskDom.value != taskRow[taskKey]) {

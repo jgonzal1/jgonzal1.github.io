@@ -24,6 +24,7 @@ class tasksManager extends globalThis.React.Component {
         "0.1":  "#59a14f",
         "0.2":  "#b5bd68",
         "0.5":  "#edc949",
+        "0.8":  "#e2bc34",
         "1":    "#c2a026",
         "1.5":  "#ca8b4c",
         "2":    "#e15759"

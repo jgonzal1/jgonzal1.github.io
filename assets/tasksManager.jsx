@@ -70,7 +70,7 @@ class tasksManager extends globalThis.React.Component {
         style: "currency",
         useGrouping: true
       },
-      passiveFactor: 0.0712
+      passiveFactor: 0.0732
     };
   };
   //#endregion

@@ -50,7 +50,7 @@ class tasksManager extends globalThis.React.Component {
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression
       getDatedMondayItemsToJson: true,
       hide0DurTasks: true,
-      inflacion: 1.04,
+      inflation: 1.04,
       interval: 200,
       lastRefreshDateTime: "undefined",
       lastUpdatedDt: "",
@@ -488,7 +488,7 @@ class tasksManager extends globalThis.React.Component {
     const yearsMsDomObj = document.getElementById("yearsMs"); // as HTMLSpanElement;
     // @ts-ignore
     yearsMsDomObj.innerText = yearsMsInt.toFixed(2);
-    const calcInflacion = this.state.inflacion ** yearsMsInt;
+    const calcinflation = this.state.inflation ** yearsMsInt;
     const yearsSelfMs = (
       (dayEurMs - new Date(birthday).getTime()) / this.state.milliSecondsPerDay / 365
     ).toFixed(2);
@@ -500,7 +500,7 @@ class tasksManager extends globalThis.React.Component {
     adjustedAmountDom.innerText = new Intl.NumberFormat(
       // @ts-ignore
       'es-ES', numberFormat
-    ).format(amountEurMs * this.state.passiveFactor / 12 / calcInflacion);
+    ).format(amountEurMs * this.state.passiveFactor / 12 / calcinflation);
   };
   //#endregion
   //#region mondayItemToBacklog

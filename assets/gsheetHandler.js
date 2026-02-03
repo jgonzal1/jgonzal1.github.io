@@ -206,6 +206,9 @@ function normalizeSheetDataJson(sheetDataJson) {
   return normalizedData;
 }
 
+/**
+ * TODO restrict move to zoomed in, as makes render to glitch zoomed out.
+ */
 function createStackedAreaChart(sheetDataJson) {
   //#region Variables
   const daysRangeStart = sheetDataJson[0]["x"]; // 18 // new Date("2024-03-01");
@@ -377,10 +380,10 @@ function createStackedAreaChart(sheetDataJson) {
         backgroundColor: color(d.target.textContent),
         border: "1px solid #666",
         borderRadius: "0.3em",
-        left: (d.x) + "px",
+        left: (d.x + 5) + "px",
         padding: "0.3em",
         textShadow: "#000 0 0 1px",
-        top: (d.y - 30) + "px"
+        top: (d.y - 5) + "px"
       })
     })
     /*.on("click", (d) => {

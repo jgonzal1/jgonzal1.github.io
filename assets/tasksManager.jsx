@@ -70,8 +70,7 @@ class tasksManager extends globalThis.React.Component {
         maximumSignificantDigits: 9,
         style: "currency",
         useGrouping: true
-      },
-      passiveFactor: 0.0732
+      }
     };
   };
   //#endregion
@@ -474,7 +473,7 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     ).format(numericAmount);
-    const amountEurMs = numericAmount*12/this.state.passiveFactor;
+    const amountEurMs = numericAmount*12/globalThis.passive_factor;
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
       .substring(0, 16);
@@ -500,7 +499,7 @@ class tasksManager extends globalThis.React.Component {
     adjustedAmountDom.innerText = new Intl.NumberFormat(
       // @ts-ignore
       'es-ES', numberFormat
-    ).format(amountEurMs * this.state.passiveFactor / 12 / calcInflacion);
+    ).format(amountEurMs * globalThis.passive_factor / 12 / calcInflacion);
   };
   //#endregion
   //#region mondayItemToBacklog

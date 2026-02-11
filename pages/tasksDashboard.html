@@ -108,7 +108,7 @@
         <div class="bordered">Assets<span id="dailyGrowth"></span>:<br>
           &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;<br>
           <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
-          Passive<span id="monthlyPassGrowth"></span>:<br>
+          Passive<span id="dailyPassGrowth"></span>:<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">
             _.___,_____ €
           </span>&nbsp;<br>
@@ -227,9 +227,10 @@
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
     dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
-    const monthlyPassGrowthDom = document.getElementById("monthlyPassGrowth");
-    const monthlyPassGrowth = 30 * daily_growth * (passiveFactor / 12);
-    monthlyPassGrowthDom.innerText = ` (${monthlyPassGrowth.toPrecision(3)}p€/m)`;
+    const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
+    const dailyPassGrowth = daily_growth * (passiveFactor / 12);
+    // const hoursPerEur = 24/dailyPassGrowth;
+    dailyPassGrowthDom.innerText = ` (${dailyPassGrowth.toPrecision(3)}p €/d)`;
     let exec = false;
     /*const amountEurMsDom = document.getElementById("amntEurMs");
     const amountEurMsInput = amountEurMsDom?.value;

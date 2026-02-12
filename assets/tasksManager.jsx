@@ -455,6 +455,7 @@ class tasksManager extends globalThis.React.Component {
   //@ts-ignore
   handleMilestoneAmount = (passiveAmountEurMs) => {
     const amntEurMsDomObj = document.getElementById("amntEurMs"); // as HTMLInputElement;
+    // @ts-ignore
     const dayStartRegr = (offset_at_1900 / daily_growth -
       this.state.daysBetween1900and1970);
     const startRegr = new Date(
@@ -473,7 +474,9 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     ).format(numericAmount);
+    // @ts-ignore
     const amountEurMs = numericAmount*12/globalThis.passive_factor;
+    // @ts-ignore
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
       .substring(0, 16);
@@ -489,6 +492,7 @@ class tasksManager extends globalThis.React.Component {
     yearsMsDomObj.innerText = yearsMsInt.toFixed(2);
     const calcinflation = this.state.inflation ** yearsMsInt;
     const yearsSelfMs = (
+      // @ts-ignore
       (dayEurMs - new Date(birthday).getTime()) / this.state.milliSecondsPerDay / 365
     ).toFixed(2);
     const yearsSelfMsDomObj = document.getElementById("yearsSelfMs"); // as HTMLSpanElement;
@@ -499,7 +503,8 @@ class tasksManager extends globalThis.React.Component {
     adjustedAmountDom.innerText = new Intl.NumberFormat(
       // @ts-ignore
       'es-ES', numberFormat
-    ).format(amountEurMs * this.state.passiveFactor / 12 / calcinflation);
+    // @ts-ignore
+    ).format(amountEurMs * globalThis.passive_factor / 12 / calcinflation);
   };
   //#endregion
   //#region mondayItemToBacklog

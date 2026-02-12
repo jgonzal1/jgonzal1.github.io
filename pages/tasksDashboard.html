@@ -221,16 +221,15 @@
       style: "currency",
       useGrouping: true
     };
-    const passiveFactor = 0.0673;
     const interval = 200;
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
     dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
     const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
-    const dailyPassGrowth = daily_growth * (passiveFactor / 12);
+    const dailyPassGrowth = daily_growth * (globalThis.passive_factor / 12);
     // const hoursPerEur = 24/dailyPassGrowth;
-    dailyPassGrowthDom.innerText = ` (${dailyPassGrowth.toPrecision(3)}p €/d)`;
+    dailyPassGrowthDom.innerText = ` (Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
     let exec = false;
     /*const amountEurMsDom = document.getElementById("amntEurMs");
     const amountEurMsInput = amountEurMsDom?.value;
@@ -253,7 +252,7 @@
         const currentAmountEur = new Intl.NumberFormat(
           'es-ES', numberFormat
         ).format(currentAmount);
-        const amountEurPas = currentAmount * passiveFactor / 12;
+        const amountEurPas = currentAmount * globalThis.passive_factor / 12;
         amountEurDomObj.innerText = currentAmountEur;
         amountEurPasDom.innerText = new Intl.NumberFormat(
           'es-ES', numberFormat

@@ -70,8 +70,7 @@ class tasksManager extends globalThis.React.Component {
         maximumSignificantDigits: 9,
         style: "currency",
         useGrouping: true
-      },
-      passiveFactor: 0.0732
+      }
     };
   };
   //#endregion
@@ -474,7 +473,7 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     ).format(numericAmount);
-    const amountEurMs = numericAmount*12/this.state.passiveFactor;
+    const amountEurMs = numericAmount*12/globalThis.passive_factor;
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
       .substring(0, 16);
@@ -666,7 +665,7 @@ class tasksManager extends globalThis.React.Component {
       goalsDom.innerHTML = `<table>
         <tr><th>Category</th>     <th>H/W</th>                                      <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>    <td id="healthCount" class="bold-right">5</td>    <td>🩺checks,🪁🏄ks</td></tr>
-        <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3</td>      <td id="fireGoal">1375€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
+        <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3</td>      <td id="fireGoal">1500€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
         <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2</td>      <td>🚩🇸🇪🏠&💼</td></tr>
         <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.5</td>  <td>h/XR or 400🌳</td></tr>
         <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1</td>      <td></td></tr>

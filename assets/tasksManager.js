@@ -467,11 +467,14 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
         top: (d.y - 30) + "px"
       })
     })
-    .on("click", (d) => {
+    .on("click", (/** @type {{ target: { textContent: any; }; }} */ d) => {
       const filterTaskDom = document.getElementById("filterTasks");
+      // @ts-ignore
       if(filterTaskDom.value != d.target.textContent) {
+        // @ts-ignore
         filterTaskDom.value = d.target.textContent;
       } else {
+        // @ts-ignore
         filterTaskDom.value = "";
       }
       globalThis.filterTasks();
@@ -604,8 +607,10 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
 globalThis.filterTasks = () => {
   var input, filter, table, tr, td, i, j, txtValue;
   input = document.getElementById("filterTasks");
+  // @ts-ignore
   filter = input.value.toUpperCase();
   table = document.getElementById("mondayTasksByDayTable");
+  // @ts-ignore
   tr = table.getElementsByTagName("tr");
   // Loop tbody rows (not <1: thead), and hide those not matching search query
   for (i = 1; i < tr.length; i++) {

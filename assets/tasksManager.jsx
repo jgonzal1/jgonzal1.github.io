@@ -285,35 +285,51 @@ class tasksManager extends globalThis.React.Component {
         // @ts-ignore
         `${globalThis.totalHPerWeek}h/w`
       );
+    const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "-40").text(() =>
-        `1.🐇${mondayDursByGroup["1.🐇"]}h/${(
-          // @ts-ignore
-          parseFloat(mondayDursByGroup["1.🐇"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+      .style("font-size", "2.75em")
+      .style("fill", (fastTasksH > 10) ? "#e15759" :
+        (fastTasksH <= 5) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "-40").text(() =>
+        `1.🐇${fastTasksH}h/${ // @ts-ignore
+          (fastTasksH/globalThis.totalHPerWeek).toFixed(1)
+        }w`
       );
+    const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "0").text(() =>
-        `2.🐢${mondayDursByGroup["2.🐢"]}h/${(
-          // @ts-ignore
-          parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+      .style("font-size", "2.75em")
+      .style("fill", (slowTasksH > 20) ? "#e15759" :
+        (slowTasksH < 15) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "0").text(() =>
+        `2.🐢${slowTasksH}h/${ // @ts-ignore
+          (slowTasksH / globalThis.totalHPerWeek).toFixed(1)
+        }w`
       );
+    const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "40").text(() =>
-        `3.♻️${mondayDursByGroup["3.♻️"]}h/${(
+      .style("font-size", "2.75em")
+      .style("fill", (repeatingTasksH > 20) ? "#e15759" :
+        (repeatingTasksH < 15) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "40").text(() =>
+        `3.♻️${repeatingTasksH}h/${
           // @ts-ignore
-          parseFloat(mondayDursByGroup["3.♻️"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+          (repeatingTasksH / globalThis.totalHPerWeek).toFixed(1)
+        }w`
       );
-    const SUM = (
-      parseFloat(mondayDursByGroup["1.🐇"])
-      + parseFloat(mondayDursByGroup["2.🐢"])
-      + parseFloat(mondayDursByGroup["3.♻️"])
-    ).toFixed(1);
+    const SUM = fastTasksH + slowTasksH + repeatingTasksH;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "80").text(() =>
-        `∑: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
+      .style("font-size", "2.75em")
+      .style("fill", (SUM > 40) ? "#e15759" :
+        (SUM < 35) ? "#b5bd68" :
+        "#ca8b4c"
+      ).attr("y", "80").text(() =>
+        `∑: ${SUM.toFixed(1)}h/${(SUM / 20).toFixed(1)}w`
       );
     //#endregion
     return Object.assign(donutChartSvg.node());
@@ -383,10 +399,8 @@ class tasksManager extends globalThis.React.Component {
     /** @type {any} */
     let mondayTasksJson = [];
     // @ts-ignore
-    // @ts-ignore
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
-      // @ts-ignore
       // @ts-ignore
       (rawItem, rawItemIdx) => {
         let taskIds = {
@@ -404,7 +418,6 @@ class tasksManager extends globalThis.React.Component {
         });
         mondayTasksJson.push(taskIds);
         if (rawItem["subitems"].length) {
-          // @ts-ignore
           // @ts-ignore
           rawItem["subitems"].map((subItem, subItemIdx) => {
             let subTaskIds = {
@@ -673,8 +686,10 @@ class tasksManager extends globalThis.React.Component {
         <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3</td>      <td id="fireGoal">1500€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
         <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2</td>      <td>🚩🇸🇪🏠&💼</td></tr>
         <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.5</td>  <td>h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1</td>      <td></td></tr>
+        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1</td>      <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
+      const totalCountDom = document.getElementById("totalCount");
+      let currentTC = 0;
       [
         {"d":"healthCount", "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "v":0, "s":["2.🏠","3.💰"],        },
@@ -694,9 +709,22 @@ class tasksManager extends globalThis.React.Component {
             ((parseFloat(kv)-1) > parseFloat(prevV)) ? "#ca8b4c" :
             ((parseFloat(kv)+1) < parseFloat(prevV)) ? "#e15759" :
             "#b5bd68";
+          // @ts-ignore
+          currentTC = parseFloat(totalCountDom.innerText);
+          // @ts-ignore
+          totalCountDom.innerText =
+            // @ts-ignore
+            parseFloat(currentTC + k["v"]).toPrecision(3);
           domObj.innerText = kv;
         }
       });
+      // @ts-ignore
+      totalCountDom.style.color =
+      // @ts-ignore
+        (currentTC > 17.5) ? "#ca8b4c" :
+        // @ts-ignore
+        (currentTC < 7.5) ? "#e15759" :
+        "#b5bd68";
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
           ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)

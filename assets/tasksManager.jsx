@@ -280,8 +280,11 @@ class tasksManager extends globalThis.React.Component {
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
-    donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "-80").text(() =>
+      donutChartSvg.append("text").style("fill",
+        (globalThis.totalHPerWeek > 17.5) ? "#ca8b4c" :
+        (globalThis.totalHPerWeek <= 7.5) ? "#e15759" :
+        "#b5bd68"
+      ).style("font-size", "2.75em").attr("y", "-80").text(() =>
         // @ts-ignore
         `${globalThis.totalHPerWeek}h/w`
       );

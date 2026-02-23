@@ -286,13 +286,13 @@ class tasksManager extends globalThis.React.Component {
         // @ts-ignore
         (globalThis.totalHPerWeek < 7.5) ? "#e15759" :
         "#b5bd68")
-      .style("font-size", "2.75em").attr("y", "-80").text(() =>
+      .style("font-size", "2.5em").attr("y", "-80").text(() =>
         // @ts-ignore
         `${globalThis.totalHPerWeek}h/w`
       );
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em")
+      .style("font-size", "2.5em")
       .style("fill", (fastTasksH > 10) ? "#e15759" :
         (fastTasksH <= 5) ? "#b5bd68" :
         "#ca8b4c"
@@ -304,7 +304,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em")
+      .style("font-size", "2.5em")
       .style("fill", (slowTasksH > 15) ? "#e15759" :
         (slowTasksH < 12.5) ? "#b5bd68" :
         "#ca8b4c"
@@ -316,7 +316,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em")
+      .style("font-size", "2.5em")
       .style("fill", (repeatingTasksH > 15) ? "#e15759" :
         (repeatingTasksH < 12.5) ? "#b5bd68" :
         "#ca8b4c"
@@ -329,7 +329,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const SUM = fastTasksH + slowTasksH + repeatingTasksH;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em")
+      .style("font-size", "2.5em")
       .style("fill", (SUM > 35) ? "#e15759" :
         (SUM < 30) ? "#b5bd68" :
         "#ca8b4c"

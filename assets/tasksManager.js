@@ -1,7 +1,7 @@
 "use strict";
 //#region Variables
 // 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
-const quartersOfHourWeekdays = 10;
+const quartersOfHourWeekdays = 12;
 const quartersOfHourWeekends = 14;
 const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
@@ -13,7 +13,7 @@ const msPerH = 3600000;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-01-08"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 7; /* Math.ceil(
+globalThis.categoryAggrDaysRange = 8; /* Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";

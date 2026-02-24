@@ -1,7 +1,7 @@
 "use strict";
 //#region Variables
 // 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
-const quartersOfHourWeekdays = 10;
+const quartersOfHourWeekdays = 12;
 const quartersOfHourWeekends = 14;
 const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(

@@ -164,7 +164,7 @@ class tasksManager extends globalThis.React.Component {
     ) - mondayDursByGroup["3.🔚"]).toFixed(1);
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");*/
-    const [tasksByCategoryWidth, tasksByCategoryHeight] = [400, 350];
+    const [tasksByCategoryWidth, tasksByCategoryHeight] = [350, 350];
     // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
@@ -719,7 +719,7 @@ class tasksManager extends globalThis.React.Component {
           totalCountDom.innerText =
             // @ts-ignore
             parseFloat(currentTC + k["v"]).toPrecision(3);
-          domObj.innerText = kv;
+          domObj.innerText = `${kv} (${prevV}±1)`;
         }
       });
       // @ts-ignore

@@ -688,8 +688,8 @@ class tasksManager extends globalThis.React.Component {
         <tr><th>Category</th>     <th>H/W</th>                                      <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>    <td id="healthCount" class="bold-right">5</td>    <td>🩺checks,🪁🏄ks</td></tr>
         <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3</td>      <td id="fireGoal">1500€rp/mo🔚DSV,<br>🏠♴💼</td></tr>
-        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2</td>      <td>🚩🇸🇪🏠&💼</td></tr>
-        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.5</td>  <td>h/XR or 400🌳</td></tr>
+        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2.5</td>      <td>🚩🇸🇪🏠&💼</td></tr>
+        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">2</td>  <td>h/XR or 400🌳</td></tr>
         <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1</td>      <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
@@ -710,8 +710,8 @@ class tasksManager extends globalThis.React.Component {
           const prevV = domObj.innerText;
           const kv = (k["v"]).toPrecision(2)??0;
           domObj.style.color =
-            ((parseFloat(kv)-1) > parseFloat(prevV)) ? "#ca8b4c" :
-            ((parseFloat(kv)+1) < parseFloat(prevV)) ? "#e15759" :
+            ((parseFloat(kv)-1) >= parseFloat(prevV)) ? "#ca8b4c" :
+            ((parseFloat(kv)+1) <= parseFloat(prevV)) ? "#e15759" :
             "#b5bd68";
           // @ts-ignore
           currentTC = parseFloat(totalCountDom.innerText);

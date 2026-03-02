@@ -164,25 +164,29 @@ class tasksManager extends globalThis.React.Component {
     ) - mondayDursByGroup["3.🔚"]).toFixed(1);
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
       ?? document.createElement("div");*/
-    const [tasksByCategoryWidth, tasksByCategoryHeight] = [350, 350];
+    const [tasksByCategoryWidth, tasksByCategoryHeight] = [380, 350];
     // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
     globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
-    const margin = 10;
+    const margin = 20;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
+    const vbScale = 0.6;
     // @ts-ignore
     const donutChartSvg = globalThis.d3.create("svg")
-      .attr("width", tasksByCategoryWidth)
-      .attr("height", tasksByCategoryHeight)
       .attr("viewBox", [
-        -0.6 * tasksByCategoryWidth, -1.2 * tasksByCategoryHeight,
-        1.2 * tasksByCategoryWidth, 2.6 * tasksByCategoryHeight
+        -0.9 * vbScale * tasksByCategoryWidth, -2 * vbScale * tasksByCategoryHeight,
+        2 * vbScale * tasksByCategoryWidth, 5 * vbScale * tasksByCategoryHeight
       ])
-      .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
-      .attr("text-anchor", "middle");
+      //.attr("style", "x:x; y:y;")
+      .attr("font", "1em sans-serif")
+      .attr("margin", "2em 1em")
+      .attr("text-anchor", "middle")
+      .attr("height", tasksByCategoryHeight) //"auto"
+      .attr("width", tasksByCategoryWidth)
+      ;
     // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(

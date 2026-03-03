@@ -106,17 +106,20 @@
     <div id="monto" class="grid-container-2">
       <div>
         <div class="bordered">Assets<span id="dailyGrowth"></span>:<br>
-          &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;<br>
-          <!--<span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
+          &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;
+          <!--<br><span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
+        </div>
+        <div class="bordered">
           Passive<span id="dailyPassGrowth"></span>:<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">
             _.___,_____ €
           </span>&nbsp;<br>
           <div style="height:0.3em"></div>
         </div>
-        <div class="bordered" style="display:none">Started at:<br>
+        <div class="bordered">Started at:<br>
           <span id="startRegr"></span>
         </div>
+        <div class="bordered">🔚DSV: <span id="endContract"></span></div>
       </div>
       <div class="bordered" style="display:none">
         Next milestone:<br>
@@ -222,15 +225,34 @@
       useGrouping: true
     };
     const interval = 200;
+    const startRegrDom = document.getElementById("startRegr");
+    const endContractDom = document.getElementById("endContract");
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
+    const startRegr = new Date(
+      (-offset_at_1900/daily_growth - daysBetween1900and1970)
+      *milliSecondsPerDay
+    ).toISOString().substring(0, 10);
+    startRegrDom.innerText = `  ${startRegr}`;
+    const endContract = new Date(
+      ((-offset_at_1900 + 12*30*daily_growth*globalThis.passive_factor)/daily_growth - daysBetween1900and1970)
+      *milliSecondsPerDay
+    ).toISOString().substring(0, 10);
+    const dEndContract = new Date("2026-07-02").getTime() / msPerD;
+    const dStartRegr = new Date(startRegr).getTime() / msPerD;
+    const incrD = (dEndContract - dStartRegr);
+    const endContractPass = (dEndContract - dStartRegr) * daily_growth
+      * passive_factor / 12;
     dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
     const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
     const dailyPassGrowth = daily_growth * (globalThis.passive_factor / 12);
     // const hoursPerEur = 24/dailyPassGrowth;
-    dailyPassGrowthDom.innerText = ` (Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
+    dailyPassGrowthDom.innerText = ` (${
+      (100*globalThis.passive_factor).toPrecision(3)
+    } % @ \n  Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
     let exec = false;
+    endContractDom.innerText = `${endContractPass.toFixed(2)} €`;
     /*const amountEurMsDom = document.getElementById("amntEurMs");
     const amountEurMsInput = amountEurMsDom?.value;
     handleMilestoneAmount(amountEurMsInput);*/
@@ -239,6 +261,7 @@
         if(!exec) {
           const montoDom = document.getElementById("monto");
           const fireGoal = document.getElementById("fireGoal");
+
           try {
             fireGoal.appendChild(montoDom);
             exec = true;
@@ -246,6 +269,7 @@
             console.info("fireGoal still not in DOM");
           }
         }
+
         const currentAmount = (daily_growth * (
           ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970
         ) + offset_at_1900);

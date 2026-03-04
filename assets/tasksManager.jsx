@@ -714,11 +714,11 @@ class tasksManager extends globalThis.React.Component {
         ));
         const domObj = document.getElementById(k["d"]);
         if (domObj) {
-          const prevV = domObj.innerText;
+          const prevV = parseFloat(domObj.innerText) || 0;
           const kv = (k["v"]).toPrecision(2)??0;
           domObj.style.color =
-            ((parseFloat(kv)-1) >= parseFloat(prevV)) ? "#ca8b4c" :
-            ((parseFloat(kv)+1) <= parseFloat(prevV)) ? "#e15759" :
+            ((parseFloat(kv)-1) >= prevV) ? "#ca8b4c" :
+            ((parseFloat(kv)+1) <= prevV) ? "#e15759" :
             "#b5bd68";
           // @ts-ignore
           currentTC = parseFloat(totalCountDom.innerText);
@@ -726,7 +726,7 @@ class tasksManager extends globalThis.React.Component {
           totalCountDom.innerText =
             // @ts-ignore
             parseFloat(currentTC + k["v"]).toPrecision(3);
-          domObj.innerText = `${kv} (${prevV}±1)`;
+          domObj.innerText = `${kv} (${prevV.toFixed(1)}±1)`;
         }
       });
       // @ts-ignore

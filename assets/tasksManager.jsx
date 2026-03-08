@@ -287,9 +287,9 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
     donutChartSvg.append("text").style("fill",
         // @ts-ignore
-        (globalThis.totalHPerWeek > 17.5) ? "#ca8b4c" :
+        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
         // @ts-ignore
-        (globalThis.totalHPerWeek < 7.5) ? "#e15759" :
+        (globalThis.totalHPerWeek < 10) ? "#e15759" :
         "#b5bd68")
       .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
         // @ts-ignore
@@ -697,8 +697,8 @@ class tasksManager extends globalThis.React.Component {
         </tr>
         <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3.0</td>    <td id="fireGoal"><div class="bordered" style="color:#e15759">🏠♴💼</div></td></tr>
         <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2.5</td>    <td style="color:#e15759">🚩🇸🇪🏠&💼</td></tr>
-        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.5</td>  <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1.0</td>    <td id="totalCount" class="bold-right">0</td></tr>
+        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.0</td>  <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">0.5</td>    <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
       let currentTC = 0;

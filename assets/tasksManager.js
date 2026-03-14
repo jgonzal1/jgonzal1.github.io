@@ -13,7 +13,7 @@ const msPerH = 3600000;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-01-08"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 7; /* Math.ceil(
+globalThis.categoryAggrDaysRange = 8; /* Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";

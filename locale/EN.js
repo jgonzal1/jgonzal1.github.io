@@ -545,7 +545,7 @@ function getEnglishContents() {
     * Holidays 2w Xmas, Easter, 3w end of Jul/start of Aug
     </td>
   <tr></tr>
-    <td rowspan="6">Legend</td>
+    <td rowspan="7">Legend</td>
     <td></td><td colspan="7" style="background-color:#A54242">
       Big data engineer
     </td>

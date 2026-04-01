@@ -492,6 +492,10 @@ th.sorted-desc::after {
   color: #FFFC;
 }
 
+.p-a {
+  position: absolute;
+}
+
 .page-number {
   position: relative;
   text-align: center;
@@ -552,6 +556,10 @@ th.sorted-desc::after {
 
 .t0 {
   vertical-align: top;
+}
+
+.t-b-15em {
+  top: calc(100vh - 13em);
 }
 
 /*Overwrite jQuery UI */

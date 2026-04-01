@@ -11,7 +11,7 @@ console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3600000;
 const msPerD = msPerH * 24;
-const loadTasksUntilDate = "2026-04-13"; // inclusive
+const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
 globalThis.categoryAggrDaysRange = Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD

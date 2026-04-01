@@ -103,7 +103,7 @@
   <div class="sidebar">Sidebar</div>
   <div class="flex-container-2 b-1-s-grey" style="width: calc(100% - 3em);">
     <div id="taskManager" class="hw-800-1080 pt-05em"></div>
-    <div id="monto" class="grid-container-2">
+    <div id="monto" class="font-size-08-rem grid-container-2 p-a t-b-15em">
       <div>
         <div class="bordered" style="color:#b5bd68">Assets<span id="dailyGrowth"></span>:<br>
           &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;
@@ -258,17 +258,6 @@
     handleMilestoneAmount(amountEurMsInput);*/
     setInterval(
       () => {
-                if(!exec) {
-          const montoDom = document.getElementById("monto");
-          const fireGoal = document.getElementById("fireGoal");
-
-          try {
-            fireGoal.appendChild(montoDom);
-            exec = true;
-          } catch (e) {
-            console.info("fireGoal still not in DOM");
-          }
-        }
 
         const currentAmount = (daily_growth * (
           ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970

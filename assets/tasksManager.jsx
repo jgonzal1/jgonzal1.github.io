@@ -696,8 +696,8 @@ class tasksManager extends globalThis.React.Component {
           <span style="color:#e15759">🪁🏄ks</span></td>
         </tr>
         <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">3.5</td>    <td style="color:#e15759">🏷️🏠♴💼</td></tr>
-        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">1.7</td>    <td style="color:#e15759">🚩🇸🇪💼</td></tr>
-        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">1.6</td>  <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
+        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2.7</td>    <td style="color:#e15759">🚩🇸🇪💼</td></tr>
+        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">2.6</td>  <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
         <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">0.8</td>    <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");

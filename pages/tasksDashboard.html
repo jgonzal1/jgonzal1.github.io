@@ -123,7 +123,9 @@
         <!--<div class="bordered">Started at:<br>
           <span id="startRegr"></span>
         </div>-->
-        <div class="bordered" style="color:#e15759">🔚DSV:<span id="endContract"></span></div>
+        <div id="endContractPlaceholder" class="bordered" style="color:#e15759">
+          🔚DSV:<span id="endContract"></span>
+        </div>
       </div>
       <div class="bordered" style="display:none">
         Next milestone:<br>
@@ -255,8 +257,14 @@
     dailyPassGrowthDom.innerText = ` (${
       (100*globalThis.passive_factor).toPrecision(3)
       }% @ \n Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
-      let exec = false;
-      endContractDom.innerText = `${endContractPass.toFixed(1)}rp€/mo`;
+    let exec = false;
+    endContractDom.innerText = `${endContractPass.toFixed(1)}rp€/mo`;
+    const endContractPlaceholder = document.getElementById("endContractPlaceholder");
+    if (endContractPass>1450) {
+      endContractPlaceholder.style.color = "#b5bd68";
+    } else if (endContractPass>1400) {
+      endContractPlaceholder.style.color = "#caa04c";
+    }
     /*const amountEurMsDom = document.getElementById("amntEurMs");
     const amountEurMsInput = amountEurMsDom?.value;
     handleMilestoneAmount(amountEurMsInput);*/

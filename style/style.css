@@ -280,7 +280,7 @@ th.sorted-desc::after {
   border: 1px solid #666;
   border-radius: 0.2em;
   margin: 0.1em;
-  padding: 0.1em;
+  padding: 0.1em 0.1em 0.1em 0.3em;
 }
 
 .category-td {

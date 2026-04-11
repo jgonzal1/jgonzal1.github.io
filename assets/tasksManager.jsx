@@ -695,18 +695,18 @@ class tasksManager extends globalThis.React.Component {
           <span style="color:#caa04c">🩺checks</span>&nbsp;
           <span style="color:#e15759">🪁🏄ks</span></td>
         </tr>
-        <tr><td>🏠💰/FIRE</td>    <td id="fireCount" class="bold-right">2.5</td>    <td style="color:#e15759">🏷️🏠♴💼</td></tr>
-        <tr><td>🚩/Rels</td>      <td id="relsCount" class="bold-right">2.0</td>    <td style="color:#e15759">🚩🇸🇪💼</td></tr>
-        <tr><td>🔬🌿/Motivs</td>  <td id="motivsCount" class="bold-right">2.0</td>  <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>     <td id="restCount" class="bold-right">1.0</td>    <td id="totalCount" class="bold-right">0</td></tr>
+        <tr><td>🏠💰/FIRE</td>  <td id="fireCount" class="bold-right">2.5</td>  <td style="color:#e15759">🏷️🏠♴💼</td></tr>
+        <tr><td>🚩/Rel.</td>    <td id="relCount" class="bold-right">2.0</td>   <td style="color:#e15759">🚩🇸🇪💼</td></tr>
+        <tr><td>🔬🌿/Mot.</td>  <td id="motCount" class="bold-right">2.0</td>   <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>   <td id="restCount" class="bold-right">1.0</td>  <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
       let currentTC = 0;
       [
         {"d":"healthCount", "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relsCount",   "v":0, "s":["4.🚩"],               },
-        {"d":"motivsCount", "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"relCount",    "v":0, "s":["4.🚩"],               },
+        {"d":"motCount",    "v":0, "s":["5.🌿","5.🔬"],        },
         {"d":"restCount",   "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(

@@ -124,7 +124,7 @@
           <span id="startRegr"></span>
         </div>-->
         <div id="endContractPlaceholder" class="bordered" style="color:#e15759">
-          🔚DSV:<span id="endContract"></span>
+          2607: <span id="endContract"></span>
         </div>
       </div>
       <div class="bordered" style="display:none">
@@ -245,7 +245,7 @@
       ((-offset_at_1900 + 12*30*daily_growth*globalThis.passive_factor)/daily_growth - daysBetween1900and1970)
       *milliSecondsPerDay
     ).toISOString().substring(0, 10);
-    const dEndContract = new Date("2026-07-31").getTime() / msPerD;
+    const dEndContract = new Date("2026-07-01").getTime() / msPerD;
     const dStartRegr = new Date(startRegr).getTime() / msPerD;
     const incrD = (dEndContract - dStartRegr);
     const endContractPass = (dEndContract - dStartRegr) * daily_growth
@@ -260,9 +260,9 @@
     let exec = false;
     endContractDom.innerText = `${endContractPass.toFixed(1)}rp€/mo`;
     const endContractPlaceholder = document.getElementById("endContractPlaceholder");
-    if (endContractPass>1450) {
+    if (endContractPass>1500) {
       endContractPlaceholder.style.color = "#b5bd68";
-    } else if (endContractPass>1400) {
+    } else if (endContractPass>1450) {
       endContractPlaceholder.style.color = "#caa04c";
     }
     /*const amountEurMsDom = document.getElementById("amntEurMs");

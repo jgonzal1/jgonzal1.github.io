@@ -296,49 +296,47 @@ class tasksManager extends globalThis.React.Component {
         `${globalThis.totalHPerWeek}h/w`
       );
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
+    const fastTasksW = fastTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (fastTasksH > 10.5) ? "#e15759" :
-        (fastTasksH < 8) ? "#b5bd68" :
+      .style("fill", (fastTasksW > 1.5) ? "#e15759" :
+        (fastTasksW < 1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
-        `1.🐇${fastTasksH}h/${ // @ts-ignore
-        (fastTasksH/globalThis.totalHPerWeek).toFixed(1)}w`
+        `1.🐇${fastTasksH}h/${fastTasksW.toFixed(1)}w`
       );
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
+    const slowTasksW = slowTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksH > 15) ? "#e15759" :
-        (slowTasksH < 12.5) ? "#b5bd68" :
+      .style("fill", (slowTasksW > 1.5) ? "#e15759" :
+        (slowTasksW < 1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
-        `2.🐢${slowTasksH}h/${ // @ts-ignore
-          (slowTasksH / globalThis.totalHPerWeek).toFixed(1)
-        }w`
+        `2.🐢${slowTasksH}h/${slowTasksW.toFixed(1)}w`
       );
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
+    const repeatingTasksW = repeatingTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (repeatingTasksH > 15) ? "#e15759" :
-        (repeatingTasksH < 12.5) ? "#b5bd68" :
+      .style("fill", (repeatingTasksW > 1.5) ? "#e15759" :
+        (repeatingTasksW < 1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "40").text(() =>
-        `3.♻️${repeatingTasksH}h/${
-          // @ts-ignore
-          (repeatingTasksH / globalThis.totalHPerWeek).toFixed(1)
-        }w`
+        `3.♻️${repeatingTasksH}h/${repeatingTasksW.toFixed(1)}w`
       );
-    const SUM = fastTasksH + slowTasksH + repeatingTasksH;
+    const SumH = fastTasksH + slowTasksH + repeatingTasksH;
+    const SumW = SumH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SUM > 35) ? "#e15759" :
-        (SUM < 32.5) ? "#b5bd68" :
+      .style("fill", (SumW > 3) ? "#e15759" :
+        (SumW < 2.5) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
-        `∑: ${SUM.toFixed(1)}h/${(SUM / globalThis.totalHPerWeek).toFixed(1)}w`
+        `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
       );
     //#endregion
     return Object.assign(donutChartSvg.node());
@@ -693,7 +691,7 @@ class tasksManager extends globalThis.React.Component {
         <tr><td>🏠💰/FIRE</td>  <td id="fireCount"   class="bold-right">3.5</td> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
         <tr><td>🚩/Rel.</td>    <td id="relCount"    class="bold-right">1.5</td> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
         <tr><td>🔬🌿/Mot.</td>  <td id="motCount"    class="bold-right">1.0</td> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>   <td id="restCount"   class="bold-right">0.7</td> <td id="totalCount" class="bold-right">0</td></tr>
+        <tr><td>📺🎮🌐➕</td>   <td id="restCount"   class="bold-right">0.9</td> <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
       let currentTC = 0;

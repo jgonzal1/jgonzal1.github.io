@@ -1,15 +1,15 @@
 "use strict";
 //#region Variables
 // 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
-const quartersOfHourWeekdays = 12;
-const quartersOfHourWeekends = 14;
+const quartersOfHourWeekdays = 10;
+const quartersOfHourWeekends = 12;
 const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
   quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
 );
 console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
-const msPerH = 3600000;
+const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate

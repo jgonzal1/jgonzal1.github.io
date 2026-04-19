@@ -559,7 +559,7 @@ th.sorted-desc::after {
 }
 
 .t-b-15em {
-  top: calc(100vh - 13em);
+  top: calc(100vh - 15em);
 }
 
 /*Overwrite jQuery UI */

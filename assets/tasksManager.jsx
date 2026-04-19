@@ -338,7 +338,7 @@ class tasksManager extends globalThis.React.Component {
         (SUM < 32.5) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
-        `∑: ${SUM.toFixed(1)}h/${(SUM / 20).toFixed(1)}w`
+        `∑: ${SUM.toFixed(1)}h/${(SUM / globalThis.totalHPerWeek).toFixed(1)}w`
       );
     //#endregion
     return Object.assign(donutChartSvg.node());

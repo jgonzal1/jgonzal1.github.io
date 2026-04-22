@@ -7,7 +7,7 @@ class tasksManager extends globalThis.React.Component {
     super(props);
     this.state = {
       colors: {
-        "0.➕": "#c2b0b0",
+        "0.➕": "#c2b0b066",
         "1.🍏": "#edc949",
         "2.🏠": "#b5bd68",
         "3.💰": "#9c755f",
@@ -20,31 +20,31 @@ class tasksManager extends globalThis.React.Component {
         "9.➕": "#bab0ab66"
       },
       durColors: {
-        "0.02": "#bab0ab",
-        "0.1":  "#59a14f",
-        "0.2":  "#b5bd68",
-        "0.5":  "#edc949",
-        "0.8":  "#e2bc34",
-        "1":    "#c2a026",
-        "1.5":  "#ca8b4c",
-        "2":    "#e15759"
+        "0.02": "#bab0ab66",
+        "0.1":  "#59a14f66",
+        "0.2":  "#b5bd6866",
+        "0.5":  "#edc94966",
+        "0.8":  "#e2bc3466",
+        "1":    "#c2a02666",
+        "1.5":  "#ca8b4c66",
+        "2":    "#e1575966"
       },
       freqColors: {
-        "999-Once":       "#bab0ab",
+        "999-Once":       "#bab0ab66",
         "400->1y":        "#5891ce66",
-        "360-Yearly":     "#6fdda699",
-        "180-Every 6 mo": "#78d76ccc",
-        "090-Every 3 mo": "#c6d15d",
-        "030-Monthly":    "#edc949",
-        "014-BiWeekly":   "#caa04c",
-        "004-times":      "#ca8b4c",
-        "003-/week":      "#f28e2c",
-        "001-Daily":      "#e15759"
+        "360-Yearly":     "#6fdda666",
+        "180-Every 6 mo": "#78d76c66",
+        "090-Every 3 mo": "#c6d15d66",
+        "030-Monthly":    "#edc94966",
+        "014-BiWeekly":   "#caa04c66",
+        "004-times":      "#ca8b4c66",
+        "003-/week":      "#f28e2c66",
+        "001-Daily":      "#e1575966"
       },
       statusColors: {
-        "Pending":        "#e15759",
-        "Date sensitive": "#f28e2c",
-        "Nice to do":     "#bab0ab"
+        "Pending":        "#e1575966",
+        "Date sensitive": "#f28e2c66",
+        "Nice to do":     "#bab0ab66"
       },
       dayOffsetValue: Number(1 / 24),
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression

@@ -1092,6 +1092,7 @@ class tasksManager extends globalThis.React.Component {
                           fontSize: "0.8em",
                           fontWeight: "bold",
                           padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
                         }
                       },
                       taskRow[taskKey]
@@ -1225,7 +1226,8 @@ class tasksManager extends globalThis.React.Component {
                           borderRadius: "0.8em",
                           fontSize: "0.8em",
                           fontWeight: "bold",
-                          padding: "0.3em 0.6em"
+                          padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
                         }
                       },
                       taskRow[taskKey] ?? "999-Once"
@@ -1254,6 +1256,7 @@ class tasksManager extends globalThis.React.Component {
                           fontSize: "0.8em",
                           fontWeight: "bold",
                           padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
                         }
                       },
                       taskRow[taskKey]

@@ -1,0 +1,35 @@
+<html>
+  <head>
+  <script src="private/credentials.js"></script>
+  <script>
+    const tickers = {
+      "MSCI World": {
+        "ticker": "0P0001CLDK.F",
+        "isin": "IE00BYX5NX33",
+        "name": "Fidelity MSCI World Index Fund EUR P Acc"
+      },
+      "MAN Sucio": {
+        "ticker": "0P0001QSV5.F",
+        "isin": "IE000MI53C66",
+        "name": "MAN GLG Global Inv Grade Opp D H"
+      },
+      "Vanguard EM": {
+        "ticker": "0P00012I6A.F",
+        "isin": "IE0031786696",
+        "name": "Vanguard Emerging Markets Stock Index Fund"
+      },
+      "MAN Limpio": {
+        "ticker": "0P0001NT8V.F",
+        "isin": "IE000VA5W9H0",
+        "name": "MAN GLG Global Inv Grade Opp I H"
+      }
+    };
+    const symbols = "0P0001CLDK.F,0P0001QSV5.F,0P00012I6A.F,0P0001NT8V.F";
+    fetch(
+      `https://api.marketstack.com/v1/eod?access_key=${
+      globalThis.marketstack_api_key
+      }&symbols=${symbols}&limit=7`
+    );
+  </script>
+  </head>
+</html>

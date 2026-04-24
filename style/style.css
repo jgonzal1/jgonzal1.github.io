@@ -120,6 +120,8 @@ th.sorted-desc::after {
   color: inherit !important;
 }
 
+.b-1-s-grey { border: 1px solid #6666; }
+
 .client-ibm,
 .client-lda,
 .client-pas,
@@ -316,6 +318,10 @@ th.sorted-desc::after {
   padding-left: 10em;
 }
 
+.d-ib {
+  display: inline-block;
+}
+
 .error {
   color: #F00;
   font-size: 1.5em;
@@ -439,6 +445,23 @@ th.sorted-desc::after {
   opacity: 0.7;
 }
 
+.hw-100p-2em {
+  height: calc(100% - 2em);
+  width: calc(100% - 2em);
+}
+.hw-800-1080 {
+  width: min(calc(100% - 0.5em), 1080px);
+  height: min(calc(100% - 1.5em), 800px);
+}
+.hw-800-342 {
+  width: min(calc(100% - 0.5em), 342px);
+  height: min(calc(100% - 1.5em), 800px);
+}
+.hw-140 {
+  width: min(calc(100% - 0.5em), 140px);
+  height: min(calc(100% - 1.5em), 140px);
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -448,6 +471,10 @@ th.sorted-desc::after {
   cursor: default;
   left: 0;
   top: 0;
+}
+
+.l-50em {
+  left: calc(min(50em, 100% - 10em));
 }
 
 .main {
@@ -492,7 +519,7 @@ th.sorted-desc::after {
   color: #FFFC;
 }
 
-.p-a {
+.pa, .p-a {
   position: absolute;
 }
 
@@ -505,6 +532,8 @@ th.sorted-desc::after {
 .printable {
   font-style: italic;
 }
+
+.pt-05em { padding-top: 0.5em; }
 
 .r {
   text-align: right;

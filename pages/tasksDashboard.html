@@ -23,6 +23,7 @@
     $(() => { $(".resizable").resizable() });
   </script>
   <script src="private/credentials.js"></script>
+  <script src="../data/js/portfolioTickersClosePrices21Q2_26Q2.ignore.js"></script>
   <script>
     function hideMap() {
       console.log("Hiding map");
@@ -85,29 +86,17 @@
     polyline { fill: none; opacity: 0.3; stroke-width: 2px; stroke: #000; }
     */
     svg { font-weight: bold !important; /*width: 100%; height: 100%;*/ }
-    .b-1-s-grey { border: 1px solid #6666; }
-    .hw-100p-2em {
-      height: calc(100% - 2em);
-      width: calc(100% - 2em);
-    }
-    .hw-800-1080 {
-      width: min(calc(100% - 0.5em), 1080px);
-      height: min(calc(100% - 1.5em), 800px);
-    }
-    .hw-140 {
-      width: min(calc(100% - 0.5em), 140px);
-      height: min(calc(100% - 1.5em), 140px);
-    }
-    .pa { position: absolute; }
-    .pt-05em { padding-top: 0.5em; }
   </style>
 </head>
 
 <body class="flex-container-2 hw-100p-2em pt-05em">
   <div class="sidebar">Sidebar</div>
   <div class="flex-container-2 b-1-s-grey" style="width: calc(100% - 3em);">
-    <div id="taskManager" class="hw-800-1080 pt-05em"></div>
-    <div id="monto" class="font-size-08-rem grid-container-2 hw-140 p-a t-b-15em">
+    <div id="taskManager" class="d-ib hw-800-1080 pt-05em"></div>
+    <div id="portfolioPlaceholder" class="bordered d-ib hw-800-342"></div>
+    <div id="monto" class=
+      "font-size-08-rem grid-container-2 hw-140 l-50em p-a t-b-15em"
+    >
       <div>
         <div class="bordered" style="color:#b5bd68">Assets<span id="dailyGrowth"></span>:<br>
           &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;

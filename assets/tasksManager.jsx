@@ -20,31 +20,31 @@ class tasksManager extends globalThis.React.Component {
         "9.➕": "#bab0ab66"
       },
       durColors: {
-        "0.02": "#bab0ab66",
-        "0.1":  "#59a14f66",
-        "0.2":  "#b5bd6866",
-        "0.5":  "#edc94966",
-        "0.8":  "#e2bc3466",
-        "1":    "#c2a02666",
-        "1.5":  "#ca8b4c66",
-        "2":    "#e1575966"
+        "0.02": "#bab0ab88",
+        "0.1":  "#59a14f88",
+        "0.2":  "#b5bd6888",
+        "0.5":  "#edc94988",
+        "0.8":  "#e2bc3488",
+        "1":    "#c2a02688",
+        "1.5":  "#ca8b4c88",
+        "2":    "#e1575988"
       },
       freqColors: {
-        "999-Once":       "#bab0ab66",
-        "400->1y":        "#5891ce66",
-        "360-Yearly":     "#6fdda666",
-        "180-Every 6 mo": "#78d76c66",
-        "090-Every 3 mo": "#c6d15d66",
-        "030-Monthly":    "#edc94966",
-        "014-BiWeekly":   "#caa04c66",
-        "004-times":      "#ca8b4c66",
-        "003-/week":      "#f28e2c66",
-        "001-Daily":      "#e1575966"
+        "999-Once":       "#bab0ab88",
+        "400->1y":        "#5891ce88",
+        "360-Yearly":     "#6fdda688",
+        "180-Every 6 mo": "#78d76c88",
+        "090-Every 3 mo": "#c6d15d88",
+        "030-Monthly":    "#edc94988",
+        "014-BiWeekly":   "#caa04c88",
+        "004-times":      "#ca8b4c88",
+        "003-/week":      "#f28e2c88",
+        "001-Daily":      "#e1575988"
       },
       statusColors: {
-        "Pending":        "#e1575966",
-        "Date sensitive": "#f28e2c66",
-        "Nice to do":     "#bab0ab66"
+        "Pending":        "#e1575988",
+        "Date sensitive": "#f28e2c88",
+        "Nice to do":     "#bab0ab88"
       },
       dayOffsetValue: Number(1 / 24),
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression

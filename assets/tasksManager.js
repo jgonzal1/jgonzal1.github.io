@@ -666,12 +666,12 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
-    { "bgRange": -9e3, "bgColor": "#CC666677" }, // passed
-    { "bgRange": 0, "bgColor": "#CC666666" }, // now
-    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766666" }, // today
-    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866655" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986655" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96655" }, // in_3d
+    { "bgRange": -9e3, "bgColor": "#CC666688" }, // passed
+    { "bgRange": 0, "bgColor": "#CC666677" }, // now
+    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766677" }, // today
+    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866666" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986666" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96666" }, // in_3d
     {
       "bgRange": (
         Math.max(120 - hToNextDay, hToNextWeek)

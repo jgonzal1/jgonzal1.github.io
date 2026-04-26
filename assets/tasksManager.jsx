@@ -313,7 +313,7 @@ class tasksManager extends globalThis.React.Component {
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > 1.5) ? "#e15759" :
-        (slowTasksW < 1) ? "#b5bd68" :
+        (slowTasksW < 1.1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -325,7 +325,7 @@ class tasksManager extends globalThis.React.Component {
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (repeatingTasksW > 1.5) ? "#e15759" :
-        (repeatingTasksW < 1) ? "#b5bd68" :
+        (repeatingTasksW < 1.1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "40").text(() =>
@@ -336,8 +336,8 @@ class tasksManager extends globalThis.React.Component {
     const SumW = SumH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > 3) ? "#e15759" :
-        (SumW < 2.5) ? "#b5bd68" :
+      .style("fill", (SumW > 3.5) ? "#e15759" :
+        (SumW < 3) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`

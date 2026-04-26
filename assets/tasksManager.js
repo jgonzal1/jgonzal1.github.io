@@ -13,7 +13,7 @@ const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 7 /*Math.ceil(
+globalThis.categoryAggrDaysRange = 8 /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";
@@ -666,8 +666,8 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
-    { "bgRange": -9e3, "bgColor": "#CC666688" }, // passed
-    { "bgRange": 0, "bgColor": "#CC666677" }, // now
+    { "bgRange": -9e3, "bgColor": "#CC6666CC" }, // passed
+    { "bgRange": 0, "bgColor": "#CC666699" }, // now
     { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766677" }, // today
     { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866666" }, // tomorrow
     { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986666" }, // in_2d

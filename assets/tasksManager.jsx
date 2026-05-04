@@ -691,20 +691,21 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       goalsDom.innerHTML = `<table>
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
-        <tr><td>🍏/Health</td>  <td id="healthCount" class="bold-right">4.0</td> <td><span style="color:#caa04c">🩺checks</span>&nbsp;<span style="color:#e15759">🪁🏄ks</span></td></tr>
-        <tr><td>🏠💰/FIRE</td>  <td id="fireCount"   class="bold-right">3.5</td> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
-        <tr><td>🚩/Rel.</td>    <td id="relCount"    class="bold-right">2.5</td> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
-        <tr><td>🔬🌿/Mot.</td>  <td id="motCount"    class="bold-right">1.5</td> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>   <td id="restCount"   class="bold-right">1.5</td> <td id="totalCount" class="bold-right">0</td></tr>
+        <tr><td>🍏/Health</td>  <td id="healthCount"/> <td><span style="color:#caa04c">🩺checks</span>&nbsp;<span style="color:#e15759">🪁🏄ks</span></td></tr>
+        <tr><td>🏠💰/FIRE</td>  <td id="fireCount"/> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
+        <tr><td>🚩/Rel.</td>    <td id="relCount"/> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
+        <tr><td>🔬🌿/Mot.</td>  <td id="motCount"/> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
+        <tr><td>📺🎮🌐➕</td>   <td id="restCount"/> <td id="totalCount" class="bold-right">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
-      let currentTC = 0;
+      let tc = 0;
+      let tcl = 0;
       [
-        {"d":"healthCount", "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "l":3.0, "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
+        {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"restCount",   "l":1.5, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore
@@ -714,25 +715,25 @@ class tasksManager extends globalThis.React.Component {
         if (domObj) {
           const prevV = parseFloat(domObj.innerText) || 0;
           const kv = (k["v"]).toPrecision(2)??0;
+          domObj.className = "bold-right ";
           domObj.style.color =
-            ((parseFloat(kv)-.5) > prevV) ? "#ca8b4c" :
-            ((parseFloat(kv)+.5) <= prevV) ? "#e15759" :
+            ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
+            ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :
             "#b5bd68";
           // @ts-ignore
-          currentTC = parseFloat(totalCountDom.innerText);
-          // @ts-ignore
-          totalCountDom.innerText =
-            // @ts-ignore
-            parseFloat(currentTC + k["v"]).toPrecision(3);
-          domObj.innerText = `${kv} (${prevV.toFixed(1)}±.5)`;
+          tcl += k["l"];
+          tc += k["v"];
+          domObj.innerText = `${kv} (${k["l"].toFixed(1)}±.5)`;
         }
       });
       // @ts-ignore
+      totalCountDom.innerText = `${tc.toFixed(1)} (${tcl.toFixed(1)}±2.5)`;
+      // @ts-ignore
       totalCountDom.style.color =
       // @ts-ignore
-        (currentTC > 17.5) ? "#ca8b4c" :
+        ((tc-2.5) > tcl) ? "#ca8b4c" :
         // @ts-ignore
-        (currentTC < 7.5) ? "#e15759" :
+        ((tc+2.5) < tcl) ? "#e15759" :
         "#b5bd68";
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.

@@ -692,7 +692,7 @@ class tasksManager extends globalThis.React.Component {
       goalsDom.innerHTML = `<table>
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>  <td id="healthCount" class="bold-right">3.5</td> <td><span style="color:#caa04c">🩺checks</span>&nbsp;<span style="color:#e15759">🪁🏄ks</span></td></tr>
-        <tr><td>🏠💰/FIRE</td>  <td id="fireCount"   class="bold-right">3.5</td> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
+        <tr><td>🏠💰/FIRE</td>  <td id="fireCount"   class="bold-right">3.0</td> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
         <tr><td>🚩/Rel.</td>    <td id="relCount"    class="bold-right">2.5</td> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
         <tr><td>🔬🌿/Mot.</td>  <td id="motCount"    class="bold-right">1.5</td> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
         <tr><td>📺🎮🌐➕</td>   <td id="restCount"   class="bold-right">1.5</td> <td id="totalCount" class="bold-right">0</td></tr>

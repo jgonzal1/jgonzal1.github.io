@@ -702,7 +702,7 @@ class tasksManager extends globalThis.React.Component {
       let tcl = 0;
       [
         {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":3.0, "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"fireCount",   "l":3.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
         {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
@@ -714,7 +714,7 @@ class tasksManager extends globalThis.React.Component {
         const domObj = document.getElementById(k["d"]);
         if (domObj) {
           const prevV = parseFloat(domObj.innerText) || 0;
-          const kv = (k["v"]).toPrecision(2)??0;
+          const kv = k["v"]??0;
           domObj.className = "bold-right ";
           domObj.style.color =
             ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
@@ -723,7 +723,7 @@ class tasksManager extends globalThis.React.Component {
           // @ts-ignore
           tcl += k["l"];
           tc += k["v"];
-          domObj.innerText = `${kv} (${k["l"].toFixed(1)}±.5)`;
+          domObj.innerText = `${kv.toFixed(2)} (${k["l"].toFixed(1)}±.5)`;
         }
       });
       // @ts-ignore

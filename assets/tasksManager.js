@@ -179,7 +179,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
    * */
   function isWeekdayInRange(date) {
       const dayOfWeekN = date.getDay();
-      return dayOfWeekN >= 1 && dayOfWeekN <= 4;
+      return dayOfWeekN >= 1 && dayOfWeekN <= 3;
   }
 
   /* Exercise days evenly filter

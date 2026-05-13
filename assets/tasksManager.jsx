@@ -689,13 +689,13 @@ class tasksManager extends globalThis.React.Component {
         .appendChild(this.state.mondayTasksByCategorySvg[0]);
       const goalsDom = document.getElementById("goals");
       // @ts-ignore
-      goalsDom.innerHTML = `<table>
+      goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td>  <td id="healthCount"/> <td><span style="color:#caa04c">🩺checks</span>&nbsp;<span style="color:#e15759">🪁🏄ks</span></td></tr>
         <tr><td>🏠💰/FIRE</td>  <td id="fireCount"/> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
         <tr><td>🚩/Rel.</td>    <td id="relCount"/> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
         <tr><td>🔬🌿/Mot.</td>  <td id="motCount"/> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>   <td id="restCount"/> <td id="totalCount" class="bold-right">0</td></tr>
+        <tr><td>📺🎮🌐➕</td>   <td id="restCount"/> <td id="totalCount" class="r">0</td></tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
       let tc = 0;
@@ -715,7 +715,7 @@ class tasksManager extends globalThis.React.Component {
         if (domObj) {
           const prevV = parseFloat(domObj.innerText) || 0;
           const kv = k["v"]??0;
-          domObj.className = "bold-right ";
+          domObj.className = "r ";
           domObj.style.color =
             ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
             ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :

@@ -278,7 +278,7 @@ th.sorted-desc::after {
   font-weight: bold;
 }
 
-.bordered {
+.bordered, .bordered * {
   border: 1px solid #6666;
   border-radius: 0.2em;
   margin: 0.1em;
@@ -457,9 +457,9 @@ th.sorted-desc::after {
   width: min(calc(100% - 0.5em), 342px);
   height: min(calc(100% - 1.5em), 800px);
 }
-.hw-140 {
-  width: min(calc(100% - 0.5em), 140px);
-  height: min(calc(100% - 1.5em), 140px);
+.hw-160 {
+  width: min(calc(100% - 0.5em), 160px);
+  height: min(calc(100% - 1.5em), 160px);
 }
 
 .invisible {
@@ -588,7 +588,7 @@ th.sorted-desc::after {
 }
 
 .t-b-15em {
-  top: calc(100vh - 15em);
+  top: calc(100vh - 18em);
 }
 
 /*Overwrite jQuery UI */

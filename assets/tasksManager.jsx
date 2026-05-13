@@ -713,14 +713,15 @@ class tasksManager extends globalThis.React.Component {
         ));
         const domObj = document.getElementById(k["d"]);
         if (domObj) {
-          const prevV = parseFloat(domObj.innerText) || 0;
+          // const prevV = parseFloat(domObj.innerText) || 0;
           const kv = k["v"]??0;
           domObj.className = "r ";
           domObj.style.color =
+            // @ts-ignore
             ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
+            // @ts-ignore
             ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :
             "#b5bd68";
-          // @ts-ignore
           tcl += k["l"];
           tc += k["v"];
           domObj.innerText = `${kv.toFixed(2)} (${k["l"].toFixed(1)}±.5)`;

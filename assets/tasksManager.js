@@ -13,7 +13,7 @@ const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 7 /*Math.ceil(
+globalThis.categoryAggrDaysRange = 11 /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";
@@ -178,8 +178,21 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
    * ```
    * */
   function isWeekdayInRange(date) {
-      const dayOfWeekN = date.getDay();
-      return dayOfWeekN >= 1 && dayOfWeekN <= 3;
+    const dss = date.toISOString().substring(2,10);
+    const dir = [
+      "26-05-18",
+      "26-05-20",
+      "26-05-25",
+      "26-05-26",
+      "26-05-28",
+      "26-06-01",
+      "26-06-03",
+      "26-06-09",
+      "26-06-11",
+    ].includes(dss);
+    return dir;
+    // const dayOfWeekN = date.getDay();
+    // return dayOfWeekN >= 1 && dayOfWeekN <= 4;
   }
 
   /* Exercise days evenly filter
@@ -188,9 +201,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     (+new Date(offsetNDay(n)) - nextExercisingDateNum)
     / msPerDay
   ) + 1) % 2) */
-  const exerciseMinDuration = 30;
+  const exerciseMinDuration = 60;
   const arrNextExercisingDays = Array.from(
-    { length: globalThis.categoryAggrDaysRange - 2 }, (_, n) => n
+    { length: globalThis.categoryAggrDaysRange - 1 }, (_, n) => n
   ).filter(
     n => isWeekdayInRange(new Date(offsetNDay(n))) &&
       (offsetNDay(n) > nextExercisingDay.substring(0, 10))

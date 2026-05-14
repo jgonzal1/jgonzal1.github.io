@@ -691,11 +691,22 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
-        <tr><td>🍏/Health</td>  <td id="healthCount"/> <td><span style="color:#caa04c">🩺checks</span>&nbsp;<span style="color:#e15759">🪁🏄ks</span></td></tr>
-        <tr><td>🏠💰/FIRE</td>  <td id="fireCount"/> <td style="color:#e15759">🏷️🏠♴💼</td></tr>
-        <tr><td>🚩/Rel.</td>    <td id="relCount"/> <td style="color:#e15759">🚩🇸🇪💼</td></tr>
-        <tr><td>🔬🌿/Mot.</td>  <td id="motCount"/> <td style="color:#b5bd68">h/XR or 400🌳</td></tr>
-        <tr><td>📺🎮🌐➕</td>   <td id="restCount"/> <td id="totalCount" class="r">0</td></tr>
+        <tr><td>🍏/Health</td> <td id="healthCount"/><td>
+          <span style="color:#caa04c">🩺checks</span>&nbsp;
+          <span style="color:#e15759">🪁🏄ks</span>
+        </td></tr>
+        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/>
+          <td style="color:#e15759">🏷️🏠♴💼</td>
+        </tr>
+        <tr><td>🚩/Rel.</td> <td id="relCount"/>
+          <td style="color:#e15759">🚩🇸🇪💼</td>
+        </tr>
+        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/>
+          <td style="color:#b5bd68">h/XR or 400🌳</td>
+        </tr>
+        <tr><td>📺🎮🌐➕</td> <td id="restCount"/>
+          <td id="totalCount" class="r">0</td>
+        </tr>
       </table>`;
       const totalCountDom = document.getElementById("totalCount");
       let tc = 0;
@@ -704,8 +715,8 @@ class tasksManager extends globalThis.React.Component {
         {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":3.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"motCount",    "l":2.0, "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"restCount",   "l":0.5, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

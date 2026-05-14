@@ -13,7 +13,7 @@ const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 11 /*Math.ceil(
+globalThis.categoryAggrDaysRange = 10 /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";
@@ -48,7 +48,8 @@ const columnRenames = {
 //#region addMondayMeta
 globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   const currentDate = new Date();
-  const penultimateDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange - 1))
+  const penultimateDay = new Date
+    (offsetNDay(globalThis.categoryAggrDaysRange - 1))
     .toISOString().substring(0, 16).replace("T", " ");
   const lastRangeDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange))
     .toISOString().substring(0, 16).replace("T", " ");
@@ -65,7 +66,8 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
     ) / msPerH / 24).toPrecision(3));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
+      item["notes"] ?? ""}`;
     item["notes"] = notes;
     return item;
   });
@@ -108,29 +110,30 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
         .substring(0, 16).replace("T", " ");
       // @ts-ignore
       parentItemDates[parentName] = newDateTimeStr;
-      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
-        if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
-          return; // Parent task is already updated today
-        }
-        /*const query = `mutation { change_column_value ( ${""
-          }board_id: ${boardId}, item_id: ${n["task_id"]
-          }, column_id: "date", value: "{${""
-          }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
-          }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
-          }\\"changed_at\\":\\"${
-            new Date().toISOString().substring(0, 19)
-          }\\"}") { name } }`;
-        const body = JSON.stringify({ "query": query });
-        fetch(
-          globalThis.mondayApiUrl,
-          { method: "POST", headers: globalThis.headers, body: body }
-        );*/
-        n["datetime"] = newDateTimeStr;
-        n["Δd"] = +(((
-          new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
-        ) / msPerH / 24).toPrecision(3));
-        n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
-      });
+      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName)
+        .map(n => {
+          if(n["datetime"]===newDateTime.replace("T"," ").substring(0,16)) {
+            return; // Parent task is already updated today
+          }
+          /*const query = `mutation { change_column_value ( ${""
+            }board_id: ${boardId}, item_id: ${n["task_id"]
+            }, column_id: "date", value: "{${""
+            }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
+            }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
+            }\\"changed_at\\":\\"${
+              new Date().toISOString().substring(0, 19)
+            }\\"}") { name } }`;
+          const body = JSON.stringify({ "query": query });
+          fetch(
+            globalThis.mondayApiUrl,
+            { method: "POST", headers: globalThis.headers, body: body }
+          );*/
+          n["datetime"] = newDateTimeStr;
+          n["Δd"] = +(((
+            new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
+          ) / msPerH / 24).toPrecision(3));
+          n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
+        });
     }
   });
   mondayItemsJsonPayload.sort(
@@ -151,7 +154,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
   const daysRangeStart = new Date().getTime();
-  const daysRangeEnd = daysRangeStart + (globalThis.categoryAggrDaysRange * msPerDay);
+  const daysRangeEnd = daysRangeStart +
+    (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
   /** Get current day at 00.00 */
   const currentDate = new Date(new Date().toISOString().substring(0, 10));
@@ -250,7 +254,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮",
+    "9.➕"
   ];
   // @ts-ignore
   days.map(d =>

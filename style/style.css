@@ -458,7 +458,7 @@ th.sorted-desc::after {
   height: min(calc(100% - 1.5em), 800px);
 }
 .hw-160 {
-  width: min(calc(100% - 0.5em), 160px);
+  width: min(calc(100% - 0.5em), 280px);
   height: min(calc(100% - 1.5em), 160px);
 }
 

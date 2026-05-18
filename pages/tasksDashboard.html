@@ -98,16 +98,13 @@
       "font-size-08-rem grid-container-2 hw-160 l-50em p-a t-b-15em"
     >
       <div>
-        <div class="bordered" style="color:#b5bd68">Assets<span id="dailyGrowth"></span>:<br>
-          &nbsp;&nbsp;<span id="amountEur">___.___,__ €</span>&nbsp;
+        <div class="bordered" style="color:#b5bd68">Assets<span id="dailyGrowth"></span>:
+          <span id="amountEur">___.___,__ €</span>&nbsp;
           <!--<br><span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
         </div>
         <div class="bordered" style="color:#b5bd68">
-          Passive<span id="dailyPassGrowth"></span>:<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;<span id="amountEurPas">
-            _.___,_____ €
-          </span>&nbsp;<br>
-          <div style="height:0.3em"></div>
+          Passive<span id="dailyPassGrowth"></span>:
+          <span id="amountEurPas">_.___,_____ €</span>&nbsp;
         </div>
         <!--<div class="bordered">Started at:<br>
           <span id="startRegr"></span>
@@ -251,9 +248,9 @@
     const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
     const dailyPassGrowth = daily_growth * (globalThis.passive_factor / 12);
     // const hoursPerEur = 24/dailyPassGrowth;
-    dailyPassGrowthDom.innerText = ` (${
+    dailyPassGrowthDom.innerText = `(${
       (100*globalThis.passive_factor).toPrecision(3)
-      }% @ \n Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
+      }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
     let exec = false;
 
     dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;

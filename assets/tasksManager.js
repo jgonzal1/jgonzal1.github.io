@@ -153,7 +153,8 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
 globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
-  const daysRangeStart = new Date().getTime();
+  const currentDateTime = new Date();
+  const daysRangeStart = currentDateTime.getTime();
   const daysRangeEnd = daysRangeStart +
     (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
@@ -274,6 +275,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
+  const isNight = (currentDateTime.getHours() > 19);
   const tasksDurationByDayCategory = Object.keys(
     tasksDurationByDayCategoryPk
   ).map(tDCD => {
@@ -283,7 +285,11 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "name": name,
       "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
     };
-  }).filter(k => (new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)));
+  }).filter(k => (
+    !isNight || (new Date(k["x"]) > currentDate)
+  )&&(
+    new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)
+  ));
   let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
     (accumulator, item) => {
       // @ts-ignore

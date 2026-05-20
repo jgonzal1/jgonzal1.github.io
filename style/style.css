@@ -473,8 +473,8 @@ th.sorted-desc::after {
   top: 0;
 }
 
-.l-50em {
-  left: calc(min(50em, 100% - 10em));
+.l-50vw-10em {
+  min(50em, calc(50vw - 10em))
 }
 
 .main {

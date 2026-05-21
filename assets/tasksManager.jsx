@@ -716,7 +716,7 @@ class tasksManager extends globalThis.React.Component {
         {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":2.5, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":2.5, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"restCount",   "l":2.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

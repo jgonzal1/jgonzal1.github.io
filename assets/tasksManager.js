@@ -1,7 +1,7 @@
 "use strict";
 //#region Variables
-// 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
-const quartersOfHourWeekdays = 10;
+// 8 2h, 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
+const quartersOfHourWeekdays = 8;
 const quartersOfHourWeekends = 12;
 const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
@@ -304,7 +304,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
-    const maxForDay = ["S", "U"].includes(wd)
+    const maxForDay = ["F", "S", "U"].includes(wd)
       ? (quartersOfHourWeekends * 15)
       : (quartersOfHourWeekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);

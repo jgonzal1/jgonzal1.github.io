@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      input[type=text] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+      #result {
+        margin-top: 20px;
+        white-space: pre-wrap;
+        background-color: #f4f4f4;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+    </style>
+    <script src=
+      "https://cdnjs.cloudflare.com/ajax/libs/alasql/4.6.6/alasql.min.js"
+    >
+      globalThis.alasql = alasql;
+    </script>
+    <script>
+      function executeQuery() {
+        const jsonData = JSON.parse(
+          document.getElementById("data").value
+        );
+        document.getElementById("data").value = JSON.stringify(
+          jsonData,
+          null,
+          2
+        );
+        const query = document.getElementById("sqlQuery").value;
+        const result = alasql(query, [jsonData]);
+        document.getElementById("result").innerText =
+          JSON.stringify(result, null, 2);
+      }
+    </script>
+  </head>
+  <body>
+    <h2>ALASQL JSON Query Demo</h2>
+    <label for="data">JSON Data:</label><br>
+    <input type="text" id="data" value='[
+      {"name":"John","age":25},
+      {"name":"Jane","age":30},
+      {"name":"Jim","age":35}
+    ]'></input><br>
+    <label for="sqlQuery">Enter SQL Query:</label><br>
+    <input type=text id="sqlQuery" value="SELECT * FROM ? WHERE age > 28">
+    </input><br>
+    <button onclick="executeQuery()">Execute Query</button>
+    <div id="result"></div>
+  </body>
+</html>

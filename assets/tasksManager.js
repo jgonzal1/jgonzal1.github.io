@@ -1,21 +1,21 @@
 "use strict";
 //#region Variables
-// 12 3h, 14 3.5h, 16 4h, 20 5h, 24 6h
-const quartersOfHourWeekdays = 12;
-const quartersOfHourWeekends = 16;
+// 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
+const quartersOfHourWeekdays = 10;
+const quartersOfHourWeekends = 12;
 const weeklyExerciseH = 6;
 globalThis.totalHPerWeek = Math.floor(
   quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
 );
-console.log("totalHPerWeek", globalThis.totalHPerWeek);
+console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
-const msPerH = 3600000;
+const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
-const loadTasksUntilDate = "2026-01-08"; // inclusive
+// const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = Math.ceil(
+globalThis.categoryAggrDaysRange = 8 /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
-); // 12; */
+); // */
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";
@@ -48,7 +48,8 @@ const columnRenames = {
 //#region addMondayMeta
 globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   const currentDate = new Date();
-  const penultimateDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange - 1))
+  const penultimateDay = new Date
+    (offsetNDay(globalThis.categoryAggrDaysRange - 1))
     .toISOString().substring(0, 16).replace("T", " ");
   const lastRangeDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange))
     .toISOString().substring(0, 16).replace("T", " ");
@@ -65,7 +66,8 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
     ) / msPerH / 24).toPrecision(3));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
+      item["notes"] ?? ""}`;
     item["notes"] = notes;
     return item;
   });
@@ -81,9 +83,9 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
         "actions": t["notes"],
         "task_id": t["task_id"],
         "gr": t["group"],
-        "type": t["type"],
         "freq": t["freq"],
-        "status": t["status"]
+        "status": t["status"],
+        "type": t["type"]
       }
     }
   )
@@ -108,29 +110,30 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
         .substring(0, 16).replace("T", " ");
       // @ts-ignore
       parentItemDates[parentName] = newDateTimeStr;
-      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName).map(n => {
-        if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
-          return; // Parent task is already updated today
-        }
-        /*const query = `mutation { change_column_value ( ${""
-          }board_id: ${boardId}, item_id: ${n["task_id"]
-          }, column_id: "date", value: "{${""
-          }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
-          }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
-          }\\"changed_at\\":\\"${
-            new Date().toISOString().substring(0, 19)
-          }\\"}") { name } }`;
-        const body = JSON.stringify({ "query": query });
-        fetch(
-          globalThis.mondayApiUrl,
-          { method: "POST", headers: globalThis.headers, body: body }
-        );*/
-        n["datetime"] = newDateTimeStr;
-        n["Δd"] = +(((
-          new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
-        ) / msPerH / 24).toPrecision(3));
-        n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
-      });
+      mondayItemsJsonPayload.filter(m => m["task_name"] === parentName)
+        .map(n => {
+          if(n["datetime"]===newDateTime.replace("T"," ").substring(0,16)) {
+            return; // Parent task is already updated today
+          }
+          /*const query = `mutation { change_column_value ( ${""
+            }board_id: ${boardId}, item_id: ${n["task_id"]
+            }, column_id: "date", value: "{${""
+            }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
+            }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
+            }\\"changed_at\\":\\"${
+              new Date().toISOString().substring(0, 19)
+            }\\"}") { name } }`;
+          const body = JSON.stringify({ "query": query });
+          fetch(
+            globalThis.mondayApiUrl,
+            { method: "POST", headers: globalThis.headers, body: body }
+          );*/
+          n["datetime"] = newDateTimeStr;
+          n["Δd"] = +(((
+            new Date(newDateTimeStr).valueOf() - currentDate.valueOf()
+          ) / msPerH / 24).toPrecision(3));
+          n["wd"] = weekday[new Date(newDateTimeStr).getDay()];
+        });
     }
   });
   mondayItemsJsonPayload.sort(
@@ -150,16 +153,15 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
 globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
-  const daysRangeStart = new Date().getTime();
-  const daysRangeEnd = daysRangeStart + (globalThis.categoryAggrDaysRange * msPerDay);
+  const currentDateTime = new Date();
+  const daysRangeStart = currentDateTime.getTime();
+  const daysRangeEnd = daysRangeStart +
+    (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
-  const currentDate = new Date(
-    new Date().toISOString().substring(0, 10)
-  ); // Gets current day at 00.00
-  const [
-    // @ts-ignore
-    nextExercisingDay, nextVI, nextVF
-  ] = [
+  /** Get current day at 00.00 */
+  const currentDate = new Date(new Date().toISOString().substring(0, 10));
+  // @ts-ignore
+  const [nextExercisingDay, nextVI, nextVF] = [
     "Gym", "(v_i)", "(v_f)"
   ].map(
     (tn) => mondayTasksSortedJson.filter(
@@ -181,8 +183,20 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
    * ```
    * */
   function isWeekdayInRange(date) {
-      const dayOfWeekN = date.getDay();
-      return dayOfWeekN >= 1 && dayOfWeekN <= 4;
+    const dss = date.toISOString().substring(2,10);
+    const dir = [
+      // 3x +
+      "26-05-22",
+      "26-05-26",
+      "26-05-28",
+      "26-06-01",
+      "26-06-03",
+      "26-06-09",
+      "26-06-11",
+    ].includes(dss);
+    return dir;
+    // const dayOfWeekN = date.getDay();
+    // return dayOfWeekN >= 1 && dayOfWeekN <= 4;
   }
 
   /* Exercise days evenly filter
@@ -191,9 +205,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     (+new Date(offsetNDay(n)) - nextExercisingDateNum)
     / msPerDay
   ) + 1) % 2) */
-  const exerciseMinDuration = 30;
+  const exerciseMinDuration = 60;
   const arrNextExercisingDays = Array.from(
-    { length: globalThis.categoryAggrDaysRange - 2 }, (_, n) => n
+    { length: globalThis.categoryAggrDaysRange - 1 }, (_, n) => n
   ).filter(
     n => isWeekdayInRange(new Date(offsetNDay(n))) &&
       (offsetNDay(n) > nextExercisingDay.substring(0, 10))
@@ -240,7 +254,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .filter((val, idx, arr) => arr.indexOf(val) === idx);
   const categories = [
-    "1.🍏", "2.🏠", "3.💰", "4.🚩🇩🇰", "5.🌿", "5.🔬", "6.🌐", "7.📺", "8.🎮", "9.➕"
+    "1.🍏", "2.🏠", "3.💰", "4.🚩", "5.🌿", "5.🔬", "8.🌐", "6.📺", "7.🎮",
+    "9.➕"
   ];
   // @ts-ignore
   days.map(d =>
@@ -259,6 +274,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
+  const isNight = (currentDateTime.getHours() > 19);
   const tasksDurationByDayCategory = Object.keys(
     tasksDurationByDayCategoryPk
   ).map(tDCD => {
@@ -268,7 +284,11 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "name": name,
       "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
     };
-  }).filter(k => (new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)));
+  }).filter(k => (
+    !isNight || (new Date(k["x"]) > currentDate)
+  )&&(
+    new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)
+  ));
   let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
     (accumulator, item) => {
       // @ts-ignore
@@ -281,7 +301,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  Array.from({ length: globalThis.categoryAggrDaysRange }, (_, i) => {
+  Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["S", "U"].includes(wd)
@@ -334,12 +354,12 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     "#edc949", // 🍏
     "#b5bd68", // 🏠
     "#9c755f", // 💰
-    "#f28e2c", // 🚩🇩🇰
+    "#f28e2c", // 🚩
     "#59a14f", // 🌿
     "#ff9da7", // 🔬
-    "#76b7b2", // 🌐
     "#af7aa1", // 📺
     "#4e79a7", // 🎮
+    "#76b7b2", // 🌐
     "#bab0ab66", // ➕
     ""
   ];
@@ -349,8 +369,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .domain(series.map(d => d.key).sort())
     .range(customColors);
 
-  const width = 500;
-  const height = 320;
+  const width = 350;
+  const height = 300;
   const marginTop = 10;
   const marginRight = 10;
   const marginBottom = 45;
@@ -456,6 +476,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .attr("fill", d => color(d.key))
     .attr("d", area)
+    .style("cursor", "pointer")
     // @ts-ignore
     .on("mouseover", (d) => {
       popUpDiv.innerHTML = d.target.textContent;
@@ -468,6 +489,18 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
         textShadow: "#000 0 0 1px",
         top: (d.y - 30) + "px"
       })
+    })
+    .on("click", (/** @type {{ target: { textContent: any; }; }} */ d) => {
+      const filterTaskDom = document.getElementById("filterTasks");
+      // @ts-ignore
+      if(filterTaskDom.value != d.target.textContent) {
+        // @ts-ignore
+        filterTaskDom.value = d.target.textContent;
+      } else {
+        // @ts-ignore
+        filterTaskDom.value = "";
+      }
+      globalThis.filterTasks();
     })
     .append("title")
     // @ts-ignore
@@ -482,12 +515,12 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ["1.🍏", "#edc949"],
     ["2.🏠", "#b5bd68"],
     ["3.💰", "#9c755f"],
-    ["4.🚩🇩🇰", "#f28e2c"],
+    ["4.🚩", "#f28e2c"],
     ["5.🔬", "#ff9da7"],
     ["5.🌿", "#59a14f"],
-    ["6.🌐", "#76b7b2"],
-    ["7.📺", "#af7aa1"],
-    ["8.🎮", "#4e79a7"],
+    ["6.📺", "#af7aa1"],
+    ["7.🎮", "#4e79a7"],
+    ["8.🌐", "#76b7b2"],
     ["9.➕", "#bab0ab66"]
   ].map((colorPair, idx) => {
     svg.append("circle").attr("cx", xOffset + 15)
@@ -593,6 +626,33 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
   );
 };
 //#endregion
+//#region filterTasks
+globalThis.filterTasks = () => {
+  var input, filter, table, tr, td, i, j, txtValue;
+  input = document.getElementById("filterTasks");
+  // @ts-ignore
+  filter = input.value.toUpperCase();
+  table = document.getElementById("mondayTasksByDayTable");
+  // @ts-ignore
+  tr = table.getElementsByTagName("tr");
+  // Loop tbody rows (not <1: thead), and hide those not matching search query
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td");
+    tr[i].style.visibility = "hidden";
+    tr[i].style.position = "absolute";
+    for (j = 0; j < td.length; j++) {
+      if (td[j]) {
+        txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.visibility = "visible";
+          tr[i].style.position = "relative";
+          continue
+        }
+      }
+    }
+  }
+};
+//#endregion
 //#region offsetNDay
 // @ts-ignore
 globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
@@ -616,7 +676,8 @@ globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
     if (roundedTimePrecision === "0") {
       roundedTimePrecision = "00";
     }
-    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)}${roundedTimePrecision.toString()}:00`.replace("T", " ");
+    dateStrOffset = `${dateStrOffset.substring(0, dateStrOffset.length - 5)
+      }${roundedTimePrecision.toString()}:00`.replace("T", " ");
   }
   return dateStrOffset;
 };
@@ -628,21 +689,21 @@ globalThis.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
   const bgRanges = [
-    { "bgRange": -9e3, "bgColor": "#CC6666DD" }, // passed
-    { "bgRange": 0, "bgColor": "#CC6666AA" }, // now
-    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766699" }, // today
-    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866677" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986677" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96670" }, // in_3d
+    { "bgRange": -9e3, "bgColor": "#CC6666CC" }, // passed
+    { "bgRange": 0, "bgColor": "#CC666699" }, // now
+    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766677" }, // today
+    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866666" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986666" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96666" }, // in_3d
     {
       "bgRange": (
         Math.max(120 - hToNextDay, hToNextWeek)
-      ) / 24, "bgColor": "#CCB06650"
+      ) / 24, "bgColor": "#CCB06655"
     }, // this_week
-    { "bgRange": (120 + hToNextWeek) / 24, "bgColor": "#CCCC664D" }, // next_w
-    { "bgRange": (720 - hToNextDay) / 24, "bgColor": "#CCEE663D" }, // this_mo
-    { "bgRange": 365, "bgColor": "#99FF662D" }, // this_year
-    { "bgRange": 3e4, "bgColor": "#BBFF6606" } // next_year
+    { "bgRange": (120 + hToNextWeek) / 24, "bgColor": "#CCCC6644" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24, "bgColor": "#CCEE6633" }, // this_mo
+    { "bgRange": 365, "bgColor": "#99FF6622" }, // this_year
+    { "bgRange": 3e4, "bgColor": "#BBFF6611" } // next_year
   ];
   let bgColor = "#0000";
   bgRanges.filter((bgPair, idx) =>

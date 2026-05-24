@@ -7,38 +7,77 @@ class tasksManager extends globalThis.React.Component {
     super(props);
     this.state = {
       colors: {
-        "0.➕": /*  */ "#e15759",
-        "1.🍏": /*  */ "#edc949",
-        "2.🏠": /*  */ "#b5bd68",
-        "3.💰": /*  */ "#9c755f",
-        "4.🚩🇩🇰": /**/ "#f28e2c",
-        "5.🔬": /*  */ "#ff9da7",
-        "5.🌿": /*  */ "#59a14f",
-        "6.🌐": /*  */ "#76b7b2",
-        "7.📺": /*  */ "#af7aa1",
-        "8.🎮": /*  */ "#4e79a7",
-        "9.➕": /*  */ "#bab0ab66"
+        "0.➕": "#c2b0b066",
+        "1.🍏": "#edc949",
+        "2.🏠": "#b5bd68",
+        "3.💰": "#9c755f",
+        "4.🚩": "#f28e2c",
+        "5.🔬": "#ff9da7",
+        "5.🌿": "#59a14f",
+        "6.📺": "#af7aa1",
+        "7.🎮": "#4e79a7",
+        "8.🌐": "#76b7b2",
+        "9.➕": "#bab0ab66"
+      },
+      durColors: {
+        "0.02": "#bab0ab88",
+        "0.1":  "#59a14f88",
+        "0.2":  "#b5bd6888",
+        "0.5":  "#edc94988",
+        "0.8":  "#e2bc3488",
+        "1":    "#c2a02688",
+        "1.5":  "#ca8b4c88",
+        "2":    "#e1575988"
+      },
+      freqColors: {
+        "999-Once":       "#bab0ab88",
+        "400->1y":        "#5891ce88",
+        "360-Yearly":     "#6fdda688",
+        "180-Every 6 mo": "#78d76c88",
+        "090-Every 3 mo": "#c6d15d88",
+        "030-Monthly":    "#edc94988",
+        "014-BiWeekly":   "#caa04c88",
+        "004-times":      "#ca8b4c88",
+        "003-/week":      "#f28e2c88",
+        "001-Daily":      "#e1575988"
+      },
+      statusColors: {
+        "Pending":        "#e1575988",
+        "Date sensitive": "#f28e2c88",
+        "Nice to do":     "#bab0ab88"
       },
       dayOffsetValue: Number(1 / 24),
+      daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression
       getDatedMondayItemsToJson: true,
       hide0DurTasks: true,
+      inflation: 1.04,
+      interval: 200,
       lastRefreshDateTime: "undefined",
-      lastUpdatedItem: false,
       lastUpdatedDt: "",
+      lastUpdatedItem: false,
+      milliSecondsPerDay: 24 * 60 * 60 * 1000,
       minsOffsetValue: 60,
-      mondayTasksByCategorySvg: [],
       mondayTasksByCategoryAndDay: [],
+      mondayTasksByCategorySvg: [],
+      mondayTasksByCatDict: {},
       mondayTasksByDay: {},
       mondayTasksJson: {},
       nextExercisingDay: "undefined",
       nextVF: "undefined",
       nextVI: "undefined",
+      numberFormat: {
+        currency: "EUR",
+        maximumSignificantDigits: 9,
+        style: "currency",
+        useGrouping: true
+      }
     };
   };
   //#endregion
   //#region aggrTasksByCategoryDonutChart
   // @ts-ignore
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
+    //#region 1🐇2🐢3♻️ Aggregator
     let mondayDursByGroup = mondayTasksSortedJson.reduce(
       // @ts-ignore
       (accumulator, item) => {
@@ -72,7 +111,19 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayDursByGroup).map(
       k => mondayDursByGroup[k] = mondayDursByGroup[k].toPrecision(3)
     );
-    let mondayTasksByCatDict = mondayTasksSortedJson.reduce(
+    //#endregion
+    //#region 1🍏2🏠3💰4🚩5🌿5🔬6📺7🎮8🌐 Aggregator
+    let mondayTasksByCatDict = mondayTasksSortedJson.filter(
+      /**
+       * @param {any} t
+       * @returns {boolean}
+       */
+      (t) => (new Date(t["datetime"]) <
+        new Date(new Date().getTime() +
+        // @ts-ignore
+        globalThis.categoryAggrDaysRange * 24 * 3.6e6
+      ))
+    ).reduce(
       // @ts-ignore
       (accumulator, item) => {
         if (!accumulator[item["cat"]]) {
@@ -85,66 +136,63 @@ class tasksManager extends globalThis.React.Component {
     Object.keys(mondayTasksByCatDict).map(
       k => mondayTasksByCatDict[k] = mondayTasksByCatDict[k].toPrecision(3)
     );
-    // sort by key, uncomment for value
-    mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort(
-      //(a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a]
-    ).reduce(
-      (obj, key) => {
-        // @ts-ignore
-        obj[key] = mondayTasksByCatDict[key];
-        return obj;
-      },
-      {}
-    );
-    // @ts-ignore
-    const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
+    /**
+     * sort() by key, by value;
+     * .sort((a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a])
+     */
+    mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort()
+    .reduce((obj, key) => { // @ts-ignore
+      obj[key] = mondayTasksByCatDict[key];
+      return obj;
+    }, {});
+    this.state.mondayTasksByCatDict = mondayTasksByCatDict;
+    //#endregion
+    //#region Donut Chart
+    /*const dataCategoriesAndValues = Object.keys(mondayTasksByCatDict).map(
       (k) => {
         const duration = +(mondayTasksByCatDict[k]);
         return {
           "name": k,
           "value": duration,
-          // @ts-ignore
           "color": this.state.colors[k]
         }
       }
     );
-    /*let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value)
+    let mondayTasksDurationSum = (dataCategoriesAndValues.map(t => t.value)
     .filter(dur => dur > 0).reduce(
       (accumulator, currentValue) => accumulator + currentValue, 0
-    ) - mondayDursByGroup["3.🔚"]).toFixed(1);*/
-
-    // @ts-ignore
+    ) - mondayDursByGroup["3.🔚"]).toFixed(1);
     const tasksByCatPlaceholder = document.getElementById("tasksByCategory")
-      ?? document.createElement("div");
-    const [tasksByCategoryWidth, tasksByCategoryHeight] = [500, 400];
+      ?? document.createElement("div");*/
+    const [tasksByCategoryWidth, tasksByCategoryHeight] = [380, 350];
     // @ts-ignore
     globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
     globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
-    const margin = 10;
+    const margin = 20;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
-
+    const vbScale = 0.6;
     // @ts-ignore
     const donutChartSvg = globalThis.d3.create("svg")
-      .attr("width", tasksByCategoryWidth)
-      .attr("height", tasksByCategoryHeight)
       .attr("viewBox", [
-        -0.6 * tasksByCategoryWidth, -1.2 * tasksByCategoryHeight,
-        1.2 * tasksByCategoryWidth, 2.6 * tasksByCategoryHeight
+        -0.9 * vbScale * tasksByCategoryWidth, -2 * vbScale * tasksByCategoryHeight,
+        2 * vbScale * tasksByCategoryWidth, 5 * vbScale * tasksByCategoryHeight
       ])
-      .attr("style", "max-width: 100%; height: auto; font: 1em sans-serif;")
-      .attr("text-anchor", "middle");
-
-    // @ts-ignore
+      //.attr("style", "x:x; y:y;")
+      .attr("font", "1em sans-serif")
+      .attr("margin", "2em 1em")
+      .attr("text-anchor", "middle")
+      .attr("height", tasksByCategoryHeight) //"auto"
+      .attr("width", tasksByCategoryWidth)
+      ;
     // @ts-ignore
     const node = donutChartSvg.append("g")
       .attr(
         "transform", "translate(" + tasksByCategoryWidth + ","
         + tasksByCategoryHeight + ")"
       );
-
     const donutChartStartAngle = 45;
     // @ts-ignore
     var pie = globalThis.d3.pie().startAngle(donutChartStartAngle)
@@ -152,22 +200,18 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
-
     // @ts-ignore
     const arc = globalThis.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
-
     // @ts-ignore
     const outerArc = globalThis.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
-
     // @ts-ignore
     const fullArc = globalThis.d3.arc()
       .innerRadius(radius)
       .outerRadius(radius);
-
     donutChartSvg
       .selectAll('allSlices')
       .data(data_ready)
@@ -177,8 +221,23 @@ class tasksManager extends globalThis.React.Component {
       .attr('fill', d => this.state.colors[d.data[0]])
       .attr("stroke", "white")
       .style("stroke-width", "2px")
-      .style("opacity", 0.7);
-
+      .style("opacity", 0.7)
+      .style("cursor", "pointer")
+      // @ts-ignore
+      .on("click", (d) => {
+        const categoryToFilter = d?.target?.__data__?.data?.[0]??"" ;
+        const filterTaskDom = document.getElementById("filterTasks");
+        // @ts-ignore
+        if(filterTaskDom.value != categoryToFilter) {
+          // @ts-ignore
+          filterTaskDom.value = categoryToFilter;
+        } else {
+          // @ts-ignore
+          filterTaskDom.value = "";
+        }
+        // @ts-ignore
+        globalThis.filterTasks();
+      });
     donutChartSvg
       .selectAll('allPolylines')
       .data(data_ready)
@@ -202,7 +261,7 @@ class tasksManager extends globalThis.React.Component {
         */
         return [posA, posB]//, posC]
       });
-
+    const donuntChartFontSize = "2em";
     donutChartSvg
       .selectAll('allLabels')
       .data(data_ready)
@@ -219,79 +278,102 @@ class tasksManager extends globalThis.React.Component {
         */
         return `translate(${pos})`;
       })
-      .style("font-size", "3.5em")
-      // @ts-ignore
+      .style("font-size", donuntChartFontSize)
       // @ts-ignore
       .style('text-anchor', (d) => {
         //const midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
-
-    donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "-80").text(() =>
+    donutChartSvg.append("text").style("fill",
+        // @ts-ignore
+        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
+        // @ts-ignore
+        (globalThis.totalHPerWeek < 10) ? "#e15759" :
+        "#b5bd68")
+      .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
         // @ts-ignore
         `${globalThis.totalHPerWeek}h/w`
       );
+    const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
+    // @ts-ignore
+    const fastTasksW = fastTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "-40").text(() =>
-        `1.🐇${mondayDursByGroup["1.🐇"]}h/${(
-          // @ts-ignore
-          parseFloat(mondayDursByGroup["1.🐇"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+      .style("font-size", donuntChartFontSize)
+      .style("fill", (fastTasksW > 1.5) ? "#e15759" :
+        (fastTasksW < 1) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "-40").text(() =>
+        `1.🐇${fastTasksH}h/${fastTasksW.toFixed(1)}w`
       );
+    const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
+    // @ts-ignore
+    const slowTasksW = slowTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "0").text(() =>
-        `2.🐢${mondayDursByGroup["2.🐢"]}h/${(
-          // @ts-ignore
-          parseFloat(mondayDursByGroup["2.🐢"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+      .style("font-size", donuntChartFontSize)
+      .style("fill", (slowTasksW > 1.5) ? "#e15759" :
+        (slowTasksW < 1.1) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "0").text(() =>
+        `2.🐢${slowTasksH}h/${slowTasksW.toFixed(1)}w`
       );
+    const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
+    // @ts-ignore
+    const repeatingTasksW = repeatingTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "40").text(() =>
-        `3.♻️${mondayDursByGroup["3.♻️"]}h/${(
-          // @ts-ignore
-          parseFloat(mondayDursByGroup["3.♻️"]) / globalThis.totalHPerWeek
-        ).toFixed(1)}w`
+      .style("font-size", donuntChartFontSize)
+      .style("fill", (repeatingTasksW > 1.5) ? "#e15759" :
+        (repeatingTasksW < 1.1) ? "#b5bd68" :
+        "#ca8b4c"
+      )
+      .attr("y", "40").text(() =>
+        `3.♻️${repeatingTasksH}h/${repeatingTasksW.toFixed(1)}w`
       );
-    const SUM = (
-      parseFloat(mondayDursByGroup["1.🐇"])
-      + parseFloat(mondayDursByGroup["2.🐢"])
-      + parseFloat(mondayDursByGroup["3.♻️"])
-    ).toFixed(1);
+    const SumH = fastTasksH + slowTasksH + repeatingTasksH;
+    // @ts-ignore
+    const SumW = SumH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
-      .style("font-size", "2.75em").attr("y", "80").text(() =>
-        `∑: ${SUM}h/${(parseFloat(SUM) / 20).toFixed(1)}w`
+      .style("font-size", donuntChartFontSize)
+      .style("fill", (SumW > 3.5) ? "#e15759" :
+        (SumW < 3) ? "#b5bd68" :
+        "#ca8b4c"
+      ).attr("y", "80").text(() =>
+        `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
       );
-
+    //#endregion
     return Object.assign(donutChartSvg.node());
   };
   //#endregion
-  //#region filterTasks
-  filterTasks = () => {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("filterTasks");
+  //#region archiveMondayItem
+  archiveMondayItem = async (
     // @ts-ignore
-    filter = input.value.toUpperCase();
-    table = document.getElementById("mondayTasksByDayTable");
+    mondayKey, boardId, itemId
+  ) => {
     // @ts-ignore
-    tr = table.getElementsByTagName("tr");
-
-    // Loop tbody rows (not <1: thead), and hide those not matching search query
-    for (i = 1; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td");
-      tr[i].style.visibility = "hidden";
-      tr[i].style.position = "absolute";
-      for (j = 0; j < td.length; j++) {
-        if (td[j]) {
-          txtValue = td[j].textContent || td[j].innerText || td[j].innerHTML;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.visibility = "visible";
-            tr[i].style.position = "relative";
-            continue
-          }
-        }
+    globalThis.headers["Authorization"] = mondayKey;
+    const query = `mutation { archive_item ( ${""
+      }item_id: ${itemId}) { name } }`;
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
+      globalThis.mondayApiUrl,
+      // @ts-ignore
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
       }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.
+    ["name"] ?? false;
+    if (lastUpdatedItem) {
+      this.setState({ lastUpdatedItem: lastUpdatedItem });
     }
   };
   //#endregion
@@ -328,10 +410,8 @@ class tasksManager extends globalThis.React.Component {
     /** @type {any} */
     let mondayTasksJson = [];
     // @ts-ignore
-    // @ts-ignore
     let rawItemIdx = 0;
     mondayItemsRawJson["data"]["boards"][0]["items_page"]["items"].map(
-      // @ts-ignore
       // @ts-ignore
       (rawItem, rawItemIdx) => {
         let taskIds = {
@@ -349,7 +429,6 @@ class tasksManager extends globalThis.React.Component {
         });
         mondayTasksJson.push(taskIds);
         if (rawItem["subitems"].length) {
-          // @ts-ignore
           // @ts-ignore
           rawItem["subitems"].map((subItem, subItemIdx) => {
             let subTaskIds = {
@@ -394,6 +473,116 @@ class tasksManager extends globalThis.React.Component {
         .substring(2, 19)
     });
     return mondayTasksSortedJson;
+  };
+  //#endregion
+  //#region handleMilestoneAmount
+  //@ts-ignore
+  handleMilestoneAmount = (passiveAmountEurMs) => {
+    const amntEurMsDomObj = document.getElementById("amntEurMs"); // as HTMLInputElement;
+    // @ts-ignore
+    const dayStartRegr = (offset_at_1900 / daily_growth -
+      this.state.daysBetween1900and1970);
+    const startRegr = new Date(
+      dayStartRegr * this.state.milliSecondsPerDay
+    ).toISOString().replace("T", " ").substring(0, 16);
+    const startRegrDomObj = document.getElementById("startRegr"); // as HTMLSpanElement;
+    // @ts-ignore
+    startRegrDomObj.innerText = startRegr;
+    const afterInput = document.getElementsByClassName("after-input")[0]; // as HTMLSpanElement;
+    // @ts-ignore
+    afterInput.style.display = "inline";
+    const numericAmount = typeof passiveAmountEurMs === 'string' ?
+      parseFloat(passiveAmountEurMs) : Number(passiveAmountEurMs);
+    // @ts-ignore
+    amntEurMsDomObj.innerText = new Intl.NumberFormat(
+      // @ts-ignore
+      'es-ES', numberFormat
+    ).format(numericAmount);
+    // @ts-ignore
+    const amountEurMs = numericAmount*12/globalThis.passive_factor;
+    // @ts-ignore
+    const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
+    const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
+      .substring(0, 16);
+    const dateEurMsDomObj = document.getElementById("dateEurMs"); // as HTMLSpanElement;
+    if (dateEurMsDomObj) {
+      dateEurMsDomObj.innerText = dateEurMs;
+    }
+    const yearsMsInt = (
+      (dayEurMs - Date.now()) / this.state.milliSecondsPerDay / 365
+    );
+    const yearsMsDomObj = document.getElementById("yearsMs"); // as HTMLSpanElement;
+    // @ts-ignore
+    yearsMsDomObj.innerText = yearsMsInt.toFixed(2);
+    const calcinflation = this.state.inflation ** yearsMsInt;
+    const yearsSelfMs = (
+      // @ts-ignore
+      (dayEurMs - new Date(birthday).getTime()) / this.state.milliSecondsPerDay / 365
+    ).toFixed(2);
+    const yearsSelfMsDomObj = document.getElementById("yearsSelfMs"); // as HTMLSpanElement;
+    // @ts-ignore
+    yearsSelfMsDomObj.innerText = yearsSelfMs;
+    const adjustedAmountDom = document.getElementById("adjustedAmount"); // as HTMLSpanElement;
+    // @ts-ignore
+    adjustedAmountDom.innerText = new Intl.NumberFormat(
+      // @ts-ignore
+      'es-ES', numberFormat
+    // @ts-ignore
+    ).format(amountEurMs * globalThis.passive_factor / 12 / calcinflation);
+  };
+  //#endregion
+  //#region mondayItemToBacklog
+  mondayItemToBacklog = async (
+    // @ts-ignore
+    mondayKey, boardId, itemId, type
+  ) => {
+    // @ts-ignore
+    globalThis.headers["Authorization"] = mondayKey;
+    let query;
+    const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
+      .substring(2, 19);
+    if (type === "item") {
+      query = `mutation { change_column_value ( ${""
+        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
+        }"{\\"date\\":\\"\", ${""
+        }\\"time\\":\\"\", ${""
+        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
+        }}") { name } }`;
+    } else if (type === "subitem") {
+      query = `mutation {
+        change_multiple_column_values(
+          board_id: ${boardId}
+          item_id: ${itemId}
+          create_labels_if_missing: true
+          column_values: "{\\"date0\\": \\"\\", \\"numbers\\": \\"0.02\\"}"
+        ) { name }
+      }`;
+    }
+    const body = JSON.stringify({ "query": query });
+    const mondayPutResponsePremise = await fetch(
+      // @ts-ignore
+      globalThis.mondayApiUrl,
+      // @ts-ignore
+      { method: "POST", headers: globalThis.headers, body: body }
+    ).then((response) => {
+      try {
+        return response.json();
+      } catch (e) {
+        console.error(e);
+        return [response];
+      }
+    });
+    const mondayPutResponse = await mondayPutResponsePremise;
+    const lastUpdatedItem = type === "item" ?
+      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
+      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"]
+      ?? "";
+    if (lastUpdatedItem) {
+      this.setState({
+        lastRefreshDateTime: lastRefreshDateTime,
+        lastUpdatedItem: lastUpdatedItem
+      });
+    }
   };
   //#endregion
   //#region putMondayDateItem
@@ -451,91 +640,6 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region mondayItemToBacklog
-  mondayItemToBacklog = async (
-    // @ts-ignore
-    mondayKey, boardId, itemId, type
-  ) => {
-    // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
-    let query;
-    const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
-      .substring(2, 19);
-    if (type === "item") {
-      query = `mutation { change_column_value ( ${""
-        }board_id: ${boardId}, item_id: ${itemId}, column_id: "date", value: ${""
-        }"{\\"date\\":\\"\", ${""
-        }\\"time\\":\\"\", ${""
-        }\\"changed_at\\":\\"${lastRefreshDateTime}\\"${""
-        }}") { name } }`;
-    } else if (type === "subitem") {
-      query = `mutation {
-        change_multiple_column_values(
-          board_id: ${boardId}
-          item_id: ${itemId}
-          create_labels_if_missing: true
-          column_values: "{\\"date0\\": \\"\\", \\"numbers\\": \\"0.02\\"}"
-        ) { name }
-      }`;
-    }
-    const body = JSON.stringify({ "query": query });
-    const mondayPutResponsePremise = await fetch(
-      // @ts-ignore
-      globalThis.mondayApiUrl,
-      // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
-    ).then((response) => {
-      try {
-        return response.json();
-      } catch (e) {
-        console.error(e);
-        return [response];
-      }
-    });
-    const mondayPutResponse = await mondayPutResponsePremise;
-    const lastUpdatedItem = type === "item" ?
-      (mondayPutResponse?.["data"]?.["change_column_value"]?.["name"] ?? "") :
-      mondayPutResponse?.["data"]?.["change_multiple_column_values"]?.["name"]
-      ?? "";
-    if (lastUpdatedItem) {
-      this.setState({
-        lastRefreshDateTime: lastRefreshDateTime,
-        lastUpdatedItem: lastUpdatedItem
-      });
-    }
-  };
-  //#endregion
-  //#region archiveMondayItem
-  archiveMondayItem = async (
-    // @ts-ignore
-    mondayKey, boardId, itemId
-  ) => {
-    // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
-    const query = `mutation { archive_item ( ${""
-      }item_id: ${itemId}) { name } }`;
-    const body = JSON.stringify({ "query": query });
-    const mondayPutResponsePremise = await fetch(
-      // @ts-ignore
-      globalThis.mondayApiUrl,
-      // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
-    ).then((response) => {
-      try {
-        return response.json();
-      } catch (e) {
-        console.error(e);
-        return [response];
-      }
-    });
-    const mondayPutResponse = await mondayPutResponsePremise;
-    const lastUpdatedItem = mondayPutResponse?.["data"]?.["archive_item"]?.
-    ["name"] ?? false;
-    if (lastUpdatedItem) {
-      this.setState({ lastUpdatedItem: lastUpdatedItem });
-    }
-  };
-  //#endregion
   //#region setDayOffsetValue
   // @ts-ignore
   setDayOffsetValue = (k) => {
@@ -577,28 +681,78 @@ class tasksManager extends globalThis.React.Component {
       this.getMondayTasksToMultipleJson(monday_key, boardId, columnRenames);
     }
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
-      const tasksByCategoryPlaceholder = document.querySelector(
-        "#tasksByCategory"
-      );
+      const tasksByCategoryPlaceholder =
+        document.querySelector("#tasksByCategory");
       if (!tasksByCategoryPlaceholder) { return; }
       tasksByCategoryPlaceholder.innerHTML = "";
-      tasksByCategoryPlaceholder.appendChild(
-        this.state.mondayTasksByCategorySvg[0]
-      );
-      const treesPlantedDom = document.createElement("span");
-      treesPlantedDom.innerHTML = "0/400 🌳";
-      Object.assign(treesPlantedDom.style, {
-        position: "absolute",
-        right: 0,
-        top: 0,
-        fontSize: "1.4em",
-        fontWeight: "bold",
-        // @ts-ignore
-        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-        // @ts-ignore
-        ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+      tasksByCategoryPlaceholder
+        .appendChild(this.state.mondayTasksByCategorySvg[0]);
+      const goalsDom = document.getElementById("goals");
+      // @ts-ignore
+      goalsDom.innerHTML = `<table class="bordered">
+        <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
+        <tr><td>🍏/Health</td> <td id="healthCount"/><td>
+          <span style="color:#caa04c">🩺checks</span>&nbsp;
+          <span style="color:#e15759">🪁🏄ks</span>
+        </td></tr>
+        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/>
+          <td style="color:#e15759">🏷️🏠♴💼</td>
+        </tr>
+        <tr><td>🚩/Rel.</td> <td id="relCount"/>
+          <td style="color:#e15759">🚩🇸🇪💼</td>
+        </tr>
+        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/>
+          <td style="color:#b5bd68">h/XR or 400🌳</td>
+        </tr>
+        <tr><td>📺🎮🌐➕</td> <td id="restCount"/>
+          <td id="totalCount" class="r">0</td>
+        </tr>
+      </table>`;
+      const totalCountDom = document.getElementById("totalCount");
+      let tc = 0;
+      let tcl = 0;
+      [
+        {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
+        {"d":"motCount",    "l":2.5, "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"restCount",   "l":2.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+      ].map((k)=>{
+        k["s"].map(l=>k["v"]+=parseFloat(
+          // @ts-ignore
+          this.state.mondayTasksByCatDict[l] || 0
+        ));
+        const domObj = document.getElementById(k["d"]);
+        if (domObj) {
+          // const prevV = parseFloat(domObj.innerText) || 0;
+          const kv = k["v"]??0;
+          domObj.className = "r ";
+          domObj.style.color =
+            // @ts-ignore
+            ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
+            // @ts-ignore
+            ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :
+            "#b5bd68";
+          tcl += k["l"];
+          tc += k["v"];
+          domObj.innerText = `${kv.toFixed(2)} (${k["l"].toFixed(1)}±.5)`;
+        }
       });
-      tasksByCategoryPlaceholder.appendChild(treesPlantedDom);
+      // @ts-ignore
+      totalCountDom.innerText = `${tc.toFixed(1)} (${tcl.toFixed(1)}±2.5)`;
+      // @ts-ignore
+      totalCountDom.style.color =
+      // @ts-ignore
+        ((tc-2.5) > tcl) ? "#ca8b4c" :
+        // @ts-ignore
+        ((tc+2.5) < tcl) ? "#e15759" :
+        "#b5bd68";
+      /*Object.assign(goalsDom.style, {
+        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
+          ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+      });
+      tasksByCategoryPlaceholder.appendChild(goalsDom);
+      */
     }
     //#endregion
     // @ts-ignore
@@ -734,7 +888,8 @@ class tasksManager extends globalThis.React.Component {
           {
             type: "text",
             id: "filterTasks",
-            onKeyUp: () => this.filterTasks(),
+            // @ts-ignore
+            onKeyUp: () => globalThis.filterTasks(),
             placeholder: "Search for tasks..",
             style: {
               backgroundColor: "#FFF9",
@@ -775,8 +930,8 @@ class tasksManager extends globalThis.React.Component {
             },
             this.state.lastUpdatedItem
           ),
-          // @ts-ignore
           this.state.lastUpdatedItem && this.state.lastUpdatedDt &&
+          // @ts-ignore
           React.createElement(
             "span",
             {
@@ -802,8 +957,8 @@ class tasksManager extends globalThis.React.Component {
             this.state.lastUpdatedDt.substring(5, 16)
           ),
         )
+        //#endregion
       ),
-      //#endregion
       //#region mondayTableContainer
       // @ts-ignore
       React.createElement(
@@ -813,14 +968,13 @@ class tasksManager extends globalThis.React.Component {
           className: "first-flex-container-item table-container resizable ui-widget-content",
           style: {
             borderColor: "#6666",
+            fontSize: "0.924em",
             isolation: "isolate",
             margin: "auto",
             maxHeight:
               `calc(500px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
-            // 640
-            maxWidth: "calc(100% - 0.8em)",
+            maxWidth: "calc(100% - 1em)",
             marginTop: "0.5em",
-            width: "fit-content"
           }
         },
         (
@@ -830,7 +984,12 @@ class tasksManager extends globalThis.React.Component {
         ) ? React.createElement(
           "table",
           {
-            id: "mondayTasksByDayTable"
+            id: "mondayTasksByDayTable",
+            style: {
+              position: "relative",
+              left: "3em",
+              width: "calc(100% - 6.5em)",
+            }
           },
           // @ts-ignore
           React.createElement(
@@ -845,7 +1004,7 @@ class tasksManager extends globalThis.React.Component {
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
                 // @ts-ignore
                 ...Object.keys(this.state.mondayTasksJson[0])
-              ].map(
+              ].filter(tk=>tk!=="type").map(
                 // @ts-ignore
                 (taskKey, taskKeyIdx) => React.createElement(
                   "th",
@@ -903,11 +1062,62 @@ class tasksManager extends globalThis.React.Component {
                   {
                     key: `${taskKey}${taskKeyIdx}${idxRow} Td`,
                     className: `${taskKey}-td`,
-                    style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "30em" }
+                    style: {
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: "30em",
+                      cursor: "pointer"
+                    },
+                    onClick: () => {
+                      if (taskKey === "actions") {
+                        return;
+                      }
+                      const filterTaskDom = document.getElementById("filterTasks");
+                      // @ts-ignore
+                      if(filterTaskDom.value != taskRow[taskKey]) {
+                        // @ts-ignore
+                        filterTaskDom.value = taskRow[taskKey];
+                      } else {
+                        // @ts-ignore
+                        filterTaskDom.value = "";
+                      }
+                      // @ts-ignore
+                      globalThis.filterTasks();
+                    }
                   },
-                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                  ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
+                  // @ts-ignore
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
                     // @ts-ignore
                     React.createElement(
+                      "span",
+                      {
+                        style: {
+                          // @ts-ignore
+                          backgroundColor: this.state.durColors[
+                            taskRow[taskKey]
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                        }
+                      },
+                      taskRow[taskKey]
+                      )
+                  ) :
+                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                  // @ts-ignore
+                  React.createElement(
                       "div",
                       {
                         style: {
@@ -960,6 +1170,7 @@ class tasksManager extends globalThis.React.Component {
                           )
                         }
                       ),
+                      // @ts-ignore
                       React.createElement(
                         "img",
                         {
@@ -1009,7 +1220,67 @@ class tasksManager extends globalThis.React.Component {
                             ) : taskRow[taskKey])
                           : ""
                       )
-                    ) : taskRow[taskKey ?? ""]
+                  ) :
+                  ((taskKey === "freq") && (taskRow["dur"] > 0)) ?
+                  // @ts-ignore
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
+                    // @ts-ignore
+                    React.createElement(
+                      "span",
+                      {
+                        style: {
+                          // @ts-ignore
+                          backgroundColor: this.state.freqColors[
+                            taskRow[taskKey] ?? "999-Once"
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                        }
+                      },
+                      taskRow[taskKey] ?? "999-Once"
+                      )
+                  ) :
+                  ((taskKey === "status") && (taskRow["dur"] > 0)) ?
+                  // @ts-ignore
+                  React.createElement(
+                    "div",
+                    {
+                      style: {
+                        height: "100%",
+                        overflowY: "none"
+                      }
+                    },
+                    // @ts-ignore
+                    React.createElement(
+                      "span",
+                      {
+                        style: {
+                          // @ts-ignore
+                          backgroundColor: this.state.statusColors[
+                            taskRow[taskKey]
+                          ],
+                          borderRadius: "0.8em",
+                          fontSize: "0.8em",
+                          fontWeight: "bold",
+                          padding: "0.3em 0.6em",
+                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                        }
+                      },
+                      taskRow[taskKey]
+                    )
+                  ) :
+                  ((taskKey === "type") && (taskRow["dur"] > 0)) ?
+                  "" : taskRow[taskKey ?? ""]
                 ) : ""))
               )
             )
@@ -1018,7 +1289,7 @@ class tasksManager extends globalThis.React.Component {
           // @ts-ignore
           React.createElement(
             "div",
-            null,
+            { style: { color: "#fff" }},
             "Loading tasks summary table"
           )
       ),
@@ -1046,7 +1317,6 @@ class tasksManager extends globalThis.React.Component {
           {
             id: "tasksByCategoryAndDay",
             style: {
-              flexGrow: 1,
               // @ts-ignore
               height: `${globalThis.tasksByCategoryHeight}px`,
               margin: "0.1em",
@@ -1055,6 +1325,20 @@ class tasksManager extends globalThis.React.Component {
             }
           },
           "Loading tasks by category and day"
+        ),
+        // @ts-ignore
+        React.createElement(
+          "div",
+          {
+            id: "goals",
+            style: {
+              flexGrow: 1,
+              fontSize: "1.2em",
+              fontWeight: "bold",
+              fontFamily: "monospace",
+            }
+          },
+          ""
         ),
         // @ts-ignore
         React.createElement(

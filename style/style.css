@@ -120,6 +120,8 @@ th.sorted-desc::after {
   color: inherit !important;
 }
 
+.b-1-s-grey { border: 1px solid #6666; }
+
 .client-ibm,
 .client-lda,
 .client-pas,
@@ -276,6 +278,13 @@ th.sorted-desc::after {
   font-weight: bold;
 }
 
+.bordered, .bordered * {
+  border: 1px solid #6666;
+  border-radius: 0.2em;
+  margin: 0.1em;
+  padding: 0.1em 0.1em 0.1em 0.3em;
+}
+
 .category-td {
   font-size: 1rem;
 }
@@ -307,6 +316,10 @@ th.sorted-desc::after {
 
 .colspan4 {
   padding-left: 10em;
+}
+
+.d-ib {
+  display: inline-block;
 }
 
 .error {
@@ -344,6 +357,13 @@ th.sorted-desc::after {
 .grid-container-3 {
   display: grid;
   grid-template-columns: auto auto auto;
+}
+
+.half-screen {
+  height: calc(80% - 1em);
+  width: calc(50% - 1em);
+  overflow: hidden;
+  position: relative;
 }
 
 .hidden {
@@ -425,6 +445,23 @@ th.sorted-desc::after {
   opacity: 0.7;
 }
 
+.hw-100p-2em {
+  height: calc(100% - 2em);
+  width: calc(100% - 2em);
+}
+.hw-800-1080 {
+  width: min(calc(100% - 0.5em), 1080px);
+  height: min(calc(100% - 1.5em), 800px);
+}
+.hw-800-342 {
+  width: min(calc(100% - 0.5em), 342px);
+  height: min(calc(100% - 1.5em), 800px);
+}
+.hw-160 {
+  width: min(calc(100% - 0.5em), 280px);
+  height: min(calc(100% - 1.5em), 160px);
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -434,6 +471,10 @@ th.sorted-desc::after {
   cursor: default;
   left: 0;
   top: 0;
+}
+
+.l-50vw-10em {
+  min(50em, calc(50vw - 10em))
 }
 
 .main {
@@ -478,6 +519,10 @@ th.sorted-desc::after {
   color: #FFFC;
 }
 
+.pa, .p-a {
+  position: absolute;
+}
+
 .page-number {
   position: relative;
   text-align: center;
@@ -488,10 +533,15 @@ th.sorted-desc::after {
   font-style: italic;
 }
 
+.pt-05em { padding-top: 0.5em; }
+
 .r {
+  text-align: right;
+}
+
+.r:not(td) {
   position: relative;
   top: -1em;
-  text-align: right;
 }
 
 .sidebar {
@@ -537,6 +587,10 @@ th.sorted-desc::after {
   vertical-align: top;
 }
 
+.t-b-15em {
+  top: calc(100vh - 16em);
+}
+
 /*Overwrite jQuery UI */
 .ui-widget-content {
   background-color: #000 !important;
@@ -557,6 +611,14 @@ th.sorted-desc::after {
 .w70 {
   width: 80%;
   padding-right: 2em;
+}
+
+.x.grid path,
+.x.grid line {
+  stroke: #CCC;
+  stroke-width: 1;
+  stroke-opacity: 0.3;
+  shape-rendering: crispEdges;
 }
 
 .zoom-out-iframe {

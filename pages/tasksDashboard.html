@@ -2,16 +2,10 @@
 
 <head>
   <title>Tasks Manager Dashboard</title>
-  <script src="../libs/babel.min.js">
-    // https://unpkg.com/@babel/standalone/babel.min.js
+  <script src="../libs/babel.min.js"> //URL
+    /* https://unpkg.com/@babel/standalone/babel.min.js */
   </script>
-  <script>
-    window.process = {
-      env: {
-        NODE_ENV: 'development'
-      }
-    }
-  </script>
+  <script> window.process = { env: { NODE_ENV: 'development' } }</script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
     globalThis.React = React;
   </script>
@@ -28,10 +22,8 @@
   <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js">
     $(() => { $(".resizable").resizable() });
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/4.6.6/alasql.min.js">
-    globalThis.alasql = alasql;
-  </script>
-  <script src="private/credentials.js">globalThis.mondayKey = mondayKey;</script>
+  <script src="private/credentials.js"></script>
+  <script src="../data/js/portfolioTickersClosePrices21Q2_26Q2.ignore.js"></script>
   <script>
     function hideMap() {
       console.log("Hiding map");
@@ -43,14 +35,18 @@
       const varNameResult = varTmp === href ? href :
         varTmp.substring(0, varTmp.search("&") === -1 ? varTmp.length :
           varTmp.search("&"));
-      if (!varNameResult.length) {
-        console.error(`At least ${varName} was missing via href`);
+      if (!varNameResult.length || varNameResult.substring(0,8) === "file:///") {
+        console.info(`At least ${varName} was missing via href`);
+        return false;
       }
       return varNameResult;
     }
     function handleCredentials() {
       const credentials_list = [
-        "cesium_api_key", "idealista_api_key", "idealista_api_secret", "monday_key"
+        "birthday",
+        "daily_growth",
+        "monday_key",
+        "offset_at_1900"
       ];
       const loaded_credentials = credentials_list.map(credential => {
         if (!window[credential] || !window[credential].length) {
@@ -67,8 +63,13 @@
       }
       const url = window.location.href;
       const href = url.substring(url.indexOf("#") + 1);
-      credentials_list.map(credential => window[credential] = assignHrefVarName(href, credential));
-      console.log("Credentials done loading via href");
+      credentials_list.filter(
+          credential => !!assignHrefVarName(href, credential)
+        ).map(
+          credential =>
+            window[credential] = assignHrefVarName(href, credential)
+        );
+      console.info("Credentials done loading via href");
     }
     handleCredentials();
   </script>
@@ -79,49 +80,57 @@
   <link href="../style/style.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="../public/real-estate-investing-management.ico">
   <style>
-    a,
-    b,
-    body,
-    fieldset,
-    legend,
-    span,
-    table,
-    td {
-      font-size: 0.88em;
-    }
-
-    /*path.slice {
-      stroke-width: 2px;
-    }
-
-    polyline {
-      opacity: 0.3;
-      stroke: #000;
-      stroke-width: 2px;
-      fill: none;
-    }*/
-
-    svg {
-      /*width: 100%;
-      height: 100%;*/
-      font-weight: bold !important;
-    }
+    a, b, body, fieldset, legend, span, table, td { font-size: 0.88em; }
+    /*
+    path.slice { stroke-width: 2px; }
+    polyline { fill: none; opacity: 0.3; stroke-width: 2px; stroke: #000; }
+    */
+    svg { font-weight: bold !important; /*width: 100%; height: 100%;*/ }
   </style>
 </head>
 
-<body class="flex-container-2" style="height:calc(100% - 2em); width:calc(100% - 2em); padding-top: 0.5em">
+<body class="flex-container-2 hw-100p-2em pt-05em">
   <div class="sidebar">Sidebar</div>
-  <div class="flex-container-2" style="width: calc(100% - 3em); border: 1px solid #6666">
-    <div id="taskManager" style="width:min(99vw, 1080px); height:min(calc(100% - 1.5em), 800px); padding-top: 0.5em;">
+  <div class="flex-container-2 b-1-s-grey" style="width: calc(100% - 3em);">
+    <div id="taskManager" class="d-ib hw-800-1080 pt-05em"></div>
+    <div id="portfolioPlaceholder" class="bordered d-ib hw-800-342"></div>
+    <div id="monto" class=
+      "font-size-08-rem grid-container-2 hw-160 l-50vw-10em p-a t-b-15em"
+    >
+      <div>
+        <div class="bordered" style="color:#b5bd68">Assets<span id="dailyGrowth"></span>:
+          <span id="amountEur">___.___,__ €</span>&nbsp;
+          <!--<br><span id="amountDkk">_.___.___,__ DKK</span>&nbsp;<br>-->
+        </div>
+        <div class="bordered" style="color:#b5bd68">
+          Passive<span id="dailyPassGrowth"></span>:
+          <span id="amountEurPas">_.___,_____ €</span>&nbsp;
+        </div>
+        <!--<div class="bordered">Started at:<br>
+          <span id="startRegr"></span>
+        </div>-->
+        <div id="dateMilestonePlaceholder" class="bordered grid-container-2" style="color:#e15759">
+          <div>2607: <span id="dateMilestone"></span></div>
+          <div>2701: <span id="dateMilestone2"></span></div>
+        </div>
+      </div>
+      <div class="bordered" style="display:none">
+        Next milestone:<br>
+        &nbsp;<small>&nbsp;</small><input id="amntEurMs" type="number" value="1750" style="width:6em"
+          onchange="handleMilestoneAmount(this.value)" class="bordered"></input><br>
+        <span class="after-input"><span id="dateEurMs"></span><br>
+          in <span id="yearsMs"></span> y, at <span id="yearsSelfMs"></span> yo,<br>
+          equals <span id="adjustedAmount"></span>&nbsp;</span>
+      </div>
     </div>
-    <!--
+    <!-- tasks by category and day unneeded placeholder and calendar
     <div id="tasksByCategoryAndDay"></div>
     <div id="calendar" style="width:min(99vw, 648px); height:min(calc(100% - 1.5em), 800px); position:relative;">
       <iframe id="calendarIframe" class="zoom-out-iframe" style="margin-top: 1em"></iframe>
     </div>-->
   </div>
-  <div id="popUpDiv" style="width: 2.6em; height: 1.2em; position: absolute; right: 5em; top: 0.8em;"></div>
-  <script>
+  <div id="popUpDiv" class="pa" style="width: 2.6em; height: 1.2em; right: 5em; top: 0.8em;"></div>
+  <script> // Calendar iframe
     const calendarSrc = `https://calendar.google.com/calendar/embed?
 				bgcolor=%23000000
 				&color=%23000000
@@ -147,7 +156,7 @@
   </script>
   <script src="../assets/tasksManager.js"></script>
   <script src="../assets/tasksManager.jsx"></script>
-  <script type="text/babel">
+  <script type="text/babel"> // SideBar
     const urlPrefixPos = location.href.search("/pages/");
     const urlPrefix = location.href.substring(0, urlPrefixPos);
     const sideBarDom = document.getElementsByClassName('sidebar')[0];
@@ -177,7 +186,7 @@
       <div className="space-children-01em">
         {
           sideBarPages.map(p => (
-            <a key={`${p.img}A`} href={`#${p.name}`}
+            <a key={`${p.img}A`} href={`${urlPrefix}/${p.location}.html`}
               onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
             >
               <img key={`${p.img}Img`}
@@ -189,16 +198,91 @@
         }
       </div>
     )
+    /* SideBar handler and Cesium map
+    <script type="text/babel" src="../assets/sideBarHandler.jsx"/>
+    <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
+      <button class="close-button" onClick='hideMap()'>
+        &times; <span style="display:none">👁</span>
+      </button>
+    </div>
+    <script src="../assets/cesiumInit.js"/>
+    */
   </script>
-  <!--
-  <script type="text/babel" src="../assets/sideBarHandler.jsx"></script>
-  <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
-    <button class="close-button" onClick='hideMap()'>
-      &times; <span style="display:none">👁</span>
-    </button>
-  </div>
-  <script src="../assets/cesiumInit.js"></script>
-  -->
+  <script> //dailyGrowth interval
+    const milliSecondsPerDay = 24 * 60 * 60 * 1000;
+    const daysBetween1900and1970 = 25569;
+    const numberFormat = {
+      currency: "EUR",
+      maximumSignificantDigits: 9,
+      style: "currency",
+      useGrouping: true
+    };
+    const interval = 200;
+    //const startRegrDom = document.getElementById("startRegr");
+    const dateMilestoneDom = document.getElementById("dateMilestone");
+    const dateMilestone2Dom = document.getElementById("dateMilestone2");
+    const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
+    const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
+    const dailyGrowthDom = document.getElementById("dailyGrowth");
+    const startRegr = new Date(
+      (-offset_at_1900/daily_growth - daysBetween1900and1970)
+      *milliSecondsPerDay
+    ).toISOString().substring(0, 10);
+    //startRegrDom.innerText = `  ${startRegr}`;
+    const dateMilestone = new Date(
+      ((-offset_at_1900 + 12*30*daily_growth*globalThis.passive_factor)/
+      daily_growth - daysBetween1900and1970) * milliSecondsPerDay
+    ).toISOString().substring(0, 10);
+
+    const dDateMilestone = new Date("2026-07-01").getTime() / msPerD;
+    const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
+
+    const dStartRegr = new Date(startRegr).getTime() / msPerD;
+    const incrD = (dDateMilestone - dStartRegr);
+    const dateMilestonePass = (dDateMilestone - dStartRegr) * daily_growth
+      * passive_factor / 12;
+    const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * daily_growth
+      * passive_factor / 12;
+
+    dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
+    const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
+    const dailyPassGrowth = daily_growth * (globalThis.passive_factor / 12);
+    // const hoursPerEur = 24/dailyPassGrowth;
+    dailyPassGrowthDom.innerText = `(${
+      (100*globalThis.passive_factor).toPrecision(3)
+      }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
+    let exec = false;
+
+    dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;
+    dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
+
+    const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
+    if (dateMilestonePass>1500) {
+      dateMilestonePlaceholder.style.color = "#b5bd68";
+    } else if (dateMilestonePass>1424.5) {
+      dateMilestonePlaceholder.style.color = "#caa04c";
+    }
+
+    /*const amountEurMsDom = document.getElementById("amntEurMs");
+    const amountEurMsInput = amountEurMsDom?.value;
+    handleMilestoneAmount(amountEurMsInput);*/
+    setInterval(
+      () => {
+
+        const currentAmount = (daily_growth * (
+          ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970
+        ) + offset_at_1900);
+        const currentAmountEur = new Intl.NumberFormat(
+          'es-ES', numberFormat
+        ).format(currentAmount);
+        const amountEurPas = currentAmount * globalThis.passive_factor / 12;
+        amountEurDomObj.innerText = currentAmountEur;
+        amountEurPasDom.innerText = new Intl.NumberFormat(
+          'es-ES', numberFormat
+        ).format(amountEurPas);
+      }, interval
+    );
+  </script>
 </body>
 
 </html>

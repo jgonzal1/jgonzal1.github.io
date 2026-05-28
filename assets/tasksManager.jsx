@@ -287,9 +287,9 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
     donutChartSvg.append("text").style("fill",
         // @ts-ignore
-        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
+        (globalThis.totalHPerWeek > 12) ? "#e15759" :
         // @ts-ignore
-        (globalThis.totalHPerWeek < 10) ? "#e15759" :
+        (globalThis.totalHPerWeek > 10) ? "#ca8b4c" :
         "#b5bd68")
       .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
         // @ts-ignore
@@ -313,7 +313,7 @@ class tasksManager extends globalThis.React.Component {
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > 1.5) ? "#e15759" :
-        (slowTasksW < 1.2) ? "#b5bd68" :
+        (slowTasksW < 1.3) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>

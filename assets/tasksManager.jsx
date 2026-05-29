@@ -731,7 +731,7 @@ class tasksManager extends globalThis.React.Component {
             // @ts-ignore
             ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
             // @ts-ignore
-            ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :
+            ((parseFloat(kv)+.5) < k["l"]) ? "#e15759" :
             "#b5bd68";
           tcl += k["l"];
           tc += k["v"];

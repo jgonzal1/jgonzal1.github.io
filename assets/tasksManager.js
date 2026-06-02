@@ -1,6 +1,7 @@
 "use strict";
 //#region Variables
 const weeklyExerciseH = 6;
+//@ts-ignore
 console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3.6e6;

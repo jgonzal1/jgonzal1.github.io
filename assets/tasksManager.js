@@ -1,21 +1,10 @@
 "use strict";
 //#region Variables
-// 8 2h, 10 2.5h, 12 3h, 14 3.5h, 16 4h, 18 4.5h, 20 5h
-const quartersOfHourWeekdays = 8;
-const quartersOfHourWeekends = 10;
 const weeklyExerciseH = 6;
-globalThis.totalHPerWeek = Math.floor(
-  quartersOfHourWeekdays * 5 / 4 + quartersOfHourWeekends / 2 - weeklyExerciseH
-);
 console.info("Total H per week", globalThis.totalHPerWeek);
 const nextViAsV = false;
 const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
-// const loadTasksUntilDate = "2026-04-14"; // inclusive
-// Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 7 /*Math.ceil(
-  (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
-); // */
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
 globalThis.mondayApiUrl = "https://api.monday.com/v2";
@@ -305,8 +294,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["F", "S", "U"].includes(wd)
-      ? (quartersOfHourWeekends * 15)
-      : (quartersOfHourWeekdays * 15);
+      ? (globalThis.quartersOfHourWeekends * 15)
+      : (globalThis.quartersOfHourWeekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);
     let matched = false;
     tasksDurationByDayCategory.filter(
@@ -598,8 +587,8 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       ));
       const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
       const durOffs = isOddDayDiff ? duration + 2 : duration;
-      const totV = ["Sat", "Sun"].includes(wd) ? quartersOfHourWeekends
-        : quartersOfHourWeekdays;
+      const totV = ["Sat", "Sun"].includes(wd) ? globalThis.quartersOfHourWeekends
+        : globalThis.quartersOfHourWeekdays;
       const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
       const unUsedTime = Math.max(totV - usedTime, 0);
       let nextViD = nextVI;

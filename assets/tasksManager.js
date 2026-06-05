@@ -647,17 +647,14 @@ globalThis.filterTasks = () => {
 //#endregion
 //#region offsetNDay
 // @ts-ignore
-globalThis.offsetNDay = (n, dateToOffset, precision = "day") => {
+globalThis.offsetNDay = (n=0, dateToOffset=false, precision="day") => {
   const dateToOffsetAsValue = dateToOffset ?
     new Date(dateToOffset).valueOf() :
     new Date().valueOf();
   const offsetMs = n * msPerD;
   const dateValueOffset = dateToOffsetAsValue + offsetMs;
-  let dateStrOffset = new Date(
-    dateValueOffset
-  ).toISOString().substring(0,
-    precision === "day" ? 10 : 19 // sec
-  );
+  let dateStrOffset = new Date(dateValueOffset).toISOString()
+    .substring(0,precision === "day" ? 10 : 19); // sec
   if (precision === "min") {
     const timePrecision = dateStrOffset.substring(
       dateStrOffset.length - 5, dateStrOffset.length - 3

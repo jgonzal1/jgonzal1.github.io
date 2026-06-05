@@ -289,7 +289,7 @@ class tasksManager extends globalThis.React.Component {
         // @ts-ignore
         (globalThis.totalHPerWeek > 18) ? "#e15759" :
         // @ts-ignore
-        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
+        (globalThis.totalHPerWeek > 16) ? "#ca8b4c" :
         "#b5bd68")
       .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
         // @ts-ignore
@@ -692,18 +692,18 @@ class tasksManager extends globalThis.React.Component {
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td> <td id="healthCount"/><td>
-          <span style="color:#caa04c">🩺checks</span>&nbsp;
-          <span style="color:#e15759">🪁🏄ks</span>
+          <span style="background-color:#caa04c99">🩺checks</span>&nbsp;
+          <span style="background-color:#e1575999">🪁🏄ks</span>
         </td></tr>
-        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/>
-          <td style="color:#e15759">🏷️🏠♴💼</td>
-        </tr>
-        <tr><td>🚩/Rel.</td> <td id="relCount"/>
-          <td style="color:#e15759">🚩🇸🇪💼</td>
-        </tr>
-        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/>
-          <td style="color:#b5bd68">h/XR or 400🌳</td>
-        </tr>
+        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td>
+          <span style="background-color:#e1575999">🏷️🏠♴💼</span>
+        </td></tr>
+        <tr><td>🚩/Rel.</td> <td id="relCount"/><td>
+          <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
+        </td></tr>
+        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td>
+          <span style="background-color:#b5bd6899">h/XR or 400🌳</span>
+        </td></tr>
         <tr><td>📺🎮🌐➕</td> <td id="restCount"/>
           <td id="totalCount" class="r">0</td>
         </tr>
@@ -712,9 +712,9 @@ class tasksManager extends globalThis.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
+        {"d":"healthCount", "l":3.0, "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "l":2.0, "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":2.0, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
         {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{

@@ -13,7 +13,7 @@ const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 // const loadTasksUntilDate = "2026-04-14"; // inclusive
 // Number of days from today until loadTasksUntilDate
-globalThis.categoryAggrDaysRange = 10 /*Math.ceil(
+globalThis.categoryAggrDaysRange = 8 /*Math.ceil(
   (new Date(loadTasksUntilDate).getTime() - new Date().getTime()) / msPerD
 ); // */
 const boardId = "3478645467";
@@ -185,14 +185,16 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   function isWeekdayInRange(date) {
     const dss = date.toISOString().substring(2,10);
     const dir = [
-      // 3x +
+      "26-05-15",
+      "26-05-18",
+      "26-05-20",
       "26-05-22",
       "26-05-26",
       "26-05-28",
-      "26-06-01",
       "26-06-03",
-      "26-06-09",
-      "26-06-11",
+      "26-06-08",
+      "26-06-10",
+      "26-06-12"
     ].includes(dss);
     return dir;
     // const dayOfWeekN = date.getDay();

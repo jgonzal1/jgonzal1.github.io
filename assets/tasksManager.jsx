@@ -287,9 +287,9 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
     donutChartSvg.append("text").style("fill",
         // @ts-ignore
-        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
+        (globalThis.totalHPerWeek > 18) ? "#e15759" :
         // @ts-ignore
-        (globalThis.totalHPerWeek < 10) ? "#e15759" :
+        (globalThis.totalHPerWeek > 15) ? "#ca8b4c" :
         "#b5bd68")
       .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
         // @ts-ignore
@@ -300,8 +300,8 @@ class tasksManager extends globalThis.React.Component {
     const fastTasksW = fastTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (fastTasksW > 1.5) ? "#e15759" :
-        (fastTasksW < 1) ? "#b5bd68" :
+      .style("fill", (fastTasksW > 1) ? "#e15759" :
+        (fastTasksW < 0.8) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
@@ -312,8 +312,8 @@ class tasksManager extends globalThis.React.Component {
     const slowTasksW = slowTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksW > 1.5) ? "#e15759" :
-        (slowTasksW < 1.1) ? "#b5bd68" :
+      .style("fill", (slowTasksW > 1.2) ? "#e15759" :
+        (slowTasksW < 1) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -324,8 +324,8 @@ class tasksManager extends globalThis.React.Component {
     const repeatingTasksW = repeatingTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (repeatingTasksW > 1.5) ? "#e15759" :
-        (repeatingTasksW < 1.1) ? "#b5bd68" :
+      .style("fill", (repeatingTasksW > 1) ? "#e15759" :
+        (repeatingTasksW < 0.8) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "40").text(() =>
@@ -336,8 +336,8 @@ class tasksManager extends globalThis.React.Component {
     const SumW = SumH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > 3.5) ? "#e15759" :
-        (SumW < 3) ? "#b5bd68" :
+      .style("fill", (SumW > 2.5) ? "#e15759" :
+        (SumW < 2) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
@@ -715,8 +715,8 @@ class tasksManager extends globalThis.React.Component {
         {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":2.0, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":1.5, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore
@@ -731,7 +731,7 @@ class tasksManager extends globalThis.React.Component {
             // @ts-ignore
             ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
             // @ts-ignore
-            ((parseFloat(kv)+.5) <= k["l"]) ? "#e15759" :
+            ((parseFloat(kv)+.5) < k["l"]) ? "#e15759" :
             "#b5bd68";
           tcl += k["l"];
           tc += k["v"];

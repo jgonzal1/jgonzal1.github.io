@@ -182,9 +182,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "26-05-26",
       "26-05-28",
       "26-06-03",
+      //"26-06-06", // Leo
       "26-06-08",
-      "26-06-10",
-      "26-06-12"
+      "26-06-10"
     ].includes(dss);
     return dir;
     // const dayOfWeekN = date.getDay();

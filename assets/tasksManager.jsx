@@ -312,8 +312,8 @@ class tasksManager extends globalThis.React.Component {
     const slowTasksW = slowTasksH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksW > 1.2) ? "#e15759" :
-        (slowTasksW < 1) ? "#b5bd68" :
+      .style("fill", (slowTasksW > 1.5) ? "#e15759" :
+        (slowTasksW < 1.2) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -715,7 +715,7 @@ class tasksManager extends globalThis.React.Component {
         {"d":"healthCount", "l":3.0, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.0, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.0, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":1.5, "v":0, "s":["5.🌿","5.🔬"],        },
+        {"d":"motCount",    "l":1.0, "v":0, "s":["5.🌿","5.🔬"],        },
         {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(

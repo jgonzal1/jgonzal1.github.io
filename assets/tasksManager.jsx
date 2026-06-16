@@ -691,20 +691,20 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
-        <tr><td>🍏/Health</td> <td id="healthCount"/><td>
+        <tr><td>🍏/Health</td> <td id="healthCount"/><td class="centered">
           <span style="background-color:#caa04c99">🩺checks</span>&nbsp;
           <span style="background-color:#e1575999">🪁🏄ks</span>
         </td></tr>
-        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td>
+        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td class="centered">
           <span style="background-color:#e1575999">🏷️🏠♴💼</span>
         </td></tr>
-        <tr><td>🚩/Rel.</td> <td id="relCount"/><td>
+        <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
           <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
         </td></tr>
-        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td>
+        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td class="centered">
           <span style="background-color:#b5bd6899">h/XR or 400🌳</span>
         </td></tr>
-        <tr><td>📺🎮🌐➕</td> <td id="restCount"/>
+        <tr><td>📺🎮🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
         </tr>
       </table>`;

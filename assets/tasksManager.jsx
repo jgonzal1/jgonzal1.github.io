@@ -336,8 +336,8 @@ class tasksManager extends globalThis.React.Component {
     const SumW = SumH/globalThis.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > 2.5) ? "#e15759" :
-        (SumW < 2) ? "#b5bd68" :
+      .style("fill", (SumW > 3) ? "#e15759" :
+        (SumW < 2.5) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
@@ -712,11 +712,11 @@ class tasksManager extends globalThis.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":3.0, "v":0, "s":["1.🍏"],               },
+        {"d":"healthCount", "l":2.5, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.0, "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":2.0, "v":0, "s":["4.🚩"],               },
+        {"d":"relCount",    "l":1.5, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":1.0, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"restCount",   "l":.75, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

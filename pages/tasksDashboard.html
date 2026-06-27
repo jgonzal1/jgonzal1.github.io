@@ -44,9 +44,7 @@
     function handleCredentials() {
       const credentials_list = [
         "birthday",
-        "daily_growth",
-        "monday_key",
-        "offset_at_1900"
+        "monday_key"
       ];
       const loaded_credentials = credentials_list.map(credential => {
         if (!window[credential] || !window[credential].length) {
@@ -218,60 +216,19 @@
       useGrouping: true
     };
     const interval = 200;
-    //const startRegrDom = document.getElementById("startRegr");
     const dateMilestoneDom = document.getElementById("dateMilestone");
     const dateMilestone2Dom = document.getElementById("dateMilestone2");
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
-    const startRegr = new Date(
-      (-offset_at_1900/daily_growth - daysBetween1900and1970)
-      *milliSecondsPerDay
-    ).toISOString().substring(0, 10);
-    //startRegrDom.innerText = `  ${startRegr}`;
-    const dateMilestone = new Date(
-      ((-offset_at_1900 + 12*30*daily_growth*globalThis.passive_factor)/
-      daily_growth - daysBetween1900and1970) * milliSecondsPerDay
-    ).toISOString().substring(0, 10);
-
-    const dDateMilestone = new Date("2026-08-01").getTime() / msPerD;
-    const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
-
-    const dStartRegr = new Date(startRegr).getTime() / msPerD;
-    const incrD = (dDateMilestone - dStartRegr);
-    const dateMilestonePass = (dDateMilestone - dStartRegr) * daily_growth
-      * passive_factor / 12;
-    const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * daily_growth
-      * passive_factor / 12;
-
-    dailyGrowthDom.innerText = ` (${daily_growth}€/d)`;
-    const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
-    const dailyPassGrowth = daily_growth * (globalThis.passive_factor / 12);
-    // const hoursPerEur = 24/dailyPassGrowth;
-    dailyPassGrowthDom.innerText = `(${
-      (100*globalThis.passive_factor).toPrecision(3)
-      }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
-    let exec = false;
-
-    dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;
-    dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
-
-    const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
-    if (dateMilestonePass>1500) {
-      dateMilestonePlaceholder.style.color = "#b5bd68";
-    } else if (dateMilestonePass>1424.5) {
-      dateMilestonePlaceholder.style.color = "#caa04c";
-    }
-
     /*const amountEurMsDom = document.getElementById("amntEurMs");
     const amountEurMsInput = amountEurMsDom?.value;
     handleMilestoneAmount(amountEurMsInput);*/
     setInterval(
       () => {
-
-        const currentAmount = (daily_growth * (
+        const currentAmount = (globalThis.daily_growth * (
           ((new Date().getTime()) / milliSecondsPerDay) + daysBetween1900and1970
-        ) + offset_at_1900);
+        ) + globalThis.offset_at_1900);
         const currentAmountEur = new Intl.NumberFormat(
           'es-ES', numberFormat
         ).format(currentAmount);

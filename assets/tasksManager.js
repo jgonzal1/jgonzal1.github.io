@@ -145,6 +145,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerDay = (24 * msPerH);
   const currentDateTime = new Date();
   const daysRangeStart = currentDateTime.getTime();
+  const daysRangeTomorrow = daysRangeStart + msPerDay/5; // from around 7 PM
   const daysRangeEnd = daysRangeStart +
     (globalThis.categoryAggrDaysRange * msPerDay);
   const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
@@ -278,8 +279,6 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
     };
   }).filter(k => (
-    !isNight || (new Date(k["x"]) > currentDate)
-  )&&(
     new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)
   ));
   let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
@@ -295,6 +294,9 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     }, {}
   );
   Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
+    if(isNight && (i === 0)) {
+      return; // Skip today if isNight
+    }
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["F", "S", "U"].includes(wd)

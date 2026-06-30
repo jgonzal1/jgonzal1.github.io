@@ -94,7 +94,7 @@ class tasksManager extends globalThis.React.Component {
         // Replace fast-line tasks outside sprint to slow-line
         if (
           // @ts-ignore
-          item["Δd"] >= globalThis.categoryAggrDaysRange
+          item["Δd"] >= globalThis.category_aggr_days_range
           && item["gr"] === "1.🐇"
         ) {
           accumulator["2.🐢"] += item["dur"];
@@ -121,7 +121,7 @@ class tasksManager extends globalThis.React.Component {
       (t) => (new Date(t["datetime"]) <
         new Date(new Date().getTime() +
         // @ts-ignore
-        globalThis.categoryAggrDaysRange * 24 * 3.6e6
+        globalThis.category_aggr_days_range * 24 * 3.6e6
       ))
     ).reduce(
       // @ts-ignore
@@ -495,8 +495,8 @@ class tasksManager extends globalThis.React.Component {
               }
             }
           );
-        globalThis.totalHPerWeek = globalThis.quartersOfHourWeekdays + 
-          3/4 * globalThis.quartersOfHourWeekends;
+        globalThis.totalHPerWeek = globalThis.quarters_of_hour_weekdays + 
+          3/4 * globalThis.quarters_of_hour_weekends;
         return respJson;
       } catch (e) {
         console.error(e);

@@ -39,9 +39,9 @@ const columnRenames = {
 globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   const currentDate = new Date();
   const penultimateDay = new Date
-    (offsetNDay(globalThis.categoryAggrDaysRange - 1))
+    (offsetNDay(globalThis.category_aggr_days_range - 1))
     .toISOString().substring(0, 16).replace("T", " ");
-  const lastRangeDay = new Date(offsetNDay(globalThis.categoryAggrDaysRange))
+  const lastRangeDay = new Date(offsetNDay(globalThis.category_aggr_days_range))
     .toISOString().substring(0, 16).replace("T", " ");
   mondayTasksJson = mondayTasksJson.map(item => {
     if (!item["datetime"]) {
@@ -147,8 +147,8 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const daysRangeStart = currentDateTime.getTime();
   const daysRangeTomorrow = daysRangeStart + msPerDay/5; // from around 7 PM
   const daysRangeEnd = daysRangeStart +
-    (globalThis.categoryAggrDaysRange * msPerDay);
-  const categoryAggrDaysRangeEnd = new Date(daysRangeEnd);
+    (globalThis.category_aggr_days_range * msPerDay);
+  const category_aggr_days_rangeEnd = new Date(daysRangeEnd);
   /** Get current day at 00.00 */
   const currentDate = new Date(new Date().toISOString().substring(0, 10));
   // @ts-ignore
@@ -201,7 +201,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   ) + 1) % 2) */
   const exerciseMinDuration = 60;
   const arrNextExercisingDays = Array.from(
-    { length: globalThis.categoryAggrDaysRange - 1 }, (_, n) => n
+    { length: globalThis.category_aggr_days_range - 1 }, (_, n) => n
   ).filter(
     n => isWeekdayInRange(new Date(offsetNDay(n))) &&
       (offsetNDay(n) > nextExercisingDay.substring(0, 10))
@@ -279,7 +279,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       "value": tasksDurationByDayCategoryPk[tDCD] ?? 0
     };
   }).filter(k => (
-    new Date(k["x"]) <= new Date(categoryAggrDaysRangeEnd)
+    new Date(k["x"]) <= new Date(category_aggr_days_rangeEnd)
   ));
   let remainingTasksDurationsByDay = tasksDurationByDayCategory.reduce(
     (accumulator, item) => {
@@ -293,15 +293,15 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  Array.from({ length: globalThis.categoryAggrDaysRange + 1 }, (_, i) => {
+  Array.from({ length: globalThis.category_aggr_days_range + 1 }, (_, i) => {
     if(isNight && (i === 0)) {
       return; // Skip today if isNight
     }
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["F", "S", "U"].includes(wd)
-      ? (globalThis.quartersOfHourWeekends * 15)
-      : (globalThis.quartersOfHourWeekdays * 15);
+      ? (globalThis.quarters_of_hour_weekends * 15)
+      : (globalThis.quarters_of_hour_weekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);
     let matched = false;
     tasksDurationByDayCategory.filter(
@@ -430,7 +430,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 
   /** x-axis
   const xTicks = globalThis.d3.axisBottom(x).tickSizeOuter(0)
-    .ticks(globalThis.categoryAggrDaysRange / 2, "%y-%m-%d");
+    .ticks(globalThis.category_aggr_days_range / 2, "%y-%m-%d");
   const xScale = globalThis.d3.scaleTime()
     .domain(globalThis.d3.extent(tasksDurationByDayCategory, d => d.x))
     .range([marginLeft, width - marginRight]);
@@ -439,7 +439,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
-      globalThis.categoryAggrDaysRange / 2, "%y-%m-%d"
+      globalThis.category_aggr_days_range / 2, "%y-%m-%d"
     ) // %a for weekday
       // @ts-ignore
       .tickFormat((d) => `${(
@@ -593,8 +593,8 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       ));
       const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
       const durOffs = isOddDayDiff ? duration + 2 : duration;
-      const totV = ["Sat", "Sun"].includes(wd) ? globalThis.quartersOfHourWeekends
-        : globalThis.quartersOfHourWeekdays;
+      const totV = ["Sat", "Sun"].includes(wd) ? globalThis.quarters_of_hour_weekends
+        : globalThis.quarters_of_hour_weekdays;
       const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
       const unUsedTime = Math.max(totV - usedTime, 0);
       let nextViD = nextVI;

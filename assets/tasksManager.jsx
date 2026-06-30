@@ -285,16 +285,6 @@ class tasksManager extends globalThis.React.Component {
         return "middle"; //(midAngle < Math.PI ? 'start' : 'end');
       })
       .style('fill', () => '#FFF');
-    donutChartSvg.append("text").style("fill",
-        // @ts-ignore
-        (globalThis.totalHPerWeek > 18) ? "#e15759" :
-        // @ts-ignore
-        (globalThis.totalHPerWeek > 16) ? "#ca8b4c" :
-        "#b5bd68")
-      .style("font-size", donuntChartFontSize).attr("y", "-80").text(() =>
-        // @ts-ignore
-        `${globalThis.totalHPerWeek}h/w`
-      );
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
     const fastTasksW = fastTasksH/globalThis.totalHPerWeek;
@@ -802,10 +792,10 @@ class tasksManager extends globalThis.React.Component {
       let tcl = 0;
       [
         {"d":"healthCount", "l":2.5, "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":2.0, "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":2.0, "v":0, "s":["4.🚩"],               },
+        {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":1.0, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":.75, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"restCount",   "l":1.0, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

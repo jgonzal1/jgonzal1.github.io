@@ -44,6 +44,7 @@ class tasksManager extends globalThis.React.Component {
       statusColors: {
         "Pending":        "#e1575988",
         "Date sensitive": "#f28e2c88",
+        "On the PC":      "#f28e2c88",
         "Nice to do":     "#bab0ab88"
       },
       dayOffsetValue: Number(1 / 24),

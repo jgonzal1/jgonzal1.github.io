@@ -232,7 +232,7 @@
         const currentAmountEur = new Intl.NumberFormat(
           'es-ES', numberFormat
         ).format(currentAmount);
-        const amountEurPas = currentAmount * globalThis.passive_factor / 12;
+        const amountEurPas = currentAmount * globalThis.passive_factor / 1200;
         amountEurDomObj.innerText = currentAmountEur;
         amountEurPasDom.innerText = new Intl.NumberFormat(
           'es-ES', numberFormat

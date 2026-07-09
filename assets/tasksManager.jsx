@@ -559,7 +559,7 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     // @ts-ignore
-    ).format(amountEurMs * globalThis.passive_factor / 12 / calcinflation);
+    ).format(amountEurMs * globalThis.passive_factor / 1200 / calcinflation);
   };
   //#endregion
   //#region mondayItemToBacklog
@@ -732,16 +732,16 @@ class tasksManager extends globalThis.React.Component {
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
       const incrD = (dDateMilestone - dStartRegr);
       const dateMilestonePass = (dDateMilestone - dStartRegr) * globalThis.daily_growth
-        * globalThis.passive_factor / 12;
+        * globalThis.passive_factor / 1200;
       const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * globalThis.daily_growth
-        * globalThis.passive_factor / 12;
+        * globalThis.passive_factor / 1200;
 
       dailyGrowthDom.innerText = ` (${globalThis.daily_growth}€/d)`;
       const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
-      const dailyPassGrowth = globalThis.daily_growth * (globalThis.passive_factor / 12);
+      const dailyPassGrowth = globalThis.daily_growth * (globalThis.passive_factor / 1200);
       // const hoursPerEur = 24/dailyPassGrowth;
       dailyPassGrowthDom.innerText = `(${
-        (100*globalThis.passive_factor).toPrecision(3)
+        (globalThis.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
       let exec = false;
 

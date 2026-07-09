@@ -298,7 +298,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     }
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
-    const maxForDay = ["F", "S", "U"].includes(wd)
+    const maxForDay = ["S", "U"].includes(wd)
       ? (globalThis.quarters_of_hour_weekends * 15)
       : (globalThis.quarters_of_hour_weekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);

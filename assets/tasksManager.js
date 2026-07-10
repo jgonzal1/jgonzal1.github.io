@@ -176,15 +176,10 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     const dss = date.toISOString().substring(2,10);
     const dir = [
       "26-07-13",
-      "26-07-16",
       "26-07-20",
-      "26-07-23",
       "26-07-27",
-      "26-07-30",
       "26-08-03",
-      "26-08-06",
       "26-08-10",
-      "26-08-13",
       "26-08-17"
     ].includes(dss);
     return dir;

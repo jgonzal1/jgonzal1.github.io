@@ -616,7 +616,7 @@ class tasksManager extends globalThis.React.Component {
     }
   };
   //#endregion
-  //#region putMondayDateItem
+  //#region putMondayDateItem, numbers 1 enforces task to 0.5h for now
   putMondayDateItem = async (
     // @ts-ignore
     mondayKey, boardId, itemId, dateTimeToSet, type
@@ -639,7 +639,8 @@ class tasksManager extends globalThis.React.Component {
             board_id: ${boardId}
             item_id: ${itemId}
             create_labels_if_missing: true
-            column_values: "{\\"date0\\": \\"${dateTimeToSet}\\"}"
+            column_values:
+              "{\\"date0\\": \\"${dateTimeToSet}\\", \\"numbers\\": \\".5\\"}"
         ) { name }
       }`;
     }
@@ -781,10 +782,10 @@ class tasksManager extends globalThis.React.Component {
         <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
           <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
         </td></tr>
-        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td class="centered">
+        <tr><td>🔬🌿🎮/Mot.</td> <td id="motCount"/><td class="centered">
           <span style="background-color:#b5bd6899">h/XR or 400🌳</span>
         </td></tr>
-        <tr><td>📺🎮🌐➕</td> <td id="restCount" class="centered"/>
+        <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
         </tr>
       </table>`;
@@ -792,11 +793,11 @@ class tasksManager extends globalThis.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":3.0, "v":0, "s":["1.🍏"],               },
+        {"d":"healthCount", "l":5.0, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":1.0, "v":0, "s":["5.🌿","5.🔬"],        },
-        {"d":"restCount",   "l":0.5, "v":0, "s":["6.📺","7.🎮","8.🌐"], },
+        {"d":"motCount",    "l":2.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
+        {"d":"restCount",   "l":0.5, "v":0, "s":["6.📺","8.🌐"],        },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

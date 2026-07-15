@@ -1,4 +1,7 @@
 "use strict";
+/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any }} GlobalThisExtended */
+/** @type {typeof globalThis & GlobalThisExtended} */
+const _g = /** @type {any} */ (globalThis);
 //#region Variables
 const weeklyExerciseH = 6;
 //@ts-ignore
@@ -7,8 +10,8 @@ const msPerH = 3.6e6;
 const msPerD = msPerH * 24;
 const boardId = "3478645467";
 const subItemsBoardId = "4700154754";
-globalThis.mondayApiUrl = "https://api.monday.com/v2";
-globalThis.headers = {
+_g.mondayApiUrl = "https://api.monday.com/v2";
+_g.headers = {
   'Access-Control-Allow-Origin': "*",
   'Content-Type': 'application/json',
   'Referer': '',
@@ -35,12 +38,12 @@ const columnRenames = {
 };
 //#endregion
 //#region addMondayMeta
-globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
+_g.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   const currentDate = new Date();
   const penultimateDay = new Date
-    (offsetNDay(globalThis.category_aggr_days_range - 1))
+    (_g.offsetNDay(_g.category_aggr_days_range - 1))
     .toISOString().substring(0, 16).replace("T", " ");
-  const lastRangeDay = new Date(offsetNDay(globalThis.category_aggr_days_range))
+  const lastRangeDay = new Date(_g.offsetNDay(_g.category_aggr_days_range))
     .toISOString().substring(0, 16).replace("T", " ");
   mondayTasksJson = mondayTasksJson.map(item => {
     if (!item["datetime"]) {
@@ -93,7 +96,7 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   ).map(l => {
     const parentName = l["task_name"].substring(0, l["task_name"].search(":"));
     if (!Object.keys(parentItemDates).includes(parentName)) {
-      const newDateTime = offsetNDay(1 / 6 - 7e-4, l["datetime"], "min");
+      const newDateTime = _g.offsetNDay(1 / 6 - 7e-4, l["datetime"], "min");
       // take out 1/6 on summer time
       const newDateTimeStr = new Date(newDateTime).toISOString()
         .substring(0, 16).replace("T", " ");
@@ -114,8 +117,8 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
             }\\"}") { name } }`;
           const body = JSON.stringify({ "query": query });
           fetch(
-            globalThis.mondayApiUrl,
-            { method: "POST", headers: globalThis.headers, body: body }
+            _g.mondayApiUrl,
+            { method: "POST", headers: _g.headers, body: body }
           );*/
           n["datetime"] = newDateTimeStr;
           n["Δd"] = +(((
@@ -139,14 +142,14 @@ globalThis.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
 //#endregion
 //#region aggrTasksByCategoryAndDay
 // @ts-ignore
-globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
+_g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerH = 3.6e6;
   const msPerDay = (24 * msPerH);
   const currentDateTime = new Date();
   const daysRangeStart = currentDateTime.getTime();
   const daysRangeTomorrow = daysRangeStart + msPerDay/5; // from around 7 PM
   const daysRangeEnd = daysRangeStart +
-    (globalThis.category_aggr_days_range * msPerDay);
+    (_g.category_aggr_days_range * msPerDay);
   const category_aggr_days_rangeEnd = new Date(daysRangeEnd);
   /** Get current day at 00.00 */
   const currentDate = new Date(new Date().toISOString().substring(0, 10));
@@ -195,12 +198,12 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   ) + 1) % 2) */
   const exerciseMinDuration = 60;
   const arrNextExercisingDays = Array.from(
-    { length: globalThis.category_aggr_days_range - 1 }, (_, n) => n
+    { length: _g.category_aggr_days_range - 1 }, (_, n) => n
   ).filter(
-    n => isWeekdayInRange(new Date(offsetNDay(n))) &&
-      (offsetNDay(n) > nextExercisingDay.substring(0, 10))
+    n => isWeekdayInRange(new Date(_g.offsetNDay(n))) &&
+      (_g.offsetNDay(n) > nextExercisingDay.substring(0, 10))
   ).map((n) => {
-    return { "x": offsetNDay(n), "name": "1.🍏", "value": exerciseMinDuration }
+    return { "x": _g.offsetNDay(n), "name": "1.🍏", "value": exerciseMinDuration }
   });
   let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
     // @ts-ignore
@@ -287,15 +290,15 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  Array.from({ length: globalThis.category_aggr_days_range + 1 }, (_, i) => {
+  Array.from({ length: _g.category_aggr_days_range + 1 }, (_, i) => {
     if(isNight && (i === 0)) {
       return; // Skip today if isNight
     }
     const d = daysRangeStart + (i * msPerDay);
     const wd = weekday[new Date(d).getDay()];
     const maxForDay = ["S", "U"].includes(wd)
-      ? (globalThis.quarters_of_hour_weekends * 15)
-      : (globalThis.quarters_of_hour_weekdays * 15);
+      ? (_g.quarters_of_hour_weekends * 15)
+      : (_g.quarters_of_hour_weekdays * 15);
     const date = new Date(d).toISOString().substring(0, 10);
     let matched = false;
     tasksDurationByDayCategory.filter(
@@ -327,7 +330,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 
   // Determine the series that need to be stacked.
   // @ts-ignore
-  const series = globalThis.d3.stack()
+  const series = _g.d3.stack()
     //.offset(d3.stackOffsetWiggle).order(d3.stackOrderInsideOut) to StreamGraph
     //@ts-ignore
     .keys(d3.union(tasksDurationByDayCategory.map(d => d.name)))
@@ -353,7 +356,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     ""
   ];
   //@ts-ignore
-  const color = globalThis.d3.scaleOrdinal()
+  const color = _g.d3.scaleOrdinal()
     // @ts-ignore
     .domain(series.map(d => d.key).sort())
     .range(customColors);
@@ -367,23 +370,23 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 
   // Prepare the scales for positional and color encodings.
   // @ts-ignore
-  const x = globalThis.d3.scaleUtc() //
+  const x = _g.d3.scaleUtc() //
     // @ts-ignore
-    .domain(globalThis.d3.extent(
+    .domain(_g.d3.extent(
       // @ts-ignore
       tasksDurationByDayCategory, d => new Date(d.x)
     ))
     .range([marginLeft, width - marginRight]);
   //@ts-ignore
-  const y = globalThis.d3.scaleLinear() //
+  const y = _g.d3.scaleLinear() //
     .domain([
       // @ts-ignore
-      0, globalThis.d3.max(series, d => globalThis.d3.max(d, d => d[1]))
-    ]) // globalThis.d3.extent(series.flat(2)) for StreamGraph
+      0, _g.d3.max(series, d => _g.d3.max(d, d => d[1]))
+    ]) // _g.d3.extent(series.flat(2)) for StreamGraph
     .rangeRound([height - marginBottom, marginTop]);
 
   //@ts-ignore Construct an area shape
-  const area = globalThis.d3.area()
+  const area = _g.d3.area()
     // @ts-ignore
     .x(d => x(d.data[0]))
     // @ts-ignore
@@ -391,10 +394,10 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     // @ts-ignore
     .y1(d => y(d[1]))
     // @ts-ignore
-    .curve(globalThis.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
+    .curve(_g.d3.curveCardinal.tension(0.1)); // 0 curved, 1 no curve
 
   //@ts-ignore Create the SVG container
-  const svg = globalThis.d3.create("svg")
+  const svg = _g.d3.create("svg")
     .attr("viewBox", [0, 0, width, height])
     .attr("width", width)
     .attr("height", height)
@@ -423,17 +426,17 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       .text("↑ minutes"));
 
   /** x-axis
-  const xTicks = globalThis.d3.axisBottom(x).tickSizeOuter(0)
-    .ticks(globalThis.category_aggr_days_range / 2, "%y-%m-%d");
-  const xScale = globalThis.d3.scaleTime()
-    .domain(globalThis.d3.extent(tasksDurationByDayCategory, d => d.x))
+  const xTicks = _g.d3.axisBottom(x).tickSizeOuter(0)
+    .ticks(_g.category_aggr_days_range / 2, "%y-%m-%d");
+  const xScale = _g.d3.scaleTime()
+    .domain(_g.d3.extent(tasksDurationByDayCategory, d => d.x))
     .range([marginLeft, width - marginRight]);
   */
   svg.append("g")
     .attr("transform", `translate(0,${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
-      globalThis.category_aggr_days_range / 2, "%y-%m-%d"
+      _g.category_aggr_days_range / 2, "%y-%m-%d"
     ) // %a for weekday
       // @ts-ignore
       .tickFormat((d) => `${(
@@ -489,7 +492,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
         // @ts-ignore
         filterTaskDom.value = "";
       }
-      globalThis.filterTasks();
+      _g.filterTasks();
     })
     .append("title")
     // @ts-ignore
@@ -532,7 +535,7 @@ globalThis.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 //#endregion
 //#region aggrTasksByDay @deprecated?
 // @ts-ignore
-globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
+_g.aggrTasksByDay = (mondayTasksSortedJson) => {
   const currentDate = new Date(
     new Date().toISOString().substring(0, 10)
   ); // Gets current day at 00.00
@@ -558,7 +561,7 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
     }
   );
   const arrNext21D = Array.from({ length: 21 }, (_, n) => n).map((n) => {
-    return { "date": offsetNDay(n), "dur": 0 }
+    return { "date": _g.offsetNDay(n), "dur": 0 }
   });
   sortedMondayItemsJsonWithEmptyDates = sortedMondayItemsJsonWithEmptyDates
     .concat(arrNext21D).sort(
@@ -587,8 +590,8 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
       ));
       const isOddDayDiff = !!(dayDiff % 2) && (dayDiff >= 0);
       const durOffs = isOddDayDiff ? duration + 2 : duration;
-      const totV = ["Sat", "Sun"].includes(wd) ? globalThis.quarters_of_hour_weekends
-        : globalThis.quarters_of_hour_weekdays;
+      const totV = ["Sat", "Sun"].includes(wd) ? _g.quarters_of_hour_weekends
+        : _g.quarters_of_hour_weekdays;
       const usedTime = Math.min(Math.ceil(4 * durOffs), 21);
       const unUsedTime = Math.max(totV - usedTime, 0);
       let nextViD = nextVI;
@@ -616,7 +619,7 @@ globalThis.aggrTasksByDay = (mondayTasksSortedJson) => {
 };
 //#endregion
 //#region filterTasks
-globalThis.filterTasks = () => {
+_g.filterTasks = () => {
   var input, filter, table, tr, td, i, j, txtValue;
   input = document.getElementById("filterTasks");
   // @ts-ignore
@@ -644,9 +647,9 @@ globalThis.filterTasks = () => {
 //#endregion
 //#region offsetNDay
 // @ts-ignore
-globalThis.offsetNDay = (n=0, dateToOffset=false, precision="day") => {
+_g.offsetNDay = (n=0, dateToOffset=/** @type {string|null} */ (null), precision="day") => {
   const dateToOffsetAsValue = dateToOffset ?
-    new Date(dateToOffset).valueOf() :
+    new Date(/** @type {string} */ (dateToOffset)).valueOf() :
     new Date().valueOf();
   const offsetMs = n * msPerD;
   const dateValueOffset = dateToOffsetAsValue + offsetMs;
@@ -670,7 +673,7 @@ globalThis.offsetNDay = (n=0, dateToOffset=false, precision="day") => {
 //#endregion
 //#region setBgBasedOnDDiff
 // @ts-ignore
-globalThis.setBgBasedOnDDiff = (dDiffStr) => {
+_g.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextDay = new Date().getHours();
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);

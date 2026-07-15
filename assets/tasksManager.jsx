@@ -1,6 +1,9 @@
 "use strict";
+/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
+/** @type {typeof globalThis & GlobalThisExtended} */
+const _g = /** @type {any} */ (globalThis);
 // @ts-ignore
-class tasksManager extends globalThis.React.Component {
+class tasksManager extends _g.React.Component {
   //#region Constructor
   // @ts-ignore
   constructor(props) {
@@ -96,7 +99,7 @@ class tasksManager extends globalThis.React.Component {
         // Replace fast-line tasks outside sprint to slow-line
         if (
           // @ts-ignore
-          item["Δd"] >= globalThis.category_aggr_days_range
+          item["Δd"] >= _g.category_aggr_days_range
           && item["gr"] === "1.🐇"
         ) {
           accumulator["2.🐢"] += item["dur"];
@@ -123,7 +126,7 @@ class tasksManager extends globalThis.React.Component {
       (t) => (new Date(t["datetime"]) <
         new Date(new Date().getTime() +
         // @ts-ignore
-        globalThis.category_aggr_days_range * 24 * 3.6e6
+        _g.category_aggr_days_range * 24 * 3.6e6
       ))
     ).reduce(
       // @ts-ignore
@@ -168,16 +171,16 @@ class tasksManager extends globalThis.React.Component {
       ?? document.createElement("div");*/
     const [tasksByCategoryWidth, tasksByCategoryHeight] = [380, 350];
     // @ts-ignore
-    globalThis.tasksByCategoryWidth = tasksByCategoryWidth;
+    _g.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
-    globalThis.tasksByCategoryHeight = tasksByCategoryHeight;
+    _g.tasksByCategoryHeight = tasksByCategoryHeight;
     const margin = 20;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
     const vbScale = 0.6;
     // @ts-ignore
-    const donutChartSvg = globalThis.d3.create("svg")
+    const donutChartSvg = _g.d3.create("svg")
       .attr("viewBox", [
         -0.9 * vbScale * tasksByCategoryWidth, -2 * vbScale * tasksByCategoryHeight,
         2 * vbScale * tasksByCategoryWidth, 5 * vbScale * tasksByCategoryHeight
@@ -197,21 +200,21 @@ class tasksManager extends globalThis.React.Component {
       );
     const donutChartStartAngle = 45;
     // @ts-ignore
-    var pie = globalThis.d3.pie().startAngle(donutChartStartAngle)
+    var pie = _g.d3.pie().startAngle(donutChartStartAngle)
       // Usually accepts d3.descending but no here. Prevent labels cramming.
       // @ts-ignore
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
     // @ts-ignore
-    const arc = globalThis.d3.arc()
+    const arc = _g.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
     // @ts-ignore
-    const outerArc = globalThis.d3.arc()
+    const outerArc = _g.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
     // @ts-ignore
-    const fullArc = globalThis.d3.arc()
+    const fullArc = _g.d3.arc()
       .innerRadius(radius)
       .outerRadius(radius);
     donutChartSvg
@@ -238,7 +241,7 @@ class tasksManager extends globalThis.React.Component {
           filterTaskDom.value = "";
         }
         // @ts-ignore
-        globalThis.filterTasks();
+        _g.filterTasks();
       });
     donutChartSvg
       .selectAll('allPolylines')
@@ -289,7 +292,7 @@ class tasksManager extends globalThis.React.Component {
       .style('fill', () => '#FFF');
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
-    const fastTasksW = fastTasksH/globalThis.totalHPerWeek;
+    const fastTasksW = fastTasksH/_g.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (fastTasksW > 1) ? "#e15759" :
@@ -301,7 +304,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     // @ts-ignore
-    const slowTasksW = slowTasksH/globalThis.totalHPerWeek;
+    const slowTasksW = slowTasksH/_g.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > 1.5) ? "#e15759" :
@@ -313,7 +316,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     // @ts-ignore
-    const repeatingTasksW = repeatingTasksH/globalThis.totalHPerWeek;
+    const repeatingTasksW = repeatingTasksH/_g.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (repeatingTasksW > 1) ? "#e15759" :
@@ -325,7 +328,7 @@ class tasksManager extends globalThis.React.Component {
       );
     const SumH = fastTasksH + slowTasksH + repeatingTasksH;
     // @ts-ignore
-    const SumW = SumH/globalThis.totalHPerWeek;
+    const SumW = SumH/_g.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (SumW > 3) ? "#e15759" :
@@ -344,15 +347,15 @@ class tasksManager extends globalThis.React.Component {
     mondayKey, boardId, itemId
   ) => {
     // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
+    _g.headers["Authorization"] = mondayKey;
     const query = `mutation { archive_item ( ${""
       }item_id: ${itemId}) { name } }`;
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      globalThis.mondayApiUrl,
+      _g.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
+      { method: "POST", headers: _g.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -378,7 +381,7 @@ class tasksManager extends globalThis.React.Component {
       "datetime", "dur", "status", "freq", "cat", "house", "notes"
     ];
     // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
+    _g.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
@@ -386,9 +389,9 @@ class tasksManager extends globalThis.React.Component {
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       // @ts-ignore
-      globalThis.mondayApiUrl,
+      _g.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
+      { method: "POST", headers: _g.headers, body: body }
     ).then(async (response) => {
       try {
         const respJson = await response.json();
@@ -440,9 +443,9 @@ class tasksManager extends globalThis.React.Component {
       }
     );
     // @ts-ignore
-    const mondayTasksSortedJson = globalThis.addMondayMeta(mondayTasksJson);
+    const mondayTasksSortedJson = _g.addMondayMeta(mondayTasksJson);
     // @ts-ignore
-    const mondayTasksByDay = globalThis.aggrTasksByDay(mondayTasksSortedJson);
+    const mondayTasksByDay = _g.aggrTasksByDay(mondayTasksSortedJson);
     const mondayTasksByCategorySvg = this.aggrTasksByCategoryDonutChart(
       mondayTasksSortedJson
     );
@@ -453,7 +456,7 @@ class tasksManager extends globalThis.React.Component {
     tasksByCategoryAndDayPlaceholder.innerHTML = "";
     tasksByCategoryAndDayPlaceholder.appendChild(
       // @ts-ignore
-      globalThis.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
+      _g.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
     );
     //console.log(mondayTasksSortedJson);
     this.setState({
@@ -467,8 +470,8 @@ class tasksManager extends globalThis.React.Component {
     return mondayTasksSortedJson;
   };
   //#endregion
-  getMondayVariables = async (mondayKey, boardId) => {
-     globalThis.headers["Authorization"] = mondayKey;
+  getMondayVariables = async (/** @type {string} */ mondayKey, /** @type {string|number} */ boardId) => {
+    _g.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
       "  id name column_values { text } " +
@@ -476,29 +479,29 @@ class tasksManager extends globalThis.React.Component {
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       // @ts-ignore
-      globalThis.mondayApiUrl,
+      _g.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
+      { method: "POST", headers: _g.headers, body: body }
     ).then(async (response) => {
       try {
         const respJsonRaw = await response.json();
         const respJson = await respJsonRaw["data"]["boards"][0]
-          ["items_page"]["items"].map((item) => {
+          ["items_page"]["items"].map((/** @type {any} */ item) => {
             return {
               key: item.name,
               value: parseFloat(item.column_values[0].text)
             };
           }).map(
-            (item) => {
-              globalThis[item.key] = item.value;
+            (/** @type {{key: string, value: number}} */ item) => {
+              _g[item.key] = item.value;
               return {
                 key: item.key,
                 value: item.value
               }
             }
           );
-        globalThis.totalHPerWeek = globalThis.quarters_of_hour_weekdays + 
-          3/4 * globalThis.quarters_of_hour_weekends;
+        _g.totalHPerWeek = _g.quarters_of_hour_weekdays +
+          3/4 * _g.quarters_of_hour_weekends;
         return respJson;
       } catch (e) {
         console.error(e);
@@ -531,7 +534,7 @@ class tasksManager extends globalThis.React.Component {
       'es-ES', numberFormat
     ).format(numericAmount);
     // @ts-ignore
-    const amountEurMs = numericAmount*12/globalThis.passive_factor;
+    const amountEurMs = numericAmount*12/_g.passive_factor;
     // @ts-ignore
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
@@ -560,7 +563,7 @@ class tasksManager extends globalThis.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     // @ts-ignore
-    ).format(amountEurMs * globalThis.passive_factor / 1200 / calcinflation);
+    ).format(amountEurMs * _g.passive_factor / 1200 / calcinflation);
   };
   //#endregion
   //#region mondayItemToBacklog
@@ -569,7 +572,7 @@ class tasksManager extends globalThis.React.Component {
     mondayKey, boardId, itemId, type
   ) => {
     // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
+    _g.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
       .substring(2, 19);
@@ -593,9 +596,9 @@ class tasksManager extends globalThis.React.Component {
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      globalThis.mondayApiUrl,
+      _g.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
+      { method: "POST", headers: _g.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -623,7 +626,7 @@ class tasksManager extends globalThis.React.Component {
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
     // @ts-ignore
-    globalThis.headers["Authorization"] = mondayKey;
+    _g.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
       .substring(2, 19);
@@ -651,9 +654,9 @@ class tasksManager extends globalThis.React.Component {
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      globalThis.mondayApiUrl,
+      _g.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: globalThis.headers, body: body }
+      { method: "POST", headers: _g.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -712,7 +715,7 @@ class tasksManager extends globalThis.React.Component {
   //#endregion
   render() {
     //#region State listeners
-    this.getMondayVariables(globalThis.monday_key, 4351865817).then(() => {
+    this.getMondayVariables(_g.monday_key, 4351865817).then(() => {
       const milliSecondsPerDay = 24 * 60 * 60 * 1000;
       const daysBetween1900and1970 = 25569;
       //const startRegrDom = document.getElementById("startRegr");
@@ -721,49 +724,50 @@ class tasksManager extends globalThis.React.Component {
       const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
       const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
       const dailyGrowthDom = document.getElementById("dailyGrowth");
-      const startRegrN = (-globalThis.offset_at_1900/globalThis.daily_growth
+      const startRegrN = (-_g.offset_at_1900/_g.daily_growth
         - daysBetween1900and1970
       )*milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
       //startRegrDom.innerText = `  ${startRegr}`;
       const dateMilestone = new Date(
-        ((-globalThis.offset_at_1900 + 12*30*globalThis.daily_growth*globalThis.passive_factor)/
-        globalThis.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
+        ((-_g.offset_at_1900 + 12*30*_g.daily_growth*_g.passive_factor)/
+        _g.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
       ).toISOString().substring(0, 10);
 
+      const msPerD = 3.6e6 * 24;
       const dDateMilestone = new Date("2026-08-01").getTime() / msPerD;
       const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
       const incrD = (dDateMilestone - dStartRegr);
-      const dateMilestonePass = (dDateMilestone - dStartRegr) * globalThis.daily_growth
-        * globalThis.passive_factor / 1200;
-      const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * globalThis.daily_growth
-        * globalThis.passive_factor / 1200;
+      const dateMilestonePass = (dDateMilestone - dStartRegr) * _g.daily_growth
+        * _g.passive_factor / 1200;
+      const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _g.daily_growth
+        * _g.passive_factor / 1200;
 
-      dailyGrowthDom.innerText = ` (${globalThis.daily_growth}€/d)`;
+      if (dailyGrowthDom) dailyGrowthDom.innerText = ` (${_g.daily_growth}€/d)`;
       const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
-      const dailyPassGrowth = globalThis.daily_growth * (globalThis.passive_factor / 1200);
+      const dailyPassGrowth = _g.daily_growth * (_g.passive_factor / 1200);
       // const hoursPerEur = 24/dailyPassGrowth;
-      dailyPassGrowthDom.innerText = `(${
-        (globalThis.passive_factor).toPrecision(3)
+      if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${
+        (_g.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
       let exec = false;
 
-      dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;
-      dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
+      if (dateMilestoneDom) dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;
+      if (dateMilestone2Dom) dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
 
       const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
-      if (dateMilestonePass>1500) {
+      if (dateMilestonePlaceholder && dateMilestonePass>1500) {
         dateMilestonePlaceholder.style.color = "#b5bd68";
-      } else if (dateMilestonePass>1424.5) {
+      } else if (dateMilestonePlaceholder && dateMilestonePass>1424.5) {
         dateMilestonePlaceholder.style.color = "#caa04c";
       }
 
       if (this.state.getDatedMondayItemsToJson) {
         //@ts-ignore
-        this.getMondayTasksToMultipleJson(globalThis.monday_key, boardId, columnRenames);
-      }      
+        this.getMondayTasksToMultipleJson(_g.monday_key, boardId, columnRenames);
+      }
     });
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
       const tasksByCategoryPlaceholder =
@@ -777,7 +781,6 @@ class tasksManager extends globalThis.React.Component {
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td> <td id="healthCount"/><td class="centered">
-          <span style="background-color:#caa04c99">🩺checks</span>&nbsp;
           <span style="background-color:#e1575999">🪁🏄ks</span>
         </td></tr>
         <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td class="centered">
@@ -797,7 +800,7 @@ class tasksManager extends globalThis.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":5.0, "v":0, "s":["1.🍏"],               },
+        {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
         {"d":"motCount",    "l":2.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
@@ -834,7 +837,7 @@ class tasksManager extends globalThis.React.Component {
         "#b5bd68";
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-          ["values"]?.[1]?.["value"] ?? (globalThis.tasksByCategoryHeight)
+          ["values"]?.[1]?.["value"] ?? (_g.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(goalsDom);
       */
@@ -1013,7 +1016,7 @@ class tasksManager extends globalThis.React.Component {
             type: "text",
             id: "filterTasks",
             // @ts-ignore
-            onKeyUp: () => globalThis.filterTasks(),
+            onKeyUp: () => _g.filterTasks(),
             placeholder: "Search for tasks..",
             style: {
               backgroundColor: "#FFF9",
@@ -1168,7 +1171,7 @@ class tasksManager extends globalThis.React.Component {
                   key: `TaskRow${idxRow} `,
                   style: {
                     // @ts-ignore
-                    backgroundColor: globalThis.setBgBasedOnDDiff(
+                    backgroundColor: _g.setBgBasedOnDDiff(
                       taskRow["Δd"]
                     ),
                     textAlign: "center"
@@ -1207,7 +1210,7 @@ class tasksManager extends globalThis.React.Component {
                         filterTaskDom.value = "";
                       }
                       // @ts-ignore
-                      globalThis.filterTasks();
+                      _g.filterTasks();
                     }
                   },
                   ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
@@ -1267,7 +1270,7 @@ class tasksManager extends globalThis.React.Component {
                             monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
-                            globalThis.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            _g.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
                         }
@@ -1289,7 +1292,7 @@ class tasksManager extends globalThis.React.Component {
                             monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
-                            globalThis.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            _g.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
                         }
@@ -1442,10 +1445,10 @@ class tasksManager extends globalThis.React.Component {
             id: "tasksByCategoryAndDay",
             style: {
               // @ts-ignore
-              height: `${globalThis.tasksByCategoryHeight}px`,
+              height: `${_g.tasksByCategoryHeight}px`,
               margin: "0.1em",
               // @ts-ignore
-              width: `${globalThis.tasksByCategoryWidth}px`,
+              width: `${_g.tasksByCategoryWidth}px`,
             }
           },
           "Loading tasks by category and day"
@@ -1473,12 +1476,12 @@ class tasksManager extends globalThis.React.Component {
               // backgroundColor: "#FFF3", only like this for treeMap
               color: "#FFF",
               // @ts-ignore
-              height: `${globalThis.tasksByCategoryWidth}px`,
+              height: `${_g.tasksByCategoryWidth}px`,
               margin: "0.1em",
               overflow: "hidden",
               textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
               // @ts-ignore
-              width: `${globalThis.tasksByCategoryWidth}px`,
+              width: `${_g.tasksByCategoryWidth}px`,
             }
           },
           ""
@@ -1491,6 +1494,6 @@ class tasksManager extends globalThis.React.Component {
 }
 const domContainer = document.querySelector("#taskManager");
 // @ts-ignore
-const root = globalThis.ReactDOM.createRoot(domContainer);
+const root = _g.ReactDOM.createRoot(domContainer);
 // @ts-ignore
 root.render(React.createElement(tasksManager));

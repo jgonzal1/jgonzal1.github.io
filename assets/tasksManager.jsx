@@ -1,9 +1,9 @@
 "use strict";
 /** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
-const _g = /** @type {any} */ (globalThis);
+const _gx = /** @type {any} */ (globalThis);
 // @ts-ignore
-class tasksManager extends _g.React.Component {
+class tasksManager extends _gx.React.Component {
   //#region Constructor
   // @ts-ignore
   constructor(props) {
@@ -98,7 +98,7 @@ class tasksManager extends _g.React.Component {
         // Replace fast-line tasks outside sprint to slow-line
         if (
           // @ts-ignore
-          item["Δd"] >= _g.category_aggr_days_range
+          item["Δd"] >= _gx.category_aggr_days_range
           && item["gr"] === "1.🐇"
         ) {
           accumulator["2.🐢"] += item["dur"];
@@ -125,7 +125,7 @@ class tasksManager extends _g.React.Component {
       (t) => (new Date(t["datetime"]) <
         new Date(new Date().getTime() +
         // @ts-ignore
-        _g.category_aggr_days_range * 24 * 3.6e6
+        _gx.category_aggr_days_range * 24 * 3.6e6
       ))
     ).reduce(
       // @ts-ignore
@@ -170,16 +170,16 @@ class tasksManager extends _g.React.Component {
       ?? document.createElement("div");*/
     const [tasksByCategoryWidth, tasksByCategoryHeight] = [380, 350];
     // @ts-ignore
-    _g.tasksByCategoryWidth = tasksByCategoryWidth;
+    _gx.tasksByCategoryWidth = tasksByCategoryWidth;
     // @ts-ignore
-    _g.tasksByCategoryHeight = tasksByCategoryHeight;
+    _gx.tasksByCategoryHeight = tasksByCategoryHeight;
     const margin = 20;
     const radius = Math.min(
       tasksByCategoryWidth, tasksByCategoryHeight
     ) - margin;
     const vbScale = 0.6;
     // @ts-ignore
-    const donutChartSvg = _g.d3.create("svg")
+    const donutChartSvg = _gx.d3.create("svg")
       .attr("viewBox", [
         -0.9 * vbScale * tasksByCategoryWidth, -2 * vbScale * tasksByCategoryHeight,
         2 * vbScale * tasksByCategoryWidth, 5 * vbScale * tasksByCategoryHeight
@@ -199,21 +199,21 @@ class tasksManager extends _g.React.Component {
       );
     const donutChartStartAngle = 45;
     // @ts-ignore
-    var pie = _g.d3.pie().startAngle(donutChartStartAngle)
+    var pie = _gx.d3.pie().startAngle(donutChartStartAngle)
       // Usually accepts d3.descending but no here. Prevent labels cramming.
       // @ts-ignore
       .sort(null).value((d) => d[1]);
     const data_ready = pie(Object.entries(mondayTasksByCatDict));
     // @ts-ignore
-    const arc = _g.d3.arc()
+    const arc = _gx.d3.arc()
       .innerRadius(radius * 0.4)
       .outerRadius(radius * 0.8);
     // @ts-ignore
-    const outerArc = _g.d3.arc()
+    const outerArc = _gx.d3.arc()
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
     // @ts-ignore
-    const fullArc = _g.d3.arc()
+    const fullArc = _gx.d3.arc()
       .innerRadius(radius)
       .outerRadius(radius);
     donutChartSvg
@@ -240,7 +240,7 @@ class tasksManager extends _g.React.Component {
           filterTaskDom.value = "";
         }
         // @ts-ignore
-        _g.filterTasks();
+        _gx.filterTasks();
       });
     donutChartSvg
       .selectAll('allPolylines')
@@ -291,7 +291,7 @@ class tasksManager extends _g.React.Component {
       .style('fill', () => '#FFF');
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
-    const fastTasksW = fastTasksH/_g.totalHPerWeek;
+    const fastTasksW = fastTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (fastTasksW > 1) ? "#e15759" :
@@ -303,7 +303,7 @@ class tasksManager extends _g.React.Component {
       );
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     // @ts-ignore
-    const slowTasksW = slowTasksH/_g.totalHPerWeek;
+    const slowTasksW = slowTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > 1.5) ? "#e15759" :
@@ -315,7 +315,7 @@ class tasksManager extends _g.React.Component {
       );
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     // @ts-ignore
-    const repeatingTasksW = repeatingTasksH/_g.totalHPerWeek;
+    const repeatingTasksW = repeatingTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (repeatingTasksW > 1) ? "#e15759" :
@@ -327,7 +327,7 @@ class tasksManager extends _g.React.Component {
       );
     const SumH = fastTasksH + slowTasksH + repeatingTasksH;
     // @ts-ignore
-    const SumW = SumH/_g.totalHPerWeek;
+    const SumW = SumH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (SumW > 3) ? "#e15759" :
@@ -346,15 +346,15 @@ class tasksManager extends _g.React.Component {
     mondayKey, boardId, itemId
   ) => {
     // @ts-ignore
-    _g.headers["Authorization"] = mondayKey;
+    _gx.headers["Authorization"] = mondayKey;
     const query = `mutation { archive_item ( ${""
       }item_id: ${itemId}) { name } }`;
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      _g.mondayApiUrl,
+      _gx.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: _g.headers, body: body }
+      { method: "POST", headers: _gx.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -380,7 +380,7 @@ class tasksManager extends _g.React.Component {
       "datetime", "dur", "status", "freq", "cat", "house", "notes"
     ];
     // @ts-ignore
-    _g.headers["Authorization"] = mondayKey;
+    _gx.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
       "group { title id } id name column_values { column { id } text value } " +
@@ -388,9 +388,9 @@ class tasksManager extends _g.React.Component {
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       // @ts-ignore
-      _g.mondayApiUrl,
+      _gx.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: _g.headers, body: body }
+      { method: "POST", headers: _gx.headers, body: body }
     ).then(async (response) => {
       try {
         const respJson = await response.json();
@@ -442,9 +442,9 @@ class tasksManager extends _g.React.Component {
       }
     );
     // @ts-ignore
-    const mondayTasksSortedJson = _g.addMondayMeta(mondayTasksJson);
+    const mondayTasksSortedJson = _gx.addMondayMeta(mondayTasksJson);
     // @ts-ignore
-    const mondayTasksByDay = _g.aggrTasksByDay(mondayTasksSortedJson);
+    const mondayTasksByDay = _gx.aggrTasksByDay(mondayTasksSortedJson);
     const mondayTasksByCategorySvg = this.aggrTasksByCategoryDonutChart(
       mondayTasksSortedJson
     );
@@ -455,7 +455,7 @@ class tasksManager extends _g.React.Component {
     tasksByCategoryAndDayPlaceholder.innerHTML = "";
     tasksByCategoryAndDayPlaceholder.appendChild(
       // @ts-ignore
-      _g.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
+      _gx.aggrTasksByCategoryAndDay(mondayTasksSortedJson)
     );
     //console.log(mondayTasksSortedJson);
     this.setState({
@@ -470,7 +470,7 @@ class tasksManager extends _g.React.Component {
   };
   //#endregion
   getMondayVariables = async (/** @type {string} */ mondayKey, /** @type {string|number} */ boardId) => {
-    _g.headers["Authorization"] = mondayKey;
+    _gx.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
       "  id name column_values { text } " +
@@ -478,9 +478,9 @@ class tasksManager extends _g.React.Component {
     const body = JSON.stringify({ "query": "query { " + query + " }" });
     const mondayItemsRawJsonPremise = await fetch(
       // @ts-ignore
-      _g.mondayApiUrl,
+      _gx.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: _g.headers, body: body }
+      { method: "POST", headers: _gx.headers, body: body }
     ).then(async (response) => {
       try {
         const respJsonRaw = await response.json();
@@ -492,15 +492,15 @@ class tasksManager extends _g.React.Component {
             };
           }).map(
             (/** @type {{key: string, value: number}} */ item) => {
-              _g[item.key] = item.value;
+              _gx[item.key] = item.value;
               return {
                 key: item.key,
                 value: item.value
               }
             }
           );
-        _g.totalHPerWeek = _g.quarters_of_hour_weekdays +
-          3/4 * _g.quarters_of_hour_weekends;
+        _gx.totalHPerWeek = _gx.quarters_of_hour_weekdays +
+          3/4 * _gx.quarters_of_hour_weekends;
         return respJson;
       } catch (e) {
         console.error(e);
@@ -533,7 +533,7 @@ class tasksManager extends _g.React.Component {
       'es-ES', numberFormat
     ).format(numericAmount);
     // @ts-ignore
-    const amountEurMs = numericAmount*12/_g.passive_factor;
+    const amountEurMs = numericAmount*12/_gx.passive_factor;
     // @ts-ignore
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
@@ -562,7 +562,7 @@ class tasksManager extends _g.React.Component {
       // @ts-ignore
       'es-ES', numberFormat
     // @ts-ignore
-    ).format(amountEurMs * _g.passive_factor / 1200 / calcinflation);
+    ).format(amountEurMs * _gx.passive_factor / 1200 / calcinflation);
   };
   //#endregion
   //#region mondayItemToBacklog
@@ -571,7 +571,7 @@ class tasksManager extends _g.React.Component {
     mondayKey, boardId, itemId, type
   ) => {
     // @ts-ignore
-    _g.headers["Authorization"] = mondayKey;
+    _gx.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
       .substring(2, 19);
@@ -595,9 +595,9 @@ class tasksManager extends _g.React.Component {
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      _g.mondayApiUrl,
+      _gx.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: _g.headers, body: body }
+      { method: "POST", headers: _gx.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -625,7 +625,7 @@ class tasksManager extends _g.React.Component {
     mondayKey, boardId, itemId, dateTimeToSet, type
   ) => {
     // @ts-ignore
-    _g.headers["Authorization"] = mondayKey;
+    _gx.headers["Authorization"] = mondayKey;
     let query;
     const lastRefreshDateTime = new Date().toISOString().replace("T", " ")
       .substring(2, 19);
@@ -649,9 +649,9 @@ class tasksManager extends _g.React.Component {
     const body = JSON.stringify({ "query": query });
     const mondayPutResponsePremise = await fetch(
       // @ts-ignore
-      _g.mondayApiUrl,
+      _gx.mondayApiUrl,
       // @ts-ignore
-      { method: "POST", headers: _g.headers, body: body }
+      { method: "POST", headers: _gx.headers, body: body }
     ).then((response) => {
       try {
         return response.json();
@@ -710,7 +710,7 @@ class tasksManager extends _g.React.Component {
   //#endregion
   render() {
     //#region State listeners
-    this.getMondayVariables(_g.monday_key, 4351865817).then(() => {
+    this.getMondayVariables(_gx.monday_key, 4351865817).then(() => {
       const milliSecondsPerDay = 24 * 60 * 60 * 1000;
       const daysBetween1900and1970 = 25569;
       //const startRegrDom = document.getElementById("startRegr");
@@ -719,14 +719,14 @@ class tasksManager extends _g.React.Component {
       const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
       const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
       const dailyGrowthDom = document.getElementById("dailyGrowth");
-      const startRegrN = (-_g.offset_at_1900/_g.daily_growth
+      const startRegrN = (-_gx.offset_at_1900/_gx.daily_growth
         - daysBetween1900and1970
       )*milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
       //startRegrDom.innerText = `  ${startRegr}`;
       const dateMilestone = new Date(
-        ((-_g.offset_at_1900 + 12*30*_g.daily_growth*_g.passive_factor)/
-        _g.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
+        ((-_gx.offset_at_1900 + 12*30*_gx.daily_growth*_gx.passive_factor)/
+        _gx.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
       ).toISOString().substring(0, 10);
 
       const msPerD = 3.6e6 * 24;
@@ -735,17 +735,17 @@ class tasksManager extends _g.React.Component {
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
       const incrD = (dDateMilestone - dStartRegr);
-      const dateMilestonePass = (dDateMilestone - dStartRegr) * _g.daily_growth
-        * _g.passive_factor / 1200;
-      const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _g.daily_growth
-        * _g.passive_factor / 1200;
+      const dateMilestonePass = (dDateMilestone - dStartRegr) * _gx.daily_growth
+        * _gx.passive_factor / 1200;
+      const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _gx.daily_growth
+        * _gx.passive_factor / 1200;
 
-      if (dailyGrowthDom) dailyGrowthDom.innerText = ` (${_g.daily_growth}€/d)`;
+      if (dailyGrowthDom) dailyGrowthDom.innerText = ` (${_gx.daily_growth}€/d)`;
       const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
-      const dailyPassGrowth = _g.daily_growth * (_g.passive_factor / 1200);
+      const dailyPassGrowth = _gx.daily_growth * (_gx.passive_factor / 1200);
       // const hoursPerEur = 24/dailyPassGrowth;
       if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${
-        (_g.passive_factor).toPrecision(3)
+        (_gx.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
       let exec = false;
 
@@ -761,7 +761,7 @@ class tasksManager extends _g.React.Component {
 
       if (this.state.getDatedMondayItemsToJson) {
         //@ts-ignore
-        this.getMondayTasksToMultipleJson(_g.monday_key, boardId, columnRenames);
+        this.getMondayTasksToMultipleJson(_gx.monday_key, boardId, columnRenames);
       }
     });
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
@@ -785,7 +785,7 @@ class tasksManager extends _g.React.Component {
           <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
         </td></tr>
         <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td class="centered">
-          <span style="background-color:#b5bd6899">h/XR or 400🌳</span>
+          <span style="background-color:#efd6">h/XR | 400🌳</span>
         </td></tr>
         <tr><td>📺🎮🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
@@ -832,7 +832,7 @@ class tasksManager extends _g.React.Component {
         "#b5bd68";
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-          ["values"]?.[1]?.["value"] ?? (_g.tasksByCategoryHeight)
+          ["values"]?.[1]?.["value"] ?? (_gx.tasksByCategoryHeight)
       });
       tasksByCategoryPlaceholder.appendChild(goalsDom);
       */
@@ -972,7 +972,7 @@ class tasksManager extends _g.React.Component {
             type: "text",
             id: "filterTasks",
             // @ts-ignore
-            onKeyUp: () => _g.filterTasks(),
+            onKeyUp: () => _gx.filterTasks(),
             placeholder: "Search for tasks..",
             style: {
               backgroundColor: "#FFF9",
@@ -1127,7 +1127,7 @@ class tasksManager extends _g.React.Component {
                   key: `TaskRow${idxRow} `,
                   style: {
                     // @ts-ignore
-                    backgroundColor: _g.setBgBasedOnDDiff(
+                    backgroundColor: _gx.setBgBasedOnDDiff(
                       taskRow["Δd"]
                     ),
                     textAlign: "center"
@@ -1166,7 +1166,7 @@ class tasksManager extends _g.React.Component {
                         filterTaskDom.value = "";
                       }
                       // @ts-ignore
-                      _g.filterTasks();
+                      _gx.filterTasks();
                     }
                   },
                   ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
@@ -1226,7 +1226,7 @@ class tasksManager extends _g.React.Component {
                             monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
-                            _g.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            _gx.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
                         }
@@ -1248,7 +1248,7 @@ class tasksManager extends _g.React.Component {
                             monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
                             taskRow["task_id"],
                             // @ts-ignore
-                            _g.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                            _gx.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
                             taskRow["type"]
                           )
                         }
@@ -1401,10 +1401,10 @@ class tasksManager extends _g.React.Component {
             id: "tasksByCategoryAndDay",
             style: {
               // @ts-ignore
-              height: `${_g.tasksByCategoryHeight}px`,
+              height: `${_gx.tasksByCategoryHeight}px`,
               margin: "0.1em",
               // @ts-ignore
-              width: `${_g.tasksByCategoryWidth}px`,
+              width: `${_gx.tasksByCategoryWidth}px`,
             }
           },
           "Loading tasks by category and day"
@@ -1432,12 +1432,12 @@ class tasksManager extends _g.React.Component {
               // backgroundColor: "#FFF3", only like this for treeMap
               color: "#FFF",
               // @ts-ignore
-              height: `${_g.tasksByCategoryWidth}px`,
+              height: `${_gx.tasksByCategoryWidth}px`,
               margin: "0.1em",
               overflow: "hidden",
               textShadow: "0px 0px 2px #000, 0px 0px 3px #FFF",
               // @ts-ignore
-              width: `${_g.tasksByCategoryWidth}px`,
+              width: `${_gx.tasksByCategoryWidth}px`,
             }
           },
           ""
@@ -1450,6 +1450,6 @@ class tasksManager extends _g.React.Component {
 }
 const domContainer = document.querySelector("#taskManager");
 // @ts-ignore
-const root = _g.ReactDOM.createRoot(domContainer);
+const root = _gx.ReactDOM.createRoot(domContainer);
 // @ts-ignore
 root.render(React.createElement(tasksManager));

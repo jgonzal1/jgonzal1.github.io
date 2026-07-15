@@ -19,6 +19,7 @@ class tasksManager extends globalThis.React.Component {
         "8.🌐": "#76b7b2",
         "9.➕": "#bab0ab66"
       },
+      durationValue: 0.5,
       durColors: {
         "0.02": "#bab0ab88",
         "0.1":  "#59a14f88",
@@ -640,7 +641,10 @@ class tasksManager extends globalThis.React.Component {
             item_id: ${itemId}
             create_labels_if_missing: true
             column_values:
-              "{\\"date0\\": \\"${dateTimeToSet}\\", \\"numbers\\": \\".5\\"}"
+              "{\\"date0\\": \\"${dateTimeToSet}\\"${
+                this.state.durationValue?
+                `, \\"numbers\\": \\"${this.state.durationValue}\\"`:""
+              }}"
         ) { name }
       }`;
     }
@@ -934,7 +938,46 @@ class tasksManager extends globalThis.React.Component {
               padding: "0 0.3em"
             }
           },
-          `day(s) offset`
+          `day(s) offset |`
+        ),
+        //#endregion
+        //#region setDuration
+        // @ts-ignore
+        React.createElement(
+          "input",
+          {
+            id: "setDuration",
+            value: typeof (this.state.durationValue) === "number" ?
+              parseFloat(this.state.durationValue.toPrecision(5)) :
+              this.state.durationValue,
+            // @ts-ignore
+            onChange: (e) => this.setState({
+              durationValue: e.target.value
+            }),
+            style: {
+              backgroundColor: "#FFF9",
+              borderRadius: "0.3em",
+              fontWeight: "bold",
+              marginLeft: "0.3em",
+              paddingLeft: "0.3em",
+              width: "5em"
+            }
+          },
+          null
+        ),
+        //#endregion
+        //#region lastRefreshDateTime
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "lastRefreshDateTime",
+            style: {
+              display: "inline-block",
+              padding: "0 0.3em"
+            }
+          },
+          `duration (h)`
         ),
         // @ts-ignore
         (this.state.lastRefreshDateTime !== "undefined") && React.createElement(

@@ -474,7 +474,7 @@ th.sorted-desc::after {
 }
 
 .l-50vw-10em {
-  min(50em, calc(50vw - 10em))
+  width: min(50em, calc(50vw - 10em));
 }
 
 .main {
@@ -588,7 +588,7 @@ th.sorted-desc::after {
 }
 
 .t-b-15em {
-  top: calc(100vh - 16em);
+  top: calc(min(100vh, 900px) - 16em);
 }
 
 /*Overwrite jQuery UI */

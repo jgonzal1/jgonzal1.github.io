@@ -22,6 +22,7 @@ class tasksManager extends _gx.React.Component {
         "8.🌐": "#76b7b2",
         "9.➕": "#bab0ab66"
       },
+      durationValue: 0.5,
       durColors: {
         "0.02": "#bab0ab88",
         "0.1":  "#59a14f88",
@@ -619,7 +620,7 @@ class tasksManager extends _gx.React.Component {
     }
   };
   //#endregion
-  //#region putMondayDateItem
+  //#region putMondayDateItem, numbers 1 enforces task to 0.5h for now
   putMondayDateItem = async (
     // @ts-ignore
     mondayKey, boardId, itemId, dateTimeToSet, type
@@ -642,7 +643,11 @@ class tasksManager extends _gx.React.Component {
             board_id: ${boardId}
             item_id: ${itemId}
             create_labels_if_missing: true
-            column_values: "{\\"date0\\": \\"${dateTimeToSet}\\"}"
+            column_values:
+              "{\\"date0\\": \\"${dateTimeToSet}\\"${
+                this.state.durationValue?
+                `, \\"numbers\\": \\"${this.state.durationValue}\\"`:""
+              }}"
         ) { name }
       }`;
     }
@@ -787,7 +792,7 @@ class tasksManager extends _gx.React.Component {
         <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td class="centered">
           <span style="background-color:#efd6">h/XR | 400🌳</span>
         </td></tr>
-        <tr><td>📺🎮🌐➕</td> <td id="restCount" class="centered"/>
+        <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
         </tr>
       </table>`;
@@ -798,7 +803,7 @@ class tasksManager extends _gx.React.Component {
         {"d":"healthCount", "l":3.5, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":2.5, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":2.5, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":2.5, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
+        {"d":"motCount",    "l":2.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
         {"d":"restCount",   "l":0.5, "v":0, "s":["6.📺","8.🌐"],        },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
@@ -936,7 +941,46 @@ class tasksManager extends _gx.React.Component {
               padding: "0 0.3em"
             }
           },
-          `day(s) offset`
+          `day(s) offset |`
+        ),
+        //#endregion
+        //#region setDuration
+        // @ts-ignore
+        React.createElement(
+          "input",
+          {
+            id: "setDuration",
+            value: typeof (this.state.durationValue) === "number" ?
+              parseFloat(this.state.durationValue.toPrecision(5)) :
+              this.state.durationValue,
+            // @ts-ignore
+            onChange: (e) => this.setState({
+              durationValue: e.target.value
+            }),
+            style: {
+              backgroundColor: "#FFF9",
+              borderRadius: "0.3em",
+              fontWeight: "bold",
+              marginLeft: "0.3em",
+              paddingLeft: "0.3em",
+              width: "5em"
+            }
+          },
+          null
+        ),
+        //#endregion
+        //#region lastRefreshDateTime
+        // @ts-ignore
+        React.createElement(
+          "span",
+          {
+            id: "lastRefreshDateTime",
+            style: {
+              display: "inline-block",
+              padding: "0 0.3em"
+            }
+          },
+          `duration (h)`
         ),
         // @ts-ignore
         (this.state.lastRefreshDateTime !== "undefined") && React.createElement(

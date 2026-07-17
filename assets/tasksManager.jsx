@@ -493,7 +493,7 @@ class tasksManager extends _gx.React.Component {
             };
           }).map(
             (/** @type {{key: string, value: number}} */ item) => {
-              _g[item.key] = item.value;
+              _gx[item.key] = item.value;
               return {
                 key: item.key,
                 value: item.value
@@ -789,8 +789,8 @@ class tasksManager extends _gx.React.Component {
         <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
           <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
         </td></tr>
-        <tr><td>🔬🌿🎮/Mot.</td> <td id="motCount"/><td class="centered">
-          <span style="background-color:#b5bd6899">h/XR or 400🌳</span>
+        <tr><td>🔬🌿/Mot.</td> <td id="motCount"/><td class="centered">
+          <span style="background-color:#efd6">h/XR | 400🌳</span>
         </td></tr>
         <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>

@@ -781,16 +781,18 @@ class tasksManager extends _gx.React.Component {
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯YGoals</th></tr>
         <tr><td>🍏/Health</td> <td id="healthCount"/><td class="centered">
-          <span style="background-color:#e1575999">🪁🏄ks</span>
+          <span style="background-color:#caa04c99">🪁🏄ks</span>
+          <!-- #e1575999 -->
         </td></tr>
         <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td class="centered">
-          <span style="background-color:#e1575999">🏷️🏠♴💼</span>
+          <span style="background-color:#caa04c99">🏷️🏠♴💼</span>
         </td></tr>
         <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
           <span style="background-color:#caa04c99">🚩🇸🇪💼</span>
         </td></tr>
         <tr><td>🔬🌿🎮/Mot.</td> <td id="motCount"/><td class="centered">
-          <span style="background-color:#efd6">h/XR | 400🌳</span>
+          <span style="background-color:#caa04c99">h/XR | 400🌳</span>
+          <!-- #eeffdd66 -->
         </td></tr>
         <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
@@ -800,11 +802,11 @@ class tasksManager extends _gx.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":4.5, "v":0, "s":["1.🍏"],               },
+        {"d":"healthCount", "l":4.0, "v":0, "s":["1.🍏"],               },
         {"d":"fireCount",   "l":4.0, "v":0, "s":["2.🏠","3.💰"],        },
         {"d":"relCount",    "l":4.0, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":4.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
-        {"d":"restCount",   "l":2.0, "v":0, "s":["6.📺","8.🌐"],        },
+        {"d":"motCount",    "l":3.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
+        {"d":"restCount",   "l":1.5, "v":0, "s":["6.📺","8.🌐"],        },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

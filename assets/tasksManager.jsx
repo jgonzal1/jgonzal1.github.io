@@ -802,11 +802,11 @@ class tasksManager extends _gx.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":4.0, "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":4.0, "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":4.0, "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":3.0, "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
-        {"d":"restCount",   "l":1.5, "v":0, "s":["6.📺","8.🌐"],        },
+        {"d":"healthCount", "l":globalThis["health_count"], "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "l":globalThis["fire_count"],   "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":globalThis["rel_count"],    "v":0, "s":["4.🚩"],               },
+        {"d":"motCount",    "l":globalThis["mot_count"],    "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
+        {"d":"restCount",   "l":globalThis["rest_count"],   "v":0, "s":["6.📺","8.🌐"],        },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

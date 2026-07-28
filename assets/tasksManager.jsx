@@ -735,12 +735,12 @@ class tasksManager extends _gx.React.Component {
       ).toISOString().substring(0, 10);
 
       const msPerD = 3.6e6 * 24;
-      const dDateMilestone = new Date("2026-08-01").getTime() / msPerD;
+      const dDateMilestone1 = new Date("2026-09-01").getTime() / msPerD;
       const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
-      const incrD = (dDateMilestone - dStartRegr);
-      const dateMilestonePass = (dDateMilestone - dStartRegr) * _gx.daily_growth
+      const incrD = (dDateMilestone1 - dStartRegr);
+      const dateMilestonePass = (dDateMilestone1 - dStartRegr) * _gx.daily_growth
         * _gx.passive_factor / 1200;
       const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _gx.daily_growth
         * _gx.passive_factor / 1200;

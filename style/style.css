@@ -473,8 +473,8 @@ th.sorted-desc::after {
   top: 0;
 }
 
-.l-50vw-10em {
-  width: min(50em, calc(50vw - 10em));
+.l-30vw-10em {
+  width: min(30em, calc(30vw - 10em));
 }
 
 .main {

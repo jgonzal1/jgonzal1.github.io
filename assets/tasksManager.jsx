@@ -765,8 +765,11 @@ class tasksManager extends _gx.React.Component {
       }
 
       if (this.state.getDatedMondayItemsToJson) {
+        // wait 0.5 sec
+        setTimeout(()=>{
+          this.getMondayTasksToMultipleJson(_gx.monday_key, _gx.boardId, _gx.columnRenames);
+        }, 500);
         //@ts-ignore
-        this.getMondayTasksToMultipleJson(_gx.monday_key, boardId, columnRenames);
       }
     });
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart

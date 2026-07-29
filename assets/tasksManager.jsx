@@ -719,28 +719,28 @@ class tasksManager extends _gx.React.Component {
       const milliSecondsPerDay = 24 * 60 * 60 * 1000;
       const daysBetween1900and1970 = 25569;
       //const startRegrDom = document.getElementById("startRegr");
-      const dateMilestoneDom = document.getElementById("dateMilestone");
+      const dateMilestone1Dom = document.getElementById("dateMilestone1");
       const dateMilestone2Dom = document.getElementById("dateMilestone2");
-      const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
-      const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
+      /*const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
+      const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;*/
       const dailyGrowthDom = document.getElementById("dailyGrowth");
       const startRegrN = (-_gx.offset_at_1900/_gx.daily_growth
         - daysBetween1900and1970
       )*milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
       //startRegrDom.innerText = `  ${startRegr}`;
-      const dateMilestone = new Date(
-        ((-_gx.offset_at_1900 + 12*30*_gx.daily_growth*_gx.passive_factor)/
-        _gx.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
-      ).toISOString().substring(0, 10);
 
       const msPerD = 3.6e6 * 24;
       const dDateMilestone1 = new Date("2026-09-01").getTime() / msPerD;
       const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
-      const incrD = (dDateMilestone1 - dStartRegr);
-      const dateMilestonePass = (dDateMilestone1 - dStartRegr) * _gx.daily_growth
+      /*const dateMilestone1 = new Date(
+        ((-_gx.offset_at_1900 + 12*30*_gx.daily_growth*_gx.passive_factor)/
+        _gx.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
+      ).toISOString().substring(0, 10);
+      const incrD = (dDateMilestone1 - dStartRegr);*/
+      const dateMilestonePass1 = (dDateMilestone1 - dStartRegr) * _gx.daily_growth
         * _gx.passive_factor / 1200;
       const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _gx.daily_growth
         * _gx.passive_factor / 1200;
@@ -752,24 +752,23 @@ class tasksManager extends _gx.React.Component {
       if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${
         (_gx.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
-      let exec = false;
 
-      if (dateMilestoneDom) dateMilestoneDom.innerText = `${dateMilestonePass.toFixed(1)}rp€/mo`;
+      if (dateMilestone1Dom) dateMilestone1Dom.innerText = `${dateMilestonePass1.toFixed(1)}rp€/mo`;
       if (dateMilestone2Dom) dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
 
       const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
-      if (dateMilestonePlaceholder && dateMilestonePass>1500) {
+      if (dateMilestonePlaceholder && dateMilestonePass1>1600) {
         dateMilestonePlaceholder.style.color = "#b5bd68";
-      } else if (dateMilestonePlaceholder && dateMilestonePass>1424.5) {
+      } else if (dateMilestonePlaceholder && dateMilestonePass1>1480) {
         dateMilestonePlaceholder.style.color = "#caa04c";
       }
 
       if (this.state.getDatedMondayItemsToJson) {
-        // wait 0.5 sec
-        setTimeout(()=>{
-          this.getMondayTasksToMultipleJson(_gx.monday_key, _gx.boardId, _gx.columnRenames);
-        }, 500);
-        //@ts-ignore
+        //setTimeout(()=>{
+        this.getMondayTasksToMultipleJson
+          //@ts-ignore
+          (_gx.monday_key, boardId, columnRenames);
+        //}, 500);
       }
     });
     if (this.state.mondayTasksByCategorySvg.length) { // Add Donut Chart
@@ -805,11 +804,11 @@ class tasksManager extends _gx.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":globalThis["health_count"], "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":globalThis["fire_count"],   "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":globalThis["rel_count"],    "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":globalThis["mot_count"],    "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
-        {"d":"restCount",   "l":globalThis["rest_count"],   "v":0, "s":["6.📺","8.🌐"],        },
+        {"d":"healthCount", "l":_gx["health_count"], "v":0, "s":["1.🍏"],               },
+        {"d":"fireCount",   "l":_gx["fire_count"],   "v":0, "s":["2.🏠","3.💰"],        },
+        {"d":"relCount",    "l":_gx["rel_count"],    "v":0, "s":["4.🚩"],               },
+        {"d":"motCount",    "l":_gx["mot_count"],    "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
+        {"d":"restCount",   "l":_gx["rest_count"],   "v":0, "s":["6.📺","8.🌐"],        },
       ].map((k)=>{
         k["s"].map(l=>k["v"]+=parseFloat(
           // @ts-ignore

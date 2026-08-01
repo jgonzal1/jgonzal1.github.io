@@ -104,9 +104,9 @@
           Passive<span id="dailyPassGrowth"></span>:
           <span id="amountEurPas">_.___,_____ €</span>&nbsp;
         </div>
-        <!--<div class="bordered">Started at:<br>
-          <span id="startRegr"></span>
-        </div>-->
+        <div class="bordered" style="color:#b5bd68">
+          Started at:<span id="startRegr"></span>
+        </div>
         <div id="dateMilestonePlaceholder" class="bordered grid-container-2" style="color:#e15759">
           <div>26-09: <span id="dateMilestone1"></span></div>
           <div>27-01: <span id="dateMilestone2"></span></div>
@@ -216,7 +216,7 @@
       useGrouping: true
     };
     const interval = 200;
-    const dateMilestoneDom = document.getElementById("dateMilestone");
+    const dateMilestone1Dom = document.getElementById("dateMilestone1");
     const dateMilestone2Dom = document.getElementById("dateMilestone2");
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;

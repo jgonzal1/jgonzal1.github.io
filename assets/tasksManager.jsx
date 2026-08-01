@@ -718,7 +718,7 @@ class tasksManager extends _gx.React.Component {
     this.getMondayVariables(_gx.monday_key, 4351865817).then(() => {
       const milliSecondsPerDay = 24 * 60 * 60 * 1000;
       const daysBetween1900and1970 = 25569;
-      //const startRegrDom = document.getElementById("startRegr");
+      const startRegrDom = document.getElementById("startRegr");
       const dateMilestone1Dom = document.getElementById("dateMilestone1");
       const dateMilestone2Dom = document.getElementById("dateMilestone2");
       /*const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
@@ -728,7 +728,7 @@ class tasksManager extends _gx.React.Component {
         - daysBetween1900and1970
       )*milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
-      //startRegrDom.innerText = `  ${startRegr}`;
+      startRegrDom.innerText = `  ${startRegr}`;
 
       const msPerD = 3.6e6 * 24;
       const dDateMilestone1 = new Date("2026-09-01").getTime() / msPerD;

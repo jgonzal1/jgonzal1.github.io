@@ -1103,7 +1103,7 @@ class tasksManager extends _gx.React.Component {
             isolation: "isolate",
             margin: "auto",
             maxHeight:
-              `calc(500px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
+              `calc(800px - ${this.state.lastUpdatedItem ? "2.5em" : "0em"})`,
             maxWidth: "calc(100% - 1em)",
             marginTop: "0.5em",
           }

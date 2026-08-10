@@ -178,13 +178,16 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   function isWeekdayInRange(date) {
     const dss = date.toISOString().substring(2,10);
     const dir = [
-      "26-08-10",
-      "26-08-13",
-      "26-08-17",
-      "26-08-20",
-      "26-08-24",
-      "26-08-27",
-      "26-08-31"
+      "26-08-25", // Tuesday
+      "26-08-28", // Friday
+      "26-09-01", // Tuesday
+      "26-09-04", // Friday
+      "26-09-25", // Friday
+      "26-09-29", // Tuesday
+      "26-10-02", // Friday
+      "26-10-06", // Tuesday
+      "26-10-09", // Friday
+      "26-10-13", // Tuesday
     ].includes(dss);
     return dir;
     // const dayOfWeekN = date.getDay();

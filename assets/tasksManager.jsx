@@ -790,10 +790,10 @@ class tasksManager extends _gx.React.Component {
           <span style="background-color:#caa04c99">🏷️🏠♴💼</span>
         </td></tr>
         <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
-          <span style="background-color:#eeffdd66">🚩🇸🇪💼</span>
+          <span style="background-color:#ddffcc66">🚩🇸🇪💼</span>
         </td></tr>
         <tr><td>🔬🌿🎮/Mot.</td> <td id="motCount"/><td class="centered">
-          <span style="background-color:#eeffdd66">h/y@XR|400🌳</span>
+          <span style="background-color:#ddffcc66">h/y@XR|400🌳</span>
         </td></tr>
         <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>

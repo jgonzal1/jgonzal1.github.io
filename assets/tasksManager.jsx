@@ -88,12 +88,13 @@ class tasksManager extends _gx.React.Component {
       (accumulator, item) => {
         // Separate routines to its section
         if (
-          !["360-Yearly", "400->1y", "999-Once"].includes(item["freq"])
+          !["180-Every 6 mo", "360-Yearly", "400->1y", "999-Once"]
+          .includes(item["freq"])
         ) {
           if (!accumulator["3.♻️"]) {
             accumulator["3.♻️"] = 0;
           }
-          accumulator["3.♻️"] += item["dur"];
+          accumulator["3.♻️"] += item["dur"]; // 3.♻️ counter
           return accumulator;
         }
         // Replace fast-line tasks outside sprint to slow-line
@@ -102,14 +103,14 @@ class tasksManager extends _gx.React.Component {
           item["Δd"] >= _gx.category_aggr_days_range
           && item["gr"] === "1.🐇"
         ) {
-          accumulator["2.🐢"] += item["dur"];
+          accumulator["2.🐢"] += item["dur"]; // 2.🐢 counter 1/2
           return accumulator;
         }
         // Fall-back for slow-line, fast-line or new additions
         if (!accumulator[item["gr"]]) {
           accumulator[item["gr"]] = 0;
         }
-        accumulator[item["gr"]] += item["dur"];
+        accumulator[item["gr"]] += item["dur"]; // 1.🐇 & 2.🐢 counter 2/2
         return accumulator;
       }, {}
     );
@@ -295,8 +296,8 @@ class tasksManager extends _gx.React.Component {
     const fastTasksW = fastTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (fastTasksW > 1) ? "#e15759" :
-        (fastTasksW < 0.8) ? "#b5bd68" :
+      .style("fill", (fastTasksW > 1.2) ? "#e15759" :
+        (fastTasksW < 0.6) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
@@ -307,8 +308,8 @@ class tasksManager extends _gx.React.Component {
     const slowTasksW = slowTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksW > 1.5) ? "#e15759" :
-        (slowTasksW < 1.2) ? "#b5bd68" :
+      .style("fill", (slowTasksW > 1.2) ? "#e15759" :
+        (slowTasksW < 0.6) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -319,8 +320,8 @@ class tasksManager extends _gx.React.Component {
     const repeatingTasksW = repeatingTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (repeatingTasksW > 1) ? "#e15759" :
-        (repeatingTasksW < 0.8) ? "#b5bd68" :
+      .style("fill", (repeatingTasksW > 1.2) ? "#e15759" :
+        (repeatingTasksW < 0.6) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "40").text(() =>
@@ -331,8 +332,8 @@ class tasksManager extends _gx.React.Component {
     const SumW = SumH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > 3) ? "#e15759" :
-        (SumW < 2.5) ? "#b5bd68" :
+      .style("fill", (SumW > 2) ? "#e15759" :
+        (SumW < 1.5) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`

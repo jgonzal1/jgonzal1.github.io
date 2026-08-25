@@ -1146,7 +1146,11 @@ class tasksManager extends _gx.React.Component {
                       "#mondayTasksByDayTable", taskKeyIdx
                     ),
                     className: "hoverable",
-                    style: { cursor: "pointer" }
+                    style: {
+                      cursor: "pointer",
+                      width: (taskKey === "task_name") &&
+                        (window.innerWidth < 600) ? "90em": "auto"
+                    }
                   },
                   taskKey,
                   // @ts-ignore
@@ -1178,7 +1182,9 @@ class tasksManager extends _gx.React.Component {
                     backgroundColor: _gx.setBgBasedOnDDiff(
                       taskRow["Δd"]
                     ),
-                    textAlign: "center"
+                    textAlign: "center",
+                      width: (taskRow === "task_name") &&
+                        (window.innerWidth < 600) ? "90em": "auto"
                   }
                 },
                 [
@@ -1252,7 +1258,7 @@ class tasksManager extends _gx.React.Component {
                       "div",
                       {
                         style: {
-                          width: "10em",
+                          width: window.innerWidth < 600 ? "30em": "10em",
                           height: "100%",
                           overflowY: "auto"
                         }
@@ -1266,8 +1272,9 @@ class tasksManager extends _gx.React.Component {
                           key: `${taskRow["task_id"]} PrioritizeImg`,
                           className: "clickable-icon",
                           style: {
-                            paddingRight: "0.3em",
-                            userSelect: "none"
+                            paddingRight: "0.1em",
+                            userSelect: "none",
+                            width: "1em"
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
@@ -1288,8 +1295,9 @@ class tasksManager extends _gx.React.Component {
                           key: `${taskRow["task_id"]} SnoozeImg`,
                           className: "clickable-icon",
                           style: {
-                            paddingRight: "0.3em",
-                            userSelect: "none"
+                            paddingRight: "0.1em",
+                            userSelect: "none",
+                            width: "1em"
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
@@ -1310,8 +1318,9 @@ class tasksManager extends _gx.React.Component {
                           key: `${taskRow["task_id"]}BacklogImg`,
                           className: "clickable-icon",
                           style: {
-                            paddingRight: "0.3em",
-                            userSelect: "none"
+                            paddingRight: "0.1em",
+                            userSelect: "none",
+                            width: "1em"
                           },
                           onClick: () => this.mondayItemToBacklog(
                             //@ts-ignore
@@ -1330,8 +1339,9 @@ class tasksManager extends _gx.React.Component {
                           key: `${taskRow["task_id"]}ArchiveImg`,
                           className: "clickable-icon",
                           style: {
-                            paddingRight: "0.3em",
-                            userSelect: "none"
+                            paddingRight: "0.1em",
+                            userSelect: "none",
+                            width: "1em"
                           },
                           onClick: () => this.archiveMondayItem(
                             //@ts-ignore
@@ -1411,7 +1421,19 @@ class tasksManager extends _gx.React.Component {
                     )
                   ) :
                   ((taskKey === "type") && (taskRow["dur"] > 0)) ?
-                  "" : taskRow[taskKey ?? ""]
+                  "" :
+                  ((taskKey === "task_name") && (taskRow["dur"] > 0)) ?
+                  // @ts-ignore
+                  React.createElement(
+                    "span",
+                    {
+                      style: {
+                        width:  window.innerWidth < 600 ? "90em": "auto",
+                      }
+                    },
+                    taskRow[taskKey]
+                  ) :
+                  taskRow[taskKey ?? ""]
                 ) : ""))
               )
             )

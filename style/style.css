@@ -739,6 +739,44 @@ th.sorted-desc::after {
   }
 }
 
+@media (max-width:599px) {
+  .flex-container-2,
+  .flex-container-3 {
+    flex-direction: column;
+  }
+
+  .first-flex-container-item {
+    height: 30vh;
+  }
+
+  .clickable-icon {
+    cursor: pointer;
+    height: 10px;
+    width: 10px !important;
+  }
+
+  .sidebar, #portfolioPlaceholder/*, #\#0Header, #task_id8Header, #\#12Header*/ {
+    display: none;
+  }
+
+  #monto, #graphsPlaceholder {
+    display:block;
+    background-color: #0006;
+  }
+
+  #monto {
+    width: auto;
+  }
+
+  #mondayTableContainer * {
+    font-size: 0.6em;
+  }
+
+  #taskManagerTopBar {
+    position: sticky;
+  }
+}
+
 @media print {
   * {
     border-color: #FFF;

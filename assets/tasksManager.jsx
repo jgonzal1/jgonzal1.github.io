@@ -734,7 +734,7 @@ class tasksManager extends _gx.React.Component {
       startRegrDom.innerText = `  ${startRegr}`;
 
       const msPerD = 3.6e6 * 24;
-      const dDateMilestone1 = new Date("2026-09-01").getTime() / msPerD;
+      const dDateMilestone1 = new Date("2026-10-01").getTime() / msPerD;
       const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;

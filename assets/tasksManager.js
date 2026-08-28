@@ -68,11 +68,11 @@ _g.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
       return {
         "cat": t["cat"] ?? "9.➕",
         "task_name": t["task_name"],
+        "actions": t["notes"],
         "datetime": t["datetime"],
         "wd": weekday[new Date(t["date"]).getDay()],
         "dur": isNaN(t["dur"]) ? 0.5 : parseFloat(t["dur"]),
         "Δd": t["Δd"],
-        "actions": t["notes"],
         "task_id": t["task_id"],
         "gr": t["group"],
         "freq": t["freq"],

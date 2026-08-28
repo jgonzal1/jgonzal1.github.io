@@ -724,6 +724,10 @@ th.sorted-desc::after {
   .first-flex-container-item {
     height: 30vh;
   }
+
+  #main {
+    width: calc(100% - 3em);
+  }
 }
 
 @media (max-height:900px) and (max-width:599),
@@ -736,6 +740,10 @@ th.sorted-desc::after {
 
   .first-flex-container-item {
     height: calc(100% - 320px - 4em);
+  }
+
+  #main {
+    width: calc(100% - 3em);
   }
 }
 

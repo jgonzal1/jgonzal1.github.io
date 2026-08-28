@@ -87,10 +87,10 @@ class tasksManager extends _gx.React.Component {
       // @ts-ignore
       (accumulator, item) => {
         // Separate routines to its section
-        if (
-          !["180-Every 6 mo", "360-Yearly", "400->1y", "999-Once"]
-          .includes(item["freq"])
-        ) {
+        if (![
+          "090-Every 3 mo", "180-Every 6 mo", "360-Yearly", "400->1y",
+          "999-Once"
+        ].includes(item["freq"])) {
           if (!accumulator["3.♻️"]) {
             accumulator["3.♻️"] = 0;
           }
@@ -294,10 +294,12 @@ class tasksManager extends _gx.React.Component {
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
     const fastTasksW = fastTasksH/_gx.totalHPerWeek;
+    const repetitiveThreshold = 0.45 // of the week
+    const veryRepetitiveThreshold = 0.6 // of the week
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (fastTasksW > 1.2) ? "#e15759" :
-        (fastTasksW < 0.6) ? "#b5bd68" :
+      .style("fill", (fastTasksW > veryRepetitiveThreshold) ? "#e15759" :
+        (fastTasksW < repetitiveThreshold) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
@@ -308,8 +310,8 @@ class tasksManager extends _gx.React.Component {
     const slowTasksW = slowTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksW > 1.2) ? "#e15759" :
-        (slowTasksW < 0.6) ? "#b5bd68" :
+      .style("fill", (slowTasksW > veryRepetitiveThreshold) ? "#e15759" :
+        (slowTasksW < repetitiveThreshold) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -320,8 +322,8 @@ class tasksManager extends _gx.React.Component {
     const repeatingTasksW = repeatingTasksH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (repeatingTasksW > 1.2) ? "#e15759" :
-        (repeatingTasksW < 0.6) ? "#b5bd68" :
+      .style("fill", (repeatingTasksW > veryRepetitiveThreshold) ? "#e15759" :
+        (repeatingTasksW < repetitiveThreshold) ? "#b5bd68" :
         "#ca8b4c"
       )
       .attr("y", "40").text(() =>
@@ -332,8 +334,8 @@ class tasksManager extends _gx.React.Component {
     const SumW = SumH/_gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > 2) ? "#e15759" :
-        (SumW < 1.5) ? "#b5bd68" :
+      .style("fill", (SumW > (veryRepetitiveThreshold*3)) ? "#e15759" :
+        (SumW < (repetitiveThreshold*3)) ? "#b5bd68" :
         "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
@@ -1203,7 +1205,7 @@ class tasksManager extends _gx.React.Component {
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxWidth: "30em",
+                      maxWidth: "20em",
                       cursor: "pointer"
                     },
                     onClick: () => {
@@ -1258,7 +1260,7 @@ class tasksManager extends _gx.React.Component {
                       "div",
                       {
                         style: {
-                          width: window.innerWidth < 600 ? "30em": "10em",
+                          width: window.innerWidth < 600 ? "30em": "auto",
                           height: "100%",
                           overflowY: "auto"
                         }
@@ -1274,7 +1276,8 @@ class tasksManager extends _gx.React.Component {
                           style: {
                             paddingRight: "0.1em",
                             userSelect: "none",
-                            width: "1em"
+                            width: "16px",
+                            height: "12px",
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
@@ -1297,7 +1300,8 @@ class tasksManager extends _gx.React.Component {
                           style: {
                             paddingRight: "0.1em",
                             userSelect: "none",
-                            width: "1em"
+                            width: "16px",
+                            height: "16px",
                           },
                           onClick: () => this.putMondayDateItem(
                             //@ts-ignore
@@ -1320,7 +1324,8 @@ class tasksManager extends _gx.React.Component {
                           style: {
                             paddingRight: "0.1em",
                             userSelect: "none",
-                            width: "1em"
+                            width: "16px",
+                            height: "16px",
                           },
                           onClick: () => this.mondayItemToBacklog(
                             //@ts-ignore
@@ -1341,7 +1346,8 @@ class tasksManager extends _gx.React.Component {
                           style: {
                             paddingRight: "0.1em",
                             userSelect: "none",
-                            width: "1em"
+                            width: "16px",
+                            height: "16px",
                           },
                           onClick: () => this.archiveMondayItem(
                             //@ts-ignore

@@ -56,7 +56,7 @@ class tasksManager extends _gx.React.Component {
       getDatedMondayItemsToJson: true,
       hide0DurTasks: true,
       inflation: 1.04,
-      interval: 200,
+      interval: 1000,
       lastRefreshDateTime: "undefined",
       lastUpdatedDt: "",
       lastUpdatedItem: false,

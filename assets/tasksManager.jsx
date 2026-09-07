@@ -1,5 +1,5 @@
 "use strict";
-/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
+/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
 const _gx = /** @type {any} */ (globalThis);
 // @ts-ignore
@@ -25,31 +25,31 @@ class tasksManager extends _gx.React.Component {
       durationValue: 0.5,
       durColors: {
         "0.02": "#bab0ab88",
-        "0.1":  "#59a14f88",
-        "0.2":  "#b5bd6888",
-        "0.5":  "#edc94988",
-        "0.8":  "#e2bc3488",
-        "1":    "#c2a02688",
-        "1.5":  "#ca8b4c88",
-        "2":    "#e1575988"
+        "0.1": "#59a14f88",
+        "0.2": "#b5bd6888",
+        "0.5": "#edc94988",
+        "0.8": "#e2bc3488",
+        "1": "#c2a02688",
+        "1.5": "#ca8b4c88",
+        "2": "#e1575988"
       },
       freqColors: {
-        "999-Once":       "#bab0ab88",
-        "400->1y":        "#5891ce88",
-        "360-Yearly":     "#6fdda688",
+        "999-Once": "#bab0ab88",
+        "400->1y": "#5891ce88",
+        "360-Yearly": "#6fdda688",
         "180-Every 6 mo": "#78d76c88",
         "090-Every 3 mo": "#c6d15d88",
-        "030-Monthly":    "#edc94988",
-        "014-BiWeekly":   "#caa04c88",
-        "004-times":      "#ca8b4c88",
-        "003-/week":      "#f28e2c88",
-        "001-Daily":      "#e1575988"
+        "030-Monthly": "#edc94988",
+        "014-BiWeekly": "#caa04c88",
+        "004-times": "#ca8b4c88",
+        "003-/week": "#f28e2c88",
+        "001-Daily": "#e1575988"
       },
       statusColors: {
-        "Pending":        "#e1575988",
+        "Pending": "#e1575988",
         "Date sensitive": "#f28e2c88",
-        "On the PC":      "#f28e2c88",
-        "Nice to do":     "#bab0ab88"
+        "On the PC": "#f28e2c88",
+        "Nice to do": "#bab0ab88"
       },
       dayOffsetValue: Number(1 / 24),
       daysBetween1900and1970: 25569, // Diff Google Sheets and Browser for regression
@@ -126,9 +126,9 @@ class tasksManager extends _gx.React.Component {
        */
       (t) => (new Date(t["datetime"]) <
         new Date(new Date().getTime() +
-        // @ts-ignore
-        _gx.category_aggr_days_range * 24 * 3.6e6
-      ))
+          // @ts-ignore
+          _gx.category_aggr_days_range * 24 * 3.6e6
+        ))
     ).reduce(
       // @ts-ignore
       (accumulator, item) => {
@@ -147,10 +147,10 @@ class tasksManager extends _gx.React.Component {
      * .sort((a, b) => mondayTasksByCatDict[b] - mondayTasksByCatDict[a])
      */
     mondayTasksByCatDict = Object.keys(mondayTasksByCatDict).sort()
-    .reduce((obj, key) => { // @ts-ignore
-      obj[key] = mondayTasksByCatDict[key];
-      return obj;
-    }, {});
+      .reduce((obj, key) => { // @ts-ignore
+        obj[key] = mondayTasksByCatDict[key];
+        return obj;
+      }, {});
     this.state.mondayTasksByCatDict = mondayTasksByCatDict;
     //#endregion
     //#region Donut Chart
@@ -231,10 +231,10 @@ class tasksManager extends _gx.React.Component {
       .style("cursor", "pointer")
       // @ts-ignore
       .on("click", (d) => {
-        const categoryToFilter = d?.target?.__data__?.data?.[0]??"" ;
+        const categoryToFilter = d?.target?.__data__?.data?.[0] ?? "";
         const filterTaskDom = document.getElementById("filterTasks");
         // @ts-ignore
-        if(filterTaskDom.value != categoryToFilter) {
+        if (filterTaskDom.value != categoryToFilter) {
           // @ts-ignore
           filterTaskDom.value = categoryToFilter;
         } else {
@@ -293,50 +293,50 @@ class tasksManager extends _gx.React.Component {
       .style('fill', () => '#FFF');
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
-    const fastTasksW = fastTasksH/_gx.totalHPerWeek;
+    const fastTasksW = fastTasksH / _gx.totalHPerWeek;
     const repetitiveThreshold = 0.45 // of the week
     const veryRepetitiveThreshold = 0.6 // of the week
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (fastTasksW > veryRepetitiveThreshold) ? "#e15759" :
         (fastTasksW < repetitiveThreshold) ? "#b5bd68" :
-        "#ca8b4c"
+          "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
         `1.🐇${fastTasksH}h/${fastTasksW.toFixed(1)}w`
       );
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     // @ts-ignore
-    const slowTasksW = slowTasksH/_gx.totalHPerWeek;
+    const slowTasksW = slowTasksH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > veryRepetitiveThreshold) ? "#e15759" :
         (slowTasksW < repetitiveThreshold) ? "#b5bd68" :
-        "#ca8b4c"
+          "#ca8b4c"
       )
       .attr("y", "0").text(() =>
         `2.🐢${slowTasksH}h/${slowTasksW.toFixed(1)}w`
       );
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     // @ts-ignore
-    const repeatingTasksW = repeatingTasksH/_gx.totalHPerWeek;
+    const repeatingTasksW = repeatingTasksH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (repeatingTasksW > veryRepetitiveThreshold) ? "#e15759" :
         (repeatingTasksW < repetitiveThreshold) ? "#b5bd68" :
-        "#ca8b4c"
+          "#ca8b4c"
       )
       .attr("y", "40").text(() =>
         `3.♻️${repeatingTasksH}h/${repeatingTasksW.toFixed(1)}w`
       );
     const SumH = fastTasksH + slowTasksH + repeatingTasksH;
     // @ts-ignore
-    const SumW = SumH/_gx.totalHPerWeek;
+    const SumW = SumH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > (veryRepetitiveThreshold*3)) ? "#e15759" :
-        (SumW < (repetitiveThreshold*3)) ? "#b5bd68" :
-        "#ca8b4c"
+      .style("fill", (SumW > (veryRepetitiveThreshold * 3)) ? "#e15759" :
+        (SumW < (repetitiveThreshold * 3)) ? "#b5bd68" :
+          "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`
       );
@@ -489,22 +489,22 @@ class tasksManager extends _gx.React.Component {
       try {
         const respJsonRaw = await response.json();
         const respJson = await respJsonRaw["data"]["boards"][0]
-          ["items_page"]["items"].map((/** @type {any} */ item) => {
+        ["items_page"]["items"].map((/** @type {any} */ item) => {
+          return {
+            key: item.name,
+            value: parseFloat(item.column_values[0].text)
+          };
+        }).map(
+          (/** @type {{key: string, value: number}} */ item) => {
+            _gx[item.key] = item.value;
             return {
-              key: item.name,
-              value: parseFloat(item.column_values[0].text)
-            };
-          }).map(
-            (/** @type {{key: string, value: number}} */ item) => {
-              _gx[item.key] = item.value;
-              return {
-                key: item.key,
-                value: item.value
-              }
+              key: item.key,
+              value: item.value
             }
-          );
+          }
+        );
         _gx.totalHPerWeek = _gx.quarters_of_hour_weekdays +
-          3/4 * _gx.quarters_of_hour_weekends;
+          3 / 4 * _gx.quarters_of_hour_weekends;
         return respJson;
       } catch (e) {
         console.error(e);
@@ -537,7 +537,7 @@ class tasksManager extends _gx.React.Component {
       'es-ES', numberFormat
     ).format(numericAmount);
     // @ts-ignore
-    const amountEurMs = numericAmount*12/_gx.passive_factor;
+    const amountEurMs = numericAmount * 12 / _gx.passive_factor;
     // @ts-ignore
     const dayEurMs = (dayStartRegr + amountEurMs / daily_growth) * this.state.milliSecondsPerDay;
     const dateEurMs = new Date(dayEurMs).toISOString().replace("T", " ")
@@ -565,7 +565,7 @@ class tasksManager extends _gx.React.Component {
     adjustedAmountDom.innerText = new Intl.NumberFormat(
       // @ts-ignore
       'es-ES', numberFormat
-    // @ts-ignore
+      // @ts-ignore
     ).format(amountEurMs * _gx.passive_factor / 1200 / calcinflation);
   };
   //#endregion
@@ -647,10 +647,9 @@ class tasksManager extends _gx.React.Component {
             item_id: ${itemId}
             create_labels_if_missing: true
             column_values:
-              "{\\"date0\\": \\"${dateTimeToSet}\\"${
-                this.state.durationValue?
-                `, \\"numbers\\": \\"${this.state.durationValue}\\"`:""
-              }}"
+              "{\\"date0\\": \\"${dateTimeToSet}\\"${this.state.durationValue ?
+          `, \\"numbers\\": \\"${this.state.durationValue}\\"` : ""
+        }}"
         ) { name }
       }`;
     }
@@ -727,9 +726,9 @@ class tasksManager extends _gx.React.Component {
       /*const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
       const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;*/
       const dailyGrowthDom = document.getElementById("dailyGrowth");
-      const startRegrN = (-_gx.offset_at_1900/_gx.daily_growth
+      const startRegrN = (-_gx.offset_at_1900 / _gx.daily_growth
         - daysBetween1900and1970
-      )*milliSecondsPerDay;
+      ) * milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
       startRegrDom.innerText = `  ${startRegr}`;
 
@@ -752,17 +751,16 @@ class tasksManager extends _gx.React.Component {
       const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
       const dailyPassGrowth = _gx.daily_growth * (_gx.passive_factor / 1200);
       // const hoursPerEur = 24/dailyPassGrowth;
-      if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${
-        (_gx.passive_factor).toPrecision(3)
+      if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${(_gx.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
 
       if (dateMilestone1Dom) dateMilestone1Dom.innerText = `${dateMilestonePass1.toFixed(1)}rp€/mo`;
       if (dateMilestone2Dom) dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
 
       const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
-      if (dateMilestonePlaceholder && dateMilestonePass1>1600) {
+      if (dateMilestonePlaceholder && dateMilestonePass1 > 1600) {
         dateMilestonePlaceholder.style.color = "#b5bd68";
-      } else if (dateMilestonePlaceholder && dateMilestonePass1>1480) {
+      } else if (dateMilestonePlaceholder && dateMilestonePass1 > 1480) {
         dateMilestonePlaceholder.style.color = "#caa04c";
       }
 
@@ -806,27 +804,27 @@ class tasksManager extends _gx.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        {"d":"healthCount", "l":_gx["health_count"], "v":0, "s":["1.🍏"],               },
-        {"d":"fireCount",   "l":_gx["fire_count"],   "v":0, "s":["2.🏠","3.💰"],        },
-        {"d":"relCount",    "l":_gx["rel_count"],    "v":0, "s":["4.🚩"],               },
-        {"d":"motCount",    "l":_gx["mot_count"],    "v":0, "s":["5.🌿","5.🔬","7.🎮"],},
-        {"d":"restCount",   "l":_gx["rest_count"],   "v":0, "s":["6.📺","8.🌐"],        },
-      ].map((k)=>{
-        k["s"].map(l=>k["v"]+=parseFloat(
+        { "d": "healthCount", "l": _gx["health_count"], "v": 0, "s": ["1.🍏"], },
+        { "d": "fireCount", "l": _gx["fire_count"], "v": 0, "s": ["2.🏠", "3.💰"], },
+        { "d": "relCount", "l": _gx["rel_count"], "v": 0, "s": ["4.🚩"], },
+        { "d": "motCount", "l": _gx["mot_count"], "v": 0, "s": ["5.🌿", "5.🔬", "7.🎮"], },
+        { "d": "restCount", "l": _gx["rest_count"], "v": 0, "s": ["6.📺", "8.🌐"], },
+      ].map((k) => {
+        k["s"].map(l => k["v"] += parseFloat(
           // @ts-ignore
           this.state.mondayTasksByCatDict[l] || 0
         ));
         const domObj = document.getElementById(k["d"]);
         if (domObj) {
           // const prevV = parseFloat(domObj.innerText) || 0;
-          const kv = k["v"]??0;
+          const kv = k["v"] ?? 0;
           domObj.className = "r ";
           domObj.style.color =
             // @ts-ignore
-            ((parseFloat(kv)-.5) > k["l"]) ? "#ca8b4c" :
-            // @ts-ignore
-            ((parseFloat(kv)+.5) < k["l"]) ? "#e15759" :
-            "#b5bd68";
+            ((parseFloat(kv) - .5) > k["l"]) ? "#ca8b4c" :
+              // @ts-ignore
+              ((parseFloat(kv) + .5) < k["l"]) ? "#e15759" :
+                "#b5bd68";
           tcl += k["l"];
           tc += k["v"];
           domObj.innerText = `${kv.toFixed(2)} (${k["l"].toFixed(1)}±.5)`;
@@ -836,11 +834,11 @@ class tasksManager extends _gx.React.Component {
       totalCountDom.innerText = `${tc.toFixed(1)} (${tcl.toFixed(1)}±2.5)`;
       // @ts-ignore
       totalCountDom.style.color =
-      // @ts-ignore
-        ((tc-2.5) > tcl) ? "#ca8b4c" :
         // @ts-ignore
-        ((tc+2.5) < tcl) ? "#e15759" :
-        "#b5bd68";
+        ((tc - 2.5) > tcl) ? "#ca8b4c" :
+          // @ts-ignore
+          ((tc + 2.5) < tcl) ? "#e15759" :
+            "#b5bd68";
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
           ["values"]?.[1]?.["value"] ?? (_gx.tasksByCategoryHeight)
@@ -1137,7 +1135,7 @@ class tasksManager extends _gx.React.Component {
                 Object.keys(this.state.mondayTasksJson[0]).pop(),
                 // @ts-ignore
                 ...Object.keys(this.state.mondayTasksJson[0])
-              ].filter(tk=>tk!=="type").map(
+              ].filter(tk => tk !== "type").map(
                 // @ts-ignore
                 (taskKey, taskKeyIdx) => React.createElement(
                   "th",
@@ -1151,7 +1149,7 @@ class tasksManager extends _gx.React.Component {
                     style: {
                       cursor: "pointer",
                       width: (taskKey === "task_name") &&
-                        (window.innerWidth < 600) ? "90em": "auto"
+                        (window.innerWidth < 600) ? "90em" : "auto"
                     }
                   },
                   taskKey,
@@ -1185,8 +1183,8 @@ class tasksManager extends _gx.React.Component {
                       taskRow["Δd"]
                     ),
                     textAlign: "center",
-                      width: (taskRow === "task_name") &&
-                        (window.innerWidth < 600) ? "90em": "auto"
+                    width: (taskRow === "task_name") &&
+                      (window.innerWidth < 600) ? "90em" : "auto"
                   }
                 },
                 [
@@ -1214,7 +1212,7 @@ class tasksManager extends _gx.React.Component {
                       }
                       const filterTaskDom = document.getElementById("filterTasks");
                       // @ts-ignore
-                      if(filterTaskDom.value != taskRow[taskKey]) {
+                      if (filterTaskDom.value != taskRow[taskKey]) {
                         // @ts-ignore
                         filterTaskDom.value = taskRow[taskKey];
                       } else {
@@ -1226,220 +1224,220 @@ class tasksManager extends _gx.React.Component {
                     }
                   },
                   ((taskKey === "dur") && (taskRow["dur"] > 0)) ?
-                  // @ts-ignore
-                  React.createElement(
-                    "div",
-                    {
-                      style: {
-                        height: "100%",
-                        overflowY: "none"
-                      }
-                    },
                     // @ts-ignore
                     React.createElement(
-                      "span",
-                      {
-                        style: {
-                          // @ts-ignore
-                          backgroundColor: this.state.durColors[
-                            taskRow[taskKey]
-                          ],
-                          borderRadius: "0.8em",
-                          fontSize: "0.8em",
-                          fontWeight: "bold",
-                          padding: "0.3em 0.6em",
-                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
-                        }
-                      },
-                      taskRow[taskKey]
-                      )
-                  ) :
-                  ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
-                  // @ts-ignore
-                  React.createElement(
                       "div",
                       {
                         style: {
-                          width: window.innerWidth < 600 ? "30em": "auto",
                           height: "100%",
-                          overflowY: "auto"
+                          overflowY: "none"
                         }
                       },
                       // @ts-ignore
                       React.createElement(
-                        "img",
+                        "span",
                         {
-                          src: "../public/prioritize.png",
-                          alt: "Prioritize",
-                          key: `${taskRow["task_id"]} PrioritizeImg`,
-                          className: "clickable-icon",
                           style: {
-                            paddingRight: "0.1em",
-                            userSelect: "none",
-                            width: "16px",
-                            height: "12px",
-                          },
-                          onClick: () => this.putMondayDateItem(
-                            //@ts-ignore
-                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                            taskRow["task_id"],
                             // @ts-ignore
-                            _gx.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                            taskRow["type"]
-                          )
-                        }
-                      ),
-                      // @ts-ignore
-                      React.createElement(
-                        "img",
-                        {
-                          src: "../public/snooze.png",
-                          alt: "Snooze",
-                          key: `${taskRow["task_id"]} SnoozeImg`,
-                          className: "clickable-icon",
-                          style: {
-                            paddingRight: "0.1em",
-                            userSelect: "none",
-                            width: "16px",
-                            height: "16px",
-                          },
-                          onClick: () => this.putMondayDateItem(
-                            //@ts-ignore
-                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                            taskRow["task_id"],
-                            // @ts-ignore
-                            _gx.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
-                            taskRow["type"]
-                          )
-                        }
-                      ),
-                      // @ts-ignore
-                      React.createElement(
-                        "img",
-                        {
-                          src: "../public/backlog.png",
-                          alt: "Archive",
-                          key: `${taskRow["task_id"]}BacklogImg`,
-                          className: "clickable-icon",
-                          style: {
-                            paddingRight: "0.1em",
-                            userSelect: "none",
-                            width: "16px",
-                            height: "16px",
-                          },
-                          onClick: () => this.mondayItemToBacklog(
-                            //@ts-ignore
-                            monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
-                            taskRow["task_id"],
-                            taskRow["type"]
-                          )
-                        }
-                      ),
-                      // @ts-ignore
-                      React.createElement(
-                        "img",
-                        {
-                          src: "../public/archive.png",
-                          alt: "Archive",
-                          key: `${taskRow["task_id"]}ArchiveImg`,
-                          className: "clickable-icon",
-                          style: {
-                            paddingRight: "0.1em",
-                            userSelect: "none",
-                            width: "16px",
-                            height: "16px",
-                          },
-                          onClick: () => this.archiveMondayItem(
-                            //@ts-ignore
-                            monday_key, boardId,
-                            taskRow["task_id"]
-                          )
-                        }
-                      ),
-                      (
-                        taskRow[taskKey] !== " null"
-                          ? (/(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])
-                            // @ts-ignore
-                            ? React.createElement(
-                              "a",
-                              { href: /(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])?.[1] ?? "" },
+                            backgroundColor: this.state.durColors[
                               taskRow[taskKey]
-                            ) : taskRow[taskKey])
-                          : ""
+                            ],
+                            borderRadius: "0.8em",
+                            fontSize: "0.8em",
+                            fontWeight: "bold",
+                            padding: "0.3em 0.6em",
+                            textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                          }
+                        },
+                        taskRow[taskKey]
                       )
-                  ) :
-                  ((taskKey === "freq") && (taskRow["dur"] > 0)) ?
-                  // @ts-ignore
-                  React.createElement(
-                    "div",
-                    {
-                      style: {
-                        height: "100%",
-                        overflowY: "none"
-                      }
-                    },
-                    // @ts-ignore
-                    React.createElement(
-                      "span",
-                      {
-                        style: {
+                    ) :
+                    ((taskKey === "actions") && (taskRow["dur"] > 0)) ?
+                      // @ts-ignore
+                      React.createElement(
+                        "div",
+                        {
+                          style: {
+                            width: window.innerWidth < 600 ? "30em" : "auto",
+                            height: "100%",
+                            overflowY: "auto"
+                          }
+                        },
+                        // @ts-ignore
+                        React.createElement(
+                          "img",
+                          {
+                            src: "../public/prioritize.png",
+                            alt: "Prioritize",
+                            key: `${taskRow["task_id"]} PrioritizeImg`,
+                            className: "clickable-icon",
+                            style: {
+                              paddingRight: "0.1em",
+                              userSelect: "none",
+                              width: "16px",
+                              height: "12px",
+                            },
+                            onClick: () => this.putMondayDateItem(
+                              //@ts-ignore
+                              monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                              taskRow["task_id"],
+                              // @ts-ignore
+                              _gx.offsetNDay(-1 * this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                              taskRow["type"]
+                            )
+                          }
+                        ),
+                        // @ts-ignore
+                        React.createElement(
+                          "img",
+                          {
+                            src: "../public/snooze.png",
+                            alt: "Snooze",
+                            key: `${taskRow["task_id"]} SnoozeImg`,
+                            className: "clickable-icon",
+                            style: {
+                              paddingRight: "0.1em",
+                              userSelect: "none",
+                              width: "16px",
+                              height: "16px",
+                            },
+                            onClick: () => this.putMondayDateItem(
+                              //@ts-ignore
+                              monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                              taskRow["task_id"],
+                              // @ts-ignore
+                              _gx.offsetNDay(this.state.dayOffsetValue, `${taskRow["datetime"]}:00`, "min"),
+                              taskRow["type"]
+                            )
+                          }
+                        ),
+                        // @ts-ignore
+                        React.createElement(
+                          "img",
+                          {
+                            src: "../public/backlog.png",
+                            alt: "Archive",
+                            key: `${taskRow["task_id"]}BacklogImg`,
+                            className: "clickable-icon",
+                            style: {
+                              paddingRight: "0.1em",
+                              userSelect: "none",
+                              width: "16px",
+                              height: "16px",
+                            },
+                            onClick: () => this.mondayItemToBacklog(
+                              //@ts-ignore
+                              monday_key, taskRow["type"] === "item" ? boardId : subItemsBoardId,
+                              taskRow["task_id"],
+                              taskRow["type"]
+                            )
+                          }
+                        ),
+                        // @ts-ignore
+                        React.createElement(
+                          "img",
+                          {
+                            src: "../public/archive.png",
+                            alt: "Archive",
+                            key: `${taskRow["task_id"]}ArchiveImg`,
+                            className: "clickable-icon",
+                            style: {
+                              paddingRight: "0.1em",
+                              userSelect: "none",
+                              width: "16px",
+                              height: "16px",
+                            },
+                            onClick: () => this.archiveMondayItem(
+                              //@ts-ignore
+                              monday_key, boardId,
+                              taskRow["task_id"]
+                            )
+                          }
+                        ),
+                        (
+                          taskRow[taskKey] !== " null"
+                            ? (/(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])
+                              // @ts-ignore
+                              ? React.createElement(
+                                "a",
+                                { href: /(https?:\/\/[^ ]+)/.exec(taskRow[taskKey])?.[1] ?? "" },
+                                taskRow[taskKey]
+                              ) : taskRow[taskKey])
+                            : ""
+                        )
+                      ) :
+                      ((taskKey === "freq") && (taskRow["dur"] > 0)) ?
+                        // @ts-ignore
+                        React.createElement(
+                          "div",
+                          {
+                            style: {
+                              height: "100%",
+                              overflowY: "none"
+                            }
+                          },
                           // @ts-ignore
-                          backgroundColor: this.state.freqColors[
+                          React.createElement(
+                            "span",
+                            {
+                              style: {
+                                // @ts-ignore
+                                backgroundColor: this.state.freqColors[
+                                  taskRow[taskKey] ?? "999-Once"
+                                ],
+                                borderRadius: "0.8em",
+                                fontSize: "0.8em",
+                                fontWeight: "bold",
+                                padding: "0.3em 0.6em",
+                                textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                              }
+                            },
                             taskRow[taskKey] ?? "999-Once"
-                          ],
-                          borderRadius: "0.8em",
-                          fontSize: "0.8em",
-                          fontWeight: "bold",
-                          padding: "0.3em 0.6em",
-                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
-                        }
-                      },
-                      taskRow[taskKey] ?? "999-Once"
-                      )
-                  ) :
-                  ((taskKey === "status") && (taskRow["dur"] > 0)) ?
-                  // @ts-ignore
-                  React.createElement(
-                    "div",
-                    {
-                      style: {
-                        height: "100%",
-                        overflowY: "none"
-                      }
-                    },
-                    // @ts-ignore
-                    React.createElement(
-                      "span",
-                      {
-                        style: {
+                          )
+                        ) :
+                        ((taskKey === "status") && (taskRow["dur"] > 0)) ?
                           // @ts-ignore
-                          backgroundColor: this.state.statusColors[
-                            taskRow[taskKey]
-                          ],
-                          borderRadius: "0.8em",
-                          fontSize: "0.8em",
-                          fontWeight: "bold",
-                          padding: "0.3em 0.6em",
-                          textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
-                        }
-                      },
-                      taskRow[taskKey]
-                    )
-                  ) :
-                  ((taskKey === "type") && (taskRow["dur"] > 0)) ?
-                  "" :
-                  ((taskKey === "task_name") && (taskRow["dur"] > 0)) ?
-                  // @ts-ignore
-                  React.createElement(
-                    "span",
-                    {
-                      style: {
-                        width:  window.innerWidth < 600 ? "90em": "auto",
-                      }
-                    },
-                    taskRow[taskKey]
-                  ) :
-                  taskRow[taskKey ?? ""]
+                          React.createElement(
+                            "div",
+                            {
+                              style: {
+                                height: "100%",
+                                overflowY: "none"
+                              }
+                            },
+                            // @ts-ignore
+                            React.createElement(
+                              "span",
+                              {
+                                style: {
+                                  // @ts-ignore
+                                  backgroundColor: this.state.statusColors[
+                                    taskRow[taskKey]
+                                  ],
+                                  borderRadius: "0.8em",
+                                  fontSize: "0.8em",
+                                  fontWeight: "bold",
+                                  padding: "0.3em 0.6em",
+                                  textShadow: "-0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000"
+                                }
+                              },
+                              taskRow[taskKey]
+                            )
+                          ) :
+                          ((taskKey === "type") && (taskRow["dur"] > 0)) ?
+                            "" :
+                            ((taskKey === "task_name") && (taskRow["dur"] > 0)) ?
+                              // @ts-ignore
+                              React.createElement(
+                                "span",
+                                {
+                                  style: {
+                                    width: window.innerWidth < 600 ? "90em" : "auto",
+                                  }
+                                },
+                                taskRow[taskKey]
+                              ) :
+                              taskRow[taskKey ?? ""]
                 ) : ""))
               )
             )
@@ -1448,7 +1446,7 @@ class tasksManager extends _gx.React.Component {
           // @ts-ignore
           React.createElement(
             "div",
-            { style: { color: "#fff" }},
+            { style: { color: "#fff" } },
             "Loading tasks summary table"
           )
       ),

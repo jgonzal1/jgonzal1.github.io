@@ -1,5 +1,5 @@
 "use strict";
-/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any }} GlobalThisExtended */
+/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
 const _g = /** @type {any} */ (globalThis);
 //#region Variables
@@ -40,6 +40,16 @@ const columnRenames = {
 //#region addMondayMeta
 _g.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
   const currentDate = new Date();
+  const endDayStr = _g.end_day_yymmdd_date.toString();
+  const endDayDate = new Date(`20${endDayStr.substring(0, 2)
+    }-${endDayStr.substring(2, 4)
+    }-${endDayStr.substring(4, 6)}`);
+  let categoryAggrDaysRange = Math.round(
+    (endDayDate.valueOf() - currentDate.valueOf()) / msPerD
+  );
+  if (_g.category_aggr_days_range < categoryAggrDaysRange) {
+    globalThis["category_aggr_days_range"] = categoryAggrDaysRange;
+  }
   const penultimateDay = new Date
     (_g.offsetNDay(_g.category_aggr_days_range - 1))
     .toISOString().substring(0, 16).replace("T", " ");
@@ -58,8 +68,7 @@ _g.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
     ) / msPerH / 24).toPrecision(3));
     item["dur"] = +(parseFloat(item["dur"]).toFixed(2));
     item["date"] = item["datetime"].substring(0, 10);
-    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${
-      item["notes"] ?? ""}`;
+    const notes = `${item["comments"] ?? ""} ${item["subitems"] ?? ""} ${item["notes"] ?? ""} `;
     item["notes"] = notes;
     return item;
   });
@@ -104,16 +113,21 @@ _g.addMondayMeta = (/** @type {any[]} */ mondayTasksJson) => {
       parentItemDates[parentName] = newDateTimeStr;
       mondayItemsJsonPayload.filter(m => m["task_name"] === parentName)
         .map(n => {
-          if(n["datetime"]===newDateTime.replace("T"," ").substring(0,16)) {
+          if (n["datetime"] === newDateTime.replace("T", " ").substring(0, 16)) {
             return; // Parent task is already updated today
           }
-          /*const query = `mutation { change_column_value ( ${""
-            }board_id: ${boardId}, item_id: ${n["task_id"]
+          /*const query = `mutation {
+  change_column_value(${
+    ""
+            }board_id: ${ boardId }, item_id: ${
+    n["task_id"]
             }, column_id: "date", value: "{${""
-            }\\"date\\":\\"${newDateTimeStr.substring(0, 10)}\\", ${""
-            }\\"time\\":\\"${newDateTimeStr.substring(11)}:00\\", ${""
-            }\\"changed_at\\":\\"${
-              new Date().toISOString().substring(0, 19)
+            } \\"date\\": \\"${newDateTimeStr.substring(0, 10)}\\", ${
+  ""
+} \\"time\\": \\"${newDateTimeStr.substring(11)}:00\\", ${
+  ""
+} \\"changed_at\\": \\"${
+new Date().toISOString().substring(0, 19)
             }\\"}") { name } }`;
           const body = JSON.stringify({ "query": query });
           fetch(
@@ -147,7 +161,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
   const msPerDay = (24 * msPerH);
   const currentDateTime = new Date();
   const daysRangeStart = currentDateTime.getTime();
-  const daysRangeTomorrow = daysRangeStart + msPerDay/5; // from around 7 PM
+  const daysRangeTomorrow = daysRangeStart + msPerDay / 5; // from around 7 PM
   const daysRangeEnd = daysRangeStart +
     (_g.category_aggr_days_range * msPerDay);
   const category_aggr_days_rangeEnd = new Date(daysRangeEnd);
@@ -160,7 +174,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     (tn) => mondayTasksSortedJson.filter(
       // @ts-ignore
       t => t["task_name"] === tn
-    // @ts-ignore
+      // @ts-ignore
     ).map(t => t.datetime)[0]
   );
 
@@ -171,12 +185,12 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
    *
    * Example:
    * ```js
-   * const currentDate = new Date();
+  * const currentDate = new Date();
    * console.log(isWeekdayInRange(currentDate));
    * ```
    * */
   function isWeekdayInRange(date) {
-    const dss = date.toISOString().substring(2,10);
+    const dss = date.toISOString().substring(2, 10);
     const dir = [
       "26-08-25", // Tuesday
       "26-08-28", // Friday
@@ -295,7 +309,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     }, {}
   );
   Array.from({ length: _g.category_aggr_days_range + 1 }, (_, i) => {
-    if(isNight && (i === 0)) {
+    if (isNight && (i === 0)) {
       return; // Skip today if isNight
     }
     const d = daysRangeStart + (i * msPerDay);
@@ -409,7 +423,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
 
   // y-axis without domain line, grid lines and y-label
   svg.append("g")
-    .attr("transform", `translate(${marginLeft},0)`)
+    .attr("transform", `translate(${marginLeft}, 0)`)
     //@ts-ignore
     .call(d3.axisLeft(y).ticks(height / 80).tickFormat(
       // @ts-ignore
@@ -437,7 +451,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .range([marginLeft, width - marginRight]);
   */
   svg.append("g")
-    .attr("transform", `translate(0,${height - marginBottom})`)
+    .attr("transform", `translate(0, ${height - marginBottom})`)
     //@ts-ignore
     .call(d3.axisBottom(x).tickSizeOuter(0).ticks(
       _g.category_aggr_days_range / 2, "%y-%m-%d"
@@ -448,7 +462,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       ).toFixed(0).slice(1, 3)
         } ${new Date(d).toISOString().slice(5, 10)
         } ${weekday[new Date(d).getDay()]
-        }`))
+        } `))
     .selectAll("text")
     .style("font-family", "courier")
     .style("text-anchor", "end")
@@ -489,7 +503,7 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     .on("click", (/** @type {{ target: { textContent: any; }; }} */ d) => {
       const filterTaskDom = document.getElementById("filterTasks");
       // @ts-ignore
-      if(filterTaskDom.value != d.target.textContent) {
+      if (filterTaskDom.value != d.target.textContent) {
         // @ts-ignore
         filterTaskDom.value = d.target.textContent;
       } else {
@@ -552,7 +566,7 @@ _g.aggrTasksByDay = (mondayTasksSortedJson) => {
     (tn) => mondayTasksSortedJson.filter(
       // @ts-ignore
       t => t["task_name"] === tn
-    // @ts-ignore
+      // @ts-ignore
     ).map(t => t.datetime)[0]
   );
   let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
@@ -651,14 +665,14 @@ _g.filterTasks = () => {
 //#endregion
 //#region offsetNDay
 // @ts-ignore
-_g.offsetNDay = (n=0, dateToOffset=/** @type {string|null} */ (null), precision="day") => {
+_g.offsetNDay = (n = 0, dateToOffset =/** @type {string|null} */ (null), precision = "day") => {
   const dateToOffsetAsValue = dateToOffset ?
-    new Date(/** @type {string} */ (dateToOffset)).valueOf() :
+    new Date(/** @type {string} */(dateToOffset)).valueOf() :
     new Date().valueOf();
   const offsetMs = n * msPerD;
   const dateValueOffset = dateToOffsetAsValue + offsetMs;
   let dateStrOffset = new Date(dateValueOffset).toISOString()
-    .substring(0,precision === "day" ? 10 : 19); // sec
+    .substring(0, precision === "day" ? 10 : 19); // sec
   if (precision === "min") {
     const timePrecision = dateStrOffset.substring(
       dateStrOffset.length - 5, dateStrOffset.length - 3

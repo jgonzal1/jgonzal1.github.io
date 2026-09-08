@@ -294,8 +294,8 @@ class tasksManager extends _gx.React.Component {
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
     const fastTasksW = fastTasksH / _gx.totalHPerWeek;
-    const repetitiveThreshold = 0.45 // of the week
-    const veryRepetitiveThreshold = 0.6 // of the week
+    const repetitiveThreshold = 0.6 // of the week
+    const veryRepetitiveThreshold = 1 // of the week
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
       .style("fill", (fastTasksW > veryRepetitiveThreshold) ? "#e15759" :

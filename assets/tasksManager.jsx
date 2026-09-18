@@ -1,5 +1,5 @@
 "use strict";
-/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
+/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, repetitive_threshold: number, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
 const _gx = /** @type {any} */ (globalThis);
 // @ts-ignore
@@ -298,8 +298,8 @@ class tasksManager extends _gx.React.Component {
     const veryRepetitiveThreshold = 1 // of the week
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (fastTasksW > veryRepetitiveThreshold) ? "#e15759" :
-        (fastTasksW < repetitiveThreshold) ? "#b5bd68" :
+      .style("fill", (fastTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
+        (fastTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
           "#ca8b4c"
       )
       .attr("y", "-40").text(() =>
@@ -310,8 +310,8 @@ class tasksManager extends _gx.React.Component {
     const slowTasksW = slowTasksH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (slowTasksW > veryRepetitiveThreshold) ? "#e15759" :
-        (slowTasksW < repetitiveThreshold) ? "#b5bd68" :
+      .style("fill", (slowTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
+        (slowTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
           "#ca8b4c"
       )
       .attr("y", "0").text(() =>
@@ -322,8 +322,8 @@ class tasksManager extends _gx.React.Component {
     const repeatingTasksW = repeatingTasksH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (repeatingTasksW > veryRepetitiveThreshold) ? "#e15759" :
-        (repeatingTasksW < repetitiveThreshold) ? "#b5bd68" :
+      .style("fill", (repeatingTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
+        (repeatingTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
           "#ca8b4c"
       )
       .attr("y", "40").text(() =>
@@ -334,8 +334,8 @@ class tasksManager extends _gx.React.Component {
     const SumW = SumH / _gx.totalHPerWeek;
     donutChartSvg.append("text").style("fill", "#FFF")
       .style("font-size", donuntChartFontSize)
-      .style("fill", (SumW > (veryRepetitiveThreshold * 3)) ? "#e15759" :
-        (SumW < (repetitiveThreshold * 3)) ? "#b5bd68" :
+      .style("fill", (SumW > (_gx.repetitive_threshold * 6)) ? "#e15759" :
+        (SumW < (_gx.repetitive_threshold * 3)) ? "#b5bd68" :
           "#ca8b4c"
       ).attr("y", "80").text(() =>
         `∑: ${SumH.toFixed(1)}h/${SumW.toFixed(1)}w`

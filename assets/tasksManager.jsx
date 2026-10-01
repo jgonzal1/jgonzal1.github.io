@@ -79,7 +79,6 @@ class tasksManager extends _gx.React.Component {
     };
   };
   //#endregion
-  //#region aggrTasksByCategoryDonutChart
   // @ts-ignore
   aggrTasksByCategoryDonutChart = (mondayTasksSortedJson) => {
     //#region 1🐇2🐢3♻️ Aggregator
@@ -343,7 +342,6 @@ class tasksManager extends _gx.React.Component {
     //#endregion
     return Object.assign(donutChartSvg.node());
   };
-  //#endregion
   //#region archiveMondayItem
   archiveMondayItem = async (
     // @ts-ignore

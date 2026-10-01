@@ -280,7 +280,8 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
       return accumulator
     }, {}
   );
-  const isNight = (currentDateTime.getHours() > 19);
+  // Skip today if isNight in UTC, to avoid showing 0 for today in the graph
+  const isNight = (currentDateTime.getHours() > 16);
   const tasksDurationByDayCategory = Object.keys(
     tasksDurationByDayCategoryPk
   ).map(tDCD => {

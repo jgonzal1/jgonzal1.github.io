@@ -731,8 +731,13 @@ class tasksManager extends _gx.React.Component {
       startRegrDom.innerText = `  ${startRegr}`;
 
       const msPerD = 3.6e6 * 24;
-      const dDateMilestone1 = new Date("2026-10-01").getTime() / msPerD;
-      const dDateMilestone2 = new Date("2027-01-01").getTime() / msPerD;
+      const currentDate = new Date();
+      const dDateMilestone1 = new Date((currentDate.getTime() / msPerD + 60)*msPerD).getTime() / msPerD;
+      const dDateMilestone2 = new Date((currentDate.getTime() / msPerD + 120)*msPerD).getTime() / msPerD;
+      const dDateMilestone1YYMM = new Date((currentDate.getTime() / msPerD + 60)*msPerD).toISOString().substring(2, 7);
+      const dDateMilestone2YYMM = new Date((currentDate.getTime() / msPerD + 120)*msPerD).toISOString().substring(2, 7);
+      /** @type {HTMLElement} */ (document.querySelector("#dateMilestone1YYMM")).innerText = dDateMilestone1YYMM;
+      /** @type {HTMLElement} */ (document.querySelector("#dateMilestone2YYMM")).innerText = dDateMilestone2YYMM;
 
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
       /*const dateMilestone1 = new Date(

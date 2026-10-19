@@ -786,20 +786,24 @@ class tasksManager extends _gx.React.Component {
       // @ts-ignore
       goalsDom.innerHTML = `<table class="bordered">
         <tr><th>Category</th> <th>H/W</th> <th>🎯Goals'27</th></tr>
-        <tr><td>🍏/Health</td> <td id="healthCount"/><td class="centered">
-          <span style="background-color:#caa04c99">🤸‍♀️/🪁🏄/🧗‍♂️</span>
-          <!-- #e1575999 -->
-        </td></tr>
-        <tr><td>🏠💰/FIRE</td> <td id="fireCount"/><td class="centered">
-          <span style="background-color:#caa04c99">🏷️🏠♴💼</span>
-        </td></tr>
-        <tr><td>🚩/Rel.</td> <td id="relCount"/><td class="centered">
-          <span style="background-color:#caa04c99">🚩EST💼</span>
-        </td></tr>
-        <tr><td>🔬🌿🎮/Mot.</td> <td id="motCount"/><td class="centered">
-          <span style="background-color:#ddffcc66">NCJC|400🌳</span>
-        </td></tr>
-        <tr><td>📺🌐➕</td> <td id="restCount" class="centered"/>
+        <tr style="background-color:#caa04c33">
+          <td>🍏/Health</td> <td id="healthCount"/>
+          <td class="centered">🤸‍♀️/🪁🏄/🧗‍♂️</td><!-- #e1575933 -->
+        </tr>
+        <tr style="background-color:#caa04c33">
+          <td>🏠💰/FIRE</td> <td id="fireCount"/>
+          <td class="centered">🏷️🏠♴💼</td>
+        </tr>
+        <tr style="background-color:#caa04c33">
+          <td>🚩/Rel.</td> <td id="relCount"/>
+          <td class="centered">🚩EST💼</td>
+        </tr>
+        <tr style="background-color:#ddffcc33">
+          <td>🔬🌿🎮/Mot.</td> <td id="motCount"/>
+          <td class="centered">NCJC|400🌳</td>
+        </tr>
+        <tr style="background-color:#cccccc33">
+          <td>📺🌐➕</td> <td id="restCount" class="centered"/>
           <td id="totalCount" class="r">0</td>
         </tr>
       </table>`;

@@ -785,16 +785,18 @@ class tasksManager extends _gx.React.Component {
       const goalsDom = document.getElementById("goals");
       // @ts-ignore
       goalsDom.innerHTML = `<table class="bordered">
-        <tr><th>Category</th> <th>H/W</th> <th>🎯Goals'27</th></tr>
-        <tr style="background-color:#caa04c33">
-          <td>🍏/Health</td> <td id="healthCount"/>
-          <td class="centered">🤸‍♀️/🪁🏄/🧗‍♂️</td><!-- #e1575933 -->
+        <tr style="background-color:#cccccc44">
+          <th>Category</th> <th>H/W</th> <th>🎯Goals'27</th>
         </tr>
-        <tr style="background-color:#caa04c33">
+        <tr style="background-color:#caa04c44">
+          <td>🍏/Health</td> <td id="healthCount"/>
+          <td class="centered">🤸‍♀️/🪁🏄/🧗‍♂️</td><!-- #e1575944 -->
+        </tr>
+        <tr style="background-color:#caa04c44">
           <td>🏠💰/FIRE</td> <td id="fireCount"/>
           <td class="centered">🏷️🏠♴💼</td>
         </tr>
-        <tr style="background-color:#caa04c33">
+        <tr style="background-color:#caa04c44">
           <td>🚩/Rel.</td> <td id="relCount"/>
           <td class="centered">🚩EST💼</td>
         </tr>
@@ -1136,7 +1138,12 @@ class tasksManager extends _gx.React.Component {
             // @ts-ignore
             React.createElement(
               "tr",
-              { zindex: 1 },
+              {
+                style: {
+                  zIndex: 1,
+                  backgroundColor: "#ccc4"
+                }
+               },
               [
                 // @ts-ignore
                 Object.keys(this.state.mondayTasksJson[0]).pop(),

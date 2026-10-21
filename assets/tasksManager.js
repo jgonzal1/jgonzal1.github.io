@@ -211,13 +211,13 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     (+new Date(offsetNDay(n)) - nextExercisingDateNum)
     / msPerDay
   ) + 1) % 2) */
-  const exerciseMinDuration = 60;
+  const exerciseMinDuration = 12;
   const arrNextExercisingDays = Array.from(
-    { length: _g.category_aggr_days_range - 1 }, (_, n) => n
-  ).filter(
-    n => isWeekdayInRange(new Date(_g.offsetNDay(n))) &&
-      (_g.offsetNDay(n) > nextExercisingDay.substring(0, 10))
-  ).map((n) => {
+    { length: _g.category_aggr_days_range }, (_, n) => n // ...range - 1
+  )/*.filter(
+    n => (_g.offsetNDay(n) > nextExercisingDay.substring(0, 10))
+      && isWeekdayInRange(new Date(_g.offsetNDay(n)))
+  )*/.map((n) => {
     return { "x": _g.offsetNDay(n), "name": "1.🍏", "value": exerciseMinDuration }
   });
   let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(

@@ -107,10 +107,15 @@
         <div class="bordered" style="color:#b5bd68">
           Started at:<span id="startRegr"></span>
         </div>
-        <div id="dateMilestonePlaceholder" class="bordered grid-container-2" style="color:#e15759">
-          <div><span id="dateMilestone1YYMM"></span>: <span id="dateMilestone1"></span></div>
-          <div><span id="dateMilestone2YYMM"></span>: <span id="dateMilestone2"></span></div>
-        </div>
+        <table id="dateMilestonePlaceholder" style="color:#b5bd68"><tr>
+          <th>Date</th><th>rp€/mo</th><th>Date</th><th>rp€/mo</th>
+        </tr><tr>
+          <td id="dateMilestone1YYMM"></td><td id="dateMilestone1"></td>
+          <td id="dateMilestone2YYMM"></td><td id="dateMilestone2"></td>
+        </tr><tr>
+          <td id="dateMilestone3YYMM"></td><td id="dateMilestone3"></td>
+          <td id="dateMilestone4YYMM"></td><td id="dateMilestone4"></td>
+        </tr></table>
       </div>
       <div class="bordered" style="display:none">
         Next milestone:<br>
@@ -158,53 +163,57 @@
     const urlPrefixPos = location.href.search("/pages/");
     const urlPrefix = location.href.substring(0, urlPrefixPos);
     const sideBarDom = document.getElementsByClassName('sidebar')[0];
-    const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
-    const sideBarPages = [{
-      name: "CV",
-      location: "index",
-      img: "cv"
-    }, {
-      name: "Tasks dashboard",
-      location: "pages/tasksDashboard",
-      img: "prioritize"
-    }, {
-      name: "Music",
-      location: "pages/music",
-      img: "music"
-    }, {
-      name: "Navezgane map",
-      location: "pages/navezgane",
-      img: "zombie"
-    }, {
-      name: "The three seas map",
-      location: "pages/theThreeSeas",
-      img: "map"
-    }];
-    sideBarRoot.render(
-      <div className="space-children-01em">
-        {
-          sideBarPages.map(p => (
-            <a key={`${p.img}A`} href={`${urlPrefix}/${p.location}.html`}
-              onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
-            >
-              <img key={`${p.img}Img`}
-                src={`../public/${p.img}.png`}
-                className={location.href === `${urlPrefix}/${p.location}.html` ? "highlight-active" : ""}
-              />
-            </a>
-          ))
-        }
+    try {
+      const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
+      const sideBarPages = [{
+        name: "CV",
+        location: "index",
+        img: "cv"
+      }, {
+        name: "Tasks dashboard",
+        location: "pages/tasksDashboard",
+        img: "prioritize"
+      }, {
+        name: "Music",
+        location: "pages/music",
+        img: "music"
+      }, {
+        name: "Navezgane map",
+        location: "pages/navezgane",
+        img: "zombie"
+      }, {
+        name: "The three seas map",
+        location: "pages/theThreeSeas",
+        img: "map"
+      }];
+      sideBarDom.render(
+        <div className="space-children-01em">
+          {
+            sideBarPages.map(p => (
+              <a key={`${p.img}A`} href={`${urlPrefix}/${p.location}.html`}
+                onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
+              >
+                <img key={`${p.img}Img`}
+                  src={`../public/${p.img}.png`}
+                  className={location.href === `${urlPrefix}/${p.location}.html` ? "highlight-active" : ""}
+                />
+              </a>
+            ))
+          }
+        </div>
+      )
+      /* SideBar handler and Cesium map
+      <script type="text/babel" src="../assets/sideBarHandler.jsx"/>
+      <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
+        <button class="close-button" onClick='hideMap()'>
+          &times; <span style="display:none">👁</span>
+        </button>
       </div>
-    )
-    /* SideBar handler and Cesium map
-    <script type="text/babel" src="../assets/sideBarHandler.jsx"/>
-    <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
-      <button class="close-button" onClick='hideMap()'>
-        &times; <span style="display:none">👁</span>
-      </button>
-    </div>
-    <script src="../assets/cesiumInit.js"/>
-    */
+      <script src="../assets/cesiumInit.js"/>
+      */
+    } catch(e) {
+      console.warn("Sidebar not loaded")
+    }
   </script>
   <script> //dailyGrowth interval
     const milliSecondsPerDay = 24 * 60 * 60 * 1000;

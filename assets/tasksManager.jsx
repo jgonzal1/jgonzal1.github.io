@@ -718,9 +718,6 @@ class tasksManager extends _gx.React.Component {
     this.getMondayVariables(_gx.monday_key, 4351865817).then(() => {
       const milliSecondsPerDay = 24 * 60 * 60 * 1000;
       const daysBetween1900and1970 = 25569;
-      const startRegrDom = document.getElementById("startRegr");
-      const dateMilestone1Dom = document.getElementById("dateMilestone1");
-      const dateMilestone2Dom = document.getElementById("dateMilestone2");
       /*const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
       const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;*/
       const dailyGrowthDom = document.getElementById("dailyGrowth");
@@ -728,44 +725,43 @@ class tasksManager extends _gx.React.Component {
         - daysBetween1900and1970
       ) * milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
-      startRegrDom.innerText = `  ${startRegr}`;
+      /** @type {HTMLElement} */ (document.querySelector("#startRegr"))
+        .innerText = `  ${startRegr}`;
 
       const msPerD = 3.6e6 * 24;
       const currentDate = new Date();
-      const dDateMilestone1 = new Date((currentDate.getTime() / msPerD + 60)*msPerD).getTime() / msPerD;
-      const dDateMilestone2 = new Date((currentDate.getTime() / msPerD + 120)*msPerD).getTime() / msPerD;
-      const dDateMilestone1YYMM = new Date((currentDate.getTime() / msPerD + 60)*msPerD).toISOString().substring(2, 7);
-      const dDateMilestone2YYMM = new Date((currentDate.getTime() / msPerD + 120)*msPerD).toISOString().substring(2, 7);
-      /** @type {HTMLElement} */ (document.querySelector("#dateMilestone1YYMM")).innerText = dDateMilestone1YYMM;
-      /** @type {HTMLElement} */ (document.querySelector("#dateMilestone2YYMM")).innerText = dDateMilestone2YYMM;
-
       const dStartRegr = new Date(startRegr).getTime() / msPerD;
       /*const dateMilestone1 = new Date(
         ((-_gx.offset_at_1900 + 12*30*_gx.daily_growth*_gx.passive_factor)/
         _gx.daily_growth - daysBetween1900and1970) * milliSecondsPerDay
       ).toISOString().substring(0, 10);
       const incrD = (dDateMilestone1 - dStartRegr);*/
-      const dateMilestonePass1 = (dDateMilestone1 - dStartRegr) * _gx.daily_growth
-        * _gx.passive_factor / 1200;
-      const dateMilestonePass2 = (dDateMilestone2 - dStartRegr) * _gx.daily_growth
-        * _gx.passive_factor / 1200;
 
       if (dailyGrowthDom) dailyGrowthDom.innerText = ` (${_gx.daily_growth}€/d)`;
       const dailyPassGrowthDom = document.getElementById("dailyPassGrowth");
       const dailyPassGrowth = _gx.daily_growth * (_gx.passive_factor / 1200);
       // const hoursPerEur = 24/dailyPassGrowth;
-      if (dailyPassGrowthDom) dailyPassGrowthDom.innerText = `(${(_gx.passive_factor).toPrecision(3)
+      if (dailyPassGrowthDom) dailyPassGrowthDom.innerText =
+        `(${(_gx.passive_factor).toPrecision(3)
         }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
 
-      if (dateMilestone1Dom) dateMilestone1Dom.innerText = `${dateMilestonePass1.toFixed(1)}rp€/mo`;
-      if (dateMilestone2Dom) dateMilestone2Dom.innerText = `${dateMilestonePass2.toFixed(1)}rp€/mo`;
-
-      const dateMilestonePlaceholder = document.getElementById("dateMilestonePlaceholder");
-      if (dateMilestonePlaceholder && dateMilestonePass1 > 1600) {
-        dateMilestonePlaceholder.style.color = "#b5bd68";
-      } else if (dateMilestonePlaceholder && dateMilestonePass1 > 1480) {
-        dateMilestonePlaceholder.style.color = "#caa04c";
-      }
+      Array.from({ length: 4 }, (_, n) => n+1).map((n) => {
+        const dDateMilestone = new Date((currentDate.getTime() / msPerD + 60*n)
+          *msPerD).getTime() / msPerD;
+        const dDateMilestoneYYMM = new Date(
+          (currentDate.getTime() / msPerD + 60*n)*msPerD
+        ).toISOString().substring(2, 7);
+        const dateMilestonePass = (dDateMilestone - dStartRegr)
+          * _gx.daily_growth * _gx.passive_factor / 1200;
+        try {
+          /** @type {HTMLElement} */ (document.querySelector
+            (`#dateMilestone${n}YYMM`)).innerText = dDateMilestoneYYMM;
+          /** @type {HTMLElement} */ (document.querySelector
+            (`#dateMilestone${n}`)).innerText = dateMilestonePass.toFixed(1);
+        } catch(e) {
+          console.log(e);
+        }
+      });
 
       if (this.state.getDatedMondayItemsToJson) {
         //setTimeout(()=>{

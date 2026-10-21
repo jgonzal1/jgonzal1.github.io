@@ -779,24 +779,24 @@ class tasksManager extends _gx.React.Component {
       tasksByCategoryPlaceholder
         .appendChild(this.state.mondayTasksByCategorySvg[0]);
       const goalsDom = document.getElementById("goals");
-      // @ts-ignore
+      // @ts-ignore #e1575944
       goalsDom.innerHTML = `<table class="bordered">
         <tr style="background-color:#cccccc44">
           <th>Category</th> <th>H/W</th> <th>🎯Goals'27</th>
         </tr>
-        <tr style="background-color:#caa04c44">
+        <tr style="color:#ca8b4c; background-color:#caa04c44">
           <td>🍏/Health</td> <td id="healthCount"/>
-          <td class="centered">🤸‍♀️/🪁🏄/🧗‍♂️</td><!-- #e1575944 -->
+          <td class="centered">🤸‍♀️/🪁🏄/🧗‍♂️</td>
         </tr>
-        <tr style="background-color:#caa04c44">
+        <tr style="color:#ca8b4c; background-color:#caa04c44">
           <td>🏠💰/FIRE</td> <td id="fireCount"/>
           <td class="centered">🏷️🏠♴💼</td>
         </tr>
-        <tr style="background-color:#caa04c44">
+        <tr style="color:#ca8b4c; background-color:#caa04c44">
           <td>🚩/Rel.</td> <td id="relCount"/>
           <td class="centered">🚩EST💼</td>
         </tr>
-        <tr style="background-color:#ddffcc33">
+        <tr style="color:#b5bd68; background-color:#ddffcc33">
           <td>🔬🌿🎮/Mot.</td> <td id="motCount"/>
           <td class="centered">NCJC|400🌳</td>
         </tr>

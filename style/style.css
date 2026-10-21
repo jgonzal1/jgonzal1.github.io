@@ -29,7 +29,7 @@ td {
 /*div,*/
 th,
 td {
-  border: 1px solid #666;
+  border: 1px solid #333;
   border-radius: 0.3em;
   padding: 0.3em;
 }
@@ -680,11 +680,14 @@ th.sorted-desc::after {
   max-height: 900px;
 }
 
-#mondayTasksByDayTableContainer td {
+#mondayTableContainer th {
   font-family: monospace;
-  font-size: 0.82rem;
+  font-size: 0.6rem;
 }
 
+#mondayTableContainer td {
+  border: 1px solid #666 !important;
+}
 /* #endregion */
 
 /* #region Pseudo-selectors */

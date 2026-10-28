@@ -1,5 +1,5 @@
 "use strict";
-/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, repetitive_threshold: number, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any }} GlobalThisExtended */
+/** @typedef {{ daily_exercise_dur_min: number, mondayApiUrl: string, headers: Record<string, string>, repetitive_threshold: number, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
 const _g = /** @type {any} */ (globalThis);
 //#region Variables
@@ -211,14 +211,17 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     (+new Date(offsetNDay(n)) - nextExercisingDateNum)
     / msPerDay
   ) + 1) % 2) */
-  const exerciseMinDuration = 12;
   const arrNextExercisingDays = Array.from(
     { length: _g.category_aggr_days_range }, (_, n) => n // ...range - 1
   )/*.filter(
     n => (_g.offsetNDay(n) > nextExercisingDay.substring(0, 10))
       && isWeekdayInRange(new Date(_g.offsetNDay(n)))
   )*/.map((n) => {
-    return { "x": _g.offsetNDay(n), "name": "1.🍏", "value": exerciseMinDuration }
+    return {
+      "x": _g.offsetNDay(n),
+      "name": "1.🍏",
+      "value": _g.daily_exercise_dur_min
+    }
   });
   let sortedMondayItemsJsonWithEmptyDates = mondayTasksSortedJson.map(
     // @ts-ignore

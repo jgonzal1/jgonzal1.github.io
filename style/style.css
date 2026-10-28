@@ -660,6 +660,10 @@ th.sorted-desc::after {
   padding: 0em;
 }
 
+#graphsPlaceholder.flex-container-2 {
+  flex-wrap: nowrap;
+}
+
 #legend>* {
   text-shadow: 0px 0px 1px #000, 0px 0px 2px #000, 0px 0px 3px #000, 0px 0px 4px #000;
 }

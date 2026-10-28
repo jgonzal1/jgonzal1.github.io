@@ -844,6 +844,11 @@ class tasksManager extends _gx.React.Component {
           // @ts-ignore
           ((tc + 2.5) < tcl) ? "#e15759" :
             "#b5bd68";
+      // append #monto to goalsDom only if it's not child
+      const montoDom = document.querySelector("#monto");
+      if (montoDom && !goalsDom.contains(montoDom)) {
+        goalsDom.appendChild(montoDom);
+      }
       /*Object.assign(goalsDom.style, {
         width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
           ["values"]?.[1]?.["value"] ?? (_gx.tasksByCategoryHeight)
@@ -862,7 +867,10 @@ class tasksManager extends _gx.React.Component {
       // @ts-ignore
       React.createElement(
         "div",
-        { id: "taskManagerTopBar", style: { paddingTop: "0.3em" } },
+        { id: "taskManagerTopBar", style: {
+          border: "1px solid #333",
+          padding: "0.3em",
+        } },
         //#region refreshTasksButton
         // @ts-ignore
         React.createElement(
@@ -1103,7 +1111,7 @@ class tasksManager extends _gx.React.Component {
           id: "mondayTableContainer",
           className: "first-flex-container-item table-container resizable ui-widget-content",
           style: {
-            borderColor: "#6666",
+            borderColor: "#6660",
             fontSize: "0.924em",
             isolation: "isolate",
             margin: "auto",
@@ -1501,7 +1509,6 @@ class tasksManager extends _gx.React.Component {
             style: {
               flexGrow: 1,
               fontSize: "1.2em",
-              fontWeight: "bold",
               fontFamily: "monospace",
             }
           },

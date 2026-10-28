@@ -1,5 +1,5 @@
 "use strict";
-/** @typedef {{ mondayApiUrl: string, headers: Record<string, string>, repetitive_threshold: number, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
+/** @typedef {{ daily_exercise_dur_min: number, mondayApiUrl: string, headers: Record<string, string>, repetitive_threshold: number, category_aggr_days_range: number, end_day_yymmdd_date: number, quarters_of_hour_weekdays: number, quarters_of_hour_weekends: number, totalHPerWeek: number, tasksByCategoryWidth: number, tasksByCategoryHeight: number, monday_key: string, addMondayMeta: Function, aggrTasksByCategoryAndDay: Function, aggrTasksByDay: Function, filterTasks: Function, offsetNDay: Function, setBgBasedOnDDiff: Function, d3: any, [key: string]: any }} GlobalThisExtended */
 /** @type {typeof globalThis & GlobalThisExtended} */
 const _gx = /** @type {any} */ (globalThis);
 // @ts-ignore
@@ -809,7 +809,7 @@ class tasksManager extends _gx.React.Component {
       let tc = 0;
       let tcl = 0;
       [
-        { "d": "healthCount", "l": _gx["health_count"], "v": 0, "s": ["1.🍏"], },
+        { "d": "healthCount", "l": _gx["health_count"], "v": Math.round(_gx.daily_exercise_dur_min*_gx.category_aggr_days_range/60), "s": ["1.🍏"], },
         { "d": "fireCount", "l": _gx["fire_count"], "v": 0, "s": ["2.🏠", "3.💰"], },
         { "d": "relCount", "l": _gx["rel_count"], "v": 0, "s": ["4.🚩"], },
         { "d": "motCount", "l": _gx["mot_count"], "v": 0, "s": ["5.🌿", "5.🔬", "7.🎮"], },

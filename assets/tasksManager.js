@@ -212,9 +212,10 @@ _g.aggrTasksByCategoryAndDay = (mondayTasksSortedJson) => {
     / msPerDay
   ) + 1) % 2) */
   const exerciseMinDuration = 12;
-  const arrNextExercisingDays = Array.from(
-    { length: _g.category_aggr_days_range }, (_, n) => n // ...range - 1
-  )/*.filter(
+  const arrNextExercisingDays = Array.from({
+    length: (_g.category_aggr_days_range-1)
+  }, (_, n) => (n + 1) )/*+1 to avoid current day
+  .filter(
     n => (_g.offsetNDay(n) > nextExercisingDay.substring(0, 10))
       && isWeekdayInRange(new Date(_g.offsetNDay(n)))
   )*/.map((n) => {

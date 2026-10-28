@@ -342,6 +342,10 @@ th.sorted-desc::after {
   width: 100%;
 }
 
+.font-size-07-rem {
+  font-size: 0.7rem;
+}
+
 .font-size-08-rem {
   font-size: 0.8rem;
 }

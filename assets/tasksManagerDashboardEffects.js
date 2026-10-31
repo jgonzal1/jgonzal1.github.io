@@ -10,9 +10,12 @@ tasksManager.prototype.updateDashboard = function () {
         - daysBetween1900and1970
       ) * milliSecondsPerDay;
       const startRegr = new Date(startRegrN).toISOString().substring(0, 10);
-      /** @type {HTMLElement} */ (document.querySelector("#startRegr"))
-        .innerText = `  ${startRegr}`;
-
+      // Use optional chaining or a null check to prevent the crash
+      /** @type {HTMLElement} */
+      const startRegrDom = document.querySelector("#startRegr");
+      if (startRegrDom) {
+        startRegrDom.innerText = ` ${startRegr}`;
+      }
       const msPerD = 3.6e6 * 24;
       const currentDate = new Date();
       const dStartRegr = new Date(startRegr).getTime() / msPerD;

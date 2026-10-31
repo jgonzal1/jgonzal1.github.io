@@ -77,17 +77,9 @@
   -->
   <link href="../style/style.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="../public/real-estate-investing-management.ico">
-  <style>
-    a, b, body, fieldset, legend, span, table, td { font-size: 0.88em; }
-    /*
-    path.slice { stroke-width: 2px; }
-    polyline { fill: none; opacity: 0.3; stroke-width: 2px; stroke: #000; }
-    */
-    svg { font-weight: bold !important; /*width: 100%; height: 100%;*/ }
-  </style>
 </head>
 
-<body class="flex-container-2 hw-100p-2em pt-05em">
+<body class="flex-container-2 font-size-08-rem hw-100p-2em pt-05em">
   <!--<div class="sidebar">Sidebar</div>-->
   <div id="main" class="flex-container-2 b-1-s-grey">
     <div id="taskManager" class="d-ib hw-800-1080 pt-05em"></div>
@@ -169,69 +161,12 @@
   <script src="../assets/tasksManagerTable.js"></script>
   <script src="../assets/tasksManagerGraphs.js"></script>
   <script src="../assets/tasksManagerMount.js"></script>
-  <script type="text/babel"> // SideBar
-    const urlPrefixPos = location.href.search("/pages/");
-    const urlPrefix = location.href.substring(0, urlPrefixPos);
-    const sideBarDom = document.getElementsByClassName('sidebar')[0];
-    try {
-      const sideBarRoot = globalThis.ReactDOM.createRoot(sideBarDom);
-      const sideBarPages = [{
-        name: "CV",
-        location: "index",
-        img: "cv"
-      }, {
-        name: "Tasks dashboard",
-        location: "pages/tasksDashboard",
-        img: "prioritize"
-      }, {
-        name: "Music",
-        location: "pages/music",
-        img: "music"
-      }, {
-        name: "Navezgane map",
-        location: "pages/navezgane",
-        img: "zombie"
-      }, {
-        name: "The three seas map",
-        location: "pages/theThreeSeas",
-        img: "map"
-      }];
-      sideBarDom.render(
-        <div className="space-children-01em">
-          {
-            sideBarPages.map(p => (
-              <a key={`${p.img}A`} href={`${urlPrefix}/${p.location}.html`}
-                onClick={() => document.location = `${urlPrefix}/${p.location}.html`}
-              >
-                <img key={`${p.img}Img`}
-                  src={`../public/${p.img}.png`}
-                  className={location.href === `${urlPrefix}/${p.location}.html` ? "highlight-active" : ""}
-                />
-              </a>
-            ))
-          }
-        </div>
-      )
-      /* SideBar handler and Cesium map
-      <script type="text/babel" src="../assets/sideBarHandler.jsx"/>
-      <div id="map" style="width:min(99vw, 600px); height:calc(100% - 1em); position:relative">
-        <button class="close-button" onClick='hideMap()'>
-          &times; <span style="display:none">👁</span>
-        </button>
-      </div>
-      <script src="../assets/cesiumInit.js"/>
-      */
-    } catch(e) {
-      console.warn("Sidebar not loaded")
-    }
-  </script>
   <script> //dailyGrowth interval
     const milliSecondsPerDay = 24 * 60 * 60 * 1000;
     const daysBetween1900and1970 = 25569;
     const numberFormat = {
-      currency: "EUR",
+      style: "currency", currency: "EUR",
       maximumSignificantDigits: 9,
-      style: "currency",
       useGrouping: true
     };
     const interval = 1000;
@@ -240,9 +175,6 @@
     const amountEurDomObj = document.getElementById("amountEur"); // as HTMLSpanElement;
     const amountEurPasDom = document.getElementById("amountEurPas"); // as HTMLSpanElement;
     const dailyGrowthDom = document.getElementById("dailyGrowth");
-    /*const amountEurMsDom = document.getElementById("amntEurMs");
-    const amountEurMsInput = amountEurMsDom?.value;
-    handleMilestoneAmount(amountEurMsInput);*/
     setInterval(
       () => {
         const currentAmount = (globalThis.daily_growth * (

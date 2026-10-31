@@ -67,6 +67,9 @@ tasksManager.prototype.updateDashboard = function () {
       tasksByCategoryPlaceholder
         .appendChild(this.state.mondayTasksByCategorySvg[0]);
       const goalsDom = document.getElementById("goals");
+      Object.assign(goalsDom.style, {
+        fontSize: "0.8em"
+      });
       // @ts-ignore #e1575944
       goalsDom.innerHTML = `<table class="bordered">
         <tr style="background-color:#cccccc44">
@@ -97,7 +100,9 @@ tasksManager.prototype.updateDashboard = function () {
       let tc = 0;
       let tcl = 0;
       [
-        { "d": "healthCount", "l": _gx["health_count"], "v": Math.round(_gx.daily_exercise_dur_min*_gx.category_aggr_days_range/60), "s": ["1.🍏"], },
+        { "d": "healthCount", "l": _gx["health_count"], "v": Math.round(
+            _gx.daily_exercise_dur_min*_gx.category_aggr_days_range/60
+          ), "s": ["1.🍏"], },
         { "d": "fireCount", "l": _gx["fire_count"], "v": 0, "s": ["2.🏠", "3.💰"], },
         { "d": "relCount", "l": _gx["rel_count"], "v": 0, "s": ["4.🚩"], },
         { "d": "motCount", "l": _gx["mot_count"], "v": 0, "s": ["5.🌿", "5.🔬", "7.🎮"], },
@@ -137,12 +142,6 @@ tasksManager.prototype.updateDashboard = function () {
       if (montoDom && !goalsDom.contains(montoDom)) {
         goalsDom.appendChild(montoDom);
       }
-      /*Object.assign(goalsDom.style, {
-        width: tasksByCategoryPlaceholder.computedStyleMap().get("width")?.
-          ["values"]?.[1]?.["value"] ?? (_gx.tasksByCategoryHeight)
-      });
-      tasksByCategoryPlaceholder.appendChild(goalsDom);
-      */
     }
     //#endregion
     return true;

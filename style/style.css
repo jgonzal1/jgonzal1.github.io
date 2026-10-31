@@ -63,6 +63,15 @@ p {
   margin-bottom: 0.1em;
 }
 
+path.slice { stroke-width: 2px; }
+
+/*polyline {
+  fill: none;
+  opacity: 0.3;
+  stroke: #000;
+  stroke-width: 2px;
+}*/
+
 /*span {
   color: #669;
   font-style: italic;
@@ -70,6 +79,11 @@ p {
   text-decoration-line: underline;
   text-decoration-style: dotted;
 }*/
+
+svg {
+  font-weight: bold !important;
+  /*width: 100%; height: 100%;*/
+}
 
 table {
   /*margin-left: auto;
@@ -206,47 +220,36 @@ th.sorted-desc::after {
 .bigdataeng_c {
   background-color: #A54242;
 }
-
 .bigdataeng_indev {
   background-image: repeating-linear-gradient(90deg, #A54242, #A54242CC calc(50% - 2px), #A5424233 calc(100% - 2px), #A5424200);
 }
-
 .softwaredev_c {
   background-color: #CC6666;
 }
-
 .softwaredev_indev {
   background-image: repeating-linear-gradient(90deg, #CC6666, #CC6666CC calc(50% - 2px), #CC666633 calc(100% - 2px), #CC666600);
 }
-
 .aidatasci_c {
   background-color: #DE935F;
 }
-
 .aidatasci_indev {
   background-image: repeating-linear-gradient(90deg, #DE935F, #DE935FCC calc(50% - 2px), #DE935F33 calc(100% - 2px), #DE935F00);
 }
-
 .dataanalistpbi_c {
   background-color: #F0C674;
 }
-
 .dataanalistpbi_indev {
   background-image: repeating-linear-gradient(90deg, #F0C674, #F0C674CC calc(50% - 2px), #F0C67433 calc(100% - 2px), #F0C67400);
 }
-
 .webdev_c {
   background-color: #B5BD68;
 }
-
 .webdev_indev {
   background-image: repeating-linear-gradient(90deg, #B5BD68, #B5BD68CC calc(50% - 2px), #B5BD6833 calc(100% - 2px), #B5BD6800);
 }
-
 .techcons_c {
   background-color: #81A2BE;
 }
-
 .techcons_indev {
   background-image: repeating-linear-gradient(90deg, #81A2BE, #81A2BECC calc(50% - 2px), #81A2BE33 calc(100% - 2px), #81A2BE00);
 }

@@ -128,6 +128,14 @@ tasksManager.prototype.getMondayTasksToMultipleJson = async function (
   };
   //#endregion
 tasksManager.prototype.getMondayVariables = async function (/** @type {string} */ mondayKey, /** @type {string|number} */ boardId) {
+    const prevRespJson = JSON.parse(localStorage.getItem(`board${boardId}`));
+    if ((prevRespJson?.["refresh_date"]??false) && (
+      prevRespJson["refresh_date"].substring(0,13) ==
+        new Date().toISOString().replace("T", " ").substring(0, 13)
+    )) {
+      console.log(`Loading local storage for board${boardId}`)
+      return prevRespJson;
+    };
     _gx.headers["Authorization"] = mondayKey;
     const query = `boards (ids: ${boardId}) { ` +
       "items_page (limit: 200) { items { " +
@@ -159,6 +167,8 @@ tasksManager.prototype.getMondayVariables = async function (/** @type {string} *
         );
         _gx.totalHPerWeek = _gx.quarters_of_hour_weekdays +
           3 / 4 * _gx.quarters_of_hour_weekends;
+        respJson["refresh_date"] = new Date().toISOString().replace("T", " ").substring(0, 16);
+        localStorage.setItem(`board${boardId}`, JSON.stringify(respJson));
         return respJson;
       } catch (e) {
         console.error(e);

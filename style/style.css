@@ -452,6 +452,11 @@ th.sorted-desc::after {
   opacity: 0.7;
 }
 
+.h15em {
+  height: 14.6em;
+  margin-bottom: 0.25em;
+}
+
 .hw-100p-2em {
   height: calc(100% - 2em);
   width: calc(100% - 2em);
@@ -460,8 +465,8 @@ th.sorted-desc::after {
   width: min(calc(100% - 0.5em), 1080px);
   height: min(calc(100% - 1.5em), 800px);
 }
-.hw-800-342 {
-  width: min(calc(100% - 0.5em), 342px);
+.hw-800-300 {
+  width: min(calc(100% - 0.5em), 300px);
   height: min(calc(100% - 1.5em), 800px);
 }
 .hw-160 {
@@ -669,6 +674,21 @@ th.sorted-desc::after {
 
 #graphsPlaceholder.flex-container-2 {
   flex-wrap: nowrap;
+}
+
+#portfolioPlaceholder > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#portfolioPlaceholder img {
+  box-sizing: border-box;
+  flex: 1;
+  margin: 0.1em 0;
+  min-height: 0;
+  max-width: none;
+  object-fit: fill;
+  width: 100%;
 }
 
 #legend>* {

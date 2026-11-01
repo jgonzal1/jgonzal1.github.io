@@ -1,4 +1,9 @@
 /* #region Attributes*/
+
+*, *:before, *:after { box-sizing: inherit; }
+html { box-sizing: border-box; }
+html, body { overflow: hidden; }
+
 a {
   color: #99F;
 }
@@ -11,8 +16,12 @@ body {
   background-color: #000;
   color: #ffe;
   font-family: 'Lucida Sans Unicode', Verdana, sans-serif;
-  height: 96vh;
+  height: 100vh;
   text-align: justify;
+  margin: 0;
+  /* If you need the 2em gap, use padding instead of subtracting from height */
+  padding: 1em; 
+  box-sizing: border-box;
 }
 
 a,

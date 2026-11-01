@@ -211,9 +211,13 @@ tasksManager.prototype.aggrTasksByCategoryDonutChart = function (mondayTasksSort
     const fastTasksH = parseFloat(mondayDursByGroup["1.🐇"]);
     // @ts-ignore
     const fastTasksW = fastTasksH / _gx.totalHPerWeek;
-    const repetitiveThreshold = 0.6 // of the week
-    const veryRepetitiveThreshold = 1 // of the week
-    donutChartSvg.append("text").style("fill", "#FFF")
+    donutChartSvg.append("text")
+      .style("font-size", donuntChartFontSize)
+      .style("fill", "#b5bd68")
+      .attr("y", "-80").text(() =>
+        `${_gx.totalHPerWeek}h/w`
+      );
+    donutChartSvg.append("text")
       .style("font-size", donuntChartFontSize)
       .style("fill", (fastTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
         (fastTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
@@ -225,7 +229,7 @@ tasksManager.prototype.aggrTasksByCategoryDonutChart = function (mondayTasksSort
     const slowTasksH = parseFloat(mondayDursByGroup["2.🐢"]);
     // @ts-ignore
     const slowTasksW = slowTasksH / _gx.totalHPerWeek;
-    donutChartSvg.append("text").style("fill", "#FFF")
+    donutChartSvg.append("text")
       .style("font-size", donuntChartFontSize)
       .style("fill", (slowTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
         (slowTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
@@ -237,7 +241,7 @@ tasksManager.prototype.aggrTasksByCategoryDonutChart = function (mondayTasksSort
     const repeatingTasksH = parseFloat(mondayDursByGroup["3.♻️"]);
     // @ts-ignore
     const repeatingTasksW = repeatingTasksH / _gx.totalHPerWeek;
-    donutChartSvg.append("text").style("fill", "#FFF")
+    donutChartSvg.append("text")
       .style("font-size", donuntChartFontSize)
       .style("fill", (repeatingTasksW > (_gx.repetitive_threshold*2)) ? "#e15759" :
         (repeatingTasksW < _gx.repetitive_threshold) ? "#b5bd68" :
@@ -249,7 +253,7 @@ tasksManager.prototype.aggrTasksByCategoryDonutChart = function (mondayTasksSort
     const SumH = fastTasksH + slowTasksH + repeatingTasksH;
     // @ts-ignore
     const SumW = SumH / _gx.totalHPerWeek;
-    donutChartSvg.append("text").style("fill", "#FFF")
+    donutChartSvg.append("text")
       .style("font-size", donuntChartFontSize)
       .style("fill", (SumW > (_gx.repetitive_threshold * 6)) ? "#e15759" :
         (SumW < (_gx.repetitive_threshold * 3)) ? "#b5bd68" :

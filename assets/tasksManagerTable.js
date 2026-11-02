@@ -91,9 +91,13 @@ tasksManager.prototype.renderTaskTable = function () {
                   key: `TaskRow${idxRow} `,
                   style: {
                     // @ts-ignore
+                    color: _gx.setBgBasedOnDDiff(
+                      taskRow["Δd"]
+                    )[0],
+                    // @ts-ignore
                     backgroundColor: _gx.setBgBasedOnDDiff(
                       taskRow["Δd"]
-                    ),
+                    )[1],
                     textAlign: "center",
                     width: (taskRow === "task_name") &&
                       (window.innerWidth < 600) ? "90em" : "auto"
@@ -155,6 +159,7 @@ tasksManager.prototype.renderTaskTable = function () {
                               taskRow[taskKey]
                             ],
                             borderRadius: "0.8em",
+                            color: "#fff",
                             fontSize: "0.8em",
                             fontWeight: "bold",
                             padding: "0.3em 0.6em",
@@ -298,6 +303,7 @@ tasksManager.prototype.renderTaskTable = function () {
                                   taskRow[taskKey] ?? "999-Once"
                                 ],
                                 borderRadius: "0.8em",
+                                color: "#fff",
                                 fontSize: "0.8em",
                                 fontWeight: "bold",
                                 padding: "0.3em 0.6em",
@@ -327,6 +333,7 @@ tasksManager.prototype.renderTaskTable = function () {
                                     taskRow[taskKey]
                                   ],
                                   borderRadius: "0.8em",
+                                  color: "#fff",
                                   fontSize: "0.8em",
                                   fontWeight: "bold",
                                   padding: "0.3em 0.6em",

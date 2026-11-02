@@ -142,29 +142,28 @@ _g.setBgBasedOnDDiff = (dDiffStr) => {
   const hToNextDay = new Date().getHours();
   const hToNextWeek = ((8 - (new Date().getDay() % 7)) * 24) - hToNextDay;
   const dDiff = parseFloat(dDiffStr);
+  const rangeWeek = Math.max(120 - hToNextDay, hToNextWeek) / 24;
   const bgRanges = [
-    { "bgRange": -9e3, "bgColor": "#CC6666CC" }, // passed
-    { "bgRange": 0, "bgColor": "#CC666699" }, // now
-    { "bgRange": (24 - hToNextDay) / 24, "bgColor": "#CC766677" }, // today
-    { "bgRange": (48 - hToNextDay) / 24, "bgColor": "#CC866666" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24, "bgColor": "#CC986666" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24, "bgColor": "#CCA96666" }, // in_3d
-    {
-      "bgRange": (
-        Math.max(120 - hToNextDay, hToNextWeek)
-      ) / 24, "bgColor": "#CCB06655"
-    }, // this_week
-    { "bgRange": (120 + hToNextWeek) / 24, "bgColor": "#CCCC6644" }, // next_w
-    { "bgRange": (720 - hToNextDay) / 24, "bgColor": "#CCEE6633" }, // this_mo
-    { "bgRange": 365, "bgColor": "#99FF6622" }, // this_year
-    { "bgRange": 3e4, "bgColor": "#BBFF6611" } // next_year
+    { "bgRange": -9e3,                     "bgColor":"rgba(64,  0,0,.4)", "color": "rgba(204,102,102,1)" }, // passed
+    { "bgRange": 0,                        "bgColor":"rgba(64,  0,0,.3)", "color": "rgba(204,102,102,.9)" }, // now
+    { "bgRange": (24 - hToNextDay) / 24,   "bgColor":"rgba(64, 16,0,.3)", "color": "rgba(204,118,102,.9)" }, // today
+    { "bgRange": (48 - hToNextDay) / 24,   "bgColor":"rgba(64, 32,0,.3)", "color": "rgba(204,134,102,.9)" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24,   "bgColor":"rgba(64, 48,0,.3)", "color": "rgba(204,152,102,.9)" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24,   "bgColor":"rgba(64, 64,0,.3)", "color": "rgba(204,169,102,.9)" }, // in_3d
+    { "bgRange": rangeWeek,                "bgColor":"rgba(64, 80,0,.3)", "color": "rgba(204,176,102,.9)" }, // this_week
+    { "bgRange": (120 + hToNextWeek) / 24, "bgColor":"rgba(64, 96,0,.3)", "color": "rgba(204,204,102,.9)" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24,  "bgColor":"rgba(64,100,0,.3)", "color": "rgba(204,238,102,.8)" }, // this_mo
+    { "bgRange": 365,                      "bgColor":"rgba(48,100,0,.2)", "color": "rgba(187,255,102,.7)" }, // this_year
+    { "bgRange": 3e4,                      "bgColor":"rgba(32,100,0,.1)", "color": "rgba(187,255,102,.6)" } // next_year
   ];
   let bgColor = "#0000";
+  let color = "#FFF";
   bgRanges.filter((bgPair, idx) =>
     dDiff > bgPair.bgRange && dDiff <= bgRanges[idx + 1].bgRange
   ).map(bgPair => {
+    color = bgPair.color;
     bgColor = bgPair.bgColor;
   });
-  return bgColor;
+  return [color, bgColor];
 };
 //#endregion

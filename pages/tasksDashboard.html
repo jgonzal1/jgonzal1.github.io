@@ -69,6 +69,14 @@
         );
       console.info("Credentials done loading via href");
     }
+    function invertImgs() {
+      console.log("Trying to invert images");
+      Array.from(document.querySelectorAll('#portfolioPlaceholder')[0].children)
+        .flatMap(ch=>Array.from(ch.querySelectorAll('img'))).forEach(
+          img => img.style.filter = (
+            img.style.filter === 'invert()' ? '' : 'invert()'
+          ));
+    }
     handleCredentials();
   </script>
   <!--
@@ -84,6 +92,10 @@
   <div id="main" class="flex-container-2 b-1-s-grey">
     <div id="taskManager" class="d-ib hw-800-1080 pt-05em"></div>
     <div id="portfolioPlaceholder" class="bordered d-ib hw-800-300">
+      <!--<button style="position: absolute; top: 10px; right: 10px;"
+        onclick="invertImgs()">
+        Invert colors
+      </button>-->
       <div class="h12em" id="yieldPassInc">
         <img src="../public/3💰_261031_annualized_roi.ignore.png" alt="Yield passive income">
       </div>

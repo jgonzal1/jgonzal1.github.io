@@ -20,7 +20,7 @@ body {
   text-align: justify;
   margin: 0;
   /* If you need the 2em gap, use padding instead of subtracting from height */
-  padding: 1em; 
+  padding: 1em;
   box-sizing: border-box;
 }
 
@@ -704,6 +704,7 @@ th.sorted-desc::after {
   max-width: none;
   object-fit: fill;
   width: 100%;
+  filter: invert()
 }
 
 #legend>* {

@@ -144,17 +144,17 @@ _g.setBgBasedOnDDiff = (dDiffStr) => {
   const dDiff = parseFloat(dDiffStr);
   const rangeWeek = Math.max(120 - hToNextDay, hToNextWeek) / 24;
   const bgRanges = [
-    { "bgRange": -9e3,                     "bgColor":"rgba(64,  0,0,.4)", "color": "rgba(204,102,102,1)" }, // passed
-    { "bgRange": 0,                        "bgColor":"rgba(64,  0,0,.3)", "color": "rgba(204,102,102,.9)" }, // now
-    { "bgRange": (24 - hToNextDay) / 24,   "bgColor":"rgba(64, 16,0,.3)", "color": "rgba(204,118,102,.9)" }, // today
-    { "bgRange": (48 - hToNextDay) / 24,   "bgColor":"rgba(64, 32,0,.3)", "color": "rgba(204,134,102,.9)" }, // tomorrow
-    { "bgRange": (72 - hToNextDay) / 24,   "bgColor":"rgba(64, 48,0,.3)", "color": "rgba(204,152,102,.9)" }, // in_2d
-    { "bgRange": (96 - hToNextDay) / 24,   "bgColor":"rgba(64, 64,0,.3)", "color": "rgba(204,169,102,.9)" }, // in_3d
-    { "bgRange": rangeWeek,                "bgColor":"rgba(64, 80,0,.3)", "color": "rgba(204,176,102,.9)" }, // this_week
-    { "bgRange": (120 + hToNextWeek) / 24, "bgColor":"rgba(64, 96,0,.3)", "color": "rgba(204,204,102,.9)" }, // next_w
-    { "bgRange": (720 - hToNextDay) / 24,  "bgColor":"rgba(64,100,0,.3)", "color": "rgba(204,238,102,.8)" }, // this_mo
-    { "bgRange": 365,                      "bgColor":"rgba(48,100,0,.2)", "color": "rgba(187,255,102,.7)" }, // this_year
-    { "bgRange": 3e4,                      "bgColor":"rgba(32,100,0,.1)", "color": "rgba(187,255,102,.6)" } // next_year
+    { "bgRange": -9e3,                     "color": "rgba(204,102,102,1 )", "bgColor":"rgba(64,  0,0,.6)" }, // passed
+    { "bgRange": 0,                        "color": "rgba(204,102,102,.9)", "bgColor":"rgba(64,  0,0,.5)" }, // now
+    { "bgRange": (24 - hToNextDay) / 24,   "color": "rgba(204,118,102,.9)", "bgColor":"rgba(64, 16,0,.4)" }, // today
+    { "bgRange": (48 - hToNextDay) / 24,   "color": "rgba(204,134,102,.9)", "bgColor":"rgba(64, 32,0,.4)" }, // tomorrow
+    { "bgRange": (72 - hToNextDay) / 24,   "color": "rgba(204,152,102,.9)", "bgColor":"rgba(64, 48,0,.4)" }, // in_2d
+    { "bgRange": (96 - hToNextDay) / 24,   "color": "rgba(204,169,102,.9)", "bgColor":"rgba(64, 64,0,.4)" }, // in_3d
+    { "bgRange": rangeWeek,                "color": "rgba(204,176,102,.8)", "bgColor":"rgba(64, 80,0,.4)" }, // this_week
+    { "bgRange": (120 + hToNextWeek) / 24, "color": "rgba(204,204,102,.7)", "bgColor":"rgba(64, 96,0,.4)" }, // next_w
+    { "bgRange": (720 - hToNextDay) / 24,  "color": "rgba(204,238,102,.5)", "bgColor":"rgba(64,100,0,.4)" }, // this_mo
+    { "bgRange": 365,                      "color": "rgba(187,255,102,.4)", "bgColor":"rgba(48,100,0,.3)" }, // this_year
+    { "bgRange": 3e4,                      "color": "rgba(187,255,102,.3)", "bgColor":"rgba(32,100,0,.2)" }  // next_year
   ];
   let bgColor = "#0000";
   let color = "#FFF";

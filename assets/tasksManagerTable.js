@@ -98,6 +98,7 @@ tasksManager.prototype.renderTaskTable = function () {
                     backgroundColor: _gx.setBgBasedOnDDiff(
                       taskRow["Δd"]
                     )[1],
+                    fontWeight: "bold",
                     textAlign: "center",
                     width: (taskRow === "task_name") &&
                       (window.innerWidth < 600) ? "90em" : "auto"

@@ -147,8 +147,8 @@ _g.setBgBasedOnDDiff = (dDiffStr) => {
 
     { "color": "rgba(204,102,102,1 )", "bgColor":"rgba(96,  0,0,.9)", "bgRange": -9e3,                     }, // passed
     { "color": "rgba(204,118,102,.9)", "bgColor":"rgba(64, 16,0,.7)", "bgRange": 0,                        }, // 0h
-    { "color": "rgba(204,152,102,.9)", "bgColor":"rgba(64, 48,0,.5)", "bgRange": 0.2,                      }, // 8h
-    { "color": "rgba(204,169,102,.9)", "bgColor":"rgba(64, 64,0,.4)", "bgRange": (24   - hToNextDay) / 24, }, // 1d
+    { "color": "rgba(204,152,102,.9)", "bgColor":"rgba(64, 48,0,.5)", "bgRange": (24   - hToNextDay) / 24, }, // 8h
+    { "color": "rgba(204,169,102,.9)", "bgColor":"rgba(64, 64,0,.4)", "bgRange": (48   - hToNextDay) / 24, }, // 1d
     { "color": "rgba(204,176,102,.8)", "bgColor":"rgba(64, 80,0,.4)", "bgRange": (72   - hToNextDay) / 24, }, // 3d
     { "color": "rgba(204,204,102,.7)", "bgColor":"rgba(64, 96,0,.4)", "bgRange": (120  - hToNextDay) / 24, }, // 5d
     { "color": "rgba(204,238,102,.5)", "bgColor":"rgba(64,100,0,.4)", "bgRange": (288  + hToNextWeek) / 24,}, // 2w

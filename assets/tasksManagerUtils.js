@@ -153,10 +153,10 @@ _g.setBgBasedOnDDiff = (dDiffStr) => {
     { "color": "rgba(204,204,102,.7)", "bgColor":"rgba(64, 96,0,.4)", "bgRange": (120  - hToNextDay) / 24, }, // 5d
     { "color": "rgba(204,238,102,.5)", "bgColor":"rgba(64,100,0,.4)", "bgRange": (288  + hToNextWeek) / 24,}, // 2w
     { "color": "rgba(187,255,102,.4)", "bgColor":"rgba(48,100,0,.3)", "bgRange": (1440 - hToNextDay) / 24, }, // 2mo
-    { "color": "rgba(187,255,102,.3)", "bgColor":"rgba(32,100,0,.2)", "bgRange": 3e4,  }                      // 8y
-    /* rangeWeek next_w
-      365                      next_year
-      3e4                      > 2y */
+    { "color": "rgba(187,255,102,.3)", "bgColor":"rgba(32,100,0,.2)", "bgRange": 3e4,                      }  // 8y
+    /*  rangeWeek next_w
+        365 next_year
+        3e4 > 2y */
   ];
   let bgColor = "#0000";
   let color = "#FFF";

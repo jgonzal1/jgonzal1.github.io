@@ -479,9 +479,9 @@ th.sorted-desc::after {
   width: min(calc(100% - 0.5em), 1080px);
   height: min(calc(100% - 1.5em), 800px);
 }
-.hw-800-300 {
-  width: min(calc(100% - 0.5em), 300px);
-  height: min(calc(100% - 1.5em), 800px);
+.hw-800-400 {
+  width: min(calc(100% - 0.5em), 400px);
+  height: min(calc(100% - 1.5em), 400px);
 }
 .hw-160 {
   width: min(calc(100% - 0.5em), 280px);
@@ -704,7 +704,7 @@ th.sorted-desc::after {
   max-width: none;
   object-fit: fill;
   width: 100%;
-  filter: invert()
+  /*filter: invert()*/
 }
 
 #legend>* {

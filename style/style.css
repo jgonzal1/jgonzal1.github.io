@@ -330,6 +330,12 @@ th.sorted-desc::after {
   padding-left: 10em;
 }
 
+.fc2-parent {
+  display: 'grid';
+  grid-template-columns: repeat(2, 1fr);
+  gap: '0.3em'
+}
+
 .d-ib {
   display: inline-block;
 }
@@ -479,9 +485,9 @@ th.sorted-desc::after {
   width: min(calc(100% - 0.5em), 1040px);
   height: min(calc(100% - 1.5em), 800px);
 }
-.hw-800-400 {
-  width: min(calc(100% - 0.5em), 400px);
-  height: min(calc(100% - 1.5em), 400px);
+.hw-800-600 {
+  width: min(calc(100% - 0.5em), 600px);
+  height: min(calc(100% - 1.5em), 600px);
 }
 .hw-160 {
   width: min(calc(100% - 0.5em), 280px);
@@ -639,6 +645,11 @@ th.sorted-desc::after {
   padding-right: 2em;
 }
 
+.w-300 {
+  width: calc(300px - 0.6em);
+  /*height:  calc(200px - 0.6em);*/
+}
+
 .x.grid path,
 .x.grid line {
   stroke: #CCC;
@@ -688,11 +699,6 @@ th.sorted-desc::after {
 
 #graphsPlaceholder.flex-container-2 {
   flex-wrap: nowrap;
-}
-
-#portfolioPlaceholder > div {
-  display: flex;
-  flex-direction: column;
 }
 
 #portfolioPlaceholder img {

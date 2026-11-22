@@ -475,8 +475,8 @@ th.sorted-desc::after {
   height: calc(100% - 2em);
   width: calc(100% - 2em);
 }
-.hw-800-1080 {
-  width: min(calc(100% - 0.5em), 1080px);
+.hw-800-1000 {
+  width: min(calc(100% - 0.5em), 1040px);
   height: min(calc(100% - 1.5em), 800px);
 }
 .hw-800-400 {

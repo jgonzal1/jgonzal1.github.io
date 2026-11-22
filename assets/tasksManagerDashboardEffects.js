@@ -33,8 +33,8 @@ tasksManager.prototype.updateDashboard = function () {
     const dailyPassGrowth = _gx.daily_growth * (_gx.passive_factor / 1200);
     // const hoursPerEur = 24/dailyPassGrowth;
     if (dailyPassGrowthDom) dailyPassGrowthDom.innerText =
-      `(${(_gx.passive_factor).toPrecision(3)
-      }%@Δ${dailyPassGrowth.toPrecision(3)}p€/d)`;
+      `(${(_gx.passive_factor).toPrecision(2)
+      }%, ${dailyPassGrowth.toPrecision(2)}p€/d)`;
 
     Array.from({ length: 4 }, (_, n) => n+1).map((n) => {
       const dDateMilestone = new Date((currentDate.getTime() / msPerD + 60*n)
